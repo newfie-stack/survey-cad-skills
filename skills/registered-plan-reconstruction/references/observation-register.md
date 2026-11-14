@@ -1,0 +1,5 @@
+# Observation register and role resolution
+Before drawing, record each source observation as an immutable row: observation_id, source_plan, sheet/detail, source_locator, raw_bearing, raw_distance, raw_width, units, curve_parameters, from_point, to_point, monument_status, feature_id, side_id, proposed_role, direct_or_derived, confidence, and review_status.
+Separate printed facts from interpretation. Use SUBJECT_BOUNDARY, TIE, CONTROL, TRAVERSE, ROAD_LIMIT, WIDTH, OFFSET, CAP, and UNRESOLVED roles. A same-feature/same-side chain requires shared endpoint identity and evidence of continuation; adjacent labels or collinearity alone are insufficient. Record every rejected connection with a reason.
+A full-line observation may contain a partial subject segment. If A-C and B-C share a proven alignment and C endpoint, derive A-B = A-C minus B-C; retain all three records and propagate measurement uncertainty. If shared alignment or identity is uncertain, mark REVIEW_REQUIRED.
+Do not infer a terminal from a nearby road or posting-status note. A calculated point can be a legitimate terminal.
