@@ -1,0 +1,4 @@
+# Annotation-to-geometry association
+Read the entire sheet, legend, notes and enlarged details before resolving a local label. Preserve raw bearing text and original annotation orientation; convert to survey azimuth only after identifying bearing basis and direction.
+Associate labels using endpoints, alignment, leaders, dimension ticks, plan conventions and adjacent detail context—not nearest-text distance alone. A whole-line dimension may pass through an intermediate subject endpoint; do not shorten it visually. Preserve source locator, observation ID, confidence, conflicting candidates and direct-versus-derived status.
+Monumentation status does not define terminal geometry. Differentiate control, tie, traverse, witness, road limit and subject boundary. Flag ambiguous associations REVIEW_REQUIRED.
