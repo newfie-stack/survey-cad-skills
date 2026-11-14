@@ -1,0 +1,5 @@
+# Reconstruction acceptance and failure modes
+PASS requires mathematical support for every exported subject edge, supported terminal selection, applicable closure/width/area checks, independent orientation/control verification and a valid reopened CAD artifact.
+REVIEW_REQUIRED preserves useful partial geometry when a printed value is unreadable, a terminal is ambiguous, a tie conflicts, or an area mismatch remains. FAIL applies where legal geometry cannot be constructed without guessing. BLOCKED_MISSING_TOOL applies when deterministic COGO or DXF generation is unavailable; do not simulate completion.
+Common failures: treating a tie as a boundary; chaining opposite sides; inventing a cap; trimming at a nearby road; dropping a full control course; reflecting the source image; reusing another plan's stale geometry; hiding an area discrepancy; and accepting a DXF solely because it opens.
+A printed area is a check, not a license to alter observations. Verify both geometry and provenance. No fixed numerical tolerance is universal: record the source/standard and the tolerance used.
