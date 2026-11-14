@@ -11,6 +11,10 @@ Open-source, general-purpose skills for survey evidence interpretation, cadastra
 - [Survey Evidence Plotting & Labeling](skills/survey-evidence-plotting-labeling/SKILL.md)
 - [Field Note Observation Extraction](skills/field-note-observation-extraction/SKILL.md)
 
+- [Shapefile Validator](skills/shapefile-validator/SKILL.md)
+- [Quarter Completeness & Encumbrance Research](skills/quarter-completeness-encumbrance/SKILL.md)
+- [Counsel — General Decision Review](skills/counsel/SKILL.md) (general-purpose AI advisory skill)
+
 ## Intended use
 These are instructional workflow skills and synthetic regression specifications—not executable, independently certified survey reconstruction software. Verify control, bearing basis, source evidence, topology, closure, area and CAD outputs. Professional survey judgment and current regulatory requirements take precedence.
 
