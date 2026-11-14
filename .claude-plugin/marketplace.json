@@ -1,0 +1,14 @@
+{
+  "name": "survey-cad-skills",
+  "description": "General-purpose survey and CAD skills",
+  "owner": {
+    "name": "newfie-stack"
+  },
+  "plugins": [
+    {
+      "name": "survey-cad-skills",
+      "source": "./",
+      "category": "engineering"
+    }
+  ]
+}
