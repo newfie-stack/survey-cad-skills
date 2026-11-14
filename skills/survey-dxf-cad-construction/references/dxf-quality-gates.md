@@ -1,0 +1,4 @@
+# DXF quality gates
+Before writing: validate accepted versus provisional geometry, CRS, units, layer mapping and unique feature IDs. Use deterministic operations, preserve unrelated entities when merging and keep evidence/control separate from derived legal boundaries.
+After writing: reopen with an independent parser; compare expected versus actual entity counts, extents, layers, metadata, coordinates and polygon closure. Check zero-length entities, duplicates, invalid rings, self-intersections, width/area/terminal residuals and unintended geometry near origin. Re-run identical input to confirm idempotency. Never allow an older asynchronous result to overwrite newer accepted output.
+Use target CAD compatibility tests (including older DXF versions if required). A successful file write is not a successful survey verification.
