@@ -1,0 +1,3 @@
+# Coordinate and control discipline
+Keep the original observation units, coordinate datum, projection, zone, bearing basis and grid/ground treatment. Never infer a UTM zone from coordinate magnitude alone. For azimuth clockwise from north, ΔE=d·sin(A), ΔN=d·cos(A). Preserve direction when reversing a course (A±180° normalized).
+Surveyed coordinates and accepted monuments have greater positional authority than a convenient image/GIS overlay. A registered plan may be locally correct without georeferenced position. Require independent control for final alignment and record residuals. Use a transformation only when supported by the stated reference frame and sources.
