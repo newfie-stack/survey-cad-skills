@@ -1,0 +1,4 @@
+# Feature roles and legal terminals
+First determine feature identity, then side identity, then endpoint/edge roles. Use SIDE_A and SIDE_B until direction is verified. A point may participate in multiple relationships, but a tie or traverse is not promoted to a subject boundary without explicit evidence.
+Terminal types: supported perpendicular cap; intersection with an established surveyed boundary; road-limit terminal; another explicit constraint; unresolved. A non-monumented point can be the actual terminal. A road allowance does not become the terminal merely because it is nearby.
+An existing right-of-way crossing a proposed access does not necessarily end the access. Existing/cancelled/new access and physical travelled route must remain distinct. Preserve partial geometry and review flags when observations cannot be joined.
