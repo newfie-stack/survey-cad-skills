@@ -15,6 +15,14 @@ Open-source, general-purpose skills for survey evidence interpretation, cadastra
 - [Quarter Completeness & Encumbrance Research](skills/quarter-completeness-encumbrance/SKILL.md)
 - [Counsel — General Decision Review](skills/counsel/SKILL.md) (general-purpose AI advisory skill)
 
+- [AER OneStop Guide](skills/aer-onestop-guide/SKILL.md) — public-source regulatory research only
+- [CAD/GIS Object Inspection](skills/cad-gis-object-inspection/SKILL.md)
+- [Skill Evaluation & Regression Testing](skills/skill-evaluation-regression/SKILL.md)
+- [Interactive Artifact Review](skills/interactive-artifact-review/SKILL.md)
+- [Code Review](skills/code-review/SKILL.md)
+- [Drafting Agent Pressure Test](skills/drafting-agent-pressure-test/SKILL.md)
+- [Checking Station Review](skills/checking-station-review/SKILL.md)
+
 ## Intended use
 These are instructional workflow skills and synthetic regression specifications—not executable, independently certified survey reconstruction software. Verify control, bearing basis, source evidence, topology, closure, area and CAD outputs. Professional survey judgment and current regulatory requirements take precedence.
 
