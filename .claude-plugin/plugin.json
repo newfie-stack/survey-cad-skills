@@ -1,0 +1,8 @@
+{
+  "name": "survey-cad-skills",
+  "version": "1.0.0",
+  "description": "General-purpose survey evidence, cadastral reasoning and CAD reconstruction skills",
+  "skills": [
+    "./skills/"
+  ]
+}
