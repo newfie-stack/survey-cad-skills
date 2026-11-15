@@ -1,0 +1,502 @@
+{
+  "schema_version": 1,
+  "status": "CANDIDATE_REVIEW_ONLY",
+  "requirements": [
+    {
+      "requirement_id": "CANDIDATE-PLAN-SCALE",
+      "summary": "Check the numerical plan scale in the title block",
+      "evidence_key": "scale_annotation",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.2.3",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "numerical_scale",
+      "review_instruction": "Confirm the candidate is the main plan scale in the title block. Check permitted scales and exceptions under section 1.1.4 and applicable activity provisions."
+    },
+    {
+      "requirement_id": "CANDIDATE-SCALE-BAR",
+      "summary": "Check the title-block scale bar",
+      "evidence_key": "scale_bar",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.2.3",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Visually confirm the title-block scale bar. Section 1.3.7.2 exempts detail views from the scale-bar requirement."
+    },
+    {
+      "requirement_id": "CANDIDATE-NORTH-ARROW",
+      "summary": "Check orientation indicated by north arrows",
+      "evidence_key": "north_arrow",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.3.1.1",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Visually confirm the north arrow or arrows indicate main-plan orientation."
+    },
+    {
+      "requirement_id": "CANDIDATE-PLAN-HEADING",
+      "summary": "Check the plan type in the heading",
+      "evidence_key": "plan_heading",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.1.1",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 6
+      },
+      "check_method": "plan_heading",
+      "review_instruction": "Confirm the heading shows the proposed plan type. Compare the proposal separately with any applicable Table A2 row."
+    },
+    {
+      "requirement_id": "CANDIDATE-HYBRID-PLAN-HEADING",
+      "summary": "Check the prescribed hybrid survey heading",
+      "evidence_key": "hybrid_plan_heading",
+      "text_candidates": [],
+      "plan_types": [
+        "hybrid_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "section": "3.5.1.1",
+        "page": 12
+      },
+      "check_method": "plan_heading",
+      "review_instruction": "Confirm the main heading states Plan Showing Survey (Hybrid) of and that its purpose matches the application. A text candidate does not establish plan classification; review general and hybrid-specific requirements separately."
+    },
+    {
+      "requirement_id": "CANDIDATE-COMPILED-PLAN-HEADING",
+      "summary": "Check the prescribed compiled-plan heading",
+      "evidence_key": "compiled_plan_heading",
+      "text_candidates": [],
+      "plan_types": [
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "section": "3.6.1.2",
+        "page": 14
+      },
+      "check_method": "plan_heading",
+      "review_instruction": "Confirm the main heading states Compiled Plan from Existing Surveys for the Purpose of and matches the application purpose. Section 3.6.1.1 exempts compiled plans from the ordinary heading under 1.2.1.1; a text prefix is not verified plan classification."
+    },
+    {
+      "requirement_id": "CANDIDATE-COMPILED-DECLARATION",
+      "summary": "Check the compiled-plan Appendix D declaration and Alberta Land Surveyor signature",
+      "evidence_key": "compiled_declaration",
+      "text_candidates": [],
+      "plan_types": [
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "section": "3.6.1.3",
+        "page": 14
+      },
+      "check_method": "visual",
+      "review_instruction": "Inspect the Alberta Land Surveyor signature and the Appendix D declaration from the applicable Public Lands Survey Manual. Section 3.6.1.3 replaces the ordinary section 3.1.2 declaration route; verify the current form and its requirements independently."
+    },
+    {
+      "requirement_id": "CANDIDATE-LEGAL-DESCRIPTION",
+      "summary": "Check the heading legal description and plan extents against the application",
+      "evidence_key": "legal_description",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.1.3\u20131.2.1.4",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Compare the complete legal description and plan extents with the application. Confirm relevant ATS, lot, block, plan and road allowance details."
+    },
+    {
+      "requirement_id": "CANDIDATE-MUNICIPALITY",
+      "summary": "Check the full legal municipality name",
+      "evidence_key": "municipality_name",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.1.5",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "scenario_text",
+      "review_instruction": "Supply municipality_name from the application and verify the full legal name in the heading."
+    },
+    {
+      "requirement_id": "CANDIDATE-APPLICANT",
+      "summary": "Check the applicant legal name against the client registry and application",
+      "evidence_key": "applicant_name",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.2.1",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "scenario_text",
+      "review_instruction": "Supply applicant_name from the application. Confirm the title-block name against both the form and the client registry."
+    },
+    {
+      "requirement_id": "CANDIDATE-LEGEND",
+      "summary": "Check legend explanations and symbol legibility",
+      "evidence_key": "legend",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.3.1\u20131.2.3.2",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Compare the symbols and abbreviations used on the plan with the legend and inspect legibility at the intended plotting scale."
+    },
+    {
+      "requirement_id": "CANDIDATE-GEOREFERENCE",
+      "summary": "Check the geo-referenced point and supporting information",
+      "evidence_key": "georeference",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.2.3.3, 1.3.2.1",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Inspect the plotted symbol and information against the applicable Geo-Referencing Guide."
+    },
+    {
+      "requirement_id": "CANDIDATE-CADASTRAL-FABRIC",
+      "summary": "Check cadastral fabric and land labels",
+      "evidence_key": "cadastral_fabric",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.3.3.1\u20131.3.3.5",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Compare the plan with the cadastral source. Review full affected quarters, road allowance and section labels, plus LSD or unsurveyed-territory labels where applicable."
+    },
+    {
+      "requirement_id": "CANDIDATE-NEARBY-INTERESTS",
+      "summary": "Check nearby and crossing dispositions and titles",
+      "evidence_key": "nearby_interests",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.3.3.6",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Compare against the Surface Public Lands Standing Search. Review the listed interests within 250 m adjacent to and through the proposed activity."
+    },
+    {
+      "requirement_id": "CANDIDATE-HYDROGRAPHY",
+      "summary": "Check nearby hydrography, flow and names",
+      "evidence_key": "hydrography",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.3.4.1\u20131.3.4.2",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 7
+      },
+      "check_method": "visual",
+      "review_instruction": "Check hydrography within 100 m adjacent to and through the proposed activity against relevant source evidence. Confirm flow arrows, applicable names and relevant unmapped features."
+    },
+    {
+      "requirement_id": "CANDIDATE-ACTIVITY-OUTLINE",
+      "summary": "Check the proposed activity outline and extent",
+      "evidence_key": "activity_outline",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.3.5.1\u20131.3.5.5",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 8
+      },
+      "check_method": "visual",
+      "review_instruction": "Review outline weight and clarity, road allowance treatment, permitted geometry and bank evidence where applicable. Compare with CAD and land evidence where supplied."
+    },
+    {
+      "requirement_id": "CANDIDATE-TOTAL-AREA",
+      "summary": "Check that the total activity area is shown in hectares",
+      "evidence_key": "total_area",
+      "text_candidates": [],
+      "plan_types": [
+        "sketch",
+        "surveyor_sketch",
+        "survey_plan",
+        "hybrid_plan",
+        "compiled_plan"
+      ],
+      "activities": [
+        "*"
+      ],
+      "stages": [
+        "*"
+      ],
+      "source_status": "UNVERIFIED_CURRENT",
+      "citation": {
+        "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+        "section": "1.3.6.2\u20131.3.6.3",
+        "version_date": "2024-05-30",
+        "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+        "accessed_on": "2026-11-14",
+        "page": 8
+      },
+      "check_method": "total_area",
+      "review_instruction": "Confirm the candidate covers the entire activity. Use the separate survey-area comparison to check a reviewer-selected label against supplied survey coordinates."
+    }
+  ]
+}

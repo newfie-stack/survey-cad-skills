@@ -1,0 +1,2 @@
+# Match the supported dependency range used by the offline CI workflow.
+PyMuPDF>=1.24,<2
