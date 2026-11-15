@@ -1,0 +1,1451 @@
+{
+  "classification": "INVENTED_EXPECTATIONS_FROZEN_BEFORE_ENGINE_IMPLEMENTATION",
+  "catalogue_file": "canonical-example.json",
+  "catalogue_sha256": "4ff3bc33158ef3d217c83a5fc4cdbeb77634587e3b23271b2cd5fd06fde73332",
+  "case_count": 10,
+  "normalization": "Sort sets and reason records by IDs for comparison; these expected records are manually specified, not evaluator output.",
+  "cases": [
+    {
+      "case_id": "C01_ordinary_and_observation_reference",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [
+          "CANDIDATE-PLAN-HEADING"
+        ],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "permitted_note"
+          ],
+          "unselected": [
+            "detail_scale",
+            "detail_bar",
+            "extension_review",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.1.1",
+            "1.3.1"
+          ],
+          "unselected": [
+            "1.2.1",
+            "2.1.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "FALSE",
+          "detail_bar": "FALSE",
+          "permitted_note": "TRUE",
+          "extension_review": "FALSE",
+          "compiled_exemption": "FALSE",
+          "compiled_certificate": "FALSE"
+        },
+        "blocking_fact_ids_by_check": {},
+        "fact_issues_by_check": {
+          "extension_review": [
+            {
+              "fact_id": "special_applies",
+              "code": "MISSING_FACT",
+              "blocking": false
+            }
+          ]
+        },
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          }
+        ],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "OBSERVATION_CANDIDATE_AVAILABLE",
+          "ordinary_certificate": "MANUAL_REVIEW_REQUIRED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {
+          "ordinary_heading": [
+            "CANDIDATE-PLAN-HEADING"
+          ]
+        },
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 2,
+          "unselected_clause_paths": 4,
+          "unresolved_clause_paths": 0,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 2,
+          "selected_guidance_checks": 1,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 1
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C02_compiled_replacement_missing_evidence",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "permitted_note",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unselected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "detail_scale",
+            "detail_bar",
+            "extension_review"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.3.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unselected": [
+            "1.1.1",
+            "1.2.1",
+            "2.1.1"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "FALSE",
+          "detail_bar": "FALSE",
+          "permitted_note": "TRUE",
+          "extension_review": "FALSE",
+          "compiled_exemption": "TRUE",
+          "compiled_certificate": "TRUE"
+        },
+        "blocking_fact_ids_by_check": {},
+        "fact_issues_by_check": {
+          "extension_review": [
+            {
+              "fact_id": "special_applies",
+              "code": "MISSING_FACT",
+              "blocking": false
+            }
+          ]
+        },
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "TRUE",
+            "effect": "APPLIED"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "TRUE",
+            "effect": "APPLIED"
+          }
+        ],
+        "override_reason_codes_by_target": {
+          "ordinary_heading": [
+            "EXCLUDED_BY_OVERRIDE"
+          ],
+          "ordinary_certificate": [
+            "REPLACED_BY_OVERRIDE"
+          ]
+        },
+        "evidence_status_by_check": {
+          "ordinary_heading": "NOT_EVALUATED",
+          "ordinary_certificate": "NOT_EVALUATED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "MANUAL_REVIEW_REQUIRED",
+          "compiled_certificate": "MANUAL_REVIEW_REQUIRED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 3,
+          "unselected_clause_paths": 3,
+          "unresolved_clause_paths": 0,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 1,
+          "selected_guidance_checks": 1,
+          "selected_exemption_controls": 1,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C03_missing_core_plan_type",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [],
+          "unselected": [],
+          "unresolved": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "detail_scale",
+            "detail_bar",
+            "permitted_note",
+            "extension_review",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [],
+          "unselected": [],
+          "unresolved": [
+            "1.1.1",
+            "1.2.1",
+            "1.3.1",
+            "2.1.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "NOT_EVALUATED",
+          "ordinary_certificate": "NOT_EVALUATED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "NOT_EVALUATED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "blocking_fact_ids_by_check": {},
+        "fact_issues_by_check": {},
+        "context_issue_codes": [
+          "MISSING_CONTEXT:plan_type"
+        ],
+        "override_decisions": [],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "NOT_EVALUATED",
+          "ordinary_certificate": "NOT_EVALUATED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "NOT_EVALUATED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 0,
+          "unselected_clause_paths": 0,
+          "unresolved_clause_paths": 6,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 0,
+          "selected_guidance_checks": 0,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C04_missing_detail_fact",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "permitted_note"
+          ],
+          "unselected": [
+            "extension_review",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unresolved": [
+            "detail_scale",
+            "detail_bar"
+          ],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.1.1",
+            "1.3.1"
+          ],
+          "unselected": [
+            "2.1.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unresolved": [
+            "1.2.1"
+          ],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "UNKNOWN",
+          "detail_bar": "UNKNOWN",
+          "permitted_note": "TRUE",
+          "extension_review": "FALSE",
+          "compiled_exemption": "FALSE",
+          "compiled_certificate": "FALSE"
+        },
+        "blocking_fact_ids_by_check": {
+          "detail_scale": [
+            "has_details"
+          ],
+          "detail_bar": [
+            "has_details"
+          ]
+        },
+        "fact_issues_by_check": {
+          "extension_review": [
+            {
+              "fact_id": "special_applies",
+              "code": "MISSING_FACT",
+              "blocking": false
+            }
+          ],
+          "detail_scale": [
+            {
+              "fact_id": "has_details",
+              "code": "MISSING_FACT",
+              "blocking": true
+            }
+          ],
+          "detail_bar": [
+            {
+              "fact_id": "has_details",
+              "code": "MISSING_FACT",
+              "blocking": true
+            }
+          ]
+        },
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          }
+        ],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "MANUAL_REVIEW_REQUIRED",
+          "ordinary_certificate": "MANUAL_REVIEW_REQUIRED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 2,
+          "unselected_clause_paths": 3,
+          "unresolved_clause_paths": 1,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 2,
+          "selected_guidance_checks": 1,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C05_required_and_optional_detail_checks",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": true,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "detail_scale",
+            "detail_bar",
+            "permitted_note"
+          ],
+          "unselected": [
+            "extension_review",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.1.1",
+            "1.2.1",
+            "1.3.1"
+          ],
+          "unselected": [
+            "2.1.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "TRUE",
+          "detail_bar": "TRUE",
+          "permitted_note": "TRUE",
+          "extension_review": "FALSE",
+          "compiled_exemption": "FALSE",
+          "compiled_certificate": "FALSE"
+        },
+        "blocking_fact_ids_by_check": {},
+        "fact_issues_by_check": {
+          "extension_review": [
+            {
+              "fact_id": "special_applies",
+              "code": "MISSING_FACT",
+              "blocking": false
+            }
+          ]
+        },
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          }
+        ],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "MANUAL_REVIEW_REQUIRED",
+          "ordinary_certificate": "MANUAL_REVIEW_REQUIRED",
+          "detail_scale": "MANUAL_REVIEW_REQUIRED",
+          "detail_bar": "MANUAL_REVIEW_REQUIRED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 3,
+          "unselected_clause_paths": 3,
+          "unresolved_clause_paths": 0,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 3,
+          "selected_guidance_checks": 2,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C06_exact_decimal_threshold",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "10.0",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": true,
+            "provenance": {
+              "source_id": "INVENTED_MANUAL_DECISION",
+              "locator": "independent-review-note:1"
+            }
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "permitted_note"
+          ],
+          "unselected": [
+            "detail_scale",
+            "detail_bar",
+            "extension_review",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.1.1",
+            "1.3.1"
+          ],
+          "unselected": [
+            "1.2.1",
+            "2.1.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "FALSE",
+          "detail_bar": "FALSE",
+          "permitted_note": "TRUE",
+          "extension_review": "FALSE",
+          "compiled_exemption": "FALSE",
+          "compiled_certificate": "FALSE"
+        },
+        "blocking_fact_ids_by_check": {},
+        "fact_issues_by_check": {},
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          }
+        ],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "MANUAL_REVIEW_REQUIRED",
+          "ordinary_certificate": "MANUAL_REVIEW_REQUIRED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 2,
+          "unselected_clause_paths": 4,
+          "unresolved_clause_paths": 0,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 2,
+          "selected_guidance_checks": 1,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C07_conditional_path_selected",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "10.01",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": true,
+            "provenance": {
+              "source_id": "INVENTED_MANUAL_DECISION",
+              "locator": "independent-review-note:1"
+            }
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "permitted_note",
+            "extension_review"
+          ],
+          "unselected": [
+            "detail_scale",
+            "detail_bar",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.1.1",
+            "1.3.1",
+            "2.1.1"
+          ],
+          "unselected": [
+            "1.2.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unresolved": [],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "FALSE",
+          "detail_bar": "FALSE",
+          "permitted_note": "TRUE",
+          "extension_review": "TRUE",
+          "compiled_exemption": "FALSE",
+          "compiled_certificate": "FALSE"
+        },
+        "blocking_fact_ids_by_check": {},
+        "fact_issues_by_check": {},
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          }
+        ],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "MANUAL_REVIEW_REQUIRED",
+          "ordinary_certificate": "MANUAL_REVIEW_REQUIRED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "MANUAL_REVIEW_REQUIRED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 3,
+          "unselected_clause_paths": 3,
+          "unresolved_clause_paths": 0,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 3,
+          "selected_guidance_checks": 1,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C08_missing_manual_provenance",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "10.01",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": true,
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "permitted_note"
+          ],
+          "unselected": [
+            "detail_scale",
+            "detail_bar",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unresolved": [
+            "extension_review"
+          ],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.1.1",
+            "1.3.1"
+          ],
+          "unselected": [
+            "1.2.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unresolved": [
+            "2.1.1"
+          ],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "FALSE",
+          "detail_bar": "FALSE",
+          "permitted_note": "TRUE",
+          "extension_review": "UNKNOWN",
+          "compiled_exemption": "FALSE",
+          "compiled_certificate": "FALSE"
+        },
+        "blocking_fact_ids_by_check": {
+          "extension_review": [
+            "special_applies"
+          ]
+        },
+        "fact_issues_by_check": {
+          "extension_review": [
+            {
+              "fact_id": "special_applies",
+              "code": "MISSING_PROVENANCE",
+              "blocking": true
+            }
+          ]
+        },
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          }
+        ],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "MANUAL_REVIEW_REQUIRED",
+          "ordinary_certificate": "MANUAL_REVIEW_REQUIRED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 2,
+          "unselected_clause_paths": 3,
+          "unresolved_clause_paths": 1,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 2,
+          "selected_guidance_checks": 1,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C09_invalid_decimal_boolean",
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": true,
+            "provenance": null
+          },
+          "special_applies": {
+            "value": true,
+            "provenance": {
+              "source_id": "INVENTED_MANUAL_DECISION",
+              "locator": "independent-review-note:1"
+            }
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "permitted_note"
+          ],
+          "unselected": [
+            "detail_scale",
+            "detail_bar",
+            "compiled_exemption",
+            "compiled_certificate"
+          ],
+          "unresolved": [
+            "extension_review"
+          ],
+          "out_of_scope": []
+        },
+        "clause_partitions": {
+          "selected": [
+            "1.1.1",
+            "1.3.1"
+          ],
+          "unselected": [
+            "1.2.1",
+            "3.1.1",
+            "3.1.2"
+          ],
+          "unresolved": [
+            "2.1.1"
+          ],
+          "out_of_scope": []
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "TRUE",
+          "ordinary_certificate": "TRUE",
+          "detail_scale": "FALSE",
+          "detail_bar": "FALSE",
+          "permitted_note": "TRUE",
+          "extension_review": "UNKNOWN",
+          "compiled_exemption": "FALSE",
+          "compiled_certificate": "FALSE"
+        },
+        "blocking_fact_ids_by_check": {
+          "extension_review": [
+            "length_m"
+          ]
+        },
+        "fact_issues_by_check": {
+          "extension_review": [
+            {
+              "fact_id": "length_m",
+              "code": "INVALID_FACT_VALUE",
+              "blocking": true
+            }
+          ]
+        },
+        "context_issue_codes": [],
+        "override_decisions": [
+          {
+            "by_clause_id": "3.1.1",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "action": "exclude",
+            "targets": [
+              "ordinary_heading"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          },
+          {
+            "by_clause_id": "3.1.2",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "action": "replace",
+            "targets": [
+              "ordinary_certificate"
+            ],
+            "condition_result": "FALSE",
+            "effect": "INACTIVE"
+          }
+        ],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "MANUAL_REVIEW_REQUIRED",
+          "ordinary_certificate": "MANUAL_REVIEW_REQUIRED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "MANUAL_REVIEW_REQUIRED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 2,
+          "unselected_clause_paths": 3,
+          "unresolved_clause_paths": 1,
+          "out_of_scope_clause_paths": 0,
+          "selected_required_manual_checks": 2,
+          "selected_guidance_checks": 1,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "C10_outside_scope",
+      "input": {
+        "scenario": {
+          "land_class": "private",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "survey_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "check_partitions": {
+          "selected": [],
+          "unselected": [],
+          "unresolved": [],
+          "out_of_scope": [
+            "ordinary_heading",
+            "ordinary_certificate",
+            "detail_scale",
+            "detail_bar",
+            "permitted_note",
+            "extension_review",
+            "compiled_exemption",
+            "compiled_certificate"
+          ]
+        },
+        "clause_partitions": {
+          "selected": [],
+          "unselected": [],
+          "unresolved": [],
+          "out_of_scope": [
+            "1.1.1",
+            "1.2.1",
+            "1.3.1",
+            "2.1.1",
+            "3.1.1",
+            "3.1.2"
+          ]
+        },
+        "effective_condition_results_before_overrides": {
+          "ordinary_heading": "NOT_EVALUATED",
+          "ordinary_certificate": "NOT_EVALUATED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "NOT_EVALUATED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "blocking_fact_ids_by_check": {},
+        "fact_issues_by_check": {},
+        "context_issue_codes": [
+          "OUT_OF_SCOPE:land_class"
+        ],
+        "override_decisions": [],
+        "override_reason_codes_by_target": {},
+        "evidence_status_by_check": {
+          "ordinary_heading": "NOT_EVALUATED",
+          "ordinary_certificate": "NOT_EVALUATED",
+          "detail_scale": "NOT_EVALUATED",
+          "detail_bar": "NOT_EVALUATED",
+          "permitted_note": "NOT_EVALUATED",
+          "extension_review": "NOT_EVALUATED",
+          "compiled_exemption": "NOT_EVALUATED",
+          "compiled_certificate": "NOT_EVALUATED"
+        },
+        "observation_refs_by_check": {},
+        "counts": {
+          "catalogued_clause_paths": 6,
+          "catalogued_manual_only_clauses": 5,
+          "catalogued_clauses_with_adapter_links": 1,
+          "selected_clause_paths": 0,
+          "unselected_clause_paths": 0,
+          "unresolved_clause_paths": 0,
+          "out_of_scope_clause_paths": 6,
+          "selected_required_manual_checks": 0,
+          "selected_guidance_checks": 0,
+          "selected_exemption_controls": 0,
+          "available_observation_links": 0
+        },
+        "coverage": {
+          "universe_status": "NOT_SUPPLIED",
+          "expected_clause_count": null,
+          "unmapped_clause_ids": null,
+          "atomic_obligation_completeness": "NOT_ASSESSED"
+        },
+        "fixed_status_requirements": {
+          "workbook": {
+            "overall_status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          },
+          "clauses_and_checks": {
+            "status": "REVIEW_REQUIRED",
+            "source_status": "UNVERIFIED_CURRENT"
+          }
+        }
+      }
+    }
+  ]
+}

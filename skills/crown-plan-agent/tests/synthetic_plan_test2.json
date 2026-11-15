@@ -1,0 +1,70 @@
+{
+  "fixture_id": "CROWN-SYNTH-T2",
+  "synthetic": true,
+  "scenario": {
+    "jurisdiction": "Alberta Crown land",
+    "regulator": "AER",
+    "disposition": "PLA",
+    "stage": "new",
+    "plan_type": "conventional survey plan",
+    "corridor_width_m": 15
+  },
+  "source_verification": {
+    "current_plar_table_a2_entry_verified": false,
+    "current_aer_bulletins_verified": false,
+    "content_requirements_version_verified": false
+  },
+  "artifacts": {
+    "plan_pdf_present": true,
+    "dxf_present": false,
+    "shapefile_present": false
+  },
+  "observations": {
+    "plan_heading_present": true,
+    "legal_description_present": false,
+    "north_arrow_present": false,
+    "scale_present": true,
+    "legend_present": true,
+    "monument_evidence_present": false,
+    "printed_width_m": 15,
+    "geometry_area_ha": null,
+    "als_declaration_present": false
+  },
+  "expected": [
+    {
+      "id": "legal_description",
+      "status": "FAIL",
+      "reason": "Synthetic plan explicitly omits legal description; compliance classification conditional on current governing source"
+    },
+    {
+      "id": "north_arrow",
+      "status": "FAIL",
+      "reason": "Synthetic plan explicitly omits north arrow; compliance classification conditional on current governing source"
+    },
+    {
+      "id": "monument_evidence",
+      "status": "REVIEW_REQUIRED",
+      "reason": "Cannot establish required monuments or legal exemption from fixture alone"
+    },
+    {
+      "id": "area",
+      "status": "REVIEW_REQUIRED",
+      "reason": "No geometry/area evidence"
+    },
+    {
+      "id": "als_declaration",
+      "status": "REVIEW_REQUIRED",
+      "reason": "Plan type and declaration applicability unresolved"
+    },
+    {
+      "id": "gis_schema",
+      "status": "REVIEW_REQUIRED",
+      "reason": "No shapefile and current schema applicability not verified"
+    },
+    {
+      "id": "current_plan_type",
+      "status": "REVIEW_REQUIRED",
+      "reason": "Current PLAR A2 entry and AER bulletins not verified"
+    }
+  ]
+}

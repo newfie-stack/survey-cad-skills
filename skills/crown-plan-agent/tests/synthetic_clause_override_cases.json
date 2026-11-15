@@ -1,0 +1,2519 @@
+{
+  "classification": "INVENTED_OVERRIDE_EXPECTATIONS_FROZEN_BEFORE_IMPLEMENTATION",
+  "scope": "Focused conflict fixtures; no actual Alberta clause conditions are asserted by these modified invented catalogues.",
+  "case_count": 8,
+  "cases": [
+    {
+      "case_id": "O01_true_exclude_unknown_replacement",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O01",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "eq": {
+                "fact": "special_applies",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": null,
+            "provenance": null
+          }
+        },
+        "available_observation_ids": []
+      },
+      "expected": {
+        "target_check_id": "ordinary_heading",
+        "target_selection_status": "UNRESOLVED_APPLICABILITY",
+        "replacement_provider_check_ids": [
+          "compiled_certificate"
+        ],
+        "replacement_provider_selection_status": "UNRESOLVED_APPLICABILITY",
+        "reason_code": "POTENTIAL_OVERRIDE_CONFLICT",
+        "controller_condition_results": {
+          "3.1.1": "TRUE",
+          "3.1.2": "UNKNOWN"
+        },
+        "ordinary_certificate_selection_status": "CANDIDATE_REVIEW",
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT"
+      }
+    },
+    {
+      "case_id": "O02_unknown_exclude_true_replacement",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O02",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "eq": {
+                "fact": "special_applies",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": null,
+            "provenance": null
+          }
+        },
+        "available_observation_ids": []
+      },
+      "expected": {
+        "target_check_id": "ordinary_heading",
+        "target_selection_status": "UNRESOLVED_APPLICABILITY",
+        "replacement_provider_check_ids": [
+          "compiled_certificate"
+        ],
+        "replacement_provider_selection_status": "UNRESOLVED_APPLICABILITY",
+        "reason_code": "POTENTIAL_OVERRIDE_CONFLICT",
+        "controller_condition_results": {
+          "3.1.1": "UNKNOWN",
+          "3.1.2": "TRUE"
+        },
+        "ordinary_certificate_selection_status": "CANDIDATE_REVIEW",
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT"
+      }
+    },
+    {
+      "case_id": "O03_true_replacement_unknown_competitor",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O03",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "const": false
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.3",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.3",
+              "page": 3
+            },
+            "summary": "Invented alternative replacement provider",
+            "when": {
+              "eq": {
+                "fact": "special_applies",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "alternative_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the invented alternative replacement only after its applicability is resolved."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": null,
+            "provenance": null
+          }
+        },
+        "available_observation_ids": []
+      },
+      "expected": {
+        "target_check_id": "ordinary_heading",
+        "target_selection_status": "UNRESOLVED_APPLICABILITY",
+        "replacement_provider_check_ids": [
+          "compiled_certificate",
+          "alternative_certificate"
+        ],
+        "replacement_provider_selection_status": "UNRESOLVED_APPLICABILITY",
+        "reason_code": "POTENTIAL_OVERRIDE_CONFLICT",
+        "controller_condition_results": {
+          "3.1.1": "FALSE",
+          "3.1.2": "TRUE",
+          "3.1.3": "UNKNOWN"
+        },
+        "ordinary_certificate_selection_status": "CANDIDATE_REVIEW",
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT"
+      }
+    },
+    {
+      "case_id": "O04_true_exclude_unknown_compatible_exclude",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O04",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "const": false
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_certificate"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.3",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.3",
+              "page": 3
+            },
+            "summary": "Invented compatible alternative exemption",
+            "when": {
+              "eq": {
+                "fact": "special_applies",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "alternative_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record the unresolved alternative exemption without requiring an element on the drawing."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": null,
+            "provenance": null
+          }
+        },
+        "available_observation_ids": []
+      },
+      "expected": {
+        "target_check_id": "ordinary_heading",
+        "target_selection_status": "NOT_SELECTED_FOR_REVIEW",
+        "replacement_provider_check_ids": [],
+        "replacement_provider_selection_status": null,
+        "reason_code": "EXCLUDED_BY_OVERRIDE",
+        "controller_condition_results": {
+          "3.1.1": "TRUE",
+          "3.1.2": "FALSE",
+          "3.1.3": "UNKNOWN"
+        },
+        "ordinary_certificate_selection_status": "CANDIDATE_REVIEW",
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT",
+        "target_blocking_fact_ids": [],
+        "alternative_exemption_selection_status": "UNRESOLVED_APPLICABILITY"
+      }
+    },
+    {
+      "case_id": "O05_true_exclude_true_replacement",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O05",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": null,
+            "provenance": null
+          }
+        },
+        "available_observation_ids": []
+      },
+      "expected": {
+        "target_check_id": "ordinary_heading",
+        "target_selection_status": "UNRESOLVED_APPLICABILITY",
+        "replacement_provider_check_ids": [
+          "compiled_certificate"
+        ],
+        "replacement_provider_selection_status": "UNRESOLVED_APPLICABILITY",
+        "reason_code": "CONFLICTING_OVERRIDES",
+        "controller_condition_results": {
+          "3.1.1": "TRUE",
+          "3.1.2": "TRUE"
+        },
+        "ordinary_certificate_selection_status": "CANDIDATE_REVIEW",
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT"
+      }
+    },
+    {
+      "case_id": "O06_replacement_children_false",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O06",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "const": false
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_certificate"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "target_check_id": "ordinary_certificate",
+        "target_selection_status": "NOT_SELECTED_FOR_REVIEW",
+        "target_reason_code": "REPLACED_BY_OVERRIDE",
+        "replacement_provider_check_ids": [
+          "compiled_certificate"
+        ],
+        "replacement_provider_selection_status": "NOT_SELECTED_FOR_REVIEW",
+        "controller_condition_results": {
+          "3.1.2": "TRUE"
+        },
+        "replacement_child_condition_result": "FALSE",
+        "mandatory_replacement_question_manufactured": false,
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT"
+      }
+    },
+    {
+      "case_id": "O07_replacement_child_unknown",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O07",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_certificate"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          },
+          "special_applies": {
+            "value": null,
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "target_check_id": "ordinary_certificate",
+        "target_selection_status": "NOT_SELECTED_FOR_REVIEW",
+        "target_reason_code": "REPLACED_BY_OVERRIDE",
+        "replacement_provider_check_ids": [
+          "compiled_certificate"
+        ],
+        "replacement_provider_selection_status": "UNRESOLVED_APPLICABILITY",
+        "controller_condition_results": {
+          "3.1.2": "TRUE"
+        },
+        "replacement_child_condition_result": "UNKNOWN",
+        "provider_blocking_fact_ids": [
+          "special_applies"
+        ],
+        "provider_reason_code": "UNKNOWN_FACT",
+        "provider_questions_retained_pending_applicability": true,
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT"
+      }
+    },
+    {
+      "case_id": "O08_false_target_conflicting_controllers",
+      "catalogue": {
+        "schema_version": 1,
+        "catalogue_id": "INVENTED-OVERRIDE-O08",
+        "source_status": "UNVERIFIED_CURRENT",
+        "source": {
+          "title": "Invented Override Precedence Manual",
+          "version_date": "2000-01-01",
+          "url": "https://example.org/invented-review-manual",
+          "page_count": 3,
+          "classification": "INVENTED"
+        },
+        "facts": [
+          {
+            "id": "has_details",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "length_m",
+            "type": "decimal",
+            "unit": "m",
+            "minimum": "0",
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": false,
+            "purpose": "applicability"
+          },
+          {
+            "id": "special_applies",
+            "type": "boolean",
+            "unit": null,
+            "minimum": null,
+            "maximum": null,
+            "allowed_values": null,
+            "provenance_required": true,
+            "purpose": "manual_applicability"
+          }
+        ],
+        "clauses": [
+          {
+            "id": "1.1.1",
+            "kind": "required",
+            "citation": {
+              "section": "1.1.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.1.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "ordinary_heading",
+                "kind": "required",
+                "when": {
+                  "const": false
+                },
+                "questions": [
+                  "Compare the ordinary heading with the invented source."
+                ],
+                "adapter_links": [
+                  "CANDIDATE-PLAN-HEADING"
+                ]
+              },
+              {
+                "id": "ordinary_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the ordinary invented certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.2.1",
+            "kind": "mixed",
+            "citation": {
+              "section": "1.2.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.2.1",
+            "when": {
+              "eq": {
+                "fact": "has_details",
+                "value": true
+              }
+            },
+            "checks": [
+              {
+                "id": "detail_scale",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the required detail scale."
+                ],
+                "adapter_links": []
+              },
+              {
+                "id": "detail_bar",
+                "kind": "optional",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "If adopted, review the optional detail bar; absence is not a deficiency."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "1.3.1",
+            "kind": "permission",
+            "citation": {
+              "section": "1.3.1",
+              "page": 1
+            },
+            "summary": "Invented source clause 1.3.1",
+            "when": {
+              "const": true
+            },
+            "checks": [
+              {
+                "id": "permitted_note",
+                "kind": "permission",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Record whether the permitted optional note was adopted; do not require it."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "2.1.1",
+            "kind": "conditional_required",
+            "citation": {
+              "section": "2.1.1",
+              "page": 2
+            },
+            "summary": "Invented source clause 2.1.1",
+            "when": {
+              "all": [
+                {
+                  "gt": {
+                    "fact": "length_m",
+                    "value": "10.0"
+                  }
+                },
+                {
+                  "eq": {
+                    "fact": "special_applies",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "checks": [
+              {
+                "id": "extension_review",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Review the extension evidence only if the invented conditions are established."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": []
+          },
+          {
+            "id": "3.1.1",
+            "kind": "exemption",
+            "citation": {
+              "section": "3.1.1",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.1",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_exemption",
+                "kind": "exemption",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Confirm the invented compiled-heading exemption and its scope."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "exclude",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3.1.2",
+            "kind": "required",
+            "citation": {
+              "section": "3.1.2",
+              "page": 3
+            },
+            "summary": "Invented source clause 3.1.2",
+            "when": {
+              "eq": {
+                "context": "plan_type",
+                "value": "compiled_plan"
+              }
+            },
+            "checks": [
+              {
+                "id": "compiled_certificate",
+                "kind": "required",
+                "when": {
+                  "const": true
+                },
+                "questions": [
+                  "Inspect the invented replacement certificate; absence does not restore the old certificate."
+                ],
+                "adapter_links": []
+              }
+            ],
+            "overrides": [
+              {
+                "action": "replace",
+                "targets": [
+                  "ordinary_heading"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "input": {
+        "scenario": {
+          "land_class": "alberta_crown",
+          "regulator": "AER",
+          "disposition": "LOC",
+          "stage": "initial",
+          "plan_type": "compiled_plan"
+        },
+        "facts": {
+          "has_details": {
+            "value": false,
+            "provenance": null
+          },
+          "length_m": {
+            "value": "9.0",
+            "provenance": null
+          }
+        },
+        "available_observation_ids": [],
+        "coverage_inventory": null
+      },
+      "expected": {
+        "target_check_id": "ordinary_heading",
+        "target_selection_status": "NOT_SELECTED_FOR_REVIEW",
+        "target_reason_code": "CONDITION_FALSE",
+        "replacement_provider_check_ids": [
+          "compiled_certificate"
+        ],
+        "replacement_provider_selection_status": "UNRESOLVED_APPLICABILITY",
+        "provider_reason_code": "CONFLICTING_OVERRIDES",
+        "controller_condition_results": {
+          "3.1.1": "TRUE",
+          "3.1.2": "TRUE"
+        },
+        "ordinary_certificate_selection_status": "CANDIDATE_REVIEW",
+        "fixed_status": "REVIEW_REQUIRED",
+        "fixed_source_status": "UNVERIFIED_CURRENT"
+      }
+    }
+  ]
+}

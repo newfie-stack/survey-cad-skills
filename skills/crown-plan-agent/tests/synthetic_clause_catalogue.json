@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "catalogue_id": "INVENTED-CONDITIONAL-001",
+  "source_status": "UNVERIFIED_CURRENT",
+  "source": {
+    "title": "Invented Manual for Conditional Review Tests",
+    "version_date": "2000-01-01",
+    "url": "https://example.org/invented-review-manual",
+    "page_count": 3,
+    "classification": "INVENTED"
+  },
+  "facts": [
+    {
+      "id": "has_details",
+      "type": "boolean",
+      "unit": null,
+      "minimum": null,
+      "maximum": null,
+      "allowed_values": null,
+      "provenance_required": false,
+      "purpose": "applicability"
+    },
+    {
+      "id": "length_m",
+      "type": "decimal",
+      "unit": "m",
+      "minimum": "0",
+      "maximum": null,
+      "allowed_values": null,
+      "provenance_required": false,
+      "purpose": "applicability"
+    },
+    {
+      "id": "special_applies",
+      "type": "boolean",
+      "unit": null,
+      "minimum": null,
+      "maximum": null,
+      "allowed_values": null,
+      "provenance_required": true,
+      "purpose": "manual_applicability"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "1.1.1",
+      "kind": "required",
+      "citation": {
+        "section": "1.1.1",
+        "page": 1
+      },
+      "summary": "Invented source clause 1.1.1",
+      "when": {
+        "const": true
+      },
+      "checks": [
+        {
+          "id": "ordinary_heading",
+          "kind": "required",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "Compare the ordinary heading with the invented source."
+          ],
+          "adapter_links": [
+            "CANDIDATE-PLAN-HEADING"
+          ]
+        },
+        {
+          "id": "ordinary_certificate",
+          "kind": "required",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "Inspect the ordinary invented certificate."
+          ],
+          "adapter_links": []
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "1.2.1",
+      "kind": "mixed",
+      "citation": {
+        "section": "1.2.1",
+        "page": 1
+      },
+      "summary": "Invented source clause 1.2.1",
+      "when": {
+        "eq": {
+          "fact": "has_details",
+          "value": true
+        }
+      },
+      "checks": [
+        {
+          "id": "detail_scale",
+          "kind": "required",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "Inspect the required detail scale."
+          ],
+          "adapter_links": []
+        },
+        {
+          "id": "detail_bar",
+          "kind": "optional",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "If adopted, review the optional detail bar; absence is not a deficiency."
+          ],
+          "adapter_links": []
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "1.3.1",
+      "kind": "permission",
+      "citation": {
+        "section": "1.3.1",
+        "page": 1
+      },
+      "summary": "Invented source clause 1.3.1",
+      "when": {
+        "const": true
+      },
+      "checks": [
+        {
+          "id": "permitted_note",
+          "kind": "permission",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "Record whether the permitted optional note was adopted; do not require it."
+          ],
+          "adapter_links": []
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "2.1.1",
+      "kind": "conditional_required",
+      "citation": {
+        "section": "2.1.1",
+        "page": 2
+      },
+      "summary": "Invented source clause 2.1.1",
+      "when": {
+        "all": [
+          {
+            "gt": {
+              "fact": "length_m",
+              "value": "10.0"
+            }
+          },
+          {
+            "eq": {
+              "fact": "special_applies",
+              "value": true
+            }
+          }
+        ]
+      },
+      "checks": [
+        {
+          "id": "extension_review",
+          "kind": "required",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "Review the extension evidence only if the invented conditions are established."
+          ],
+          "adapter_links": []
+        }
+      ],
+      "overrides": []
+    },
+    {
+      "id": "3.1.1",
+      "kind": "exemption",
+      "citation": {
+        "section": "3.1.1",
+        "page": 3
+      },
+      "summary": "Invented source clause 3.1.1",
+      "when": {
+        "eq": {
+          "context": "plan_type",
+          "value": "compiled_plan"
+        }
+      },
+      "checks": [
+        {
+          "id": "compiled_exemption",
+          "kind": "exemption",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "Confirm the invented compiled-heading exemption and its scope."
+          ],
+          "adapter_links": []
+        }
+      ],
+      "overrides": [
+        {
+          "action": "exclude",
+          "targets": [
+            "ordinary_heading"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3.1.2",
+      "kind": "required",
+      "citation": {
+        "section": "3.1.2",
+        "page": 3
+      },
+      "summary": "Invented source clause 3.1.2",
+      "when": {
+        "eq": {
+          "context": "plan_type",
+          "value": "compiled_plan"
+        }
+      },
+      "checks": [
+        {
+          "id": "compiled_certificate",
+          "kind": "required",
+          "when": {
+            "const": true
+          },
+          "questions": [
+            "Inspect the invented replacement certificate; absence does not restore the old certificate."
+          ],
+          "adapter_links": []
+        }
+      ],
+      "overrides": [
+        {
+          "action": "replace",
+          "targets": [
+            "ordinary_certificate"
+          ]
+        }
+      ]
+    }
+  ]
+}

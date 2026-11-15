@@ -1,0 +1,2285 @@
+{
+  "schema_version": 1,
+  "source_status": "UNVERIFIED_CURRENT",
+  "source": {
+    "publication_title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+    "version_date": "2024-05-30",
+    "source_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
+    "pdf_page_count": 17
+  },
+  "review_scope": "Numbered Parts 1 to 4 of the dated manual only. Part 1 generally covers sketches, Surveyor Sketches and survey plans; Part 2 adds sketch content, Part 3 survey content, and Part 4 conditional activity content. All scope, exceptions and notes are human review guidance, not machine applicability or extensions to selected rules. External standards and current authority remain unverified.",
+  "clauses": [
+    {
+      "clause_id": "1.1.1",
+      "pdf_page": 6,
+      "summary": "Prepare an original computer-drafted plan with accurate scale, readable organization, and clear uncluttered presentation.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.1.2",
+      "pdf_page": 6,
+      "summary": "Make the proposed activity and its intended purpose clear on the plan.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.1.3",
+      "pdf_page": 6,
+      "summary": "Keep the sheet between letter size and the stated maximum dimensions.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "Regulator-approved exception may exceed 75 cm width or 300 cm length."
+      ],
+      "review_notes": [
+        "At least letter size.",
+        "At most 75 cm wide and 300 cm long without exception."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.1.4",
+      "pdf_page": 6,
+      "summary": "Use a listed main-plan scale unless a documented exception applies.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "A scale specifically allowed elsewhere in the manual may be used.",
+        "Regulator may grant a scale exception.",
+        "Congested-area details may use any scale or be not to scale."
+      ],
+      "review_notes": [
+        "Main-plan options: 1:500, 1:1000, 1:2000, 1:2500, 1:5000, 1:10000.",
+        "Part 4 permissions depend on activity; they are not general scale permissions."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": [
+        "CANDIDATE-PLAN-SCALE"
+      ]
+    },
+    {
+      "clause_id": "1.1.5",
+      "pdf_page": 6,
+      "summary": "Limit multi-sheet plans to the permitted disposition context.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "MSLs may have multipage plans.",
+        "Part 4 may provide specific exceptions."
+      ],
+      "review_notes": [
+        "Do not infer a general multipage permission from a long linear activity or any multi-polygon permission."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.1.6",
+      "pdf_page": 6,
+      "summary": "Keep separate linear segments off a shared plan unless an exception applies.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Multiple non-contiguous segments of a linear activity."
+      ],
+      "exceptions": [
+        "Regulator-granted exception.",
+        "Applicable Part 4 exception, including conditional mixed public/non-public linear presentations."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.1.7",
+      "pdf_page": 6,
+      "summary": "Keep separate non-linear activities off a shared plan unless an exception applies.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Multiple non-contiguous non-linear activities, with or without access."
+      ],
+      "exceptions": [
+        "Regulator-granted exception.",
+        "Applicable Part 4 exception."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.1.8",
+      "pdf_page": 6,
+      "summary": "Ensure every text item is readable at the intended plot scale.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.1.9",
+      "pdf_page": 6,
+      "summary": "Leave a blank 1 cm border margin and crop any excess margin.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "No information in the margin."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.1.1",
+      "pdf_page": 6,
+      "summary": "Identify the plan category in the heading.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "Compiled plans are explicitly exempt under 3.6.1.1; their heading is governed by 3.6.1.2."
+      ],
+      "review_notes": [
+        "Use Sketch, Surveyor Sketch, or Survey for applicable plans."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-PLAN-HEADING"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.1.2",
+      "pdf_page": 6,
+      "summary": "Align the stated plan purpose with the applicable PLAR table purpose and activity.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "The activity/table row must be supplied and reviewed; a purpose keyword alone cannot select a row or plan type."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.1.3",
+      "pdf_page": 7,
+      "summary": "State the complete land description, with applicable theoretic and road-allowance wording.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "Include Within and applicable theoretic qualifier.",
+        "Include ATS components and applicable lot, block, and plan.",
+        "Include affected south/west road allowances in their section description.",
+        "Include adjoining theoretic road allowance wording when applicable."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-LEGAL-DESCRIPTION"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.1.4",
+      "pdf_page": 7,
+      "summary": "Match both heading description and illustrated activity extent to the accompanying form.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "Requires the application, amendment, or renewal form; plan text alone cannot establish agreement."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-LEGAL-DESCRIPTION"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.1.5",
+      "pdf_page": 7,
+      "summary": "Give the municipality's full legal name.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-MUNICIPALITY"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.2.1",
+      "pdf_page": 7,
+      "summary": "Match the applicant's legal name to both the client registry and the form.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-APPLICANT"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.2.2",
+      "pdf_page": 7,
+      "summary": "The preparing consultant or survey company may be identified.",
+      "requirement_status": "optional",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.2.3",
+      "pdf_page": 7,
+      "summary": "Display both a numerical main-plan scale and a graphic scale bar.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "Detail views have a separate scale-bar exemption in 1.3.7.2."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-PLAN-SCALE",
+        "CANDIDATE-SCALE-BAR"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.3.1",
+      "pdf_page": 7,
+      "summary": "Explain plan symbols and abbreviations in the legend, using standard conventions where practical.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "Prefer applicable LTO SUR-1 conventions where possible.",
+        "Explain all other symbols and abbreviations.",
+        "The referenced LTO procedure has not been independently verified in this inventory."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-LEGEND"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.3.2",
+      "pdf_page": 7,
+      "summary": "Keep symbols readable at the intended plot scale.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-LEGEND"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.2.3.3",
+      "pdf_page": 7,
+      "summary": "Include the reference-point symbol and supporting information required for all plan types by the referenced georeferencing guide.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "External guide contents are outside this supplied-source inventory."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-GEOREFERENCE"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.1.1",
+      "pdf_page": 7,
+      "summary": "Indicate plan orientation with north arrows.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-NORTH-ARROW"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.1.2",
+      "pdf_page": 7,
+      "summary": "Place north toward the top of the sheet when practical.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "A north-up arrangement is not required where impractical."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.1.3",
+      "pdf_page": 7,
+      "summary": "Exclude imagery and keep any colour, shading, topography, or contours from hiding plan information.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "Imagery is prohibited in the plan.",
+        "Permitted graphic treatments must not obscure data.",
+        "Using imagery as a source for locating a bank does not permit embedding imagery in the plan."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.2.1",
+      "pdf_page": 7,
+      "summary": "Plot the georeferenced point as required by the referenced guide.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "The georeferencing guide is an unresolved external dependency."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-GEOREFERENCE"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.3.1",
+      "pdf_page": 7,
+      "summary": "Plot and label the cadastral framework correctly and show each affected quarter section in full.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-CADASTRAL-FABRIC"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.3.2",
+      "pdf_page": 7,
+      "summary": "Label government road allowances and identify theoretic allowances when applicable.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-CADASTRAL-FABRIC"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.3.3",
+      "pdf_page": 7,
+      "summary": "Label every section or quarter section affected by the activity extent.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-CADASTRAL-FABRIC"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.3.4",
+      "pdf_page": 7,
+      "summary": "Label legal subdivisions or their quarters when they define the activity boundary.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "LSD or LSD quarter lines are intended activity extents."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-CADASTRAL-FABRIC"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.3.5",
+      "pdf_page": 7,
+      "summary": "Identify unsurveyed territory in the plan body where the activity lies within it.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Proposed activity in unsurveyed territory."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-CADASTRAL-FABRIC"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.3.6",
+      "pdf_page": 7,
+      "summary": "Show specified nearby and crossing dispositions, registered boundary surveys, and titled parcels, and check the standing search.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "Search/display zone: through the activity and within 250 m adjacent.",
+        "Identify titled metes-and-bounds parcels as C. of T.",
+        "Confirm against the Surface Public Lands Standing Search.",
+        "The peat-specific directly-affecting-interests language in 4.3.2.2 needs explicit reconciliation before treating it as a reduced search zone."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-NEARBY-INTERESTS"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.4.1",
+      "pdf_page": 7,
+      "summary": "Show relevant water features around and through the activity, indicate flow, and use the stated fallback source where surveyed hydrography is unavailable.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "Zone: within 100 m adjacent to and through activity.",
+        "Include detected unmapped features relevant to regulation.",
+        "Fallback: 1:20000 Base Features Hydrography from AltaLIS when surveyed hydrography is unavailable."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-HYDROGRAPHY"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.4.2",
+      "pdf_page": 7,
+      "summary": "Name the illustrated waterbodies and watercourses where a name applies.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-HYDROGRAPHY"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.5.1",
+      "pdf_page": 8,
+      "summary": "Use a clear solid activity outline substantially heavier than ordinary linework.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "4.1.1.3 conditionally allows dashed outline on private land for a continuous mixed-land linear activity."
+      ],
+      "review_notes": [
+        "Outline weight: 3 to 4 times normal.",
+        "Do not obscure data."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-ACTIVITY-OUTLINE"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.5.2",
+      "pdf_page": 8,
+      "summary": "Exclude surveyed road allowances, registered roads, and public-use unregistered roads from the activity polygon and area.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Affected roads fall within the categories listed in the clause."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Classify road status from evidence; development or lack of development does not change the surveyed-road-allowance exclusion."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-ACTIVITY-OUTLINE"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.5.3",
+      "pdf_page": 8,
+      "summary": "Include unsurveyed theoretic road allowances in the activity polygon and area.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Activity affects theoretic unsurveyed road allowances."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-ACTIVITY-OUTLINE"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.5.4",
+      "pdf_page": 8,
+      "summary": "Define activity edges with straight segments or constant-radius arcs unless a qualifying natural bank forms the boundary.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [
+        "Banks of permanent naturally occurring water features may define a sinuous boundary."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-ACTIVITY-OUTLINE"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.5.5",
+      "pdf_page": 8,
+      "summary": "When the activity follows a natural water bank, document its current location, source, depiction, and applicable prior boundary.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Activity extent is intended to coincide with the bank of a permanent naturally occurring waterbody."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Use the best available bank evidence; sketches may rely on recent orthorectified aerial/satellite imagery without field verification.",
+        "Follow current bank sinuosity and draw it without dimensions.",
+        "Use the bank label and give derivation source/date.",
+        "On titled upland, ghost the earlier title boundary and identify its derivation.",
+        "Continue the bank line approximately 30 to 50 m beyond the activity.",
+        "Seek Alberta Land Surveyor advice if flooding or human alteration makes the current bank unclear; this advice is recommendatory within the otherwise required clause."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-ACTIVITY-OUTLINE"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.6.1",
+      "pdf_page": 8,
+      "summary": "Hectare figures may use up to three decimal places and may follow the cited area-rounding convention.",
+      "requirement_status": "optional",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "Optional precision convention: below 1 ha to 0.001 ha; below 10 ha to 0.01 ha; 10 ha and above to 0.1 ha.",
+        "Do not turn optional rounding guidance into a universal precision failure."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.6.2",
+      "pdf_page": 8,
+      "summary": "Express plan areas in hectares.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [
+        "This does not prohibit additional acres; 4.3.1.4 requires both units for its specific exploration table."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-TOTAL-AREA"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.6.3",
+      "pdf_page": 8,
+      "summary": "State the full activity's total area.",
+      "requirement_status": "required",
+      "review_scope": [],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-TOTAL-AREA"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.6.4",
+      "pdf_page": 8,
+      "summary": "Provide the required forestry assessment area breakdown when confirming Timber Damage Assessment.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Area information is being provided for confirmation of Timber Damage Assessment."
+      ],
+      "exceptions": [
+        "4.3.1.5 and 4.3.2.3 waive this breakdown for their SME/RME activity branches."
+      ],
+      "review_notes": [
+        "Split total area inside and outside existing dispositions, without parcel-by-parcel fragmentation.",
+        "Further split by each affected FMA and outside-FMA area where multiple FMAs or outside-FMA land is affected.",
+        "Show incidental activities in a separate row.",
+        "For amendments include previously approved area inside existing dispositions.",
+        "Treat cancelled dispositions with outstanding obligations as outside existing dispositions.",
+        "Do not assume every activity requires a timber-damage assessment without scenario evidence."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.6.5",
+      "pdf_page": 8,
+      "summary": "Label the corridor width at every width change.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Linear activity."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.6.6",
+      "pdf_page": 8,
+      "summary": "State lengths by width and the overall length for the specified roads and pipeline agreements.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Access road DLO/LOC or PLA."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "The clause says PLAs; do not silently broaden its literal acronym to every disposition in a pipeline-purpose family."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.7.1",
+      "pdf_page": 9,
+      "summary": "Give each detail a unique identifier matching its main-plan reference.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan includes detail views."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.7.2",
+      "pdf_page": 9,
+      "summary": "Identify each detail's scale; a graphic scale bar is optional there.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "Plan includes detail views."
+      ],
+      "exceptions": [
+        "No scale bar is required for a detail.",
+        "1.1.4 permits congested-area details at any scale or not to scale."
+      ],
+      "review_notes": [
+        "Correct detail-scale labeling remains required."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": [
+        "CANDIDATE-SCALE-BAR"
+      ]
+    },
+    {
+      "clause_id": "1.3.7.3",
+      "pdf_page": 9,
+      "summary": "Keep existing-plan plotting and labels consistent between each detail and the main plan.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Detail includes existing plans."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.7.4",
+      "pdf_page": 9,
+      "summary": "Keep detail symbols and dimensions consistent with the main plan.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan includes detail views."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "1.3.7.5",
+      "pdf_page": 9,
+      "summary": "Show corridor width in each applicable linear-activity detail.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Linear activity with detail views."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.1.1.1",
+      "pdf_page": 9,
+      "summary": "A sketch's reference coordinate may come from one of the listed cadastral, disposition, ATS, control, or existing-survey sources.",
+      "requirement_status": "permission",
+      "review_scope": [
+        "Plan-type review scope: sketch, surveyor_sketch."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Listed sources: Cadastral Mapping Database, DIDs, ATS v4.1 coordinates, ASCM, or existing georeferenced disposition survey.",
+        "Permission to derive a coordinate from a source does not establish that source's accuracy or satisfy every georeferencing-guide requirement."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.1.1.2",
+      "pdf_page": 9,
+      "summary": "Dimension sketch extents with metre distances, degree bearings, and corresponding curve elements.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: sketch, surveyor_sketch."
+      ],
+      "exceptions": [
+        "Apply the specific dimension exceptions in 2.1.1.3, 2.1.1.4, and applicable Part 4 clauses."
+      ],
+      "review_notes": [
+        "Horizontal distances at least to 1 m.",
+        "Full-circle bearings at least to 1 degree.",
+        "Show radius, delta angle, and arc length for each curve at corresponding precision."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.1.1.3",
+      "pdf_page": 9,
+      "summary": "Show approximate distances and directions between deflections, subject to listed existing-line and terminal exceptions.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: sketch, surveyor_sketch."
+      ],
+      "exceptions": [
+        "Section, quarter, LSD, LSD-quarter, and adjacent approved-disposition boundaries need not be dimensioned, but sufficient relationship dimensions remain necessary.",
+        "A linear activity's ends need not be dimensioned where intent is evident."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.1.1.4",
+      "pdf_page": 9,
+      "summary": "For a narrow parallel corridor, dimension one edge or its parallel alignment.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: sketch, surveyor_sketch.",
+        "Linear access road or right-of-way with parallel boundaries and width below 150 feet (45.72 m)."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "The stated threshold is strictly below 45.72 m; the clause does not give this simplified treatment at equality."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.1.1.5",
+      "pdf_page": 9,
+      "summary": "Make deflection and terminal points clear, adding symbols or leaders where needed.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: sketch, surveyor_sketch."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.1.1.6",
+      "pdf_page": 9,
+      "summary": "Tie each end of the disposition to the nearest ATS corner or a definable point on an existing plan.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: sketch, surveyor_sketch."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.1.1.7",
+      "pdf_page": 9,
+      "summary": "Provide at least two suitable ties for every separate segment.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: sketch, surveyor_sketch.",
+        "Multiple non-contiguous activities are otherwise permitted."
+      ],
+      "exceptions": [
+        "Ties may include ties between segments."
+      ],
+      "review_notes": [
+        "A tie requirement does not itself authorize a prohibited non-contiguous multi-activity plan."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "2.2.1.1",
+      "pdf_page": 9,
+      "summary": "Certify a Surveyor Sketch with the prescribed public-lands declaration, signatures, and matching date.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: surveyor_sketch."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Licensed Alberta Land Surveyor signature.",
+        "Declaration date consistent with plan version date.",
+        "Commissioner for Oaths signature.",
+        "The surveyor-sketch-only heading limits applicability; do not require this declaration for an ordinary sketch."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.1.1.1",
+      "pdf_page": 10,
+      "summary": "Include the additional survey-plan information specified by the referenced georeferencing guide.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "General georeferencing requirements still apply. External guide is not supplied in this inventory."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.1.2.1",
+      "pdf_page": 10,
+      "summary": "Certify the survey plan with the prescribed public-lands declaration, required signatures, and matching date.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid."
+      ],
+      "exceptions": [
+        "Compiled plans use the replacement Appendix D declaration under 3.6.1.3."
+      ],
+      "review_notes": [
+        "Licensed Alberta Land Surveyor signature.",
+        "Declaration date consistent with plan version date.",
+        "Commissioner for Oaths signature."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.1.1",
+      "pdf_page": 10,
+      "summary": "Relate the disposition's location to known survey evidence.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid."
+      ],
+      "exceptions": [
+        "Compiled plans exempt from section 3.2.1 under 3.6.1.1."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.1.2",
+      "pdf_page": 10,
+      "summary": "Apply the monument types specified by the applicable PLAR table.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid."
+      ],
+      "exceptions": [
+        "Compiled plans exempt from section 3.2.1 under 3.6.1.1."
+      ],
+      "review_notes": [
+        "Select a supported table row and preserve monument-code alternatives; the content manual does not determine the applicable row."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.1.3",
+      "pdf_page": 10,
+      "summary": "Use non-monumented or computed point categories only where their purpose is clear, recognizing the stated discouragement.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid."
+      ],
+      "exceptions": [
+        "PLAR table entries allowing no monument are excepted.",
+        "Compiled plans exempt from section 3.2.1 under 3.6.1.1."
+      ],
+      "review_notes": [
+        "The discouragement is not an absolute prohibition. For hybrid plans the stricter calculated/temporary-point prohibition in 3.5.3.4 also applies."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.1.4",
+      "pdf_page": 10,
+      "summary": "Show the evidence supporting relationships with all affected dispositions and other interests.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid."
+      ],
+      "exceptions": [
+        "Compiled plans exempt from section 3.2.1 under 3.6.1.1."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.1.5",
+      "pdf_page": 10,
+      "summary": "For access roads, identify shared boundaries or parallel overlaps and show common-evidence ties supporting them.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid.",
+        "Access road interacting with another disposition through common boundary or parallel overlap."
+      ],
+      "exceptions": [
+        "Compiled plans exempt from section 3.2.1 under 3.6.1.1."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.2.1",
+      "pdf_page": 11,
+      "summary": "Dimension survey boundaries at the stated LTO distance, bearing, and curve precision.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Horizontal distances in metres to 0.01 m.",
+        "Full-circle bearings to 5 arc seconds.",
+        "Radius, delta angle, and arc length at corresponding precision.",
+        "Compiled plans are not explicitly exempt from 3.2.2 by 3.6.1.1; do not infer that exemption."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.3.1",
+      "pdf_page": 11,
+      "summary": "Dimension the ends of linear activities except square terminations.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Linear activity."
+      ],
+      "exceptions": [
+        "End is 90 degrees to the boundary."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.3.2",
+      "pdf_page": 11,
+      "summary": "Identify acquisition date and source for remotely sensed access-road survey data.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "DLO/LOC access road surveyed using remotely sensed data."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.2.4.1",
+      "pdf_page": 11,
+      "summary": "Follow the referenced natural-boundary submission rules and tabulate verification and direct-observation coordinates.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Natural boundary used as a disposition boundary."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Comply with referenced change-of-natural-boundary directive and LTO SUR-1 depiction.",
+        "Tabulate ground-verification and direct-bank-observation coordinates.",
+        "External standards are dependencies, not fully specified by this clause."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.3.1.1",
+      "pdf_page": 11,
+      "summary": "For a qualifying large lease amendment, the existing-boundary survey may be limited and the itemized area must be clearly shown.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid.",
+        "Amendment of previously surveyed DMS/MSL, DML/MLL, DPI/PIL, REC, TCL, or SML lease of at least 10 ha."
+      ],
+      "exceptions": [
+        "Only existing-lease boundaries adjacent to the amendment need be surveyed; treat as itemized plan.",
+        "Compiled plans exempt from section 3.3 under 3.6.1.1."
+      ],
+      "review_notes": [
+        "Bold the full amended-area boundary including its boundary shared with the existing area.",
+        "Distinguish existing and amended areas.",
+        "The 10 ha threshold concerns the existing lease, as worded; do not substitute amendment area."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.3.1.2",
+      "pdf_page": 11,
+      "summary": "Show improvements and buried infrastructure that affect amended lease boundaries.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid.",
+        "Previously surveyed lease amendment; relevant surface or buried facilities affect amended boundaries."
+      ],
+      "exceptions": [
+        "Compiled plans exempt from section 3.3 under 3.6.1.1."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.3.2.1",
+      "pdf_page": 11,
+      "summary": "A long linear disposition with a limited amendment may use an itemized survey of only adjacent existing boundaries.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid.",
+        "Surveyed DPL/PLA, DLO/LOC, or EZE greater than 6.5 km total length; amendment affects no more than two quarter sections."
+      ],
+      "exceptions": [
+        "Only boundaries adjacent to amendment need be surveyed; itemized treatment applies.",
+        "Compiled plans exempt from section 3.3 under 3.6.1.1."
+      ],
+      "review_notes": [
+        "Bold full amendment boundary including shared boundary.",
+        "Clearly distinguish old and amended areas.",
+        "Source leaves the exactly-6.5-km case unresolved between 3.3.2.1 and 3.3.2.2."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.3.2.2",
+      "pdf_page": 11,
+      "summary": "Retrace a shorter surveyed linear disposition in full where its boundary still applies.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid.",
+        "Previously surveyed linear disposition less than 6.5 km total length, undergoing amendment."
+      ],
+      "exceptions": [
+        "Portions that no longer define the boundary need not be retraced.",
+        "Compiled plans exempt from section 3.3 under 3.6.1.1."
+      ],
+      "review_notes": [
+        "Exactly 6.5 km is not covered by the source's less-than/greater-than wording."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.3.2.3",
+      "pdf_page": 11,
+      "summary": "Retrace the entire disposition when an amendment affects more than two quarter sections.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid.",
+        "Previously surveyed linear-disposition amendment affects more than two quarter sections."
+      ],
+      "exceptions": [
+        "Compiled plans exempt from section 3.3 under 3.6.1.1."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.3.3.1",
+      "pdf_page": 12,
+      "summary": "For an itemized addition/deletion, identify changed land, areas, key map, and the complete amended digital polygon.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional, hybrid.",
+        "Adding or deleting land using an itemized survey plan."
+      ],
+      "exceptions": [
+        "Colour may be used to illustrate the changed area.",
+        "Compiled plans exempt from section 3.3 under 3.6.1.1."
+      ],
+      "review_notes": [
+        "Heading states addition/deletion; legal description covers only changed portion.",
+        "Illustrate added/deleted areas separately, including both if present.",
+        "State added/deleted area and total/remaining area.",
+        "Provide key map of changed and total/remaining land.",
+        "PCS/OneStop digital polygon includes entire disposition as amended.",
+        "Do not amend survey plans using itemized sketches.",
+        "The section heading mentions amendments/renewals/as-built surveys, but this numbered clause is specifically conditional on addition/deletion. Do not extend itemized rules to every renewal."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.4.1.1",
+      "pdf_page": 12,
+      "summary": "Use legend-defined unmonumented-point symbols for accepted hybrid coordinates on a conventional plan.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional.",
+        "Conventional plan interacts with an existing hybrid plan and accepts XCs or RCs."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Do not show hybrid symbols in the conventional plan."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.4.1.2",
+      "pdf_page": 12,
+      "summary": "Identify an accepted XC with its source point, plan, disposition, and version.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional.",
+        "Accepted XC from existing hybrid plan."
+      ],
+      "exceptions": [
+        "Identifier order is not prescribed."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.4.1.3",
+      "pdf_page": 12,
+      "summary": "Mark an accepted RC as accepted and provide the same source identifiers used for accepted XCs.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional.",
+        "Accepted RC from existing hybrid plan."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.4.1.4",
+      "pdf_page": 12,
+      "summary": "Use the applicable PLAR table monumentation for the conventional plan.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: conventional.",
+        "Conventional plan interacting with existing hybrid plan."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.1.1",
+      "pdf_page": 12,
+      "summary": "Identify the survey as hybrid in its heading.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-HYBRID-PLAN-HEADING"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.1.2",
+      "pdf_page": 12,
+      "summary": "Include the prescribed hybrid statements about governing coordinates, reference system/derivation, ground units, and scale factor.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "State governing-coordinate status.",
+        "Identify UTM zone, NAD83(CSRS), Epoch 2002, and GNSS derivation method.",
+        "Identify ground distances in metres.",
+        "State combined scale factor to six decimal places."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.1.3",
+      "pdf_page": 13,
+      "summary": "Applicable standard hybrid coordinate abbreviations and symbols may be added to the standard legend.",
+      "requirement_status": "optional",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Coordinate categories in source table: EC, XC, RC, and OC.",
+        "The clause says may; it is not an independent obligation to use every category on every hybrid plan. Coordinate-type fields are separately required by 3.5.2.3."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.2.1",
+      "pdf_page": 13,
+      "summary": "Number the coordinate table sequentially from one without gaps or inserted suffix numbers.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.2.2",
+      "pdf_page": 13,
+      "summary": "Format table northings/eastings to two decimals without grouping spaces or commas.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.2.3",
+      "pdf_page": 13,
+      "summary": "Identify each tabulated coordinate's EC, XC, RC, or OC category.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.2.4",
+      "pdf_page": 13,
+      "summary": "Describe each coordinate accurately and identify applicable point attributes.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [
+        "Description wording is otherwise open."
+      ],
+      "review_notes": [
+        "Descriptions must agree with the plan.",
+        "Identify applicable RP, PC, and CC attributes."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.2.5",
+      "pdf_page": 13,
+      "summary": "For existing establishment coordinates, preserve source coordinates and identify their provenance under the new plan numbering.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "Table includes XCs."
+      ],
+      "exceptions": [
+        "For an unfiled source plan, job and revision numbers may replace the stated source identifiers.",
+        "Source identifier order is not prescribed."
+      ],
+      "review_notes": [
+        "Use new plan point-number sequence.",
+        "Retain exact source northing/easting.",
+        "Include original point/plan/disposition/version identifiers."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.3.1",
+      "pdf_page": 13,
+      "summary": "Enclose body-of-plan point numbers in ellipses.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.3.2",
+      "pdf_page": 13,
+      "summary": "Order hybrid point numbers logically from reference points through new boundaries and then other locations.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.3.3",
+      "pdf_page": 13,
+      "summary": "Natural-boundary OC labels may be thinned on the plan body to avoid clutter while retaining selected table references.",
+      "requirement_status": "permission",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "Natural boundary with OCs."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Selected point numbers at regular intervals are acceptable.",
+        "This is a body-label allowance, not permission to omit necessary coordinates from the table."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.3.4",
+      "pdf_page": 13,
+      "summary": "Exclude calculated and temporary points from hybrid plans.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.4.1",
+      "pdf_page": 14,
+      "summary": "Tabulate curve-end OC/RC identifiers, coordinates, categories, and descriptions for existing curves.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "Existing curves are used."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.4.2",
+      "pdf_page": 14,
+      "summary": "Label point numbers and type symbols for points on the existing curve portions used.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "Existing curve or portion is used."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.4.3",
+      "pdf_page": 14,
+      "summary": "Dimension existing curves with radius, delta, and arc length.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "Existing curves are used."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.5.1",
+      "pdf_page": 14,
+      "summary": "Tabulate point identifiers, coordinates, categories, and descriptions for all points on new curves.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "New hybrid curves."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.5.2",
+      "pdf_page": 14,
+      "summary": "Assign PC/CC attributes to exactly the three curve-defining points in the table descriptions.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "New hybrid curves."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Placing the attribute first in the description is preferred, not mandatory."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.5.3",
+      "pdf_page": 14,
+      "summary": "Label the three defining points of every new curve with point number and coordinate-type symbol.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "New hybrid curves."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.5.4",
+      "pdf_page": 14,
+      "summary": "Dimension new hybrid curves with radius, delta, and arc length.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid.",
+        "New hybrid curves."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.6.1",
+      "pdf_page": 14,
+      "summary": "Show at least one mapping reference point using an allowed physical monument.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Permitted RP evidence: found/placed statutory iron post, standard post, found iron bar, or suitable ASCM."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.6.2",
+      "pdf_page": 14,
+      "summary": "Show at least two observed coordinates on the hybrid plan.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.5.6.3",
+      "pdf_page": 14,
+      "summary": "Keep every establishment, existing-establishment, and re-establishment coordinate within 10 km of an observed coordinate.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: hybrid."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.1",
+      "pdf_page": 14,
+      "summary": "Apply the explicit compiled-plan exemptions before selecting heading, monumentation, or amendment checks.",
+      "requirement_status": "exemption",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled."
+      ],
+      "exceptions": [
+        "Exempt from 1.2.1.1.",
+        "Exempt from all 3.2.1 clauses (3.2.1.1 through 3.2.1.5).",
+        "Exempt from all 3.3 clauses (3.3.1.1, 3.3.1.2, 3.3.2.1, 3.3.2.2, 3.3.2.3, 3.3.3.1)."
+      ],
+      "review_notes": [
+        "This does not exempt compiled plans from all Part 1 or all survey content. Part 3 introduction retains general 3.1 to 3.3 obligations except these exemptions; 3.6.1.3 separately replaces 3.1.2 certification."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.2",
+      "pdf_page": 14,
+      "summary": "Use a heading identifying compilation from existing surveys and its purpose.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [
+        "CANDIDATE-COMPILED-PLAN-HEADING"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.3",
+      "pdf_page": 14,
+      "summary": "Have an Alberta Land Surveyor sign the Appendix D compiled-plan declaration in place of the ordinary survey declaration.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled."
+      ],
+      "exceptions": [
+        "Replaces section 3.1.2 declaration requirements."
+      ],
+      "review_notes": [
+        "The contents of Appendix D are an external dependency; do not infer additional signatories from the replaced clause."
+      ],
+      "candidate_requirement_ids": [
+        "CANDIDATE-COMPILED-DECLARATION"
+      ],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.4",
+      "pdf_page": 14,
+      "summary": "Show no new monuments or new fieldwork on a compiled plan.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.5",
+      "pdf_page": 14,
+      "summary": "Explain retained astronomic bearings or identify grid rotations, as applicable.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled.",
+        "Astronomic bearings retained, or source plans rotated to grid."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "For astronomic bearings provide appropriate statement and corresponding grid bearing in legend.",
+        "For grid bearings identify rotation angle for each rotated plan."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.6",
+      "pdf_page": 14,
+      "summary": "Use legend-defined annotations for compiled dimensions and rotated bearings.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Annotate each compiled dimension.",
+        "Annotate each rotated bearing when present."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.7",
+      "pdf_page": 14,
+      "summary": "Make symbol and annotation usage agree with legend classifications of source dimensions, fixed/calculated values, rotations, and new unmonumented corners.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.8",
+      "pdf_page": 14,
+      "summary": "Depict existing monuments with standard found-evidence symbols and identify that legend class as existing evidence.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled.",
+        "Existing monuments shown."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "3.6.1.9",
+      "pdf_page": 14,
+      "summary": "Avoid transcribing source-plan monument descriptions; limit any description to applicable ATS location.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Plan-type review scope: survey_plan.",
+        "Survey variant review scope: compiled."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.1.1.1",
+      "pdf_page": 15,
+      "summary": "Use the specified application/plan route when adding land to an existing EZE/REA.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "Addition of land to an existing EZE/REA."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Source lists new activity number, itemized plan associated with existing plan, and amendment of entire EZE/REA.",
+        "The list appears to offer alternative routes but does not explicitly say one of; preserve for reviewer interpretation rather than implementing all three as cumulative obligations."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.1.1.2",
+      "pdf_page": 15,
+      "summary": "Show a VCE continuously or using the permitted separate-shape sketch presentation.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "VCE activity; the non-contiguous multi-shape alternative specifically describes a sketch."
+      ],
+      "exceptions": [
+        "Continuous linear activity and/or non-contiguous multi-shape sketch are permitted."
+      ],
+      "review_notes": [
+        "The heading also names RVC, but this clause names only VCE; do not silently extend to RVC or extend the sketch-specific alternative to every survey subtype."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.1.1.3",
+      "pdf_page": 15,
+      "summary": "Choose an allowed presentation for a linear activity spanning public and non-public land.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Listed linear-disposition activity spans both public and non-public lands."
+      ],
+      "exceptions": [
+        "Show only public-land segments on one sheet in one township.",
+        "Show continuously with a dashed outline over private land.",
+        "Show the entire activity continuously with a bold outline."
+      ],
+      "review_notes": [
+        "These are conditional alternatives to ordinary continuity/outline rules; the one-township condition belongs to the public-segments option."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.1.1.4",
+      "pdf_page": 15,
+      "summary": "Describe only the public-land segments in the heading when using either segmented public-land or dashed private-land presentation.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "First or second presentation alternative in 4.1.1.3."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.1.1.5",
+      "pdf_page": 15,
+      "summary": "Describe all parcels and label their Crown/Freehold status when bold outlining the entire mixed-land activity.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Third presentation alternative in 4.1.1.3: continuous bold extent on public and private land."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.1.1.6",
+      "pdf_page": 15,
+      "summary": "Secure prior regulator approval for a long continuous linear plan that cannot meet sheet-size limits.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Long linear disposition drawn continuously cannot satisfy sheet-size limits."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "This is a prior-approval condition, not an unconditional sheet-size or multipage waiver."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.2.1.1",
+      "pdf_page": 15,
+      "summary": "Limit a multi-polygon piezometer/heave-monument application and its access to a six-mile-square extent unless excepted.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "Multiple piezometer sites, heave monuments, and associated access in one application."
+      ],
+      "exceptions": [
+        "Regulator may grant an exception to the 6 miles by 6 miles application extent."
+      ],
+      "review_notes": [
+        "Spatial extent limit is not a numeric area limit in acres/hectares.",
+        "The source advises considering amendment consequences; a change to one site may require retracing the entire survey. Treat that as conditional professional review, not an automatic retracement obligation."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.1",
+      "pdf_page": 15,
+      "summary": "Use a general permitted scale or one of the extra scales allowed for non-peat exploration.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Non-peat SME/RME."
+      ],
+      "exceptions": [
+        "Additional scales: 1:20000, 1:25000, 1:30000."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.2",
+      "pdf_page": 15,
+      "summary": "Keep the applicant's new SME application outside the stated separation from its existing SME applications.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Non-peat SME application; same applicant has existing SME applications."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Separation: not within six miles (9.6 km).",
+        "The clause says SME, not all RME or other material activities."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.3",
+      "pdf_page": 15,
+      "summary": "Use a separate SME/RME number for each contiguous non-peat activity.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Non-peat SME/RME."
+      ],
+      "exceptions": [
+        "A surveyed road allowance or registered road splitting the activity may justify an exception."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.4",
+      "pdf_page": 15,
+      "summary": "Keep non-peat exploration within the stated acreage limit and tabulate exclusions where used.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Non-peat SME/RME."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Maximum 320 acres.",
+        "When disposition exclusions are applied, tabulate gross extent, exclusions, and resulting net area.",
+        "Show each listed area in both hectares and acres.",
+        "Do not derive a general acres prohibition from 1.3.6.2; this clause requires both units for the specified table."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.5",
+      "pdf_page": 15,
+      "summary": "The non-peat exploration area need not use the general timber-assessment breakdown.",
+      "requirement_status": "exemption",
+      "review_scope": [
+        "Non-peat SME/RME."
+      ],
+      "exceptions": [
+        "Waives 1.3.6.4 only; other area-reporting clauses remain."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.6",
+      "pdf_page": 15,
+      "summary": "Show and label every existing disposition inside the proposed non-peat exploration area.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Non-peat SME/RME."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.7",
+      "pdf_page": 16,
+      "summary": "Mark proposed test holes with a legend-defined symbol.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Non-peat SME/RME with proposed test holes."
+      ],
+      "exceptions": [
+        "TH, X, or another explained symbol may be used."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.8",
+      "pdf_page": 16,
+      "summary": "Draw dashed access routes to each proposed test hole.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Non-peat SME/RME with proposed test holes."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.9",
+      "pdf_page": 16,
+      "summary": "Show all watercourse crossings for the non-peat exploration activity.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "Non-peat SME/RME with watercourse crossings."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.1.10",
+      "pdf_page": 16,
+      "summary": "Contours may be included on a non-peat exploration plan.",
+      "requirement_status": "optional",
+      "review_scope": [
+        "Non-peat SME/RME."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Source notes AltaLIS Base Features data availability; this does not make contours mandatory in this branch."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.2.1",
+      "pdf_page": 16,
+      "summary": "Use an allowed peat-exploration scale and add details or labels if the smaller presentation obscures extent.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "SME/RME related to peat exploration or extraction."
+      ],
+      "exceptions": [
+        "General scales plus 1:20000, 1:25000, and 1:30000 are permitted.",
+        "Scale up to 1:40000 is allowed if extent intent remains clear."
+      ],
+      "review_notes": [
+        "Use detail views and/or labeling where extent is unclear."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.2.2",
+      "pdf_page": 16,
+      "summary": "Show and label specified interests directly affecting the peat-exploration extent.",
+      "requirement_status": "required",
+      "review_scope": [
+        "SME/RME related to peat exploration or extraction."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Include directly affecting dispositions, titled metes-and-bounds parcels, and LTO-registered boundary surveys.",
+        "The clause does not explicitly say it exempts the 250 m general search/display rule in 1.3.3.6; do not silently reduce that zone."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.3.2.3",
+      "pdf_page": 16,
+      "summary": "The peat-exploration area need not use the general timber-assessment breakdown.",
+      "requirement_status": "exemption",
+      "review_scope": [
+        "SME/RME related to peat exploration or extraction."
+      ],
+      "exceptions": [
+        "Waives 1.3.6.4 only; other area-reporting clauses remain."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.1.1",
+      "pdf_page": 16,
+      "summary": "Use one disposition number for each contiguous non-peat material activity in this branch.",
+      "requirement_status": "required",
+      "review_scope": [
+        "SMC/RMC, SML/RML, or DMS activity unrelated to peat and excluding surface-material leases overlapping oil-sands MSLs."
+      ],
+      "exceptions": [
+        "A surveyed road allowance or registered road splitting the activity may justify an exception."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.1.2",
+      "pdf_page": 16,
+      "summary": "Keep the applicant's new SML application outside the stated separation from its existing SML applications.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "SML in the non-peat, non-overlapping-oil-sands-MSL branch; same applicant has existing SML applications."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Separation: not within six miles (9.6 km).",
+        "The clause explicitly says SML; do not automatically extend to RML, SMC/RMC, or DMS."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.1.3",
+      "pdf_page": 16,
+      "summary": "Show contours for the surface-material activities in the specified non-peat branch.",
+      "requirement_status": "required",
+      "review_scope": [
+        "SMC/RMC, SML/RML, or DMS activity unrelated to peat and excluding surface-material leases overlapping oil-sands MSLs."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "The source names AltaLIS Base Features as available data; unlike 4.3.1.10, contour inclusion here is required."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.2.1",
+      "pdf_page": 16,
+      "summary": "Limit the overlapping surface-material lease to one SML/RML activity per MSL activity.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Surface-material lease overlapping an oil-sands mineral surface lease."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.2.2",
+      "pdf_page": 16,
+      "summary": "Match the overlapping SML/RML boundary to its related approved MSL boundary.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Surface-material lease overlapping an oil-sands mineral surface lease."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.2.3",
+      "pdf_page": 16,
+      "summary": "For a qualifying final sketch, use the surveyed MSL boundary and identify its source instead of extent dimensions.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "Plan-type review scope: sketch.",
+        "Surface-material lease overlapping an oil-sands MSL; submitting a sketch as the final plan."
+      ],
+      "exceptions": [
+        "Dimensions along activity extents are not required for this final-sketch branch."
+      ],
+      "review_notes": [
+        "Related MSL must be surveyed.",
+        "Label coincident extents throughout with MSL number, plan number, and version date.",
+        "Scale up to 1:20000 unless regulator grants an exception.",
+        "The source explicitly says sketch; whether surveyor_sketch inherits this relief is not resolved here.",
+        "Do not apply final-stage relief to other stages or unrelated material plans."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.3.1",
+      "pdf_page": 16,
+      "summary": "Use one disposition number per contiguous peat-related activity in the listed material-disposition family.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Peat-related SMC/RMC, SML/RML, or DMS activity under 4.4."
+      ],
+      "exceptions": [
+        "A surveyed road allowance or registered road splitting the activity may justify an exception."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.4.3.2",
+      "pdf_page": 16,
+      "summary": "Keep a peat-related SML within 500 hectares.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "SML in the peat-related branch."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "The literal SML restriction is not automatically an RML, SMC/RMC, or DMS area limit."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.5.1.1",
+      "pdf_page": 16,
+      "summary": "Show the existing bank, applicable full-supply level, and their determination methods.",
+      "requirement_status": "required",
+      "review_scope": [
+        "Wetland-protection or natural-waterbody-reservoir DLO/LOC activity under 4.5."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Determine existing bank using imagery and site inspection.",
+        "Show FSL where applicable.",
+        "Identify methods used for each."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.5.1.2",
+      "pdf_page": 17,
+      "summary": "Place the freehold-land portion of the activity extent at the bank.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "4.5 activity affecting freehold land."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.5.1.3",
+      "pdf_page": 17,
+      "summary": "Place the public-land portion of the activity extent at full-supply level unless an applicable exception is established.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "4.5 activity affecting public land."
+      ],
+      "exceptions": [
+        "The clause mentions exceptions but does not specify them."
+      ],
+      "review_notes": [
+        "Exception basis requires external evidence or regulator/professional review; do not invent a blanket exception."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.5.1.4",
+      "pdf_page": 17,
+      "summary": "Show and label adjacent freehold land.",
+      "requirement_status": "conditional_required",
+      "review_scope": [
+        "4.5 activity with adjacent freehold land."
+      ],
+      "exceptions": [],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.5.1.5",
+      "pdf_page": 17,
+      "summary": "Identify inlet and water-control works and apply for them as separate activities.",
+      "requirement_status": "mixed",
+      "review_scope": [
+        "4.5 activity with inlets or water-control devices."
+      ],
+      "exceptions": [
+        "Those separate activities may overlap the DLO/LOC."
+      ],
+      "review_notes": [],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.6.1.1",
+      "pdf_page": 17,
+      "summary": "Identify the public-land-sale purpose in the title block.",
+      "requirement_status": "required",
+      "review_scope": [
+        "PLS."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Example heading refers to a sketch but does not independently determine all PLS plan-type eligibility."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.7.1.1",
+      "pdf_page": 17,
+      "summary": "Select the analogous Table A1 activity for a DRS and restrict its use to Alberta government ministries.",
+      "requirement_status": "required",
+      "review_scope": [
+        "DRS."
+      ],
+      "exceptions": [],
+      "review_notes": [
+        "Apply requirements for the comparable non-DRS activity, subject to stated DRS exceptions.",
+        "DRS applicant/use is restricted to Alberta government ministries.",
+        "Comparable-activity selection needs scenario evidence; DRS alone is insufficient to choose a single plan or content rule set."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    },
+    {
+      "clause_id": "4.7.1.2",
+      "pdf_page": 17,
+      "summary": "Accept a sketch for specified Transportation and Economic Corridors DRS operations, subject to risk-based survey escalation.",
+      "requirement_status": "permission",
+      "review_scope": [
+        "Plan-type review scope: sketch, survey_plan.",
+        "Alberta Transportation and Economic Corridors application for a DRS surface-material pit, stockpile site, or haul road."
+      ],
+      "exceptions": [
+        "Sketch suffices for consideration or department approval.",
+        "Specific risks, including conflicts with other dispositions, may require a survey plan."
+      ],
+      "review_notes": [
+        "This permission does not cover every DRS applicant or purpose.",
+        "The clause does not explicitly address the surveyor_sketch category. Risk-based survey escalation requires contextual review."
+      ],
+      "candidate_requirement_ids": [],
+      "reference_only_requirement_ids": []
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "scenario": {
+    "land_class": "alberta_crown",
+    "regulator": "AER",
+    "disposition": "LOC",
+    "stage": "initial",
+    "plan_type": "compiled_plan"
+  },
+  "facts": {
+    "has_details": {
+      "value": false,
+      "provenance": null
+    },
+    "length_m": {
+      "value": "9.0",
+      "provenance": null
+    }
+  },
+  "available_observation_ids": [],
+  "coverage_inventory": null
+}
