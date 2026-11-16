@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crown Plan Agent"
+  short_description: "Review Crown land plans"
+  default_prompt: "Review my Alberta Crown land plan with Crown Plan Agent and explain any issues and missing information in plain language."

@@ -16,7 +16,7 @@ Open-source, general-purpose skills for survey evidence interpretation, cadastra
 - [Counsel — General Decision Review](skills/counsel/SKILL.md) (general-purpose AI advisory skill)
 
 - [AER OneStop Guide](skills/aer-onestop-guide/SKILL.md) — public-source regulatory research only
-- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md) — development preview with an offline PDF evidence-review engine, dated requirement workbooks and an Octopus reconstruction handoff
+- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md) — development preview with summary-first PDF evidence reviews, targeted intake questions, dated requirement workbooks and an Octopus reconstruction handoff
 - [CAD/GIS Object Inspection](skills/cad-gis-object-inspection/SKILL.md)
 - [Skill Evaluation & Regression Testing](skills/skill-evaluation-regression/SKILL.md)
 - [Interactive Artifact Review](skills/interactive-artifact-review/SKILL.md)
@@ -32,6 +32,11 @@ No actual survey-plan files, client information, private coordinates, employer p
 
 ## Installation
 This repository includes a Claude plugin manifest under `.claude-plugin/`. Consult your host's current plugin installation documentation. Individual `SKILL.md` files may also be used as standalone guidance where supported.
+
+Crown Plan Agent also has a
+[reproducible ChatGPT package](skills/crown-plan-agent/packaging/chatgpt/README.md)
+built from the same skill instructions. The package supplies instructions and
+supporting source; automated operations depend on the host's available tools.
 
 ## License
 Original repository contributions are MIT licensed. See [LICENSE](LICENSE).

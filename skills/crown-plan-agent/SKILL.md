@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.3.1
+version: 0.4.0
 ---
 # Crown Plan Agent
 
@@ -14,6 +14,22 @@ Authorized real inputs, source images, extracted inventories and derived drawing
 
 ## First run and input contract
 Use the established task and supplied authorized inputs. For an offline first run, execute `python tests/smoke_review.py` from the complete skill folder (or the repository-root path in the engine README). The invented example needs no regulator PDF; its missing-source notice is expected and is not a request to obtain a document for the example.
+
+In ChatGPT, first check the capabilities actually available in the conversation.
+If there is no Python or shell execution environment, use authorized attachment
+or connected-file evidence for an assisted manual review and explicitly state
+that the offline engine and reconstruction did not run. Leave checks requiring
+unavailable execution, source evidence or Octopus unresolved; do not invent
+outputs or replace Octopus with a new calculator. A complete control network
+remains an acceptance gate for complete reconstruction, while the provider
+contract permits independently reviewed partial diagnostics within their scope.
+
+Follow the [ChatGPT review guide](references/chatgpt-review.md): reuse the user's
+existing authorized files and confirmed context, ask one grouped question for
+genuinely missing information, and lead with a short summary in normal language.
+Separate what was checked, what needs attention, what remains unchecked and
+specific next steps. Keep the detailed ledger and source citations available;
+observed text and a matching source row do not establish compliance.
 
 A minimal invented in-scope scenario is:
 ```json

@@ -1,14 +1,22 @@
 # Crown Plan Agent master acceptance checklist
 
-Status recorded: November 15, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
+Status recorded: November 16, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
 
 The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `newfie-stack/survey-cad-skills` repository at the owner's request. Software checks use invented fixtures; a separately authorized private stage has also exercised one user-designated real plan and two public drawing examples. Their original inputs, extracted inventories, full reports and selected pages remain outside this repository and the package; only authorized anonymized summaries are included. This publication authorization does not authorize submission, publication of project files or release of the private Octopus implementation. An unchecked item is unfinished or lacks acceptance evidence. Completing this checklist document does not complete the milestones it records. See the [publication scope](PUBLICATION_REVIEW.md).
 
 ## Evidence baseline
 
+Version 0.4 adds summary-first reporting, grouped stage-specific input requests,
+strict scenario/geometry JSON handling and literal source-text rendering. Public
+and ChatGPT packaging now use the same runtime-aware skill, with a reproducible
+archive builder and preserved presentation. The earlier baseline and acceptance
+records below remain historical; current verification is recorded in the latest
+section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
+
 - Working branch: `feature/crown-plan-agent-regulatory-catalog`; the observed tracked baseline was `abf4525` with an upstream branch of the same name. Existing GitHub integration does not establish that the current working tree was pushed or tested on GitHub.
 - The code/test fingerprint in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md) identifies the verified source snapshot. Git history identifies the integrated candidate; remote CI and release acceptance must refer to that exact candidate, not only the original baseline.
-- Latest coordinating-agent verification recorded **384 tests run: 384 passed, none skipped**, plus successful compilation and the standalone smoke review. The optional official-Table-A2 PDF checks ran against a user-supplied October 2026 copy outside the repository. Their success verifies the supported parser/integration path, not current legal authority. The version 0.3.0 code/test fingerprint is `48f1579d8c8bd02a59715fd859cd97725f6d2357d15cbe70e063f91dded7f696` (92 files).
+- Earlier version 0.3 verification recorded **384 tests run: 384 passed, none skipped**, plus successful compilation and standalone smoke. Optional official-Table-A2 checks used a supplied October 2026 copy outside the repository; this verified the supported parser path, not current legal authority. Its fingerprint was `48f1579d8c8bd02a59715fd859cd97725f6d2357d15cbe70e063f91dded7f696` (92 files).
+- Version 0.4 verification recorded **446 tests: 444 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. No private plan or regulator PDF was used. The current engine/test fingerprint is `ba2071ea44f78070278cfb1699effd004ba8734d78c3e5d989993c4863e0d55d` (96 files); builder and integration evidence are recorded separately.
 - Evidence links below identify implemented code and tests, not new execution claims. [The historical Test 2 report](tests/TEST2_REPORT.md) has a narrower structured-fixture result and must not be read as real-plan validation.
 - Current regulatory authority, supersession and clause applicability have not been independently verified. A private real-plan case matched a separately prepared baseline for the implemented observations; broader benchmark acceptance remains open. The independent AI code-review record is in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md); it does not provide professional survey/regulatory acceptance.
 
@@ -16,12 +24,12 @@ The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `new
 
 | # | Milestone | Acceptance status |
 |---|---|---|
-| 1 | Foundation and GitHub integration | Reviewed code committed and pushed; private push/PR CI successful |
+| 1 | Foundation and GitHub integration | Public preview integrated; exact-version verification recorded separately |
 | 2 | PDF text/vector extraction | Implemented inventory contract documented and tested; semantic limits explicit |
 | 3 | Survey geometry | Existing reconstruction/CAD workflow handoff implemented; accepted geometry remains evidence-dependent |
 | 4 | Regulatory catalogue | All 144 dated clause paths implemented; 29 legacy observation links; current authority unverified |
 | 5 | Plan-type determination | Scope exclusions and branch inventory implemented; complete regulatory determination unfinished |
-| 6 | Evidence and deficiency reporting | Review-only contract accepted on independent synthetic cases; normative assessment gated |
+| 6 | Evidence and deficiency reporting | Summary-first evidence/actions implemented; normative assessment remains gated |
 | 7 | PDF-to-report workflow | Exact code snapshot passed clean-copy offline acceptance; native discovery remains separate |
 | 8 | Real-world validation | One authorized private case and public extraction examples exercised; broader acceptance open |
 | 9 | Independent technical review | Independent AI code review; qualified survey/regulatory acceptance outstanding |
@@ -69,6 +77,7 @@ Completed evidence:
 - [x] Selected area-label/table-total comparison supports ambiguity checks and decimal-preserving area arithmetic, with [area-consistency regression cases](tests/test_area_consistency.py).
 - [x] Route missing coordinates through the existing reconstruction/CAD skills using the [handoff contract](references/geometry-handoff.md). Source/feature identities, independently read observations, complete control, CRS, reviewed CAD and unresolved items are required; the offline proposal remains unexecuted.
 - [x] Require actual reviewed [Octopus reconstruction code](references/octopus-reconstruction.md), with separate routes for provisional partial diagnostics and supported registered constructions. Record provider execution and input binding; prohibit a parallel Crown COGO implementation. This instruction correction does not add provider execution to the offline CLI.
+- [x] Surface an explicit computed traverse-tolerance failure in the short summary, while withholding stale, unsupported or unverified numerical claims. A tolerance warning remains review evidence, not a regulatory FAIL.
 - [x] Exercise the specialist intake on the authorized private plan outside the repository. Independent rereading and evidence classification identified unresolved controls, endpoints, completeness and plan-of-record dependencies. The initial intake produced no accepted coordinate geometry or CAD output; later partial review drawings do not establish accepted geometry.
 
 Remaining acceptance:
@@ -209,6 +218,9 @@ Completed evidence:
 
 - [x] [Development installation instructions](engine/README.md) explain copying the complete skill folder, explicitly reading its instructions, Python/PyMuPDF setup and offline smoke/unit commands. They distinguish manual loading from unverified automatic discovery.
 - [x] [The publication scope](PUBLICATION_REVIEW.md) records the owner's authorization for the public development preview, the existing MIT license and the private-input/external-provider boundaries.
+- [x] Verify the version 0.3.1 public addition at `c7ff4da304656541d6d26932375a5df1297665cd`: exact-head CI passed and anonymous reads of five public entry files matched the reviewed content. Later versions require their own source/CI checks.
+- [x] Save the private ChatGPT skill and verify its stored instructions and presentation; the skill is now discoverable through the connected cloud-skill reader. This does not establish mobile UI or complete real-plan execution acceptance.
+- [x] Maintain one canonical runtime-aware skill and a repeatable ChatGPT archive builder. Separate development-only packaging checks from the runtime archive; preserve prompts, icons and private account audience.
 - [x] Native Codex app-server discovery was attempted without model calls. Startup failed on read-only runtime state before `skills/list`; automatic discovery is therefore still unverified. The skill link and copied-folder smoke checks do not close this runtime acceptance item.
 
 Remaining acceptance:
