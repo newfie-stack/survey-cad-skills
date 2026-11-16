@@ -67,7 +67,8 @@ def build_ledger(scenario: dict[str, Any], rules: list[dict[str, Any]],
             "applicability": "UNRESOLVED_APPLICABILITY",
             "check_method": rule.get("check_method", "text"),
             "input_evidence": ({"source_filename": evidence.get("source_filename"),
-                                "page": page, "bbox_points": evidence.get("bbox_points")}
+                                "page": page, "bbox_points": evidence.get("bbox_points"),
+                                "source_text": evidence.get("source_text", evidence.get("observation"))}
                                if evidence else None),
             "observed_value": evidence.get("observation"),
             "expected_value": rule.get("expected_value"),

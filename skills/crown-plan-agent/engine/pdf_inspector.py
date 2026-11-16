@@ -11,6 +11,7 @@ from math import atan2, degrees, hypot, isfinite
 from pathlib import Path
 from typing import Any
 from curves import curve_candidates
+from pdf_source import read_pdf_snapshot
 
 
 def normalize_span(span: dict, page_index: int, page_width: float, page_height: float, direction=(1, 0)) -> dict:
@@ -49,10 +50,7 @@ def extract_pdf(path: str | Path, max_pages: int = 100, max_spans: int = 200000,
     if any(type(v) is not int or v < 1 for v in (max_pages, max_spans, max_file_bytes)):
         raise ValueError("Limits must be positive integers")
     source = Path(path)
-    if source.suffix.lower() != ".pdf" or not source.is_file():
-        raise ValueError("Existing PDF path required")
-    if source.stat().st_size > max_file_bytes:
-        raise ValueError("PDF file size limit exceeded")
+    source_bytes, source_sha256 = read_pdf_snapshot(source, max_file_bytes=max_file_bytes)
     try:
         import fitz
     except ImportError as exc:
@@ -60,7 +58,7 @@ def extract_pdf(path: str | Path, max_pages: int = 100, max_spans: int = 200000,
     spans = []
     vectors = []
     curves = []
-    with fitz.open(str(source)) as doc:
+    with fitz.open(stream=source_bytes, filetype="pdf") as doc:
         if doc.needs_pass:
             raise ValueError("Encrypted PDF not supported")
         if doc.page_count > max_pages:
@@ -105,7 +103,7 @@ def extract_pdf(path: str | Path, max_pages: int = 100, max_spans: int = 200000,
                                     "role": "UNCLASSIFIED_GRAPHIC"})
                     if len(vectors) > max_spans:
                         raise ValueError("Vector line limit exceeded")
-        return {"source_filename": source.name, "pages": doc.page_count,
+        return {"source_filename": source.name, "source_sha256": source_sha256, "pages": doc.page_count,
                 "spans": spans, "vectors": vectors, "curves": curves,
                 "status": "TEXT_AND_VECTOR_INVENTORY_ONLY" if include_vectors else "TEXT_INVENTORY_ONLY",
                 "limitations": ["PDF coordinates are page points, not survey coordinates",

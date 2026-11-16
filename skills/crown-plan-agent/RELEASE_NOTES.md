@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.4.0 — development preview
+# Crown Plan Agent 0.5.0 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,16 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Add an optional private marked-up PDF with numbered evidence-region comments
+  and a complete printable notes index. Preserve original pages and annotations.
+- Bind source snapshots, inventories and reports by SHA-256, retaining raw
+  table-cell text for reliable locations. Unreliable locations stay unlocated.
+- Prepare review artifacts before exclusive publication, reject collisions and
+  unsafe output locations, and clean up owned outputs after ordinary failures.
+- Keep the default Markdown-only workflow and the existing review/source gates.
+
+Version 0.4.0 changes retained:
 
 - Lead evidence reports with a plain-language summary and specific missing-input
   questions, while retaining detailed checks and source gates below it.

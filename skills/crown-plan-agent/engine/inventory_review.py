@@ -98,11 +98,13 @@ def inventory_review(inventory: dict, scenario: dict, rules: list[dict]) -> dict
                 "page": first.get("page"),
                 "bbox_points": first.get("bbox_points"),
                 "observation": first.get("text"),
+                "source_text": first.get("cell_text", first.get("text")),
                 "candidate_count": len(matches),
                 "candidate_pages": sorted({span["page"] for span in matches
                                            if type(span.get("page")) is int}),
             }
     result = build_ledger(scenario, rules, observations)
+    result["source_sha256"] = inventory.get("source_sha256")
     result["extraction_status"] = inventory.get("status", "UNKNOWN")
     result["limitations"] = [
         "Text candidate matches are not visual feature verification",

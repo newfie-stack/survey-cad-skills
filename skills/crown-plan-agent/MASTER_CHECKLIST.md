@@ -6,17 +6,23 @@ The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `new
 
 ## Evidence baseline
 
-Version 0.4 adds summary-first reporting, grouped stage-specific input requests,
+Version 0.5 adds optional private PDF review copies with source-bound comments
+and a complete printable note index. Ambiguous evidence remains unlocated and
+review-required. Markdown remains the full review record. This feature does not
+complete source authority, geometry or professional acceptance gates.
+
+Version 0.4 added summary-first reporting, grouped stage-specific input requests,
 strict scenario/geometry JSON handling and literal source-text rendering. Public
 and ChatGPT packaging now use the same runtime-aware skill, with a reproducible
 archive builder and preserved presentation. The earlier baseline and acceptance
 records below remain historical; current verification is recorded in the latest
 section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
 
-- Working branch: `feature/crown-plan-agent-regulatory-catalog`; the observed tracked baseline was `abf4525` with an upstream branch of the same name. Existing GitHub integration does not establish that the current working tree was pushed or tested on GitHub.
+- Version 0.5 working branch: `feature/crown-plan-agent-pdf-markup-v050`, based on public `main` at `bacbf60677744533864cffcbdbe9d7dea4998ae3`. Earlier catalogue work used `feature/crown-plan-agent-regulatory-catalog` at the observed baseline `abf4525`. Integration and CI evidence must identify their exact version.
 - The code/test fingerprint in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md) identifies the verified source snapshot. Git history identifies the integrated candidate; remote CI and release acceptance must refer to that exact candidate, not only the original baseline.
 - Earlier version 0.3 verification recorded **384 tests run: 384 passed, none skipped**, plus successful compilation and standalone smoke. Optional official-Table-A2 checks used a supplied October 2026 copy outside the repository; this verified the supported parser path, not current legal authority. Its fingerprint was `48f1579d8c8bd02a59715fd859cd97725f6d2357d15cbe70e063f91dded7f696` (92 files).
-- Version 0.4 verification recorded **446 tests: 444 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. No private plan or regulator PDF was used. The current engine/test fingerprint is `ba2071ea44f78070278cfb1699effd004ba8734d78c3e5d989993c4863e0d55d` (96 files); builder and integration evidence are recorded separately.
+- Version 0.4 verification recorded **446 tests: 444 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. No private plan or regulator PDF was used. That version's engine/test fingerprint is `ba2071ea44f78070278cfb1699effd004ba8734d78c3e5d989993c4863e0d55d` (96 files); builder and integration evidence are recorded separately.
+- Version 0.5 verification recorded **502 tests: 500 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. Its 105-file engine/test fingerprint is `67e011fc1c48c398779035ead04414558163b85c8f70e7ccb46941790bd3c0b0`. Fifteen renderer tests passed independently on each tested PyMuPDF version, 1.26.6 and 1.28.2. No private plan or regulator PDF was used. Exact package, publication and ChatGPT-release receipts remain separate.
 - Evidence links below identify implemented code and tests, not new execution claims. [The historical Test 2 report](tests/TEST2_REPORT.md) has a narrower structured-fixture result and must not be read as real-plan validation.
 - Current regulatory authority, supersession and clause applicability have not been independently verified. A private real-plan case matched a separately prepared baseline for the implemented observations; broader benchmark acceptance remains open. The independent AI code-review record is in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md); it does not provide professional survey/regulatory acceptance.
 
@@ -29,7 +35,7 @@ section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
 | 3 | Survey geometry | Existing reconstruction/CAD workflow handoff implemented; accepted geometry remains evidence-dependent |
 | 4 | Regulatory catalogue | All 144 dated clause paths implemented; 29 legacy observation links; current authority unverified |
 | 5 | Plan-type determination | Scope exclusions and branch inventory implemented; complete regulatory determination unfinished |
-| 6 | Evidence and deficiency reporting | Summary-first evidence/actions implemented; normative assessment remains gated |
+| 6 | Evidence and deficiency reporting | Summary-first evidence/actions and optional source-bound PDF notes implemented; normative assessment remains gated |
 | 7 | PDF-to-report workflow | Exact code snapshot passed clean-copy offline acceptance; native discovery remains separate |
 | 8 | Real-world validation | One authorized private case and public extraction examples exercised; broader acceptance open |
 | 9 | Independent technical review | Independent AI code review; qualified survey/regulatory acceptance outstanding |

@@ -10,6 +10,13 @@ geometry and unexecuted reconstruction; the detailed evidence remains below it.
 Read the [ChatGPT review guide](../references/chatgpt-review.md) for assisted
 reviews when a host cannot execute Python or access Octopus.
 
+Version 0.5 adds an optional private [marked-up PDF](../references/pdf-markup.md):
+add `--annotated-pdf /path/to/private-job/review-copy.pdf` to the existing command.
+It places review comments on verified source-text locations and appends a
+printable index for all notes, including unlocated findings. Source hashes bind
+the original, inventory and report. This is a derived review copy, not a corrected
+or approved survey plan, and it must remain outside GitHub.
+
 ## Install and run the example
 
 Install Python 3.12. For Codex, copy the entire `crown-plan-agent` folder into your project's `.agents/skills/` directory or your user's `~/.agents/skills/` directory, then start a new session and invoke `$crown-plan-agent`. Keep `engine`, `references`, and `tests` beside `SKILL.md`.

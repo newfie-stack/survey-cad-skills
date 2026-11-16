@@ -16,7 +16,7 @@ Open-source, general-purpose skills for survey evidence interpretation, cadastra
 - [Counsel — General Decision Review](skills/counsel/SKILL.md) (general-purpose AI advisory skill)
 
 - [AER OneStop Guide](skills/aer-onestop-guide/SKILL.md) — public-source regulatory research only
-- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md) — development preview with summary-first PDF evidence reviews, targeted intake questions, dated requirement workbooks and an Octopus reconstruction handoff
+- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md) — development preview with summary-first evidence reports, private marked-up PDF copies, targeted intake questions, dated requirement workbooks and an Octopus reconstruction handoff
 - [CAD/GIS Object Inspection](skills/cad-gis-object-inspection/SKILL.md)
 - [Skill Evaluation & Regression Testing](skills/skill-evaluation-regression/SKILL.md)
 - [Interactive Artifact Review](skills/interactive-artifact-review/SKILL.md)
