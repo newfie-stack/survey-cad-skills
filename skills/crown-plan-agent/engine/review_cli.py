@@ -5,9 +5,13 @@ Never upload source plans or generated reports. Output is review-only.
 from __future__ import annotations
 
 import argparse
+import hashlib
+import os
 import re
 from pathlib import Path
+from urllib.parse import quote
 
+from artifact_publication import publish_artifacts
 from clause_schema import load_bounded_json
 from pdf_inspector import extract_pdf
 from regulatory_catalog import load_candidate_catalog
@@ -16,6 +20,59 @@ from review_pipeline import review_inventory
 from table_a2_refresh import refresh_table_a2
 from table_a2_rows import extract_a2_rows
 from table_a2_lookup import disposition_code, verify_disposition
+
+
+def preflight_review_paths(pdf: Path, output: Path,
+                           annotated_pdf: Path | None = None) -> None:
+    """Validate fresh artifact destinations before inspecting or refreshing."""
+    if output.suffix.lower() != '.md':
+        raise ValueError('Output must be a Markdown (.md) file')
+    if output.resolve() == pdf.resolve():
+        raise ValueError('Output must not overwrite the source')
+    if annotated_pdf is not None:
+        if annotated_pdf.suffix.lower() != '.pdf':
+            raise ValueError('Marked-up output must be a PDF (.pdf) file')
+        if annotated_pdf.resolve() == pdf.resolve():
+            raise ValueError('Marked-up output must not overwrite the source')
+        if not pdf.is_file() or pdf.suffix.lower() != '.pdf':
+            raise ValueError('An existing source PDF is required for markup')
+    destinations = [output] + ([annotated_pdf] if annotated_pdf is not None else [])
+    resolved = [path.resolve() for path in destinations]
+    if len(set(resolved)) != len(resolved):
+        raise ValueError('Review output paths must be distinct')
+    for path in destinations:
+        if path.exists() or path.is_symlink():
+            raise FileExistsError('Review output already exists')
+        if not path.resolve().parent.is_dir():
+            raise ValueError('Review output parent directory must already exist')
+    if annotated_pdf is not None:
+        skill_root = Path(__file__).resolve().parents[1]
+        protected = [skill_root]
+        for parent in skill_root.parents:
+            if (parent / '.git').exists():
+                protected.append(parent)
+                break
+        if any(path.is_relative_to(root) for path in resolved for root in protected):
+            raise ValueError('Marked-up review outputs must stay outside the installed skill and code repository')
+
+
+def markup_artifact_report(pdf_output: Path, markdown_output: Path,
+                           manifest: dict, pdf_bytes: bytes) -> str:
+    """Describe a prepared review copy without embedding external actions."""
+    from report_markdown import _cell
+    relative = os.path.relpath(pdf_output.resolve(), markdown_output.resolve().parent)
+    destination = './' + quote(relative.replace(os.sep, '/'), safe='/')
+    return ('\n## Marked-up PDF review copy\n\n'
+            f'- Marked-up PDF: [{_cell(pdf_output.name)}]({destination})\n'
+            '- Status: REVIEW_REQUIRED; evidence regions are review candidates.\n'
+            f'- Source SHA-256: {manifest["source_sha256"]}\n'
+            f'- Marked-up PDF SHA-256: {hashlib.sha256(pdf_bytes).hexdigest()}\n'
+            f'- Original PDF pages: {manifest["original_page_count"]}\n'
+            f'- Printable notes pages: {manifest["notes_page_count"]}\n'
+            f'- Located notes: {manifest["located_count"]}\n'
+            f'- Unlocated notes in the notes index: {manifest["unlocated_count"]}\n'
+            '- Note IDs in the PDF identify the detailed finding or review limitation.\n'
+            '- This copy reproduces the source plan and must remain private.\n')
 
 
 def plar_source_instruction(context: dict) -> str:
@@ -80,13 +137,9 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                a2_source_checked: bool = False, *,
                clause_catalogue: dict | None = None,
                clause_facts: dict | None = None,
-               clause_inventory: dict | None = None) -> Path:
-    if output.suffix.lower() != ".md":
-        raise ValueError("Output must be a Markdown (.md) file")
-    if output.resolve() == pdf.resolve():
-        raise ValueError("Output must not overwrite the source")
-    if output.exists():
-        raise FileExistsError("Review output already exists")
+               clause_inventory: dict | None = None,
+               annotated_pdf: Path | None = None) -> Path:
+    preflight_review_paths(pdf, output, annotated_pdf)
     if not isinstance(scenario, dict):
         raise TypeError("Scenario must be a JSON object")
     preflight_clause_inputs(scenario, clause_catalogue, clause_facts, clause_inventory)
@@ -141,9 +194,19 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
             "\n## " + heading + "\nStatus: REVIEW_REQUIRED\n"
             + plar_source_instruction(context)
             + "\nSource currency: UNVERIFIED\nCompliance: NOT_ASSESSED\n")
-    # Exclusive creation prevents overwriting existing review records.
-    with output.open("x", encoding="utf-8") as handle:
-        handle.write(report["report_markdown"])
+    if annotated_pdf is None:
+        # Preserve the existing single-report workflow.
+        with output.open("x", encoding="utf-8") as handle:
+            handle.write(report["report_markdown"])
+    else:
+        from pdf_markup import build_annotated_pdf
+        from pdf_source import read_pdf_snapshot
+        pdf_bytes, manifest = build_annotated_pdf(pdf, report, inventory)
+        if read_pdf_snapshot(pdf)[1] != manifest['source_sha256']:
+            raise ValueError('Source PDF changed before review publication')
+        report['report_markdown'] += markup_artifact_report(annotated_pdf, output, manifest, pdf_bytes)
+        publish_artifacts({output: report['report_markdown'].encode('utf-8'),
+                           annotated_pdf: pdf_bytes})
     return output
 
 
@@ -152,6 +215,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("pdf", type=Path, help="Authorized local PDF")
     parser.add_argument("--scenario", required=True, type=Path, help="Local scenario JSON")
     parser.add_argument("--output", required=True, type=Path, help="New local Markdown report")
+    parser.add_argument("--annotated-pdf", type=Path,
+                        help="Optional new private PDF review copy with located comments and printable notes")
     parser.add_argument("--catalogue", type=Path, default=Path(__file__).with_name("candidate_requirements.json"))
     parser.add_argument("--clause-catalogue", type=Path,
                         help="Explicitly add a dated-source conditional clause workbook")
@@ -173,6 +238,12 @@ def main(argv: list[str] | None = None) -> int:
     refresh_requested = args.refresh_table_a2 or args.table_a2_url is not None
     if args.offline and refresh_requested:
         parser.error("--offline cannot be combined with an official refresh")
+    try:
+        preflight_review_paths(args.pdf, args.output, args.annotated_pdf)
+    except (OSError, RuntimeError, ValueError) as exc:
+        if args.annotated_pdf is None:
+            raise
+        parser.error('Invalid review output: ' + str(exc))
     try:
         scenario = load_bounded_json(args.scenario)
         if not isinstance(scenario, dict):
@@ -216,14 +287,21 @@ def main(argv: list[str] | None = None) -> int:
         a2_pdf = cached_a2
     if refresh_requested and a2_pdf is None:
         parser.error("Official refresh reported success but cached Table A2 PDF is missing")
-    run_review(args.pdf, args.output, scenario, args.catalogue,
-               survey_geometry=survey_geometry, a2_pdf=a2_pdf,
-               drawing_text=args.drawing_text, a2_source_checked=refresh_requested,
-               clause_catalogue=clause_catalogue, clause_facts=clause_facts,
-               clause_inventory=clause_inventory)
+    try:
+        run_review(args.pdf, args.output, scenario, args.catalogue,
+                   survey_geometry=survey_geometry, a2_pdf=a2_pdf,
+                   drawing_text=args.drawing_text, a2_source_checked=refresh_requested,
+                   clause_catalogue=clause_catalogue, clause_facts=clause_facts,
+                   clause_inventory=clause_inventory, annotated_pdf=args.annotated_pdf)
+    except (OSError, RuntimeError, ValueError) as exc:
+        if args.annotated_pdf is None:
+            raise
+        parser.error('Review could not be completed: ' + str(exc))
     if a2_pdf is None:
         print(plar_source_instruction(context))
     print("Review-only report created:", args.output)
+    if args.annotated_pdf is not None:
+        print('Private marked-up PDF created:', args.annotated_pdf)
     return 0
 
 

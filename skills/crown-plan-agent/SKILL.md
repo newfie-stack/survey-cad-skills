@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.4.0
+version: 0.5.0
 ---
 # Crown Plan Agent
 
@@ -30,6 +30,15 @@ genuinely missing information, and lead with a short summary in normal language.
 Separate what was checked, what needs attention, what remains unchecked and
 specific next steps. Keep the detailed ledger and source citations available;
 observed text and a matching source row do not establish compliance.
+
+When a marked-up PDF is requested, follow the
+[PDF review-copy guide](references/pdf-markup.md) and use the existing export
+command with `--annotated-pdf`. It requires the actual source PDF, a Python
+execution environment and PyMuPDF. Place notes only on source-bound evidence;
+keep ambiguous or unlocated findings in the printable index. If the required
+file or execution capability is unavailable, provide the review/comment list
+and say that a PDF was not generated. Annotated copies reproduce the source
+plan and must stay private even when the accompanying notes are anonymized.
 
 A minimal invented in-scope scenario is:
 ```json

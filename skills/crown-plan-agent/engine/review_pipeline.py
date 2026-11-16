@@ -36,6 +36,7 @@ def review_inventory(inventory: dict, scenario: dict, catalogue: list[dict],
                 if by_id[rule["requirement_id"]]["applicability_status"] == "CANDIDATE_REVIEW"]
     ledger = inventory_review(inventory, scenario, eligible)
     ledger["source_filename"] = inventory.get("source_filename")
+    ledger["source_sha256"] = inventory.get("source_sha256")
     ledger["review_inputs"] = {
         "text_inventory_supplied": True,
         "table_a2_rows_supplied": table_a2_rows is not None,

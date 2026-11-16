@@ -267,3 +267,56 @@ The separately covered archive builder is SHA-256
 Exact integration SHAs, CI and account release IDs accompany the external
 verification manifest; a saved package alone does not prove mobile UI or
 complete real-plan execution acceptance.
+
+## Version 0.5.0 — private marked-up PDF review copies
+
+The optional `--annotated-pdf` route produces numbered evidence-region comments
+and appended printable notes, with finding IDs and source citations. Unknown,
+visual or ambiguous locations remain in the index without a guessed point.
+The PDF covers requirement and summary notes; the companion Markdown retains
+separate CLI appendices. All notes remain review-required. No regulatory
+eligibility, reconstruction or source-authority gate is relaxed.
+
+Immutable bounded source snapshots carry a SHA-256 through the inventory and
+ledger. The renderer independently extracts the current source and binds its
+snapshot, report and inventory before placing comments. Raw table-cell text is
+retained separately from synthesized display labels. Source frames, rendered
+content, annotations, links and widgets are preserved; internal page-fit links
+avoid coordinate conversion at navigation targets. Common Unicode is retained;
+unsupported scalars and unshaped RTL text use explicit reversible escapes in
+printable notes while comments keep the original strings. Note, input-text and
+index-page limits fail explicitly instead of dropping findings.
+
+The CLI prepares both artifacts before publishing fresh private files. Existing
+destinations, aliases and outputs inside the installed skill or owning code
+repository are rejected. Ordinary failures roll back only owned artifacts.
+Publication needs filesystem hard-link support and is not a crash-recovery
+transaction. Annotated copies reproduce the source plan and remain private.
+
+Independent AI code review and fresh instruction simulations found no remaining
+blocker in this feature's scope. Synthetic probes covered rotations, CropBox,
+UserUnit, clipped text, source replacement, forged caller spans, repeated labels,
+Unicode, pagination, collisions and publication failure. The full suite exposed
+an existing-exception compatibility regression in the new CLI preflight; its
+default-mode behavior was restored and independently rechecked. An older SDK
+also classified valid page-fit links differently; serialized actions and exact
+destination references are checked rather than relying on that wrapper label.
+These checks use no private plan, regulator PDF, hosted model or Octopus call.
+Live mobile UI and professional/regulatory acceptance remain outside this run.
+
+An adjacent pre-existing limitation remains: the CLI's supplied Table A2 edition
+label is fixed rather than authenticated from each PDF. Its source currency is
+still explicitly unverified and needs independent edition/current-source review.
+
+Final local verification: **502 tests ran: 500 passed, two optional local-source
+tests skipped, no failures or errors**, in 14.336 seconds using the reused
+Python 3.12.14 / PyMuPDF 1.28.2 environment. Compilation and repository-root
+synthetic smoke passed. All 15 renderer tests also passed on PyMuPDF 1.26.6;
+an independent PDF parser confirmed the same page-fit destinations. The existing
+`fitz` deprecation notice remains. The 105-file engine/test fingerprint is
+`67e011fc1c48c398779035ead04414558163b85c8f70e7ccb46941790bd3c0b0`.
+The unchanged archive builder is SHA-256
+`b12b1d89cf2fc94697ba364d6ed485ebca32ca0a9f7f8c60a2a2c1c04fbb2fcb`.
+Exact archive, installed-package acceptance, public integration/CI and account
+release identities are recorded in the separate release manifest. These source
+checks do not establish native mobile UI execution or broader plan acceptance.
