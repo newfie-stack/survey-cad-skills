@@ -4,6 +4,12 @@ This module implements **candidate applicability**, source version safeguards, a
 
 Version 0.3 adds an explicitly selected [dated-source clause workbook](../references/clause-workbook.md). The existing observation report remains available without enabling that workbook.
 
+Version 0.4 starts the report with a plain-language summary and specific next
+steps. It distinguishes reviewed text, unresolved application facts, uncomputed
+geometry and unexecuted reconstruction; the detailed evidence remains below it.
+Read the [ChatGPT review guide](../references/chatgpt-review.md) for assisted
+reviews when a host cannot execute Python or access Octopus.
+
 ## Install and run the example
 
 Install Python 3.12. For Codex, copy the entire `crown-plan-agent` folder into your project's `.agents/skills/` directory or your user's `~/.agents/skills/` directory, then start a new session and invoke `$crown-plan-agent`. Keep `engine`, `references`, and `tests` beside `SKILL.md`.
@@ -33,6 +39,13 @@ python -m unittest discover -s tests -p 'test_*.py' -v
 The example prints a report for an invented plan. It uses neither a network connection nor a regulator PDF and should end with `Offline synthetic review passed.` The request for a local Table A2 PDF is expected in the example. For real reviews, keep project inputs and reports outside both the repository and the installed skill folder.
 
 The [master checklist](../MASTER_CHECKLIST.md) records what is implemented, the evidence available, and the open acceptance criteria. A successful smoke run verifies the offline example, not all ten project milestones.
+
+For maintainers, the
+[ChatGPT packaging source](https://github.com/newfie-stack/survey-cad-skills/tree/main/skills/crown-plan-agent/packaging/chatgpt)
+and
+[archive builder](https://github.com/newfie-stack/survey-cad-skills/blob/main/skills/crown-plan-agent/tools/build_chatgpt_plugin.py)
+produce the same canonical skill for ChatGPT. Packaging is separate from running
+a review, and no execution server or external provider is installed by an archive.
 
 `source_catalog.json` is a **versioned source inventory** grounded in public documents. It records the October 28, 2026 Table A2 revision. Current authority and applicability still require separate verification before any normative PASS/FAIL finding.
 
@@ -109,11 +122,28 @@ The Table A2 parser supports the October 28, 2026 revision and rejects unsupport
 
 The command uses `candidate_requirements.json` unless `--catalogue` is specified. It creates a new Markdown evidence review marked `REVIEW_REQUIRED`. Keep input files, reports and extracted evidence private. To verify the parser and the review workflow against a locally supplied October 2026 PDF, set `CROWN_A2_TEST_PDF` to its absolute path before running the test suite.
 
+Scenario and survey-geometry inputs must be JSON objects with unique keys and
+finite values. The CLI uses the same bounded reader as clause inputs (at most
+2 MiB, with bounded nesting and text). Conflicting duplicate declarations produce
+a concise input error before any requested source refresh or report creation.
+
+The ledger's `review_summary` contains the short result, completed/unchecked
+operations, targeted `input_requests`, one grouped `context_question` and
+`next_steps`. These expose missing information without changing candidate
+eligibility or regulatory status. For example, a missing subactivity remains
+unknown while an explicitly blank string can match a genuinely blank source row.
+The Markdown report places this summary before the full evidence.
+
 The programmatic ledger includes every field declared in `SKILL.md`. Unsupported authority, expected-value, severity and verification-time values remain unresolved (`null`); extraction time is not source verification. Known PDF filename/page/bounding-box provenance is retained. The filename is not an immutable input hash, so a private validation record should separately identify the exact input snapshot.
 
 An exact Table A2 row adds a comparison with the supplied `plan_type`, plus the row's monument, consultation and additional RTF options. The report preserves the consultation qualifiers for review. A plan of survey provided in place of a sketch or surveyor sketch requires review of the substitution and monument requirements in PDF page 18. The comparison does not determine exceptions, consultation completion or application eligibility.
 
 For an AER amendment, supply `existing_plan_type` from the OneStop plan of record. For a previously surveyed linear disposition also supply `existing_length_m` for the entire existing disposition and `affected_quarter_sections` for the amendment. The report distinguishes candidate itemized survey scope, full retracement and unresolved scope under sections 3.3.2–3.3.3 of the May 2024 manual. It leaves sketch-based and other amendments for review under AER Manual 018 section 6.6. The new-application Table A2 lookup is separate.
+
+If regulator direction for the unresolved exact-6,500-m case is already supplied,
+retain its text and source in `survey_scope_direction`. The summary asks for its
+review instead of repeating the request. This informational field does not
+override the unresolved survey-scope gate or establish that direction is current.
 
 For an AER renewal, supply the active `existing_plan_type`, the confirmed `disposition_changed` boolean, and the applicable disposition, purpose and subactivity for the Table A2 row. For a sketch mismatch, supply `disposition_issued_on` from the disposition record. A date before September 1, 2010 flags possible legacy variance review under AER Manual 018 section 7.5.6. Confirm full-term status, sketch and mapping criteria, and regulator approval separately. The reported comparison does not determine renewal eligibility.
 

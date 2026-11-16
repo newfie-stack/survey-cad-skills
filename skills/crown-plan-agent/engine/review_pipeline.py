@@ -10,6 +10,7 @@ from inventory_review import inventory_review
 from plan_type_review import review_plan_type
 from regulatory_catalog import candidate_applicability
 from report_markdown import render_review_markdown
+from review_summary import build_review_summary
 from source_review import review_source_record
 
 
@@ -35,6 +36,12 @@ def review_inventory(inventory: dict, scenario: dict, catalogue: list[dict],
                 if by_id[rule["requirement_id"]]["applicability_status"] == "CANDIDATE_REVIEW"]
     ledger = inventory_review(inventory, scenario, eligible)
     ledger["source_filename"] = inventory.get("source_filename")
+    ledger["review_inputs"] = {
+        "text_inventory_supplied": True,
+        "table_a2_rows_supplied": table_a2_rows is not None,
+        "survey_geometry_supplied": survey_geometry is not None,
+        "clause_workbook_requested": clause_catalogue is not None,
+    }
     for item in ledger["requirements"]:
         rule = next(rule for rule in eligible if rule["requirement_id"] == item["requirement_id"])
         item["applicability_status"] = "CANDIDATE_REVIEW"
@@ -53,5 +60,6 @@ def review_inventory(inventory: dict, scenario: dict, catalogue: list[dict],
     ledger["overall_status"] = "REVIEW_REQUIRED"
     if workbook is not None:
         ledger["clause_workbook"] = workbook
+    ledger["review_summary"] = build_review_summary(ledger)
     ledger["report_markdown"] = render_review_markdown(ledger)
     return ledger

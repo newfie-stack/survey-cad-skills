@@ -1,10 +1,15 @@
 """Render a review-only evidence ledger with traceable candidate findings."""
 from __future__ import annotations
 
+from html import escape
+
+from review_summary import build_review_summary
+
 
 def _cell(value: object) -> str:
     text = "" if value is None else str(value)
-    return (text.replace("\\", "\\\\").replace("|", "\\|")
+    return (escape(text, quote=False).replace("\\", "\\\\").replace("|", "\\|")
+            .replace("[", "\\[").replace("]", "\\]")
             .replace("\r", " ").replace("\n", " "))
 
 
@@ -19,10 +24,27 @@ def render_review_markdown(report: dict) -> str:
     if any(not isinstance(entry, dict) or entry.get("status") != "REVIEW_REQUIRED"
            for entry in entries):
         raise ValueError("Unverified requirements cannot be reported as passed")
+    summary = build_review_summary(report)
     lines = [
         "# Crown Plan Agent — Evidence Review",
         "",
         "**Status: REVIEW_REQUIRED. This is not a regulatory compliance certificate.**",
+        "",
+        "## Review summary",
+        "",
+        _cell(summary["headline"]),
+    ]
+    for heading, key in (("What was checked", "checked"),
+                         ("What needs attention", "needs_attention"),
+                         ("What remains unchecked", "not_checked"),
+                         ("Next steps", "next_steps")):
+        lines += ["", "### " + heading, ""]
+        lines.extend("- " + _cell(item) for item in (summary[key] or ["None recorded."]))
+    if summary["context_question"]:
+        lines += ["", "Information needed: " + _cell(summary["context_question"])]
+    lines += [
+        "",
+        "## Detailed evidence",
         "",
         "| ID | Candidate requirement | Evidence | Page | Regulatory status |",
         "|---|---|---|---|---|",
@@ -42,7 +64,10 @@ def render_review_markdown(report: dict) -> str:
                   "Jurisdiction scope: " + _cell(review.get("scope_status", "UNRESOLVED_SCOPE")),
                   "Declared land class: " + _cell(review.get("land_class") or "unresolved"),
                   "Plan classification: " + _cell(review.get("plan_type_status", "UNRESOLVED")),
-                  "Missing or invalid context: " + _cell(", ".join(review.get("missing_or_invalid_fields", [])) or "none recorded")]
+                  "Missing or invalid base context: " + _cell(", ".join(review.get("missing_or_invalid_fields", [])) or "none recorded")]
+        if summary["input_requests"]:
+            lines.append("Additional review inputs requested: " + _cell(
+                ", ".join(item["field"] for item in summary["input_requests"])))
         if review.get("review_scope"):
             lines.append("Review component: " + _cell(review["review_scope"]))
         if review.get("land_class") == "mixed" and review.get("scope_status") == "IN_SCOPE":
@@ -195,8 +220,9 @@ def render_review_markdown(report: dict) -> str:
     if "clause_workbook" in report:
         from clause_workbook_markdown import render_clause_workbook
         lines += ["", render_clause_workbook(report["clause_workbook"])]
-    lines += ["", "## Required next steps",
-              "Confirm the current applicable regulatory clauses and inspect the original drawing evidence independently.",
+    lines += ["", "## Required next steps", ""]
+    lines.extend("- " + _cell(item) for item in summary["next_steps"])
+    lines += ["",
               "No missing visual element or legal noncompliance is established by text extraction alone.",
               ""]
     return "\n".join(lines)

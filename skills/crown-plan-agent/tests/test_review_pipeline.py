@@ -83,6 +83,21 @@ class ReviewPipelineTests(unittest.TestCase):
         self.assertEqual(evidence["page"], 2)
         self.assertIn("Input artifact: synthetic-source.pdf", report["report_markdown"])
 
+    def test_missing_application_activity_has_specific_next_step(self):
+        scenario = {"land_class": "alberta_crown", "plan_type": "sketch",
+                    "disposition": "LOC", "stage": "initial", "regulator": "AER",
+                    "purpose": "Synthetic waterline"}
+        report = review_inventory({"spans": []}, scenario, self.catalogue)
+        self.assertIn("review_summary", report)
+        requested = [item["field"] for item in report["review_summary"]["input_requests"]]
+        self.assertIn("subactivity", requested)
+        self.assertNotIn("regulator", requested)
+        self.assertNotIn("land_class", requested)
+        self.assertEqual(report["overall_status"], "REVIEW_REQUIRED")
+        self.assertIn("subactivity", report["report_markdown"].casefold())
+        self.assertNotIn("Missing or invalid context: none recorded", report["report_markdown"])
+        self.assertNotIn("PDF extraction completed", report["report_markdown"])
+
 
 if __name__ == "__main__":
     unittest.main()

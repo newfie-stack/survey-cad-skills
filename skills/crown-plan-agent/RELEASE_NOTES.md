@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.3.1 — development preview
+# Crown Plan Agent 0.4.0 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,17 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Lead evidence reports with a plain-language summary and specific missing-input
+  questions, while retaining detailed checks and source gates below it.
+- Keep the same runtime-aware skill instructions in GitHub and ChatGPT, with
+  grouped intake questions and explicit manual/executed-operation distinctions.
+- Render extracted annotations as literal text and reject conflicting duplicate
+  JSON declarations instead of silently accepting the last value.
+- Build the ChatGPT archive from reviewed source, presentation metadata and
+  existing light/dark icons. External Octopus code remains separately required.
+
+Version 0.3.1 changes retained:
 
 - Require actual reviewed [Octopus code](references/octopus-reconstruction.md)
   for reconstruction: its geometry module for bounded partial/sketch diagnostics,

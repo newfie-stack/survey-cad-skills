@@ -40,7 +40,7 @@ class ReportMarkdownTests(unittest.TestCase):
         rendered = render_review_markdown(ledger)
         for value in ("Plan type review", "Candidate applicability",
                       "Evidence trace", "SCALE 1:5000", "section",
-                      "[10, 20, 50, 30]"):
+                      r"\[10, 20, 50, 30\]"):
             self.assertIn(value, rendered)
 
     def test_reject_forged_applicability_pass(self):
@@ -66,6 +66,32 @@ class ReportMarkdownTests(unittest.TestCase):
     def test_reject_non_review_report(self):
         with self.assertRaises(ValueError):
             render_review_markdown({"overall_status": "PASS", "assessment_type": "COMPLIANCE"})
+
+    def test_source_annotations_remain_literal_and_ledger_is_unchanged(self):
+        observation = ('SCALE 1:5000 ![map](https://example.invalid/collect) '
+                       '<img src="https://example.invalid/pixel"> & source')
+        ledger = build_ledger({"plan_type": "sketch"},
+                              [{"requirement_id": "SYNTH-LITERAL", "evidence_key": "scale"}],
+                              {"scale": {"present": True, "page": 1,
+                                         "observation": observation}})
+        rendered = render_review_markdown(ledger)
+        self.assertNotIn('![map](', rendered)
+        self.assertNotIn('<img ', rendered)
+        self.assertIn(r'!\[map\](https://example.invalid/collect)', rendered)
+        self.assertIn('&lt;img ', rendered)
+        self.assertEqual(ledger['requirements'][0]['observation'], observation)
+
+    def test_report_leads_with_plain_language_review_summary(self):
+        ledger = build_ledger({"plan_type": "sketch"},
+                              [{"requirement_id": "SYNTH-SCALE", "evidence_key": "scale"}],
+                              {"scale": {"present": True, "page": 1}})
+        rendered = render_review_markdown(ledger)
+        self.assertIn('## Review summary', rendered)
+        self.assertIn('### What was checked', rendered)
+        self.assertIn('### What needs attention', rendered)
+        self.assertIn('### What remains unchecked', rendered)
+        self.assertIn('### Next steps', rendered)
+        self.assertLess(rendered.index('## Review summary'), rendered.index('| ID |'))
 
 
 if __name__ == "__main__":

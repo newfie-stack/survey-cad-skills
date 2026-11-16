@@ -1,0 +1,41 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "crown-plan-agent-chatgpt",
+  "version": "0.4.0",
+  "description": "Assisted Alberta Crown land plan review with evidence and source gates, dated checklists and an external Octopus reconstruction workflow. Development preview.",
+  "author": {
+    "name": "newfie-stack"
+  },
+  "homepage": "https://github.com/newfie-stack/survey-cad-skills/tree/main/skills/crown-plan-agent",
+  "repository": "https://github.com/newfie-stack/survey-cad-skills",
+  "license": "MIT",
+  "keywords": [
+    "survey",
+    "Alberta",
+    "Crown land",
+    "plan review"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Crown Plan Agent",
+        "shortDescription": "Review Crown land plans",
+        "longDescription": "Review Alberta Crown land survey plans and sketches, organize evidence, identify missing information, and prepare source-gated findings. The supplied offline Python engine can run when the host offers an execution environment. Reconstruction requires separately authorized access to reviewed Octopus code. This development preview does not certify regulatory acceptance.",
+        "developerName": "newfie-stack",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Review my Alberta Crown land plan and explain what needs attention.",
+          "Run the Crown Plan Agent synthetic example.",
+          "List the evidence missing from this plan review."
+        ],
+        "logo": "./assets/crown-plan-agent-light.png",
+        "composerIcon": "./assets/crown-plan-agent-light.png",
+        "logoDark": "./assets/crown-plan-agent-dark.png",
+        "composerIconDark": "./assets/crown-plan-agent-dark.png",
+        "brandColor": "#174D3C",
+        "brandColorDark": "#E4C675"
+      }
+    }
+  }
+}

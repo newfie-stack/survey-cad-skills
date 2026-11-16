@@ -5,10 +5,10 @@ Never upload source plans or generated reports. Output is review-only.
 from __future__ import annotations
 
 import argparse
-import json
 import re
 from pathlib import Path
 
+from clause_schema import load_bounded_json
 from pdf_inspector import extract_pdf
 from regulatory_catalog import load_candidate_catalog
 from requirements import application_context
@@ -173,11 +173,16 @@ def main(argv: list[str] | None = None) -> int:
     refresh_requested = args.refresh_table_a2 or args.table_a2_url is not None
     if args.offline and refresh_requested:
         parser.error("--offline cannot be combined with an official refresh")
-    scenario = json.loads(args.scenario.read_text(encoding="utf-8"))
+    try:
+        scenario = load_bounded_json(args.scenario)
+        if not isinstance(scenario, dict):
+            raise ValueError("Scenario must be a JSON object")
+    except (OSError, TypeError, ValueError) as exc:
+        parser.error("Invalid scenario JSON: " + str(exc))
     context = application_context(scenario)
     clause_catalogue = clause_facts = clause_inventory = None
     if args.clause_catalogue is not None:
-        from clause_schema import load_clause_catalogue, load_bounded_json
+        from clause_schema import load_clause_catalogue
         try:
             clause_catalogue = load_clause_catalogue(args.clause_catalogue)
             clause_facts = load_bounded_json(args.clause_facts) if args.clause_facts else {}
@@ -192,8 +197,14 @@ def main(argv: list[str] | None = None) -> int:
     if (not in_scope or regulator != "AER") and (args.table_a2_pdf is not None or refresh_requested):
         parser.error("Table A2 inputs require confirmed Alberta Crown scope and regulator AER; "
                      "confirm land_class, review_scope and regulator")
-    survey_geometry = (json.loads(args.survey_geometry.read_text(encoding='utf-8'))
-                       if args.survey_geometry is not None else None)
+    survey_geometry = None
+    if args.survey_geometry is not None:
+        try:
+            survey_geometry = load_bounded_json(args.survey_geometry)
+            if not isinstance(survey_geometry, dict):
+                raise ValueError("Survey geometry must be a JSON object")
+        except (OSError, TypeError, ValueError) as exc:
+            parser.error("Invalid survey geometry JSON: " + str(exc))
     if refresh_requested:
         refresh = refresh_table_a2(args.reference_cache, pinned_url=args.table_a2_url)
         if refresh["refresh_status"] != "CHECKED_OFFICIAL_SOURCE":

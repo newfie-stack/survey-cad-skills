@@ -219,3 +219,51 @@ files remain unchanged at the 92-file fingerprint recorded for version 0.3.1.
 Public CI runs synthetic fixtures without that external PDF; optional
 reference-PDF tests may be skipped there. Native discovery, complete geometry,
 current regulatory authority and professional acceptance remain unverified.
+
+## Version 0.4.0 — clearer assisted reviews
+
+The user selected easier ChatGPT reviews and clearer results. A derived
+`review_summary` now leads the Markdown report with completed checks, attention
+items, unchecked work and specific actions. One grouped context question exposes
+stage-specific missing facts without changing candidate eligibility: omitted
+versus explicitly blank activity remains distinct, amendment precedence is
+preserved and supplied exact-threshold direction remains subject to review.
+The detailed ledger, dated workbook, source gates and Octopus admission rules
+remain available. Default Markdown text intentionally changes in this version;
+the earlier byte-identical-output acceptance belongs to its historical snapshot.
+
+Two reproduced input/report defects were corrected. Duplicate scenario or
+geometry JSON keys and nonfinite/malformed values now produce concise CLI input
+errors before a requested refresh or report creation. Extracted Markdown/HTML
+annotations are rendered literally, preserving original structured observation
+values instead of turning source text into active report images or HTML.
+
+The public and ChatGPT packages now share the canonical runtime-aware skill.
+The standard-library archive builder validates paths, source types, versions,
+PNG assets and relative references, refuses overwrite and produces deterministic
+archives with a content manifest. Existing prompts, colours and themed icon
+bytes are preserved. The runtime archive excludes the developer packaging test
+and build-only source. Platform-normalized private account attribution is not
+copied into public templates. No execution server or Octopus code is bundled.
+
+The coordinating agent observed the new renderer/pipeline regressions failing
+before integration; implementers separately recorded failing input, summary and
+packaging cases before their fixes. A fresh independent reviewer identified one
+additional summary omission: a computed traverse outside the caller's tolerance
+was hidden in the detailed section. A failing regression reproduced it; the
+summary now reports explicit `false` only after verified/computed guards.
+Independent rechecks covered the original case, inclusive tolerance, absent
+tolerance and stale unsupported/unverified results. No scoped blocker remained.
+
+Final local verification: **446 tests ran: 444 passed, two optional local-source
+tests skipped, no failures or errors**, in 4.793 seconds. The reused environment
+was Python 3.12.14 / PyMuPDF 1.28.2; no private plan or regulator PDF was supplied
+to this run. Compilation and the standalone synthetic smoke passed. PyMuPDF's
+existing `fitz` deprecation notice remains a dependency warning. The same
+engine/test manifest scheme identifies **96 files** at SHA-256
+`ba2071ea44f78070278cfb1699effd004ba8734d78c3e5d989993c4863e0d55d`.
+The separately covered archive builder is SHA-256
+`b12b1d89cf2fc94697ba364d6ed485ebca32ca0a9f7f8c60a2a2c1c04fbb2fcb`.
+Exact integration SHAs, CI and account release IDs accompany the external
+verification manifest; a saved package alone does not prove mobile UI or
+complete real-plan execution acceptance.
