@@ -1,6 +1,6 @@
 # Crown Plan Agent 0.6: revision comparison
 
-Status: proposed design, November 17, 2026. Implementation has not started.
+Status: approved by the user, November 17, 2026. Implementation follows this scope.
 Base: public `main` at `2112d98272eb2b6892d49ea20b47de574f67f66b` (0.5.0).
 
 ## Intent and agreed scope
