@@ -304,9 +304,11 @@ destination references are checked rather than relying on that wrapper label.
 These checks use no private plan, regulator PDF, hosted model or Octopus call.
 Live mobile UI and professional/regulatory acceptance remain outside this run.
 
-An adjacent pre-existing limitation remains: the CLI's supplied Table A2 edition
-label is fixed rather than authenticated from each PDF. Its source currency is
-still explicitly unverified and needs independent edition/current-source review.
+The supplied Table A2 parser recognizes the October 28, 2026 cover markers and
+expected table structure. Its fixed edition label describes that supported
+parser path; this mechanical recognition does not authenticate the publication
+or establish current authority. Independent edition/current-source review remains
+necessary.
 
 Final local verification: **502 tests ran: 500 passed, two optional local-source
 tests skipped, no failures or errors**, in 14.336 seconds using the reused
@@ -320,3 +322,64 @@ The unchanged archive builder is SHA-256
 Exact archive, installed-package acceptance, public integration/CI and account
 release identities are recorded in the separate release manifest. These source
 checks do not establish native mobile UI execution or broader plan acceptance.
+
+## Version 0.6.0 — revision evidence comparison
+
+The approved feature compares two explicitly ordered original PDFs under one
+regenerated scenario, catalogue and local-reference basis. It links candidate
+observations by requirement ID rather than PDF note numbers. A separate literal
+span-text multiset exposes unexpected replacements and repeat-count changes.
+Whitespace is normalized; case, numbers, punctuation and raw occurrences remain.
+Ambiguous, conflicting, visual/manual or missing evidence stays unresolved. A
+text edit, lost match or coordinate change never establishes a corrected defect,
+accepted boundary, historical comment decision or regulatory compliance.
+
+Private Markdown/JSON output records actual common application context, both
+source hashes, the review-basis fingerprint, before/after evidence, independently
+labelled PDF and publication pages, and unassessed work. An optional PDF uses the
+standard revised-plan reviewer; comparison text changes remain in Markdown/JSON,
+not a visual drawing overlay. Known Crown generated copies are rejected so their
+appended commentary cannot become plan evidence. Arbitrary third-party copies
+cannot be universally identified. Existing source comments/forms/links are
+preserved, not interpreted as reviewer closure decisions.
+
+Independent task review reproduced a shared-input binding defect: path-based
+parser rereads could consume replacement content even after a bounded snapshot
+had been hashed. Scenario/catalogue JSON and supplied Table A2 parsing now use
+the retained immutable bytes. Final file rechecks remain, so persistent external
+changes cancel publication. Minimal catalogue/PDF-parser adapters retain the
+existing path APIs. A second review exposed a producer/renderer context-limit
+mismatch; their supported field/integer bounds are aligned and documented.
+
+The new route is always offline, has no refresh option, adds no dependency and
+does not invoke Octopus. It prepares every requested artifact before exclusive
+private publication and rolls back only owned outputs on ordinary failures.
+File/structure/group/text/output limits reject excess explicitly. The normal
+review workflow and its current-source, geometry and professional gates remain.
+Fresh instruction simulations cover executed versus manual routes, originals
+versus review copies, repeated/lost text and graphical-only changes. These are
+instruction tests, not mobile UI acceptance.
+
+Whole-branch AI review additionally reproduced three reporting gaps: a changed
+selected total with an unchanged literal text multiset, missing actual page
+rotation/frame provenance, and omitted finding-specific review actions. A single
+coordinated correction retains actual bound page frames, preserves unknown frame
+or orientation information, distinguishes literal counts from checklist changes,
+and carries review instructions/corrections into both required report formats.
+Real synthetic PDF regressions cover each case. Source-page coordinates and
+frame changes remain provenance facts, not sheet-size deficiencies or legal
+feature-motion findings. Exact scoped re-review identities accompany the separate
+release manifest.
+
+Final local verification: **615 tests ran: 613 passed, two optional local-source
+tests skipped, no failures or errors**, in 20.062 seconds using the reused Python
+3.12.14 / PyMuPDF 1.28.2 environment. Compilation and repository-root synthetic
+smoke passed. All 113 revision tests also passed on PyMuPDF 1.26.6 in 6.398 seconds.
+The existing `fitz` deprecation and optional layout-package advisory remain;
+neither requires a new dependency for this feature. The 116-file engine/test
+fingerprint is `ae405003b15a2da0828d8560f188a2ee4dfb478c488160e0abc16587fb850172`.
+The archive builder remains SHA-256
+`b12b1d89cf2fc94697ba364d6ed485ebca32ca0a9f7f8c60a2a2c1c04fbb2fcb`.
+Installed-package acceptance, privacy audit, integration/CI and saved plugin
+identities are recorded separately; no live mobile UI, private plan, governing
+regulator PDF or Octopus execution is claimed for this feature's verification.

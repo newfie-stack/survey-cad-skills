@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.5.0 — development preview
+# Crown Plan Agent 0.6.0 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,25 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Add an offline comparison of explicitly ordered original PDFs, regenerating
+  both evidence reviews under one shared scenario, catalogue and reference basis.
+- Link checklist observations by requirement ID and report literal extracted-text
+  additions, removals and count changes, preserving repeated occurrences and
+  visible ambiguity. Normalize whitespace only; span fragmentation can produce
+  inventory differences. No fuzzy matching, OCR, visual or geometry comparison.
+- Write private Markdown and JSON comparison records with source/basis hashes
+  and common review context. All regulatory results remain `REVIEW_REQUIRED`;
+  observation changes never automatically fix, close or approve comments.
+- Reject recognized Crown Plan Agent review copies and require the originals.
+  Earlier reports, source annotations and custom popup comments are not replayed
+  or interpreted as review decisions. Optional PDF output is the standard revised
+  review copy, not a visual change overlay.
+- Document the real-file/Python execution gate and evidence-limited manual
+  fallback. No automatic source downloads, external provider or new server is
+  needed. See the [revision comparison guide](references/revision-comparison.md).
+
+Version 0.5.0 changes retained:
 
 - Add an optional private marked-up PDF with numbered evidence-region comments
   and a complete printable notes index. Preserve original pages and annotations.
