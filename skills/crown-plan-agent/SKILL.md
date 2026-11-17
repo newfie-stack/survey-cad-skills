@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
-description: Use when reviewing Alberta Crown/public-land survey or sketch plans, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.5.0
+description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
+version: 0.6.0
 ---
 # Crown Plan Agent
 
@@ -39,6 +39,21 @@ keep ambiguous or unlocated findings in the printable index. If the required
 file or execution capability is unavailable, provide the review/comment list
 and say that a PDF was not generated. Annotated copies reproduce the source
 plan and must stay private even when the accompanying notes are anonymized.
+
+For old-versus-revised PDFs, follow the
+[revision comparison guide](references/revision-comparison.md). Reuse confirmed
+context and explicitly identify the baseline original first and revised original
+second. With both actual PDFs, Python and PyMuPDF available, run
+`python engine/revision_cli.py` with the guide's arguments to create a private
+Markdown comparison and JSON record. Both reviews are regenerated under the
+same scenario, catalogue and supplied references; earlier reports and custom
+popup comments are not replayed or interpreted. Recognized Crown Plan Agent
+review copies are rejected: use the originals. Without the files or runtime,
+provide an evidence-limited manual review and say the comparison engine and
+exports did not run; never invent files or execution. Text changes and candidate
+states never close comments or establish correction/compliance. Visual, geometry,
+OCR and current-authority checks remain unresolved. Optional `--annotated-pdf`
+produces the standard revised-plan review copy, not a visual change overlay.
 
 A minimal invented in-scope scenario is:
 ```json

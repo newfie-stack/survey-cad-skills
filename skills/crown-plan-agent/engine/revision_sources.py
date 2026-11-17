@@ -67,7 +67,14 @@ def inspect_original_pdf(path: Path) -> dict:
             raise ValueError("Encrypted PDF not supported")
         if document.page_count > 100:
             raise ValueError("Page limit exceeded")
+        page_frames = []
         for page in document:
+            page_frames.append({
+                "page": page.number + 1, "rotation": page.rotation,
+                "mediabox_points": list(page.mediabox),
+                "cropbox_points": list(page.cropbox),
+                "display_rect_points": list(page.rect),
+            })
             for annotation in page.annots() or ():
                 info = annotation.info
                 # The signature lives in metadata. Editing popup prose must not
@@ -83,4 +90,7 @@ def inspect_original_pdf(path: Path) -> dict:
     inventory = extract_pdf(source, include_vectors=False)
     if inventory.get("source_sha256") != digest:
         raise ValueError("Source PDF changed during inspection; SHA-256 binding failed")
+    # This register comes from the same immutable bytes whose hash extraction
+    # has just verified. The normal 0.5 extractor remains unchanged.
+    inventory["page_frames"] = page_frames
     return inventory

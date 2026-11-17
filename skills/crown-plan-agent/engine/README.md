@@ -17,6 +17,11 @@ printable index for all notes, including unlocated findings. Source hashes bind
 the original, inventory and report. This is a derived review copy, not a corrected
 or approved survey plan, and it must remain outside GitHub.
 
+Version 0.6 adds an offline [revision comparison](../references/revision-comparison.md)
+of two original PDFs under one shared review basis, with Markdown and JSON
+outputs. Literal text changes and candidate observation states remain
+`REVIEW_REQUIRED`; they do not close comments or establish correction.
+
 ## Install and run the example
 
 Install Python 3.12. For Codex, copy the entire `crown-plan-agent` folder into your project's `.agents/skills/` directory or your user's `~/.agents/skills/` directory, then start a new session and invoke `$crown-plan-agent`. Keep `engine`, `references`, and `tests` beside `SKILL.md`.
@@ -161,6 +166,52 @@ The checklist also locates the proposed plan heading and optional `applicant_nam
 Full-span headings may include a description after the plan type, such as `Sketch Plan Showing ...`, `Surveyor Sketch Plan Showing ...` or `Plan of Survey Showing ...`. This is a text candidate, not statutory classification. Fragmented titles and damaged OCR remain unresolved when they do not match.
 
 Main-plan review includes referenced checks for geo-referencing, cadastral fabric, nearby interests, hydrography and the activity outline. The review can locate a whole-span total area label in hectares or a single hectare value under a split Total heading with paired hectare and acre columns. It reports the numeric cell's page and location. Conflicting totals or multiple plausible table cells stay unresolved. The independent area comparison uses the reviewer-selected label and supplied survey coordinates.
+
+## Offline revision comparison command
+
+Use the actual original PDFs in explicit order: baseline first, revised second.
+Reuse the confirmed application context in one scenario JSON. The command
+regenerates both reviews with that scenario and the same catalogue/references;
+it does not import saved reports or interpret custom popup comments. Recognized
+Crown Plan Agent review copies are rejected; retain and use the originals.
+
+From the complete skill folder, after installing its requirements, substitute
+existing private input paths below. The output parent directory must already
+exist, and all output names must be new and outside both the installed skill and
+its owning code repository:
+
+```bash
+python engine/revision_cli.py /path/to/private-job/old.pdf /path/to/private-job/new.pdf \
+  --scenario /path/to/private-job/scenario.json \
+  --output /path/to/private-job/compare.md \
+  --json-output /path/to/private-job/compare.json --offline
+```
+
+`--offline` documents intent; this command always runs offline and never downloads
+references. Add `--table-a2-pdf /path/to/private-job/table-a2.pdf` only for an
+already supplied A2 source under confirmed in-scope AER context. `--catalogue`
+selects a common local candidate catalogue. Missing references stay unresolved.
+The separate single-PDF CLI's refresh, cache, drawing-text, clause-workbook and
+survey-geometry flags are not revision-comparison options.
+
+Optional `--annotated-pdf /path/to/private-job/revised-review.pdf` creates the
+**standard revised-plan review copy**, with notes and its printable index. It is
+not a graphical change overlay. Keep both originals, complete results and the
+derived PDF private; use synthetic inputs only for development.
+
+The JSON record includes both source hashes, the common `review_context`, engine,
+scenario, catalogue and reference hashes, and before/after findings linked by
+`requirement_id`. Literal groups normalize whitespace only and retain repeated
+occurrences; extraction span splitting or merging can create inventory changes.
+There is no fuzzy matching, OCR, visual comparison or geometry comparison. A lost
+match, identical text or no reported text changes never establishes a fixed,
+closed or compliant result. Unknown locations and manual checks stay visible.
+
+Read the [comparison guide](../references/revision-comparison.md) for record
+fields, state meanings and the ChatGPT/manual fallback. Execution requires both
+real source files, Python and PyMuPDF; without them, describe the accessible
+evidence and state that no engine comparison or exports were generated. This
+workflow needs neither Octopus nor a new server.
 
 ## Optional dated-source clause workbook
 

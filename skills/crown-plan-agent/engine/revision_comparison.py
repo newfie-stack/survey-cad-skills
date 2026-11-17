@@ -163,6 +163,8 @@ def _prepare(inventory: dict, report: dict, basis: dict) -> tuple[dict, dict, di
             _text(evidence.get('source_text'), 'Raw source text', optional=True)
             if evidence.get('source_filename') not in (None, filename):
                 raise ValueError('Finding source filename differs from bound inventory')
+        for key in ('review_instruction', 'correction'):
+            _text(entry.get(key), key, optional=True)
         _copy_bounded(_definition(entry), 'Finding definition')
     review_summary = report.get('review_summary', {})
     if not isinstance(review_summary, dict):
@@ -177,14 +179,66 @@ def _definition(entry: dict) -> dict:
     return {key: entry[key] for key in _DEFINITION_KEYS if key in entry}
 
 
-def _side(entry: dict, note: dict, inventory: dict) -> dict:
+def _page_frames(inventory: dict) -> tuple[dict, str | None]:
+    """Validate the bounded source register without inferring omitted PDF facts.
+
+    Invalid registers are unavailable frame evidence, not reasons to discard a
+    separately validated raw text anchor. Never retain unvalidated values.
+    """
+    frames = inventory.get('page_frames')
+    if frames is None:
+        return {}, 'SOURCE_PAGE_FRAMES_NOT_RECORDED'
+    if not isinstance(frames, list) or len(frames) != inventory['pages']:
+        return {}, 'INVALID_SOURCE_PAGE_FRAMES'
+    result = {}
+    keys = {'page', 'rotation', 'mediabox_points', 'cropbox_points', 'display_rect_points'}
+    for frame in frames:
+        if not isinstance(frame, dict) or set(frame) != keys:
+            return {}, 'INVALID_SOURCE_PAGE_FRAMES'
+        page, rotation = frame['page'], frame['rotation']
+        if (type(page) is not int or not 1 <= page <= inventory['pages'] or page in result
+                or type(rotation) is not int or rotation not in (0, 90, 180, 270)):
+            return {}, 'INVALID_SOURCE_PAGE_FRAMES'
+        record = {'page': page, 'rotation': rotation}
+        for key in ('mediabox_points', 'cropbox_points', 'display_rect_points'):
+            box = frame[key]
+            try:
+                valid = (isinstance(box, list) and len(box) == 4
+                         and all(type(value) in (int, float) and isfinite(value) for value in box)
+                         and box[0] < box[2] and box[1] < box[3])
+            except OverflowError:
+                valid = False
+            if not valid:
+                return {}, 'INVALID_SOURCE_PAGE_FRAMES'
+            record[key] = list(box)
+        result[page] = record
+    return result, None
+
+
+def _location_changed(left: dict, right: dict) -> bool | None:
+    if left['anchor'] is None or right['anchor'] is None:
+        return None
+    # Compare known independent facts. Missing frame/orientation metadata is
+    # never manufactured from the extractor's derotated dimensions.
+    for key in ('anchor', 'page_size_points', 'text_angle_degrees', 'page_frame'):
+        if left.get(key) is not None and right.get(key) is not None and left[key] != right[key]:
+            return True
+    if all(side.get(key) is not None for side in (left, right)
+           for key in ('page_frame', 'text_angle_degrees')):
+        return False
+    return None
+
+
+def _side(entry: dict, note: dict, inventory: dict, frames: dict, frame_reason: str | None) -> dict:
     evidence = entry.get('input_evidence') or {}
     count = entry.get('candidate_count')
     if count is not None and (type(count) is not int or not 0 <= count <= 200000):
         raise ValueError('Candidate count must be a bounded nonnegative integer or null')
     result = {key: entry.get(key) for key in ('observation', 'evidence_status', 'source_status')}
     result.update(source_text=evidence.get('source_text', entry.get('observation')), candidate_count=count,
-                  anchor=note['anchor'], location_reason=note['location_reason'])
+                  anchor=note['anchor'], location_reason=note['location_reason'],
+                  page_frame=None, frame_status='UNKNOWN',
+                  frame_reason=frame_reason or 'NO_UNIQUE_SOURCE_ANCHOR')
     if note['anchor'] is not None:
         anchor = note['anchor']
         # build_markup_plan has already established exactly one raw source span.
@@ -208,6 +262,10 @@ def _side(entry: dict, note: dict, inventory: dict) -> dict:
             return result
         result['page_size_points'] = list(span['page_size_points'])
         result['text_angle_degrees'] = angle
+        frame = frames.get(anchor['page'])
+        if frame is not None:
+            result.update(page_frame=_copy_bounded(frame, 'Source page frame'),
+                          frame_status='VALID', frame_reason=None)
     return result
 
 
@@ -263,21 +321,25 @@ def build_comparison(baseline_inventory: dict, baseline_report: dict,
     after, after_notes, after_summary = _prepare(revised_inventory, revised_report, shared)
     if set(before) != set(after):
         raise ValueError('Requirement definitions differ between reviews')
+    before_frames, before_frame_reason = _page_frames(baseline_inventory)
+    after_frames, after_frame_reason = _page_frames(revised_inventory)
     rows, counts = [], dict.fromkeys(STATES, 0)
     for identifier in sorted(before):
         left_entry, right_entry = before[identifier], after[identifier]
         if (_canonical(_definition(left_entry)) != _canonical(_definition(right_entry))
                 or before_notes[identifier]['citation'] != after_notes[identifier]['citation']):
             raise ValueError('Requirement definition or citation differs between reviews')
-        left = _side(left_entry, before_notes[identifier], baseline_inventory)
-        right = _side(right_entry, after_notes[identifier], revised_inventory)
+        left = _side(left_entry, before_notes[identifier], baseline_inventory,
+                     before_frames, before_frame_reason)
+        right = _side(right_entry, after_notes[identifier], revised_inventory,
+                      after_frames, after_frame_reason)
         status = _state(left, right, left_entry)
-        location = None
-        if left['anchor'] is not None and right['anchor'] is not None:
-            location = any(left.get(key) != right.get(key)
-                           for key in ('anchor', 'page_size_points', 'text_angle_degrees'))
+        location = _location_changed(left, right)
+        correction = left_entry.get('correction') or 'Independently inspect the drawing evidence.'
+        instruction = left_entry.get('review_instruction') or correction
         rows.append({'requirement_id': identifier,
                      'requirement_summary': left_entry.get('requirement_summary'),
+                     'review_instruction': instruction, 'correction': correction,
                      'comparison_status': status, 'baseline': left, 'revised': right,
                      'location_changed': location, 'citation': dict(before_notes[identifier]['citation'])})
         counts[status] += 1

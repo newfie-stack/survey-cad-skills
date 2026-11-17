@@ -15,6 +15,11 @@ from source_review import review_source_record
 
 def load_candidate_catalog(path: str | Path) -> list[dict]:
     data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return validate_candidate_catalog(data)
+
+
+def validate_candidate_catalog(data: object) -> list[dict]:
+    """Validate already parsed catalogue data without reopening its source."""
     if not isinstance(data, dict) or data.get("schema_version") != 1:
         raise ValueError("Unsupported catalogue schema")
     entries = data.get("requirements")

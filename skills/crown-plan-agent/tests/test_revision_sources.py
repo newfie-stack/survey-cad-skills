@@ -132,6 +132,21 @@ class OriginalPdfTests(unittest.TestCase):
         self.assertEqual([span["text"] for span in result["spans"]], ["SCALE 1:5000"])
         self.assertEqual(self.path.read_bytes(), before)
 
+    def test_source_snapshot_captures_actual_rotation_media_crop_and_display_frames(self):
+        with fitz.open() as document:
+            page = document.new_page(width=500, height=700)
+            page.insert_text((40, 85), "SCALE 1:5000")
+            page.set_cropbox(fitz.Rect(10, 20, 490, 680))
+            page.set_rotation(90)
+            document.save(self.path)
+        result = self.inspect()
+        self.assertEqual(result.get("page_frames"), [{
+            "page": 1, "rotation": 90, "mediabox_points": [0.0, 0.0, 500.0, 700.0],
+            "cropbox_points": [10.0, 20.0, 490.0, 680.0],
+            "display_rect_points": [0.0, 0.0, 660.0, 480.0]}])
+        from pdf_inspector import extract_pdf
+        self.assertNotIn("page_frames", extract_pdf(self.path, include_vectors=False))
+
     def test_ordinary_comments_widgets_uri_and_company_mention_are_allowed(self):
         self.make_pdf(comment={"title": "Surveyor", "subject": "R001: source note",
                                "content": "Popup is not source text"}, extras=True)

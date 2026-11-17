@@ -12,9 +12,11 @@ def _combine(parts):
     return " ".join(" ".join(p.split()) for p in parts if p and p.strip()).strip()
 
 
-def extract_a2_rows(pdf: str | Path) -> list[dict]:
+def extract_a2_rows(pdf: str | Path | bytes) -> list[dict]:
+    """Extract from a local path or an immutable PDF byte snapshot."""
     import fitz
-    document = fitz.open(str(pdf))
+    document = (fitz.open(stream=pdf, filetype="pdf") if isinstance(pdf, bytes)
+                else fitz.open(str(pdf)))
     try:
         if document.needs_pass or len(document) != 18:
             raise ValueError("Encrypted or unexpected Table A2 page count")

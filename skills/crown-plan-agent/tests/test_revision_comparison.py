@@ -67,7 +67,7 @@ class RevisionComparisonTests(unittest.TestCase):
         self.assertEqual(row['baseline']['source_text'], 'SCALE 1:5000')
         self.assertEqual(row['baseline']['anchor']['page'], 1)
         self.assertEqual(row['citation']['page'], 88)
-        self.assertFalse(row['location_changed'])
+        self.assertIsNone(row['location_changed'])
         self.assertEqual(result['overall_status'], 'REVIEW_REQUIRED')
         self.assertEqual(result['assessment_type'], 'REVISION_EVIDENCE_COMPARISON_NOT_COMPLIANCE')
         self.assertEqual(result['schema_version'], 1)
@@ -78,6 +78,96 @@ class RevisionComparisonTests(unittest.TestCase):
         self.assertEqual(len(result['summary']['finding_counts']), 6)
         self.assertFalse(result['identical_source_bytes'])
         self.assertTrue(any('automatically' in s for s in result['limitations']))
+
+    def add_frames(self):
+        for inventory in (self.before, self.after):
+            inventory['page_frames'] = [
+                {'page': page, 'rotation': 0, 'mediabox_points': [0, 0, 612, 792],
+                 'cropbox_points': [0, 0, 612, 792], 'display_rect_points': [0, 0, 612, 792]}
+                for page in (1, 2)]
+
+    def test_missing_page_frame_preserves_text_anchor_but_location_equality_is_unknown(self):
+        row = self.compare()['requirements'][0]
+        self.assertEqual(row['comparison_status'], 'SAME_OBSERVED_TEXT')
+        self.assertIsNotNone(row['revised']['anchor'])
+        self.assertIsNone(row['location_changed'])
+        self.assertIsNone(row['revised'].get('page_frame'))
+        self.assertEqual(row['revised'].get('frame_status'), 'UNKNOWN')
+
+    def test_valid_source_frames_compare_rotation_and_boxes_independently_of_text(self):
+        self.add_frames()
+        row = self.compare()['requirements'][0]
+        self.assertIs(row['location_changed'], False)
+        self.assertEqual(row['revised'].get('frame_status'), 'VALID')
+        for key, value in [('rotation', 90), ('mediabox_points', [0, 0, 620, 792]),
+                           ('cropbox_points', [10, 10, 600, 780]),
+                           ('display_rect_points', [0, 0, 792, 612])]:
+            with self.subTest(field=key):
+                self.add_frames()
+                self.after['page_frames'][0][key] = value
+                row = self.compare()['requirements'][0]
+                self.assertEqual(row['comparison_status'], 'SAME_OBSERVED_TEXT')
+                self.assertIs(row['location_changed'], True)
+                self.assertEqual(row['revised']['page_frame'][key], value)
+
+    def test_known_page_frames_do_not_fill_missing_text_orientation_or_other_frame(self):
+        for missing in ('baseline_angle', 'revised_angle', 'both_angles', 'revised_frame'):
+            with self.subTest(missing=missing):
+                self.before = self.inventory('baseline.pdf', '1', ['SCALE 1:5000'])
+                self.after = self.inventory('revised.pdf', '2', ['SCALE 1:5000'])
+                self.add_frames()
+                if missing in ('baseline_angle', 'both_angles'):
+                    self.before['spans'][0]['text_angle_degrees'] = None
+                if missing in ('revised_angle', 'both_angles'):
+                    self.after['spans'][0]['text_angle_degrees'] = None
+                if missing == 'revised_frame':
+                    self.after.pop('page_frames')
+                row = self.compare()['requirements'][0]
+                self.assertEqual(row['comparison_status'], 'SAME_OBSERVED_TEXT')
+                self.assertIsNone(row['location_changed'])
+                self.after['spans'][0]['bbox_points'] = [25, 30, 205, 45]
+                self.assertIs(self.compare()['requirements'][0]['location_changed'], True)
+
+    def test_invalid_source_frames_are_unknown_without_guessing_or_losing_text(self):
+        for bad in (None, {}, [None], [{'page': True}], [1] * 101):
+            with self.subTest(frame=bad):
+                self.after['page_frames'] = bad
+                row = self.compare()['requirements'][0]
+                self.assertEqual(row['comparison_status'], 'SAME_OBSERVED_TEXT')
+                self.assertIsNotNone(row['revised']['anchor'])
+                self.assertIsNone(row['location_changed'])
+                self.assertIsNone(row['revised'].get('page_frame'))
+                self.assertEqual(row['revised'].get('frame_status'), 'UNKNOWN')
+        for key, value in [('page', 3), ('page', True), ('rotation', 45), ('rotation', True),
+                           ('cropbox_points', [0, 0, 0, 1]),
+                           ('mediabox_points', [0, 0, float('nan'), 1]),
+                           ('display_rect_points', [0, 0, float('inf'), 1])]:
+            with self.subTest(field=key):
+                self.add_frames()
+                self.after['page_frames'][0][key] = value
+                row = self.compare()['requirements'][0]
+                self.assertIsNone(row['revised'].get('page_frame'))
+                self.assertEqual(row['revised'].get('frame_status'), 'UNKNOWN')
+                self.assertIsNone(row['location_changed'])
+        self.after.pop('page_frames')
+        self.after['spans'][0]['bbox_points'] = [25, 30, 205, 45]
+        self.assertIs(self.compare()['requirements'][0]['location_changed'], True)
+
+    def test_common_review_actions_are_retained_and_bounded(self):
+        instruction = 'Confirm the main scale <img src="x"> [review](https://example.invalid).'
+        self.rules[0]['review_instruction'] = instruction
+        row = self.compare()['requirements'][0]
+        self.assertEqual(row.get('review_instruction'), instruction)
+        self.assertEqual(row.get('correction'),
+                         'Verify current source clause and applicability; independently inspect drawing evidence.')
+        self.rules[0].pop('review_instruction')
+        row = self.compare()['requirements'][0]
+        self.assertEqual(row.get('review_instruction'), row['correction'])
+        for field in ('review_instruction', 'correction'):
+            left, right = self.report(self.before), self.report(self.after)
+            left['requirements'][0][field] = right['requirements'][0][field] = 'x' * 8193
+            with self.assertRaises(ValueError):
+                self.compare(left, right)
 
     def test_all_six_states(self):
         for before, after, expected in [

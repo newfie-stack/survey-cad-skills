@@ -16,7 +16,7 @@ Open-source, general-purpose skills for survey evidence interpretation, cadastra
 - [Counsel — General Decision Review](skills/counsel/SKILL.md) (general-purpose AI advisory skill)
 
 - [AER OneStop Guide](skills/aer-onestop-guide/SKILL.md) — public-source regulatory research only
-- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md) — development preview with summary-first evidence reports, private marked-up PDF copies, targeted intake questions, dated requirement workbooks and an Octopus reconstruction handoff
+- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md) — development preview with original-PDF revision comparisons, summary-first evidence reports, private marked-up PDF copies, targeted intake questions, dated requirement workbooks and an Octopus reconstruction handoff
 - [CAD/GIS Object Inspection](skills/cad-gis-object-inspection/SKILL.md)
 - [Skill Evaluation & Regression Testing](skills/skill-evaluation-regression/SKILL.md)
 - [Interactive Artifact Review](skills/interactive-artifact-review/SKILL.md)
@@ -37,6 +37,13 @@ Crown Plan Agent also has a
 [reproducible ChatGPT package](skills/crown-plan-agent/packaging/chatgpt/README.md)
 built from the same skill instructions. The package supplies instructions and
 supporting source; automated operations depend on the host's available tools.
+
+Crown Plan Agent 0.6.0 includes an offline
+[revision comparison command](skills/crown-plan-agent/engine/README.md#offline-revision-comparison-command)
+for two explicitly ordered original PDFs. It creates private Markdown and JSON
+evidence records under one common review basis. Text changes remain review
+observations; visual checks, geometry and regulatory acceptance require
+independent review. The optional PDF is a standard revised-plan review copy.
 
 ## License
 Original repository contributions are MIT licensed. See [LICENSE](LICENSE).

@@ -29,8 +29,9 @@
 
 - `schema_version: 1`, `comparison_type: CROWN_PLAN_REVISION_TEXT_REVIEW`, `overall_status: REVIEW_REQUIRED`, `assessment_type: REVISION_EVIDENCE_COMPARISON_NOT_COMPLIANCE`.
 - `basis`: copied shared basis; fields `engine_version: 0.6.0`, `engine_sha256`, `scenario_sha256`, `catalogue_sha256`, `references` (name/hash records), `basis_sha256`.
+- `review_context`: bounded detached copy of the common scenario, with canonical digest equal to `basis.scenario_sha256`; show its actual application values in the human report as well as the hashes.
 - `baseline` and `revised`: `{source_filename, source_sha256, pages}`; `identical_source_bytes` boolean.
-- `requirements`: sorted IDs; each has `requirement_id`, `requirement_summary`, `comparison_status`, `baseline`, `revised`, `location_changed` (bool/null), `citation` (title/version/section/page/url). Each side retains `source_text`, `observation`, `evidence_status`, `source_status`, `candidate_count`, `anchor` (page/bbox or null), `location_reason`.
+- `requirements`: sorted IDs; each has `requirement_id`, `requirement_summary`, `review_instruction`, `correction`, `comparison_status`, `baseline`, `revised`, `location_changed` (bool/null), `citation` (title/version/section/page/url). Each side retains `source_text`, `observation`, `evidence_status`, `source_status`, `candidate_count`, `anchor` (page/bbox or null), page-frame provenance/status and `location_reason`. Revision-source inspection records actual page rotation and media/crop/display rectangles; unavailable frames do not establish location equality.
 - `text_changes`: Task 1 result; `summary`: `{finding_counts: {each six-state name: count}, changed_text_groups: int}`.
 - `baseline_review_summary`, `revised_review_summary`: existing source summaries, unchanged and bounded; `limitations`: explicit manual/visual/geometry/current-authority, text fragmentation and no-auto-closure limits.
 
@@ -66,6 +67,7 @@ Each source report must match its inventory's canonical SHA-256, source count an
 - [ ] Write failing tests for all six comparison states, raw table-cell text, unchanged text plus location-only change, repeated second-match edits, conflicting totals, missing/lost text, independent source-hash binding, changed scenario/definition/citation/basis and input immutability.
 - [ ] Observe RED. Implement ordered finding comparison with ambiguity precedence; uniquely valid anchors on both sides are required for same/changed observed text. Both missing/visual remain not compared; lost/new observations are evidence transitions only. Keep source-page and publication-page references separate.
 - [ ] Include literal text changes so unexpected replacement values are visible. Bound all carried strings and summaries; no silent trimming or row loss.
+- [ ] Preserve actual display-frame changes and each finding's specific review actions. An empty literal multiset delta does not suppress a changed checklist observation or justify an overall no-change message.
 - [ ] Run focused GREEN, review for spec and quality, then commit explicit files.
 
 ### Task 3: Readable Comparison Output
