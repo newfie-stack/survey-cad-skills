@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.6.0 — development preview
+# Crown Plan Agent 0.6.1 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,15 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Refresh the bounded official-source audit dated November 18, 2026, with
+  corrected routes, explicit A1/professional dependencies, distinct publication
+  and effective dates, PCS access guidance and unresolved current-law questions.
+- Keep listing/metadata checks separate from current clause/applicability
+  verification. No source is automatically promoted to `VERIFIED_CURRENT`, and
+  no reference PDF, project plan or new download feature is included.
+
+Version 0.6.0 changes retained:
 
 - Add an offline comparison of explicitly ordered original PDFs, regenerating
   both evidence reviews under one shared scenario, catalogue and reference basis.

@@ -383,3 +383,42 @@ The archive builder remains SHA-256
 Installed-package acceptance, privacy audit, integration/CI and saved plugin
 identities are recorded separately; no live mobile UI, private plan, governing
 regulator PDF or Octopus execution is claimed for this feature's verification.
+
+## Version 0.6.1 — bounded regulatory-source verification
+
+The user selected regulatory-source verification while the proposed instrument-
+to-note workflow waits for an example. Three read-only research tracks checked
+official provincial, AER and legislation records and selected supplied-reference
+pages. The source inventory now has 22 records, with separate `record_check`
+evidence levels, dates, links and unresolved questions. A1, the King's Printer
+catalogue and the current-MSP dependency are explicit records. No normative
+source is promoted to `VERIFIED_CURRENT`.
+
+The [dated audit](references/regulatory-source-audit-2026-11-18.md) records the
+corrected survey-manual route, exact Manual 018 listing row, distinct Table A2
+cover/footer/index dates, PCS account-access change, legislative catalogue cutoff
+and professional-standard gap. Inaccessible publication records remain marked
+unresolved; publisher listing evidence does not verify current clause content or
+application-specific force. A refreshed listing date does not refresh an earlier
+PDF-content inspection date. Source research used supplied reference files and
+official HTML; no new PDF files were saved. Two index links unexpectedly resolved
+to web PDF views and were excluded from the verification conclusions.
+
+This is data/documentation maintenance. No Python logic or tests changed; the
+only runtime-data change is `engine/source_catalog.json`. The comparison schema
+and implementation version stay 0.6.0; package/skill version 0.6.1 identifies the
+maintenance release. The loaded Python/JSON fingerprint still binds the exact
+inventory snapshot. No live downloader, source-authentication shortcut, portal
+submission, new provider or change to regulatory PASS/FAIL gates is introduced.
+
+Final local checks: **615 tests ran: 613 passed, two optional local-source tests
+skipped, no failures or errors**, in 19.249 seconds on the reused Python 3.12.14 /
+PyMuPDF 1.28.2 environment. Compilation and repository-root synthetic smoke
+passed. The 116-file engine/test fingerprint is
+`dc87fd87b22392350c16b60daaf19823df02e904d058773d74be48525c2fe9a2`;
+the archive builder remains
+`b12b1d89cf2fc94697ba364d6ed485ebca32ca0a9f7f8c60a2a2c1c04fbb2fcb`.
+Existing PDF-library notices remain. Independent evidence review, package/source
+parity and exact publication/plugin receipts accompany the external maintenance
+manifest. These checks do not establish qualified regulatory/professional
+acceptance or complete verification of inaccessible sources.

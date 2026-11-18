@@ -1,5 +1,21 @@
 # Official-source verification record
 
+Latest bounded check: **November 18, 2026**. See the
+[detailed dated audit](references/regulatory-source-audit-2026-11-18.md) and
+[22-source inventory](engine/source_catalog.json) for the current observation
+record. Publisher routes, listing dates, supplied-document content and legal
+applicability are recorded separately. No normative source is promoted to
+`VERIFIED_CURRENT` by this maintenance update.
+
+The audit corrects the survey-manual route, adds A1 and current professional-
+standard dependencies, records the PCS account-access change and preserves
+distinct cover/footer, listing and legal-catalogue dates. Several detailed
+publication records returned 403; exact current editions, supersession and
+applicable clauses remain unresolved where identified. The King's Printer
+catalogue cutoff is November 4, 2026, not a new consolidation date for each Act.
+
+## Historical audit — November 14, 2026
+
 Access date: November 14, 2026. This records a bounded public-source audit;
 all normative authority remains `UNVERIFIED_CURRENT`. Access, matching metadata
 and selected-clause inspection are separate from verified legal applicability.

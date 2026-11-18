@@ -7,6 +7,12 @@
 - Additional reference inventory includes Public Lands Act, Public Lands Administration Regulation, PLAR tables, GIS quality/framework publications, plan submission guidance, and regulator-specific instructions. Each requires current-version and applicability checks.
 
 ## Authority resolution
+Consult the [November 18, 2026 source audit](regulatory-source-audit-2026-11-18.md)
+for checked routes, date distinctions and remaining gaps. A dated cover does not
+prove supersession, and a current publisher listing does not prove current
+clause applicability. Keep catalogue cutoff, consolidation, publication, content
+inspection and effective dates separate.
+
 1. Identify jurisdiction, activity, plan type and regulator before selecting requirements.
 2. Consult current official legislation and regulation, then current regulator guidance for the applicable activity and stage.
 3. Record title, publication date/version, clause, official URL, access date, and whether a newer publication replaces it.
