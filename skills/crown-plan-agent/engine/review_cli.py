@@ -138,7 +138,8 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                clause_catalogue: dict | None = None,
                clause_facts: dict | None = None,
                clause_inventory: dict | None = None,
-               annotated_pdf: Path | None = None) -> Path:
+               annotated_pdf: Path | None = None,
+               finished_plan_spec: dict | None = None) -> Path:
     preflight_review_paths(pdf, output, annotated_pdf)
     if not isinstance(scenario, dict):
         raise TypeError("Scenario must be a JSON object")
@@ -159,6 +160,13 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
         scenario = {**scenario, "activity": code}
     catalogue = load_candidate_catalog(catalogue_path)
     inventory = extract_pdf(pdf, include_vectors=False)
+    finished_review = None
+    if finished_plan_spec is not None:
+        from finished_plan_review import review_finished_plan
+        from pdf_source import read_pdf_snapshot
+        finished_review = review_finished_plan(pdf, finished_plan_spec)
+        if inventory["source_sha256"] != finished_review["source_sha256"]:
+            raise ValueError("Source PDF changed during the combined review")
     rows = extract_a2_rows(a2_pdf) if a2_pdf is not None else None
     report = review_inventory(inventory, scenario, catalogue,
                               survey_geometry=survey_geometry, table_a2_rows=rows,
@@ -194,6 +202,10 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
             "\n## " + heading + "\nStatus: REVIEW_REQUIRED\n"
             + plar_source_instruction(context)
             + "\nSource currency: UNVERIFIED\nCompliance: NOT_ASSESSED\n")
+    if finished_review is not None:
+        if read_pdf_snapshot(pdf)[1] != finished_review["source_sha256"]:
+            raise ValueError("Source PDF changed during the combined review")
+        report["report_markdown"] += finished_review["report_markdown"]
     if annotated_pdf is None:
         # Preserve the existing single-report workflow.
         with output.open("x", encoding="utf-8") as handle:
@@ -224,6 +236,8 @@ def main(argv: list[str] | None = None) -> int:
                         help="Typed fact/provenance JSON for the selected clause catalogue")
     parser.add_argument("--clause-inventory", type=Path,
                         help="Explicit matching inventory to assess dated clause-path coverage")
+    parser.add_argument("--finished-plan-spec", type=Path,
+                        help="Opt-in source-bound drawing-QC checks in the Markdown report")
     parser.add_argument("--survey-geometry", type=Path, help="Optional local JSON with explicitly sourced projected survey coordinates")
     parser.add_argument("--drawing-text", type=Path, help="Local UTF-8 DWG text export for the disposition check")
     source = parser.add_mutually_exclusive_group()
@@ -263,6 +277,16 @@ def main(argv: list[str] | None = None) -> int:
             preflight_clause_inputs(scenario, clause_catalogue, clause_facts, clause_inventory)
         except (OSError, TypeError, ValueError) as exc:
             parser.error("Invalid clause workbook inputs: " + str(exc))
+    finished_plan_spec = None
+    if args.finished_plan_spec is not None:
+        from finished_plan_spec import load_spec
+        from pdf_source import read_pdf_snapshot
+        try:
+            finished_plan_spec = load_spec(args.finished_plan_spec)
+            if read_pdf_snapshot(args.pdf)[1] != finished_plan_spec["source_sha256"]:
+                raise ValueError("Source SHA-256 digest does not match the specification")
+        except (OSError, TypeError, ValueError) as exc:
+            parser.error("Invalid finished-plan inputs: " + str(exc))
     regulator = context["regulator"]
     in_scope = context["scope_status"] == "IN_SCOPE"
     if (not in_scope or regulator != "AER") and (args.table_a2_pdf is not None or refresh_requested):
@@ -292,7 +316,8 @@ def main(argv: list[str] | None = None) -> int:
                    survey_geometry=survey_geometry, a2_pdf=a2_pdf,
                    drawing_text=args.drawing_text, a2_source_checked=refresh_requested,
                    clause_catalogue=clause_catalogue, clause_facts=clause_facts,
-                   clause_inventory=clause_inventory, annotated_pdf=args.annotated_pdf)
+                   clause_inventory=clause_inventory, annotated_pdf=args.annotated_pdf,
+                   finished_plan_spec=finished_plan_spec)
     except (OSError, RuntimeError, ValueError) as exc:
         if args.annotated_pdf is None:
             raise

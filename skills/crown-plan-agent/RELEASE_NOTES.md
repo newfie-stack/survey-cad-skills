@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.6.1 — development preview
+# Crown Plan Agent 0.7.0 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,14 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Add opt-in [finished-plan drawing QC](references/finished-plan-qc.md) for expected text,
+  field consistency, main-plan scale labels and area-table arithmetic. Findings cite the
+  selected page regions and retain unresolved evidence for manual review.
+- Keep the Crown regulatory findings separate from drawing QC. The synthetic benchmark
+  runs through the review CLI and counts known defects left unresolved as misses.
+
+Version 0.6.1 changes retained:
 
 - Refresh the bounded official-source audit dated November 18, 2026, with
   corrected routes, explicit A1/professional dependencies, distinct publication

@@ -27,5 +27,7 @@ jobs:
         run: python skills/crown-plan-agent/tests/smoke_review.py
       - name: Run synthetic offline tests
         run: python -m unittest discover -s skills/crown-plan-agent/tests -p 'test_*.py' -v
+      - name: Run finished-plan error-detection benchmark
+        run: python skills/crown-plan-agent/tests/finished_plan_benchmark.py --output "$RUNNER_TEMP/finished-plan-benchmark"
       - name: Build the ChatGPT plugin from the canonical skill
         run: python skills/crown-plan-agent/tools/build_chatgpt_plugin.py --output "$RUNNER_TEMP/crown-plan-agent-chatgpt.zip"
