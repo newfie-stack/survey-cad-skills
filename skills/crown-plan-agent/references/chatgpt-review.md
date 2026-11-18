@@ -57,6 +57,49 @@ This intake also applies to finished-plan QC without reconstruction. Read the
 whole frame before narrowing the check regions, and report which parts were
 actually read. Keep selected mechanical checks and visual observations explicit.
 
+## Orient the main plan and locate reference points
+
+After reading the full titleblock and Notes frame, inspect the main plan view,
+normally to the left of the titleblock. Locate the actual main view on other
+layouts; do not use an inset or a fixed page region as its substitute.
+
+Establish the main view's north arrow and the Notes' stated bearing reference,
+using the [visual symbol procedure](#visually-check-the-north-arrow-and-scale-bar).
+Orient the reading view to north-up. In this north-up reading frame, survey
+azimuth is clockwise from north: up/N = 0 degrees, right/E = 90 degrees,
+down/S = 180 degrees and left/W = 270 degrees. Retain whether the source states
+grid, true or assumed north. A tilted arrow or rotated sheet does not make the
+original page top north. CAD's default angle convention and PDF page axes are
+separate; preserve source bearings, coordinates and original page locators.
+If orientation is unresolved, record that limitation before assigning quarters.
+
+Use the oriented section and quarter-line fabric, section identifiers, legal
+labels and township/range/meridian context to identify NE, SE, SW and NW quarters.
+Their relative positions in a reliable north-up section are supporting evidence;
+the four page quadrants or a nearby label alone are insufficient. Retain
+ambiguity where the fabric is rotated, schematic, incomplete or conflicting.
+
+Look for **RP = Reference Point**, with the circled RP marking described by the
+supplied drafting convention. Inspect its symbol, RP label/identifier and nearby
+coordinates, bearing/distance ties and evidence descriptions together. Distinguish
+unrelated circles, legend samples and other point symbols. Record each candidate
+with its page/view/region, exact label, point role and supported ties; retain
+uncertain symbol-to-label or tie associations.
+
+For CAD drawings using the supplied convention, inspect layer **`35`** for RP
+entities and their associated blocks/text, and record the actual layer evidence.
+Layer 35 is a drafting lookup clue, not a universal regulatory rule or a command
+to relayer other evidence. A PDF can flatten or omit CAD layers: use visible RP
+evidence when layers are unavailable and do not claim a layer inspection ran.
+Different or missing layer names alone do not establish that RPs are absent.
+
+Carry source-supported RP observations and ties into the private evidence/control
+register for geometry work when relevant. A circled label, layer membership or
+nearby coordinate text does not independently establish the point's coordinate
+role, accepted control, quarter-corner identity or spatial alignment. Continue
+supported finished-plan checks with unresolved items recorded; this reading
+sequence does not require reconstruction or execute Octopus.
+
 ## Visually check the north arrow and scale bar
 
 Run this pass on plan sheets when the host can see plan imagery. Use the
