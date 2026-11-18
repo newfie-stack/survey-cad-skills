@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "evidence_class": "WHOLLY_INVENTED_SYNTHETIC",
+  "independent_reviewer_acceptance": "NOT_PERFORMED",
+  "default_expected": {
+    "subject": "PASS",
+    "main_scale": "PASS",
+    "units_note": "PASS",
+    "area_sum": "PASS",
+    "north_arrow": "REVIEW_REQUIRED",
+    "subject_presence": "PASS"
+  },
+  "cases": {
+    "clean": {
+      "overrides": {},
+      "known_defects": []
+    },
+    "subject_conflict": {
+      "overrides": {
+        "subject": "FAIL"
+      },
+      "known_defects": [
+        "subject"
+      ]
+    },
+    "note_omission": {
+      "overrides": {
+        "units_note": "FAIL"
+      },
+      "known_defects": [
+        "units_note"
+      ]
+    },
+    "main_scale_omission": {
+      "overrides": {
+        "main_scale": "FAIL"
+      },
+      "known_defects": [
+        "main_scale"
+      ]
+    },
+    "scale_mismatch": {
+      "overrides": {
+        "main_scale": "FAIL"
+      },
+      "known_defects": [
+        "main_scale"
+      ]
+    },
+    "total_mismatch": {
+      "overrides": {
+        "area_sum": "FAIL"
+      },
+      "known_defects": [
+        "area_sum"
+      ]
+    },
+    "multiple_errors": {
+      "overrides": {
+        "subject": "FAIL",
+        "units_note": "FAIL",
+        "main_scale": "FAIL",
+        "area_sum": "FAIL"
+      },
+      "known_defects": [
+        "subject",
+        "units_note",
+        "main_scale",
+        "area_sum"
+      ]
+    },
+    "raster_only": {
+      "overrides": {
+        "subject": "REVIEW_REQUIRED",
+        "main_scale": "REVIEW_REQUIRED",
+        "units_note": "REVIEW_REQUIRED",
+        "area_sum": "REVIEW_REQUIRED",
+        "subject_presence": "REVIEW_REQUIRED"
+      },
+      "known_defects": []
+    },
+    "competing_totals": {
+      "overrides": {
+        "area_sum": "REVIEW_REQUIRED"
+      },
+      "known_defects": [
+        "area_sum"
+      ]
+    },
+    "missing_subject_field": {
+      "overrides": {
+        "subject": "REVIEW_REQUIRED",
+        "subject_presence": "FAIL"
+      },
+      "known_defects": [
+        "subject_presence"
+      ]
+    },
+    "rotated_clean": {
+      "overrides": {},
+      "known_defects": []
+    },
+    "split_font_clean": {
+      "overrides": {},
+      "known_defects": []
+    },
+    "two_sheet_conflict": {
+      "overrides": {
+        "subject": "FAIL"
+      },
+      "known_defects": [
+        "subject"
+      ]
+    },
+    "tolerance_boundary": {
+      "overrides": {},
+      "known_defects": []
+    },
+    "unverified_note_omission": {
+      "overrides": {
+        "units_note": "REVIEW_REQUIRED"
+      },
+      "known_defects": [
+        "units_note"
+      ]
+    },
+    "north_arrow_omission": {
+      "overrides": {},
+      "known_defects": [
+        "north_arrow"
+      ]
+    }
+  },
+  "interpretation": "Expected REVIEW_REQUIRED for a known defect is an abstention and remains a missed detection, not a detected error. These expected behaviors are developer-authored, not professional acceptance."
+}

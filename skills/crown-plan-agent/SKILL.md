@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.6.1
+version: 0.7.0
 ---
 # Crown Plan Agent
 
@@ -11,6 +11,24 @@ Evaluate proposed Alberta Crown/public lands survey plans and sketches using **c
 **No private project plans, client drawings, employer templates, credentials, or project-specific configuration are permitted in this skill or its public test fixtures.** Source materials are cited by publication title, version, section, and official public URL; do not reproduce regulator PDFs wholesale.
 
 Authorized real inputs, source images, extracted inventories and derived drawings stay in a separate private working directory outside the repository. Publish development results only within the user's authorization, using fictional company names and excluding the original plan, identifying case mapping and source reproductions.
+
+## Finished-plan quality control
+
+The primary goal is pre-submission checking of potentially finished plans for
+omissions and mistakes, not redrafting or mandatory reconstruction. For selected
+text, identity, scale and arithmetic comparisons, use the existing review CLI's
+`--finished-plan-spec` pass described in [finished-plan QC](references/finished-plan-qc.md).
+Read the actual authorized plan and its relevant page images before preparing
+source-bound region selections. The agent prepares this private specification;
+do not shift routine extraction/mapping work onto the draftsman. Do not invent
+job expectations, context identities or visual completeness declarations.
+
+This is bounded drawing QA, not a new jurisdictional compliance route. Its
+PASS/FAIL results never promote the Crown ledger or establish current authority.
+Graphical interpretation, unsupported/ambiguous extraction and broader plan
+coverage require manual review. Use the scoped CLI pass when a finished-plan
+review is requested and the authorized source, review basis, and runtime are
+available. State which checks actually ran and which need manual review.
 
 ## First run and input contract
 Use the established task and supplied authorized inputs. For an offline first run, execute `python tests/smoke_review.py` from the complete skill folder (or the repository-root path in the engine README). The invented example needs no regulator PDF; its missing-source notice is expected and is not a request to obtain a document for the example.
