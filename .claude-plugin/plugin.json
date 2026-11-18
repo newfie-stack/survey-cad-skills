@@ -1,6 +1,6 @@
 {
   "name": "survey-cad-skills",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "General-purpose survey evidence, cadastral reasoning and CAD reconstruction skills",
   "skills": [
     "./skills/"

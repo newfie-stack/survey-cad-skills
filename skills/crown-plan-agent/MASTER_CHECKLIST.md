@@ -1,10 +1,16 @@
 # Crown Plan Agent master acceptance checklist
 
-Status recorded: November 17, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
+Status recorded: November 18, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
 
 The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `newfie-stack/survey-cad-skills` repository at the owner's request. Software checks use invented fixtures; a separately authorized private stage has also exercised one user-designated real plan and two public drawing examples. Their original inputs, extracted inventories, full reports and selected pages remain outside this repository and the package; only authorized anonymized summaries are included. This publication authorization does not authorize submission, publication of project files or release of the private Octopus implementation. An unchecked item is unfinished or lacks acceptance evidence. Completing this checklist document does not complete the milestones it records. See the [publication scope](PUBLICATION_REVIEW.md).
 
 ## Evidence baseline
+
+Version 0.6.1 refreshes bounded publisher-record verification for 22 sources.
+Routes, listing dates, supplied editions and unresolved legal applicability stay
+separate. This metadata/documentation maintenance does not close the current-
+authority or professional-acceptance gates; comparison implementation/schema
+version remains 0.6.0. See the [dated source audit](references/regulatory-source-audit-2026-11-18.md).
 
 Version 0.6 adds private revision comparisons under a shared application and
 reference basis. Checklist observations link by finding ID; a separate literal
@@ -23,12 +29,13 @@ archive builder and preserved presentation. The earlier baseline and acceptance
 records below remain historical; current verification is recorded in the latest
 section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
 
-- Version 0.6 working branch: `feature/crown-plan-agent-revision-comparison-v060`, based on public `main` at `2112d98272eb2b6892d49ea20b47de574f67f66b`. Version 0.5 used `feature/crown-plan-agent-pdf-markup-v050` based on `bacbf60677744533864cffcbdbe9d7dea4998ae3`. Earlier catalogue work used `feature/crown-plan-agent-regulatory-catalog` at the observed baseline `abf4525`. Integration and CI evidence must identify their exact version.
+- Version 0.6.1 maintenance branch: `audit/crown-plan-agent-regulatory-sources-20261118`, based on public `main` at `a4d02aa23b6bee77c904680495aac8c5305b8807`. Version 0.6 used `feature/crown-plan-agent-revision-comparison-v060`, based on `2112d98272eb2b6892d49ea20b47de574f67f66b`. Earlier version-specific branches and integration evidence remain historical; CI receipts must identify their exact candidate.
 - The code/test fingerprint in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md) identifies the verified source snapshot. Git history identifies the integrated candidate; remote CI and release acceptance must refer to that exact candidate, not only the original baseline.
 - Earlier version 0.3 verification recorded **384 tests run: 384 passed, none skipped**, plus successful compilation and standalone smoke. Optional official-Table-A2 checks used a supplied October 2026 copy outside the repository; this verified the supported parser path, not current legal authority. Its fingerprint was `48f1579d8c8bd02a59715fd859cd97725f6d2357d15cbe70e063f91dded7f696` (92 files).
 - Version 0.4 verification recorded **446 tests: 444 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. No private plan or regulator PDF was used. That version's engine/test fingerprint is `ba2071ea44f78070278cfb1699effd004ba8734d78c3e5d989993c4863e0d55d` (96 files); builder and integration evidence are recorded separately.
 - Version 0.5 verification recorded **502 tests: 500 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. Its 105-file engine/test fingerprint is `67e011fc1c48c398779035ead04414558163b85c8f70e7ccb46941790bd3c0b0`. Fifteen renderer tests passed independently on each tested PyMuPDF version, 1.26.6 and 1.28.2. No private plan or regulator PDF was used. Exact package, publication and ChatGPT-release receipts remain separate.
 - Version 0.6 verification recorded **615 tests: 613 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. Its 116-file engine/test fingerprint is `ae405003b15a2da0828d8560f188a2ee4dfb478c488160e0abc16587fb850172`. All 113 revision tests passed on both tested PyMuPDF versions, 1.26.6 and 1.28.2. Synthetic regressions include shared-input snapshot binding, actual page frames, table-value reassignment and retained review actions. No private plan or regulator PDF was used. Exact installed-package, publication/CI and ChatGPT-release receipts remain separate.
+- Version 0.6.1 maintenance verification recorded **615 tests: 613 passed, two optional source-PDF tests skipped**, compilation and synthetic smoke. Its 116-file fingerprint is `dc87fd87b22392350c16b60daaf19823df02e904d058773d74be48525c2fe9a2`; the runtime change is source-inventory JSON only, with no Python/test logic change. Source research separately inspected already supplied references; those files and all project inputs remain private.
 - Evidence links below identify implemented code and tests, not new execution claims. [The historical Test 2 report](tests/TEST2_REPORT.md) has a narrower structured-fixture result and must not be read as real-plan validation.
 - Current regulatory authority, supersession and clause applicability have not been independently verified. A private real-plan case matched a separately prepared baseline for the implemented observations; broader benchmark acceptance remains open. The independent AI code-review record is in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md); it does not provide professional survey/regulatory acceptance.
 

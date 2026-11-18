@@ -286,3 +286,12 @@ For a split measurement table, use `"area_label": {"source": "table_total", "pag
 The checklist and survey-area comparison share a document-wide total-area ambiguity check. Conflicting hectare totals or multiple plausible table cells leave the comparison `AREA_LABEL_UNRESOLVED`, even when one selected value would numerically agree with the boundary. Resolve the annotation context before comparing it.
 
 Polygon areas use the supplied coordinates' decimal representation through subtraction and cross-products. The JSON-compatible `area_ha_decimal` measurement preserves that arithmetic for the comparison; numeric area fields remain available for display. A difference exactly equal to the supplied tolerance is within tolerance, without widening the tolerance by a floating-point epsilon. This preserves input precision; it does not establish coordinate accuracy or a valid legal boundary.
+
+## Source-record maintenance (0.6.1)
+
+The [November 18, 2026 source audit](../references/regulatory-source-audit-2026-11-18.md)
+updates publisher observations and the source inventory. It does not change
+review logic or add automatic current-authority verification. The revision
+comparison implementation/schema version remains `0.6.0`; the loaded
+Python/JSON fingerprint records the exact source snapshot, including inventory
+updates. Package/skill version `0.6.1` identifies this maintenance release.
