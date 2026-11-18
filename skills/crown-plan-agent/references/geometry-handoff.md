@@ -17,6 +17,14 @@ them as source observations and retain unreadable or conflicting portions;
 accepted control, alignment and coordinate provenance still need their own
 evidence. Finished-plan QC can proceed within its scope without reconstruction.
 
+Then follow the [main-view orientation and RP pass](chatgpt-review.md#orient-the-main-plan-and-locate-reference-points):
+establish north, identify supported section/quarter context and locate circled
+Reference Point (`RP`) markings. Inspect CAD layer `35` when that convention and
+actual digital layer data apply. Retain RP identifiers, printed coordinates,
+point roles and source-supported ties in the observation/control registers;
+preserve uncertain associations and control acceptance separately. PDF page
+positions, a circle or a layer name alone do not supply survey coordinates.
+
 The handoff always has `status: REVIEW_REQUIRED` and
 `execution_status: NOT_EXECUTED`. These describe the proposed specialist handoff.
 Existing numerical diagnostics on separately supplied coordinates can still run;

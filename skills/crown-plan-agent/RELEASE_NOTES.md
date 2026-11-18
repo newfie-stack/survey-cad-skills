@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.2 — development preview
+# Crown Plan Agent 0.7.3 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,14 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- After titleblock intake, orient the main plan to its north reference, identify
+  supported section/quarter context and look for circled Reference Point (`RP`)
+  markings. Include CAD layer `35` as a lookup clue where the supplied convention
+  applies, and retain actual layer, label and tie evidence. Distinguish north-up
+  survey azimuths from original page/CAD axes and keep control acceptance separate.
+
+Version 0.7.2 changes retained:
 
 - Read the complete titleblock from top to bottom on each reviewed sheet,
   including every Notes entry, before selecting QC regions or asking for
