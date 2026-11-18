@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.7.3
+version: 0.7.4
 ---
 # Crown Plan Agent
 
@@ -26,10 +26,11 @@ accepted control and reconstructed coordinates require their own evidence.
 Next, inspect the main plan view, normally to the left of the titleblock, using
 the [north, quarter-section and RP reading sequence](references/chatgpt-review.md#orient-the-main-plan-and-locate-reference-points).
 Orient to the plan's north reference before identifying quarters. Look for
-circled `RP` (Reference Point) markings and inspect CAD layer `35` where that
-drafting convention and digital layer data are available. Retain the actual
-symbol, label, layer and tie evidence; these clues do not independently accept
-survey control or establish a quarter corner.
+circled `RP` (Reference Point) markings on working-DWG layer `EVIDENCE` where
+that convention and digital layer data are available. Keep the DIDS submission
+target layer `35` distinct from this source layer. Retain the actual symbol,
+label, source/target layer and tie evidence; these clues do not independently
+accept survey control or establish a quarter corner.
 
 ## Finished-plan quality control
 
