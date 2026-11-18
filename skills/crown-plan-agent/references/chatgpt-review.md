@@ -86,12 +86,19 @@ unrelated circles, legend samples and other point symbols. Record each candidate
 with its page/view/region, exact label, point role and supported ties; retain
 uncertain symbol-to-label or tie associations.
 
-For CAD drawings using the supplied convention, inspect layer **`35`** for RP
-entities and their associated blocks/text, and record the actual layer evidence.
-Layer 35 is a drafting lookup clue, not a universal regulatory rule or a command
-to relayer other evidence. A PDF can flatten or omit CAD layers: use visible RP
-evidence when layers are unavailable and do not claim a layer inspection ran.
-Different or missing layer names alone do not establish that RPs are absent.
+For working DWGs using the supplied convention, inspect layer **`EVIDENCE`** for
+RP entities and their associated blocks/text. The RP target layer for **DIDS
+submission is `35`** in this workflow; distinguish the working source layer from
+the submission mapping and record the actual layer evidence for the artifact
+being reviewed. Apply that RP mapping when preparing a DIDS deliverable, retaining
+the original working drawing. Do not move every entity on `EVIDENCE` to `35`:
+identify the RP entities and verify other entity mappings separately. Verify the
+applicable DIDS specification before asserting submission compliance; this guide
+does not execute an export or establish a universal layer rule.
+
+A PDF can flatten or omit CAD layers: use visible RP evidence when layers are
+unavailable and do not claim a layer inspection ran. Different or missing layer
+names alone do not establish that RPs are absent.
 
 Carry source-supported RP observations and ties into the private evidence/control
 register for geometry work when relevant. A circled label, layer membership or

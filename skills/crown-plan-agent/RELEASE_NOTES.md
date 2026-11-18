@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.3 — development preview
+# Crown Plan Agent 0.7.4 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -7,10 +7,16 @@ completion of the master checklist are separate unfinished work.
 
 ## Changes
 
+- Correct the RP layer distinction: inspect `EVIDENCE` in working DWGs and keep
+  `35` as the RP target for DIDS submission in the supplied workflow. Record
+  source and target separately; identify RP entities before any submission
+  mapping and retain the working drawing.
+
+Version 0.7.3 changes retained, with the layer correction above:
+
 - After titleblock intake, orient the main plan to its north reference, identify
   supported section/quarter context and look for circled Reference Point (`RP`)
-  markings. Include CAD layer `35` as a lookup clue where the supplied convention
-  applies, and retain actual layer, label and tie evidence. Distinguish north-up
+  markings. Retain actual source layer, label and tie evidence. Distinguish north-up
   survey azimuths from original page/CAD axes and keep control acceptance separate.
 
 Version 0.7.2 changes retained:
