@@ -8,6 +8,15 @@ skill discovery, installation, invocation, CAD work, model call or network acces
 The named companions' availability is `UNVERIFIED`. A separate agent workflow
 must verify their availability and read their instructions before doing the work.
 
+Before identifying missing specialist inputs, complete the
+[top-to-bottom titleblock and Notes reading](chatgpt-review.md#read-the-complete-titleblock-from-top-to-bottom).
+Reuse its printed legal location, bearing basis, CRS/datum/zone, units, factor
+notes and control references with source locators. An absent coordinate JSON
+does not establish that these statements are absent from the drawing. Record
+them as source observations and retain unreadable or conflicting portions;
+accepted control, alignment and coordinate provenance still need their own
+evidence. Finished-plan QC can proceed within its scope without reconstruction.
+
 The handoff always has `status: REVIEW_REQUIRED` and
 `execution_status: NOT_EXECUTED`. These describe the proposed specialist handoff.
 Existing numerical diagnostics on separately supplied coordinates can still run;

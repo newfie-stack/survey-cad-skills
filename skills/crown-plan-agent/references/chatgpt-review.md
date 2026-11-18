@@ -19,6 +19,44 @@ files in a plugin are not an execution server. With Python, use the supplied
 engine only after its dependencies and file access are available. Reconstruction
 uses the [Octopus provider contract](octopus-reconstruction.md).
 
+## Read the complete titleblock from top to bottom
+
+Read the entire titleblock on each reviewed sheet, including the complete Notes
+frame, before selecting QC regions, asking for location/context or reporting
+spatial information as missing. Use the actual page image at readable resolution.
+Locate the whole frame in the sheet overview, then inspect adjoining enlarged
+views as needed to cover it completely. Follow its visual order from top to
+bottom; for columns, read each logical column in order without skipping the
+lower entries. Extracted PDF span order or a few keyword matches do not establish
+that the frame was read in full.
+
+Capture every titleblock field and note in a private source-located reading
+record. Include the heading and legal location, applicant/operator identities,
+plan/drawing identifiers, dates and revisions, scales, legends and declarations
+where present. Read every Notes entry, including those below the initially
+relevant location note. Retain exact wording and page/frame or region locators
+for information used in a finding; do not publish private transcriptions.
+
+Use the frame to establish the plan's stated location and spatial basis:
+legal description or ATS location, coordinate values and their named roles,
+datum, projection/CRS and zone, units, bearing reference, grid/ground statements,
+scale/combined factors and control references where supplied. Keep the printed
+statements distinct and compare them with relevant drawing annotations and
+existing job evidence. Notes can supply information absent from a separate
+coordinate file. Ask only for facts still unresolved after this reading.
+
+Record conflicting statements with both locators. If the frame is cropped,
+illegible or inaccessible, identify the unread portions and obtain a fuller or
+clearer view where available; otherwise report incomplete reading. Never claim
+whole-frame coverage or a missing note from a partial crop or incomplete text
+extraction. A printed CRS or location statement is observed plan evidence; it
+does not by itself verify ownership, control, alignment or coordinate provenance.
+Preserve scale-factor notes unchanged under the Octopus provider contract.
+
+This intake also applies to finished-plan QC without reconstruction. Read the
+whole frame before narrowing the check regions, and report which parts were
+actually read. Keep selected mechanical checks and visual observations explicit.
+
 ## Visually check the north arrow and scale bar
 
 Run this pass on plan sheets when the host can see plan imagery. Use the

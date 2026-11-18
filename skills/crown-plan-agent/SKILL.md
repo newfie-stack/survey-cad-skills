@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.7.1
+version: 0.7.2
 ---
 # Crown Plan Agent
 
@@ -11,6 +11,17 @@ Evaluate proposed Alberta Crown/public lands survey plans and sketches using **c
 **No private project plans, client drawings, employer templates, credentials, or project-specific configuration are permitted in this skill or its public test fixtures.** Source materials are cited by publication title, version, section, and official public URL; do not reproduce regulator PDFs wholesale.
 
 Authorized real inputs, source images, extracted inventories and derived drawings stay in a separate private working directory outside the repository. Publish development results only within the user's authorization, using fictional company names and excluding the original plan, identifying case mapping and source reproductions.
+
+## Read the complete titleblock first
+
+On every reviewed plan sheet, read the entire titleblock from top to bottom,
+including every entry in the Notes frame, following the
+[complete-titleblock review](references/chatgpt-review.md#read-the-complete-titleblock-from-top-to-bottom).
+Do this before preparing selected QC regions, asking for plan context or
+declaring location, bearing basis or CRS information missing. Reuse the printed
+information with its source location; identify unreadable or conflicting parts.
+Printed spatial notes can establish the plan's stated location and basis, while
+accepted control and reconstructed coordinates require their own evidence.
 
 ## Finished-plan quality control
 
