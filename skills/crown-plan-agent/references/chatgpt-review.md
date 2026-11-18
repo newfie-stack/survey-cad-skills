@@ -19,6 +19,40 @@ files in a plugin are not an execution server. With Python, use the supplied
 engine only after its dependencies and file access are available. Reconstruction
 uses the [Octopus provider contract](octopus-reconstruction.md).
 
+## Visually check the north arrow and scale bar
+
+Run this pass on plan sheets when the host can see plan imagery. Use the
+authorized original PDF's rendered pages or the supplied sheet images. If the
+host only extracts PDF text, use local PDF rendering and image inspection when
+available. Render a whole-sheet overview first, then zoom or render crops as
+needed at readable resolution. Keep renders of private plans private. Never
+report a visual check based on the extracted text, a guessed sheet location,
+or a verbal description of an image you could not inspect.
+
+- **North arrow:** Look for a directional arrow with identifying evidence such
+  as an N, north label, or a recognizable compass symbol. Tie it to the main
+  view it orients. Watch for leader arrows, flow arrows, legend samples, and
+  arrows confined to insets. If visible, record the indicated direction on the
+  sheet and the region where it appears.
+- **Graphical scale bar:** Look for a drawn scale with divisions or tick marks
+  and distance labels or units, including near the title block or main view.
+  Record the readable divisions and units. A numeric ratio, line sample, or
+  scale bar from an inset alone is insufficient evidence for the main view.
+  Verify plotted scale separately when requested.
+
+For each item, cite the page number, view (main, detail, or inset), and a
+plain-language location. Use **Observed** for a clear match, **Not found after
+visual review** only after inspecting the entire relevant sheet or view at
+sufficient resolution, and **Unable to verify** when the image is unavailable,
+cropped, illegible, or ambiguous. A narrow crop can establish presence but
+cannot establish sheet-wide absence. Record a detail-only symbol in its own
+view and keep the main-view status tied to the actual coverage.
+
+Report these as drawing observations. Apply a requirement only after its source
+and applicability are verified. Do not replace the offline CLI's mechanical
+result with an AI observation. Include the visual finding alongside the CLI
+result in the user-facing review.
+
 ## Ask for the information that changes the review
 
 Collect missing facts into one concise question, using familiar words. Preserve

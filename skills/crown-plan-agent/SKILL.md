@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.7.0
+version: 0.7.1
 ---
 # Crown Plan Agent
 
@@ -29,6 +29,12 @@ Graphical interpretation, unsupported/ambiguous extraction and broader plan
 coverage require manual review. Use the scoped CLI pass when a finished-plan
 review is requested and the authorized source, review basis, and runtime are
 available. State which checks actually ran and which need manual review.
+
+When reviewing any plan with visible page images, use
+[visual review of plan symbols](references/chatgpt-review.md#visually-check-the-north-arrow-and-scale-bar)
+to inspect the north arrow and graphical scale bar directly. Report the
+observation and page location even when the offline CLI leaves visual checks
+open. Obtain a readable page image or keep the visual result unresolved.
 
 ## First run and input contract
 Use the established task and supplied authorized inputs. For an offline first run, execute `python tests/smoke_review.py` from the complete skill folder (or the repository-root path in the engine README). The invented example needs no regulator PDF; its missing-source notice is expected and is not a request to obtain a document for the example.

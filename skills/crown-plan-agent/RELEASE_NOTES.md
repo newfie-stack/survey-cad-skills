@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.0 — development preview
+# Crown Plan Agent 0.7.1 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,13 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- In a plan review with page images, inspect the north arrow and graphical scale
+  bar visually, identify their sheet and view, and record unreadable or incomplete
+  coverage. The existing offline text checker continues to request visual review
+  for those symbols.
+
+Version 0.7.0 changes retained:
 
 - Add opt-in [finished-plan drawing QC](references/finished-plan-qc.md) for expected text,
   field consistency, main-plan scale labels and area-table arithmetic. Findings cite the
