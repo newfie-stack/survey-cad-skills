@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.1 — development preview
+# Crown Plan Agent 0.7.2 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,14 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Read the complete titleblock from top to bottom on each reviewed sheet,
+  including every Notes entry, before selecting QC regions or asking for
+  location/spatial context. Reuse printed location and basis information with
+  source locators, and identify conflicting or unread portions. Keep observed
+  notes separate from accepted survey control and reconstructed coordinates.
+
+Version 0.7.1 changes retained:
 
 - In a plan review with page images, inspect the north arrow and graphical scale
   bar visually, identify their sheet and view, and record unreadable or incomplete

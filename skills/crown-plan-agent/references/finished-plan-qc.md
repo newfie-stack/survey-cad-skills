@@ -16,6 +16,13 @@ Selections use one-based pages and **unrotated, crop-relative PDF points**, the 
 
 ## Source-bound input
 
+Before choosing regions, complete the
+[full titleblock and Notes reading](chatgpt-review.md#read-the-complete-titleblock-from-top-to-bottom)
+on each reviewed sheet. Use the printed context with source locators, retaining
+conflicts and unread portions. A few selected QC fields do not establish that
+the entire titleblock was read. Missing survey coordinates do not prevent this
+intake or otherwise supported finished-plan checks.
+
 A local UTF-8 JSON object has `schema_version: 1`, the actual original PDF's lowercase `source_sha256`, a `prepared_by` name/role, and `checks`. Each check requires a unique `id`, a supported `kind`, a plain-language `description`, the `basis` for that comparison, and `regions`.
 
 Each region has `page`, `bbox_points: [x0, y0, x1, y1]`, and `role`. Optional `label` selects a literal line prefix (not a regular expression). The agent/reviewer must establish subject/context identities against the opened source; the JSON does not prove those choices are correct. Expected text/job instructions must come from authorized project evidence or a separately verified applicable requirement, not an invented rule.
