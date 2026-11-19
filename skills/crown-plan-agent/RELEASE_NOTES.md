@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.4 — development preview
+# Crown Plan Agent 0.7.5 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,12 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Include executed finished-plan drawing QC in the opening review summary, even
+  when no Crown requirements can be selected. Report bounded check counts and
+  unresolved follow-up without turning drawing-QC results into regulatory approval.
+
+Version 0.7.4 changes retained:
 
 - Correct the RP layer distinction: inspect `EVIDENCE` in working DWGs and keep
   `35` as the RP target for DIDS submission in the supplied workflow. Record

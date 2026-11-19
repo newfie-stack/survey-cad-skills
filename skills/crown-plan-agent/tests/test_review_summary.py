@@ -296,6 +296,36 @@ class ReviewSummaryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.summary(report)
 
+    def test_qc_execution_counts_come_from_findings_rather_than_stale_totals(self):
+        report = build_ledger({}, [], {})
+        report["finished_plan_review"] = {
+            "assessment_scope": "DRAWING_QC_ONLY", "overall_status": "REVIEW_REQUIRED",
+            "regulatory_status": "NOT_ASSESSED",
+            "findings": [{"status": "FAIL"}, {"status": "REVIEW_REQUIRED"}],
+            "summary": {"PASS": 99, "FAIL": 0, "REVIEW_REQUIRED": 0},
+        }
+        before = deepcopy(report)
+        result = self.summary(report)
+        checked = " ".join(result["checked"])
+        self.assertIn("2 selected", checked)
+        for count in ("PASS=0", "FAIL=1", "REVIEW_REQUIRED=1"):
+            self.assertIn(count, checked)
+        self.assertEqual(report, before)
+        self.assertEqual(result["status"], "REVIEW_REQUIRED")
+
+    def test_approved_or_non_drawing_results_cannot_be_summarized_as_qc(self):
+        qc = {"assessment_scope": "DRAWING_QC_ONLY", "overall_status": "REVIEW_REQUIRED",
+              "regulatory_status": "NOT_ASSESSED", "findings": [{"status": "PASS"}]}
+        invalid = [{"overall_status": "PASS"}, {"regulatory_status": "PASS"},
+                   {"assessment_scope": "REGULATORY_COMPLIANCE"},
+                   {"findings": []}, {"findings": [{"status": "ACCEPTED"}]}]
+        for changes in invalid:
+            with self.subTest(changes=changes):
+                report = build_ledger({}, [], {})
+                report["finished_plan_review"] = {**qc, **changes}
+                with self.assertRaises(ValueError):
+                    self.summary(report)
+
 
 if __name__ == "__main__":
     unittest.main()
