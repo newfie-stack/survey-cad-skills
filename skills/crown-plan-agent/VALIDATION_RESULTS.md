@@ -52,3 +52,27 @@ The [master checklist](MASTER_CHECKLIST.md) remains open for broader geometry an
 
 
 Version 0.3.0 was exercised on the same authorized private plan at fingerprint `48f1579d8c8bd02a59715fd859cd97725f6d2357d15cbe70e063f91dded7f696`, explicitly enabling the dated workbook and matching inventory. Nine coordinating-agent consistency checks passed: the 14 legacy requirement records and summary were unchanged, the existing-plan-of-record gate remained, and every workbook result retained review-only/unverified-source handling. With no new clause facts supplied, 25 clause paths selected review, 78 were unselected and 41 remained unresolved. These selections are manual requests rather than findings of compliance. No observations were automatically bound, no geometry was inferred, and atomic-obligation completeness remained unassessed. Scope remains user-declared; ownership was not independently verified. Inputs, full reports and the case mapping remain outside GitHub.
+
+## Version 0.7.6: rotated native-text calibration
+
+An unchanged public LOC source and frozen selected-check specification were run
+through both the prior and revised actual review CLI on the same PDF-library
+runtime. Three native rotated comparisons became readable: one subject phrase
+and two decimal area subtotals. Selected drawing results changed from four
+passes/eight unresolved to seven passes/five unresolved, with zero failures.
+The unchanged regulatory/source and existing-plan gates remain unresolved.
+Original sources, extracted text, identifying case mapping and full reports are
+kept separately; they are not test fixtures or package contents.
+
+Synthetic regression coverage now includes rotated native phrases and fragments,
+ordinary wrapped-note spacing, scales, identifier conflicts and decimal sums,
+plus crop/page rotation/UserUnit interactions. Separate/opposite directions and
+incoherent nonuniform oblique font geometry cannot manufacture a phrase match.
+The complete suite ran 680 tests: 678 passed and two optional local-source tests
+were skipped. The existing invented benchmark is unchanged: 11 of 14 planted
+defects detected, three missed, zero false alarms in that set.
+
+These results establish bounded native-text behavior. Scans, outlined lettering,
+symbols, complete drawing coverage, current authority and representative
+real-plan acceptance remain separate. See [technical review](TECHNICAL_REVIEW.md)
+for the final fingerprint and independent review scope.

@@ -76,8 +76,31 @@ def extract_pdf(path: str | Path, max_pages: int = 100, max_spans: int = 200000,
                     for span in line.get("spans", []):
                         if not str(span.get("text", "")).strip():
                             continue
-                        spans.append(normalize_span(span, index, page_width, page_height,
-                                                    line.get('dir', (1, 0))))
+                        item = normalize_span(span, index, page_width, page_height,
+                                              line.get('dir', (1, 0)))
+                        item["text_writing_mode"] = line.get("wmode", 0)
+                        item["page_rotation_degrees"] = page.rotation
+                        item["display_angle_degrees"] = round(
+                            (item["text_angle_degrees"] + page.rotation + 180) % 360 - 180, 4)
+                        origin = span.get("origin")
+                        if (isinstance(origin, (tuple, list)) and len(origin) == 2
+                                and all(isinstance(v, (int, float)) and isfinite(v) for v in origin)):
+                            item["text_origin_points"] = list(origin)
+                        for source_key, target_key in (("ascender", "font_ascender"),
+                                                       ("descender", "font_descender")):
+                            value = span.get(source_key)
+                            if isinstance(value, (int, float)) and isfinite(value):
+                                item[target_key] = value
+                        try:
+                            quad = fitz.recover_quad(line.get("dir", (1, 0)), span)
+                            points = [[float(p.x), float(p.y)] for p in quad]
+                            if all(isfinite(v) for p in points for v in p):
+                                item["quad_points"] = points
+                        except (ValueError, TypeError, ZeroDivisionError):
+                            # Retain the native words/evidence when geometry is
+                            # unsupported; the directional reader will abstain.
+                            pass
+                        spans.append(item)
                         if len(spans) > max_spans:
                             raise ValueError("Text span limit exceeded")
             if not include_vectors:
