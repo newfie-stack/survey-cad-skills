@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from runtime_security import load_pdf_runtime
 
 
 def _combine(parts):
@@ -14,7 +15,7 @@ def _combine(parts):
 
 def extract_a2_rows(pdf: str | Path | bytes) -> list[dict]:
     """Extract from a local path or an immutable PDF byte snapshot."""
-    import fitz
+    fitz = load_pdf_runtime()
     document = (fitz.open(stream=pdf, filetype="pdf") if isinstance(pdf, bytes)
                 else fitz.open(str(pdf)))
     try:

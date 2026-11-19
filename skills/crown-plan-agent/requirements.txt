@@ -1,2 +1,15 @@
-# Match the supported dependency range used by the offline CI workflow.
-PyMuPDF>=1.24,<2
+# Reviewed official minimal PDF runtime, checked2026-11-19.
+# No layout/ML extras; refresh against official PyPI metadata and run the full suite.
+--only-binary=:all:
+pymupdf-lite==2.1 \
+    --hash=sha256:37b99493085aeddfc357c6c580dfb581c7e0c6a5d7fb4a8b0f042e2442fb9d7b \
+    --hash=sha256:4e3bbfd5546f191de3aa1686b74035020eee287346edd12113fab3ecff030ddc \
+    --hash=sha256:6fddae7f4b7514140f6307704120379cb05acf389d1bc13ca91efd08fdda714a \
+    --hash=sha256:78d6481a36cd4be37020dba8d874bb01e33e9ed6ae55ebcceb29f0c088cecae6 \
+    --hash=sha256:8a56ae09707f13aa412b2ab3c451e898b9a3f650e687dd2f3cdf5c9e28175f2d \
+    --hash=sha256:9abacddf4b9e76dabcfe0b24b3ad26b5475e5eab057a363e879275dbf6e6fb7a \
+    --hash=sha256:ac411f940be14004b9c7be9e57df7144c239f1393e2497e250f58d7ddf760aee \
+    --hash=sha256:d2faa91edd4eb4bc66470222a431b4a76860bd5cb12c245d7dca1b405c0a181d \
+    --hash=sha256:d4d16f0ed7c6c9268cfee8074bba85b78c44783941e37f735a93d543ae50dd6c \
+    --hash=sha256:e5f283103169a37458ef07eef78c87035dd43724c88ec22580cf1391c6a6c072 \
+    --hash=sha256:f7509eae1ea72eb11c3960a6b972bcc7ab6d89c4abbc6e709e2ed3c5315cea37

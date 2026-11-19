@@ -10,6 +10,16 @@ tools. Use the offline engine only when the host provides the required execution
 environment and dependencies. Otherwise state that the engine did not run and
 provide an assisted manual review, retaining all source and evidence gates.
 
+Before native PDF work, use a fresh environment with the canonical skill's
+hash-locked `requirements.txt`, preferably on Python 3.12.16 or a newer 3.12
+patch, and run `python engine/runtime_security.py` from the skill folder.
+The default dependency is official `pymupdf-lite==2.1`; it must not coexist with
+the full PyMuPDF provider. Follow the
+[dependency and runtime policy](https://github.com/newfie-stack/survey-cad-skills/blob/main/skills/crown-plan-agent/references/dependency-security.md),
+including its unresolved native MuPDF advisory. A passed minimum-version check
+is not security clearance. The package supplies Python source and locks, not
+the interpreter or PDF runtime binaries.
+
 Reconstruction requires separately authorized, reviewed Octopus code; it is not
 bundled. Original plans, source PDFs, project drawings, private coordinates and
 credentials must stay outside public repositories and this package.

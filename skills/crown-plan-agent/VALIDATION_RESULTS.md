@@ -76,3 +76,23 @@ These results establish bounded native-text behavior. Scans, outlined lettering,
 symbols, complete drawing coverage, current authority and representative
 real-plan acceptance remain separate. See [technical review](TECHNICAL_REVIEW.md)
 for the final fingerprint and independent review scope.
+
+## Version 0.7.7: maintained PDF runtime
+
+The full Crown suite ran on fresh Python 3.12.16 with Expat 2.10.0 and the
+hash-locked official minimal PDF package 2.1: 691 tests ran, 689 passed and two
+optional local-source tests skipped. The separate 12-method audit-verification
+suite passed. The original synthetic benchmark results remain unchanged.
+
+The same authorized public-source/spec comparison retained seven selected
+passes/five unresolved results; regulatory and plan-of-record gates stayed open.
+No private project plan was needed for this follow-up. All source reproductions,
+exact case mappings and full reports remain outside the repository/package.
+
+All 30 unique locked application/audit/installer packages were explicitly
+accounted for in the final scanner reports, with zero mapped findings and skips.
+This corrects a discovered default-resolver omission; it does not certify native
+MuPDF, OpenSSL, the host OS or external CAD/GIS dependencies. See the dated
+[dependency policy](references/dependency-security.md) and
+[technical review](TECHNICAL_REVIEW.md) for unresolved native advisories and
+version-gate limits. Fresh outdated runtimes are blocked before PDF parsing.

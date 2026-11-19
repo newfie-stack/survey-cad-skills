@@ -27,10 +27,13 @@ The repository's existing
 covers its original contributions. It does not relicense regulator publications,
 external software or other third-party material.
 
-PDF inspection uses the separately installed PyMuPDF dependency, whose publisher
+PDF inspection defaults to the separately installed official minimal
+`pymupdf-lite` distribution. It remains subject to PyMuPDF's licensing; its publisher
 offers [AGPL and commercial licensing options](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright).
 Users and distributors must establish the appropriate licensing basis for their
-installation and distribution model. The preview contains no PyMuPDF binaries.
+installation and distribution model. The preview contains no PyMuPDF or MuPDF
+binaries. A hash-locked dependency and the [runtime policy](references/dependency-security.md)
+do not change those terms or establish native-advisory clearance.
 
 Reconstruction requires separately authorized access to a reviewed Octopus
 checkout, following the [provider contract](references/octopus-reconstruction.md).

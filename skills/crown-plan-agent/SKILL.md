@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.7.6
+version: 0.7.7
 ---
 # Crown Plan Agent
 
@@ -62,6 +62,8 @@ open. Obtain a readable page image or keep the visual result unresolved.
 
 ## First run and input contract
 Use the established task and supplied authorized inputs. For an offline first run, execute `python tests/smoke_review.py` from the complete skill folder (or the repository-root path in the engine README). The invented example needs no regulator PDF; its missing-source notice is expected and is not a request to obtain a document for the example.
+
+Before engine PDF operations, follow the dated [dependency and runtime policy](references/dependency-security.md), including its unresolved native-advisory record. Use a fresh environment with the hash-locked requirements and run `python engine/runtime_security.py` from the skill folder. This checks minimum runtime versions and provider identity before native PDF opening; it is not security clearance. If the check fails or the required runtime cannot be established, keep the engine unexecuted and use the evidence-limited assisted review available in the host. Do not bypass the runtime gate.
 
 In ChatGPT, first check the capabilities actually available in the conversation.
 If there is no Python or shell execution environment, use authorized attachment

@@ -2,7 +2,8 @@
 
 This adapter inventories text spans and pages; it does not infer missing graphical
 symbols, certify survey geometry, or decide regulatory compliance.
-Requires optional PyMuPDF (pip install pymupdf).
+Requires the reviewed PDF runtime from requirements.txt; runtime policy is
+checked before native parsing.
 """
 from __future__ import annotations
 
@@ -12,6 +13,7 @@ from pathlib import Path
 from typing import Any
 from curves import curve_candidates
 from pdf_source import read_pdf_snapshot
+from runtime_security import load_pdf_runtime
 
 
 def normalize_span(span: dict, page_index: int, page_width: float, page_height: float, direction=(1, 0)) -> dict:
@@ -51,10 +53,7 @@ def extract_pdf(path: str | Path, max_pages: int = 100, max_spans: int = 200000,
         raise ValueError("Limits must be positive integers")
     source = Path(path)
     source_bytes, source_sha256 = read_pdf_snapshot(source, max_file_bytes=max_file_bytes)
-    try:
-        import fitz
-    except ImportError as exc:
-        raise RuntimeError("PyMuPDF is required: pip install pymupdf") from exc
+    fitz = load_pdf_runtime()
     spans = []
     vectors = []
     curves = []

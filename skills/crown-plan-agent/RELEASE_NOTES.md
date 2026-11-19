@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.6 — development preview
+# Crown Plan Agent 0.7.7 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,23 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Replace the broad PDF dependency range with the official minimal
+  `pymupdf-lite==2.1` runtime, pinned to reviewed wheel hashes. Use a fresh
+  environment, binary wheels and the canonical `pymupdf` import.
+- Check dated Python patch floors, a single supported PDF provider, binding
+  identity and native MuPDF minimum version before engine PDF opening. Keep
+  failed runtime checks explicit rather than falling back to an older provider.
+- Add weekly package and audit-tool dependency scans, Dependabot updates and
+  immutable CI action revisions. Updates require review; no automatic merging
+  is enabled.
+- Record the remaining native MuPDF signing double-free advisory in the
+  [dependency policy](references/dependency-security.md). Version checks and
+  zero mapped scanner findings do not establish that this advisory is fixed or
+  that all supported operations are unaffected. Runtime hardening adds no
+  regulatory certification or production acceptance.
+
+Version 0.7.6 changes retained:
 
 - Read supported rotated native text in its own direction for selected phrase,
   identity, scale and arithmetic checks. Use recovered native span geometry for

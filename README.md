@@ -47,6 +47,7 @@ independent review. The optional PDF is a standard revised-plan review copy.
 
 ## License
 Original repository contributions are MIT licensed. See [LICENSE](LICENSE).
-Crown Plan Agent installs PyMuPDF separately; its AGPL/commercial terms and any
+Crown Plan Agent installs the official minimal PyMuPDF Lite runtime separately;
+its PyMuPDF AGPL/commercial terms and any
 external reconstruction provider's terms remain separate. See the skill's
 [distribution notes](skills/crown-plan-agent/RELEASE_NOTES.md#distribution-boundary).

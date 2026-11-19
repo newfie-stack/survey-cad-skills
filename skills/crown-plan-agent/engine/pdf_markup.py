@@ -8,6 +8,7 @@ import unicodedata
 from pdf_inspector import extract_pdf
 from pdf_markup_plan import build_markup_plan
 from pdf_source import read_pdf_snapshot
+from runtime_security import load_pdf_runtime
 
 MAX_NOTES = 200
 MAX_INDEX_PAGES = 200
@@ -183,7 +184,7 @@ def build_annotated_pdf(source_pdf: str | Path, report: dict, inventory: dict, *
                                           inventory.get("source_sha256"))):
         raise ValueError("Markup requires matching current source SHA-256 bindings")
     plan = build_markup_plan(report, actual, source_sha256=digest, max_notes=max_notes)
-    import fitz
+    fitz = load_pdf_runtime()
     with fitz.open(stream=snapshot, filetype="pdf") as document:
         original_pages = document.page_count
         if original_pages != actual["pages"]:

@@ -24,26 +24,36 @@ outputs. Literal text changes and candidate observation states remain
 
 ## Install and run the example
 
-Install Python 3.12. For Codex, copy the entire `crown-plan-agent` folder into your project's `.agents/skills/` directory or your user's `~/.agents/skills/` directory, then start a new session and invoke `$crown-plan-agent`. Keep `engine`, `references`, and `tests` beside `SKILL.md`.
+Use a patched Python runtime, preferably **Python 3.12.16 or a newer 3.12 patch**, and read the [dated dependency policy](../references/dependency-security.md), including the open native advisory. Its supported-branch patch floors are enforced before engine PDF opening; satisfying them is not a security certificate. For Codex, copy the entire `crown-plan-agent` folder into your project's `.agents/skills/` directory or your user's `~/.agents/skills/` directory, then start a new session and invoke `$crown-plan-agent`. Keep `engine`, `references`, and `tests` beside `SKILL.md`.
 
-In a Codex Cloud task, select the branch containing the skill and copy the complete skill folder into `.agents/skills/crown-plan-agent` before starting a new session. This public repository does not supply that discovery link automatically. Where the host supports it, invoke `$crown-plan-agent Run the offline synthetic example.` Automatic discovery in a fresh host session remains unverified. You can also ask the agent to read `skills/crown-plan-agent/SKILL.md` explicitly and run the repository-root command below. PyMuPDF is required to execute the Python scripts.
+In a Codex Cloud task, select the branch containing the skill and copy the complete skill folder into `.agents/skills/crown-plan-agent` before starting a new session. This public repository does not supply that discovery link automatically. Where the host supports it, invoke `$crown-plan-agent Run the offline synthetic example.` Automatic discovery in a fresh host session remains unverified. You can also ask the agent to read `skills/crown-plan-agent/SKILL.md` explicitly and run the repository-root commands below. PDF operations require the separately installed reviewed runtime; the default is the official minimal PyMuPDF Lite distribution.
 
-From the repository root, after installing `skills/crown-plan-agent/requirements.txt` in your environment:
+From the repository root, create a new empty virtual environment using the patched interpreter. Choose another environment path if `.venv` already exists; do not repair a mixed-provider installation in place.
 
 ```bash
+python3.12 -m venv .venv
+# Bash or zsh
+source .venv/bin/activate
+# In Windows PowerShell, use .\.venv\Scripts\Activate.ps1 instead.
+python -m pip install --require-hashes -r .github/bootstrap-pip.txt
+python -m pip install --require-hashes -r skills/crown-plan-agent/requirements.txt
+python skills/crown-plan-agent/engine/runtime_security.py
 python skills/crown-plan-agent/tests/smoke_review.py
 ```
+
+`runtime_security.py` reports the actual interpreter, provider and native MuPDF versions without opening a PDF. The engine calls the same gate before native PDF operations. Its minimum-version result leaves advisory review required; see the [unresolved native advisory](../references/dependency-security.md#remaining-native-advisory).
 
 The offline review engine and invented example do not require Octopus. Reconstruction requires a separately authorized, reviewed Octopus checkout following the [provider contract](../references/octopus-reconstruction.md); its implementation is not distributed here. When it is unavailable, the agent must record the missing-provider blocker. The offline CLI only prepares an unexecuted handoff; it does not discover or invoke Octopus.
 
 For a standalone command-line check, open a terminal in the copied `crown-plan-agent` folder and run:
 
 ```bash
-python -m venv .venv
+python3.12 -m venv .venv
 # Bash or zsh
 source .venv/bin/activate
 # In Windows PowerShell, use .\.venv\Scripts\Activate.ps1 instead.
-python -m pip install -r requirements.txt
+python -m pip install --require-hashes -r requirements.txt
+python engine/runtime_security.py
 python tests/smoke_review.py
 python -m unittest discover -s tests -p 'test_*.py' -v
 ```
@@ -67,7 +77,7 @@ No private project data, source plans, employer documents, or derived real-plan 
 
 ## PDF text-position adapter
 
-PDF inspection requires PyMuPDF. Call `extract_pdf(path)` from `engine/pdf_inspector.py` to inventory text spans, page numbers, and PDF-point bounding boxes. The adapter is read-only, bounded by page/span limits, rejects encrypted PDFs, and does not overwrite output inventories. It does **not** extract graphical symbols, establish line-to-label associations, or certify geometry or legal compliance. Run only with authorized files in a private environment; never commit inventories of client plans.
+PDF inspection requires the reviewed PyMuPDF runtime and a successful minimum-version/provider check. The default lock installs official `pymupdf-lite`; do not install it beside the full `PyMuPDF` distribution. Call `extract_pdf(path)` from `engine/pdf_inspector.py` to inventory text spans, page numbers, and PDF-point bounding boxes. The adapter is read-only, bounded by page/span limits, rejects encrypted PDFs, and does not overwrite output inventories. It does **not** extract graphical symbols, establish line-to-label associations, or certify geometry or legal compliance. Run only with authorized files in a private environment; never commit inventories of client plans.
 
 Synthetic bounding-box and full PDF extraction tests are in `tests/test_pdf_inspector.py` and `tests/test_pdf_integration.py`.
 
@@ -95,7 +105,7 @@ The PDF adapter now inventories straight PDF vector strokes as `UNCLASSIFIED_GRA
 
 ## Resource bounds and review limitations
 
-PDF extraction enforces positive integer limits for page count, text spans, vector segments, Bézier curves and input file size (default 100 MB). The span/curve/vector caps apply independently; the curve cap is cumulative across pages. These limits mitigate accidental resource exhaustion but are not a sandbox for hostile PDFs. Process untrusted PDFs in an isolated environment with memory/time limits and a maintained PyMuPDF version. Neither visual extraction nor line association establishes Crown plan compliance.
+PDF extraction enforces positive integer limits for page count, text spans, vector segments, Bézier curves and input file size (default 100 MB). The span/curve/vector caps apply independently; the curve cap is cumulative across pages. These limits mitigate accidental resource exhaustion but are not a sandbox for hostile PDFs. Use an isolated environment with memory/time limits, maintain the runtime and review the [dependency policy's open advisories](../references/dependency-security.md). The minimum-version gate does not establish that native parser vulnerabilities are absent. Neither visual extraction nor line association establishes Crown plan compliance.
 
 ## Offline PDF-to-review command
 
