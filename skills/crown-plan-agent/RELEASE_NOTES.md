@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.5 — development preview
+# Crown Plan Agent 0.7.6 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,18 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Read supported rotated native text in its own direction for selected phrase,
+  identity, scale and arithmetic checks. Use recovered native span geometry for
+  oblique reading and keep different or opposite directions separate.
+- Preserve source PDFs, hashes and unrotated region coordinates. Retain native
+  directions and available quadrilaterals with the original evidence locations;
+  text rotation does not establish survey orientation or control.
+- Keep raster/outlined lettering, unsupported text geometry, clipping and
+  ambiguous comparisons unresolved. Absence still needs the existing explicit
+  visual-to-text completeness evidence; no OCR or regulatory approval is added.
+
+Version 0.7.5 changes retained:
 
 - Include executed finished-plan drawing QC in the opening review summary, even
   when no Crown requirements can be selected. Report bounded check counts and

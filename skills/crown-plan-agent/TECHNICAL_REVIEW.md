@@ -422,3 +422,45 @@ Existing PDF-library notices remain. Independent evidence review, package/source
 parity and exact publication/plugin receipts accompany the external maintenance
 manifest. These checks do not establish qualified regulatory/professional
 acceptance or complete verification of inaccessible sources.
+
+## Version 0.7.6 — directional native-text reading
+
+The November 19, 2026 follow-up repairs selected finished-plan QC against
+baseline `85a3b9802703c40b75505c8583fe5dffc9197db4`. The inventory already
+extracted native rotated words; the QC layer rejected them and ordered fragments
+as horizontal text. Cardinal reading now uses the original rectangular bounds;
+oblique reading uses recovered quads only when direction, native baseline origin
+and font metrics agree. Opposite directions retain separate reading flows.
+Source hashes, original page boxes and unrotated crop-relative selectors remain.
+
+An independent AI code reviewer reproduced two candidate defects before release:
+ordinary line leading could cause a false missing-note failure, and nonuniform
+oblique font transforms could fabricate a joined phrase. Regressions were
+observed failing before correction. Normal font-box overlap is now allowed for
+nearby, aligned forward lines; inconsistent recovered geometry stays unresolved,
+including the underdetermined 45-degree cases. The reviewer rechecked 180
+invented ordinary cases across fonts, angles, uniform scales, crop offsets,
+page rotation and UserUnit scaling; all passed. Seven problematic affine cases
+remained explicitly unresolved. No material finding remained in that review.
+
+Final coordinating-agent verification: **680 tests ran: 678 passed, two optional
+local-source tests skipped, zero failures/errors**, using Python 3.12.14 /
+PyMuPDF 1.28.2. All 14 new rotated-text test methods also passed with PyMuPDF
+1.26.6. Repository-root synthetic smoke and the existing 16-case benchmark
+passed; the benchmark still detects 11 of 14 planted defects, misses three and
+has zero false alarms within that invented set. The rotation regressions include
+literal phrases, split fonts, wrapped notes, scales, conflicting identifiers,
+decimal sums, source-frame preservation and existing abstention gates.
+
+The final 125-file engine/test fingerprint, using the manifest scheme above, is
+`e09d40170287762d9a8c8731f158538d624dc94f203893cd95447a09829fb385`.
+A separate unchanged-source/spec public LOC comparison on the same PyMuPDF
+1.26.6 runtime recovered three rotated comparisons: selected results changed
+from four passes/eight unresolved to seven passes/five unresolved. This is
+bounded capture/arithmetic evidence, not a detection-accuracy estimate. Source
+drawings, transcripts, inputs, review receipts and case mapping remain outside
+the repository/package. No private plan was needed for this follow-up.
+
+No OCR, outlined-letter recognition, full-sheet coverage, survey reconstruction
+or regulatory acceptance is claimed. Existing raster, clipping, ambiguous-value,
+reused-observation and explicit absence-completeness gates remain in effect.

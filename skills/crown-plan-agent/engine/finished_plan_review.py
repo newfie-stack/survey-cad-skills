@@ -17,6 +17,7 @@ from pathlib import Path
 from finished_plan_spec import decimal_value, validate_spec
 from pdf_inspector import extract_pdf
 from pdf_source import read_pdf_snapshot
+from native_text_reading import reading_lines
 from revision_markdown import _literal
 
 SCALE = re.compile(r"(?<![\w:])1\s*:\s*((?:[0-9]{1,3}(?:[ ,][0-9]{3})+)|[0-9]+)(?![\w.])")
@@ -34,33 +35,6 @@ def _contains(a, b):
     return a[0] <= b[0] and a[1] <= b[1] and a[2] >= b[2] and a[3] >= b[3]
 
 
-def _lines(spans: list[dict]) -> list[dict]:
-    """Join only nearby horizontal spans on the same baseline; retain source text."""
-    rows = []
-    for span in sorted(spans, key=lambda s: (s["bbox_points"][1], s["bbox_points"][0])):
-        box = span["bbox_points"]
-        centre = (box[1] + box[3]) / 2
-        height = box[3] - box[1]
-        if rows and abs(rows[-1]["centre"] - centre) <= max(height, rows[-1]["height"]) * 0.3:
-            rows[-1]["spans"].append(span)
-        else:
-            rows.append({"centre": centre, "height": height, "spans": [span]})
-    result = []
-    for row in rows:
-        for span in sorted(row["spans"], key=lambda s: s["bbox_points"][0]):
-            box = span["bbox_points"]
-            same_row = result and result[-1]["row"] is row
-            gap = box[0] - result[-1]["box"][2] if same_row else float("inf")
-            if same_row and -0.5 <= gap <= row["height"] * 2.5:
-                last = result[-1]
-                last["text"] += " " + span["text"]
-                last["box"] = [min(last["box"][0], box[0]), min(last["box"][1], box[1]),
-                               max(last["box"][2], box[2]), max(last["box"][3], box[3])]
-            else:
-                result.append({"row": row, "text": span["text"], "box": list(box)})
-    return [{"text": r["text"], "box": r["box"]} for r in result]
-
-
 def _region_view(region: dict, spans: list[dict], images: list) -> dict:
     box = region["bbox_points"]
     selected = [s for s in spans if _intersects(box, s["bbox_points"])]
@@ -71,9 +45,8 @@ def _region_view(region: dict, spans: list[dict], images: list) -> dict:
         blockers.append("Raster image overlaps the selected region; native text alone is insufficient")
     if any(not _contains(box, s["bbox_points"]) or "original_bbox_points" in s for s in selected):
         blockers.append("Clipped or partially selected text; revise the region and inspect the source")
-    if any(abs(s.get("text_angle_degrees", 0)) > 0.1 for s in selected):
-        blockers.append("Nonhorizontal text needs a separate visual reading")
-    lines = _lines(selected)
+    lines, orientation_blockers = reading_lines(selected)
+    blockers.extend(orientation_blockers)
     values = []
     matched_lines = []
     for line in lines:
@@ -87,11 +60,15 @@ def _region_view(region: dict, spans: list[dict], images: list) -> dict:
             text = text[len(prefix):].strip()
         if text:
             values.append(text)
-            matched_lines.append({"text": text, "box": line["box"]})
+            matched_lines.append({**line, "text": text})
     return {"region": region, "lines": matched_lines, "values": values, "blockers": blockers,
             "evidence": {"page": region["page"], "bbox_points": list(box), "role": region["role"],
                          "text": "\n".join(line["text"] for line in lines),
-                         "spans": [{"text": s["text"], "bbox_points": s["bbox_points"]} for s in selected],
+                         "spans": [{key: s[key] for key in (
+                             "text", "bbox_points", "text_angle_degrees", "text_direction",
+                             "quad_points", "text_origin_points", "font_ascender", "font_descender",
+                             "page_rotation_degrees", "display_angle_degrees")
+                                    if key in s} for s in selected],
                          "coverage_review": region.get("coverage_review"),
                          "evidence_type": "EXTRACTED_TEXT" if selected else "SEARCH_REGION"}}
 
@@ -104,9 +81,14 @@ def _phrase_present(phrase: str, lines: list[dict]) -> bool:
         combined = _normal(line["text"])
         previous = line
         for following in lines[start + 1:start + 8]:
-            a, b = previous["box"], following["box"]
+            if following["direction_group"] != line["direction_group"]:
+                break
+            a, b = previous["reading_box"], following["reading_box"]
             height = max(a[3] - a[1], b[3] - b[1])
-            if not (-0.5 <= b[1] - a[3] <= height * 0.7 and abs(b[0] - line["box"][0]) <= height):
+            # Font boxes include ascender/descender space and can overlap at
+            # ordinary line leading. Require a real forward line advance.
+            if not (-height * 0.3 <= b[1] - a[3] <= height * 0.7
+                    and abs(b[0] - line["reading_box"][0]) <= height):
                 break
             combined += " " + _normal(following["text"])
             candidates.append(combined)
@@ -215,6 +197,10 @@ def render_finished_plan(report: dict) -> str:
                 lines.append(f"{field.title()}: {_escaped(item[field])}")
         for evidence in item["evidence"]:
             lines.append(f"Evidence: page {evidence['page']}, box {_escaped(evidence['bbox_points'])}; {_escaped(evidence['role'])}; text: {_escaped(evidence['text']) or '(none extracted)'}")
+            angles = sorted({s["text_angle_degrees"] for s in evidence["spans"]
+                             if "text_angle_degrees" in s})
+            if any(angle != 0 for angle in angles):
+                lines.append(f"Native text angle(s), unrotated page: {_escaped(angles)} degrees.")
             coverage = evidence.get("coverage_review")
             if coverage:
                 lines.append(f"Coverage declaration: {_escaped(coverage['reviewer'])}; {_escaped(coverage['statement'])}")

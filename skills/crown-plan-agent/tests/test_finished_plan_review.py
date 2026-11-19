@@ -85,6 +85,25 @@ class FinishedPlanReviewTests(unittest.TestCase):
         self.assertEqual(rows["subject"]["status"], "PASS")
         self.assertEqual(rows["main_scale"]["status"], "PASS")
 
+    def test_native_sideways_note_is_read_without_rotating_source(self):
+        import fitz
+        with fitz.open() as document:
+            page = document.new_page(width=612, height=792)
+            page.insert_text((300, 400), "DISTANCES ARE IN METRES", rotate=90)
+            document.save(self.pdf)
+        original = self.pdf.read_bytes()
+        spec = {"schema_version": 1, "source_sha256": hashlib.sha256(original).hexdigest(),
+                "prepared_by": "Invented rotated-native-text regression", "checks": [{
+                    "id": "sideways-note", "kind": "required_text",
+                    "description": "Read a native sideways note",
+                    "basis": "Invented source contains the stated units note",
+                    "expected": "DISTANCES ARE IN METRES",
+                    "regions": [{"page": 1, "bbox_points": [0, 0, 612, 792],
+                                 "role": "units_note"}]}]}
+        result = self.review(self.pdf, spec)
+        self.assertEqual(result["findings"][0]["status"], "PASS")
+        self.assertEqual(self.pdf.read_bytes(), original)
+
     def test_split_font_note_is_read_from_contiguous_text(self):
         rows, _, _ = self.results(split_note=True)
         self.assertEqual(rows["units_note"]["status"], "PASS")

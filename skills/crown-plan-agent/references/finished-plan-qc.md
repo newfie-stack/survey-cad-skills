@@ -12,7 +12,27 @@ This opt-in addition checks selected regions of a potentially finished **native-
 | `decimal_sum` | Compare selected part values with the selected total, using decimal arithmetic and an explicit tolerance | Last region is the total. Units must match. This is table arithmetic, not a survey-boundary area calculation. |
 | `visual` | Preserve a source-located review request | The offline checker leaves symbol interpretation open. When the host can see rendered pages, the agent follows the [visual review procedure](chatgpt-review.md#visually-check-the-north-arrow-and-scale-bar) and reports observations alongside the CLI results. |
 
-Selections use one-based pages and **unrotated, crop-relative PDF points**, the same space as the existing PDF inventory. Text crossing a selected region, clipped text, nonhorizontal text and intersecting raster images stay unresolved. Partially overlapping selections cannot reuse the same observation as independent fields. Multiple competing numeric candidates are not silently resolved.
+Selections use one-based pages and **unrotated, crop-relative PDF points**, the same space as the existing PDF inventory. Text crossing a selected region, clipped text, unsupported text geometry and intersecting raster images stay unresolved. Partially overlapping selections cannot reuse the same observation as independent fields. Multiple competing numeric candidates are not silently resolved.
+
+### Rotated native text
+
+The pass reads native text at cardinal and oblique orientations when its direction
+and geometry are usable. It orders fragments and wrapped lines in temporary
+reading frames using recovered span quadrilaterals for oblique text and original
+rectangular bounds for cardinal text. Oblique geometry must agree with the native
+direction, baseline origin and font metrics; inconsistent nonuniform transforms
+remain unresolved. Different and opposite directions remain
+separate, so their words cannot be joined into an invented phrase.
+
+Page rotation and text direction are distinct. The source PDF, its hash and
+selected regions stay unchanged. Findings retain the original unrotated page
+boxes, native directions and available quadrilaterals; the temporary reading
+coordinates are not survey coordinates or an inferred north reference.
+
+This does not add OCR or recognition of outlined lettering. Missing or unusable
+native geometry, unsupported vertical writing, raster overlap and clipping
+still require independent reading. Successful rotated-text capture does not
+prove extraction completeness or make an unobserved phrase a confirmed omission.
 
 ## Source-bound input
 
