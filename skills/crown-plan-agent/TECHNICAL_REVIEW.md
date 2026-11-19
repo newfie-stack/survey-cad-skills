@@ -464,3 +464,56 @@ the repository/package. No private plan was needed for this follow-up.
 No OCR, outlined-letter recognition, full-sheet coverage, survey reconstruction
 or regulatory acceptance is claimed. Existing raster, clipping, ambiguous-value,
 reused-observation and explicit absence-completeness gates remain in effect.
+
+## Version 0.7.7 — dependency and runtime maintenance
+
+The November 19, 2026 follow-up replaces the permissive pre-2.0 dependency range
+with the publisher's minimal `pymupdf-lite==2.1` distribution. Its eleven binary
+wheel hashes are locked; source builds are excluded. The default PDF runtime has
+one external package and no layout/ML dependency graph. The full distribution
+is accepted only as a sole compatible provider; mixed, stale, prerelease or
+metadata/binding-inconsistent providers fail before native PDF opening.
+
+All five PDF-opening routes use the same canonical `pymupdf` loader. It checks
+dated branch-specific Python security patch floors and the native MuPDF version.
+The runtime command reports minimum-version satisfaction, not advisory clearance.
+An independent reviewer exercised 35 adversarial combinations across the five
+entry points; all blocked before native opening. The old shared Python runtime
+is left unchanged and is rejected for PDF work. Validation used a fresh Python
+3.12.16 build with Expat 2.10.0, PyMuPDF Lite 2.1 / MuPDF 1.28.6 and pip 26.3.
+
+The coordinating agent ran **691 Crown tests: 689 passed, two optional local-
+source tests skipped, zero failures/errors**. Twelve separate CI-audit tests
+passed. Synthetic smoke and the existing benchmark passed; the latter remains
+11 of 14 planted defects detected, three missed and zero false alarms within
+that invented set. The unchanged public-source/spec calibration retained seven
+selected passes and five unresolved comparisons on the updated PDF runtime.
+Source drawings, specifications and reports remain outside the repository.
+
+Independent review exposed an audit-collection gap: the default scanner's pip
+resolver omitted pinned installer packages. The final audit wrapper disables
+that resolver and independently requires every locked canonical name and exact
+version, rejecting omissions, unexpected packages, skips and mismatches. Actual
+advisory runs covered all **30 unique packages: one PDF package and 29 audit/
+installer packages**, with zero mapped findings or collection skips. Artifact
+hashes are enforced during installation; the advisory scanner queries package
+metadata and does not independently authenticate installed binary bytes.
+
+CI uses immutable action revisions, read-only permissions, hash-locked installs,
+a native-version log, the runtime gate, full tests and complete package audits.
+Weekly scans and grouped update PRs do not merge automatically. The Python floor
+table and unmapped native advisories still require upstream review. External
+Octopus/CAD/GIS environments are separate dependency and execution boundaries.
+
+The 127-file runtime/test fingerprint, using the manifest scheme above, is
+`e1e4bd7a60dce50b41bb3cad89a68384f8c80e9e0e03b27c592ca117f38ea4f9`.
+The complete source commit additionally binds the CI scripts, audit tests and
+installer/audit locks, which are not part of that runtime/test-only fingerprint.
+
+This is not an unqualified security all-clear. The reviewed vanilla native MuPDF
+signing advisory remains unresolved, and the latest published OpenSSL 3.5 LTS
+build has outstanding specialized-API Low advisories. No matching exposed Crown
+operation was identified; exhaustive native-callgraph safety was not proved.
+See the dated [dependency policy](references/dependency-security.md) for primary
+sources, actual boundaries and host-maintenance obligations. No private plan
+was used and no parser binary is distributed in the skill/plugin archive.

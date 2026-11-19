@@ -19,6 +19,7 @@ from pdf_inspector import extract_pdf
 from pdf_source import read_pdf_snapshot
 from native_text_reading import reading_lines
 from revision_markdown import _literal
+from runtime_security import load_pdf_runtime
 
 SCALE = re.compile(r"(?<![\w:])1\s*:\s*((?:[0-9]{1,3}(?:[ ,][0-9]{3})+)|[0-9]+)(?![\w.])")
 
@@ -222,7 +223,7 @@ def review_finished_plan(pdf: str | Path, spec: dict) -> dict:
     by_page = defaultdict(list)
     for span in inventory["spans"]:
         by_page[span["page"]].append(span)
-    import fitz
+    fitz = load_pdf_runtime()
     page_info = {}
     with fitz.open(stream=source_bytes, filetype="pdf") as document:
         for check in spec["checks"]:

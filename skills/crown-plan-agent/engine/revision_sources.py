@@ -12,6 +12,7 @@ import re
 
 from pdf_inspector import extract_pdf
 from pdf_source import read_pdf_snapshot
+from runtime_security import load_pdf_runtime
 
 
 _READ_CHUNK_BYTES = 1_048_576
@@ -54,10 +55,7 @@ def inspect_original_pdf(path: Path) -> dict:
     """
     source = Path(path)
     snapshot, digest = read_pdf_snapshot(source)
-    try:
-        import fitz
-    except ImportError as exc:
-        raise RuntimeError("PyMuPDF is required: pip install pymupdf") from exc
+    fitz = load_pdf_runtime()
     try:
         document = fitz.open(stream=snapshot, filetype="pdf")
     except (RuntimeError, ValueError) as exc:
