@@ -22,6 +22,14 @@ completion of the master checklist are separate unfinished work.
   that all supported operations are unaffected. Runtime hardening adds no
   regulatory certification or production acceptance.
 
+Security documentation follow-up, November 19, 2026: identify the additional
+Expat findings and all eight OpenSSL records, distinguish interpreter/provider
+updates from pip updates, and document maintained PDF-reader options. Retain
+normal published-package updates and synthetic compatibility tests. No package
+pin, engine behavior or native-advisory clearance changes in this follow-up;
+custom native builds and vulnerability-specific tests are not required for
+using the preview.
+
 Version 0.7.6 changes retained:
 
 - Read supported rotated native text in its own direction for selected phrase,

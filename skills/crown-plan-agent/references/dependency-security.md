@@ -4,8 +4,11 @@ Checked **November 19, 2026**. This is a dated maintenance policy and advisory
 record. Version floors, hashes, tests and package scanners do not certify that a
 PDF runtime is free of vulnerabilities.
 
-The [native MuPDF signing advisory](#remaining-native-advisory) remains
-unresolved for the reviewed vanilla 1.28.6 baseline.
+The [native MuPDF signing advisory](#remaining-native-advisory) and findings in
+[interpreter-native libraries](#interpreter-native-libraries) remain unresolved
+for the reviewed runtime. The normal maintenance route is reviewed, published
+vendor updates and synthetic compatibility tests; this distribution does not
+require custom native patch builds or vulnerability reproductions.
 
 ## Interpreter and installation
 
@@ -109,19 +112,76 @@ Python patch numbers do not identify every bundled native-library version. The
 validated current interpreter build uses Expat 2.10.0; an earlier build of the
 same Python 3.12.16 release still contained Expat 2.9.0. The
 [Expat 2.10.0 security release](https://blog.hartwork.org/posts/expat-2-10-0-released/)
-addresses four named advisories, not every known issue. No untrusted XML input
-interface is exposed by the current Crown engine. Reassess this boundary before
-adding XML/GIS ingestion.
+addresses four named advisories, not every known issue. Further review identified:
+
+| Expat record | Disposition for the reviewed interpreter |
+|---|---|
+| [CVE-2026-124317](https://github.com/libexpat/libexpat/pull/1492) | Affects the library through 2.10.0. A fix is merged upstream, but was not in a released version at this check. Requires a verified interpreter/vendor build containing the fix. |
+| [CVE-2025-66382](https://github.com/libexpat/libexpat/issues/1076) | The maintainer still describes an unfixed issue affecting all releases; structured CVE data stops at 2.7.5. Applicability to 2.10.0 remains unresolved. No verified public fix was found; do not infer clearance from the scanner range. |
+| [CVE-2026-128241](https://github.com/libexpat/libexpat/pull/1502) | Concerns the separate `xmlwf` command. That command was absent from the exact reviewed Python installation. This scoped component-absence result does not clear the embedded library or other hosts. |
+
+The maintainer also tracks [non-public and unvalidated reports](https://github.com/libexpat/libexpat/issues/1160).
+These are not individually classified as affecting Crown without supporting
+evidence. No untrusted XML input interface is exposed by the current Crown
+engine; that observation does not remove Expat or clear its advisories.
+Reassess the boundary before adding XML/GIS ingestion.
 
 OpenSSL 3.5.9 remains the latest published 3.5 LTS build on this date, but its
 [November 10](https://openssl-library.org/news/secadv/20261110.txt) and
 [November 17 advisories](https://openssl-library.org/news/secadv/20261117.txt)
 include outstanding Low-severity issues, with release fixes scheduled for
-December 1. Current Crown interfaces do not expose QUIC servers, custom CMS/PEM
+December 1, 2026. The eight tracked records are CVE-2026-35190,
+CVE-2026-88822, CVE-2026-88823, CVE-2026-95691, CVE-2026-95692,
+CVE-2026-107493, CVE-2026-107496 and CVE-2026-124709. Planned fixed releases
+3.5.10, 4.0.4 and 4.1.1 were not yet published at this check; moving to the
+currently released 4.0 or 4.1 branch does not avoid these findings.
+Current Crown interfaces do not expose QUIC servers, custom CMS/PEM
 or the other affected specialized APIs. This is scoped interface evidence, not
 clearance of the linked native component. Track upstream fixes and maintain the
 host build independently; neither pip-audit nor the Python patch-floor table
 patches or fully audits these libraries.
+
+In the reviewed Python builds, SSL and Expat were built into the interpreter.
+Installing a newer system `openssl` command, a pip package or a system Expat
+package does not establish replacement of those embedded copies. Replace the
+actual interpreter with a verified maintained build when fixes become
+available. Managed ChatGPT host libraries require provider updates; updating
+the skill does not replace them.
+
+## Maintained updates and PDF reader alternatives
+
+Keep the published runtime lock and ordinary synthetic tests as the default
+maintenance path. Review actual released artifacts, their native-library
+provenance and compatibility before changing pins. Keep findings open when no
+suitable verified release is available; do not suppress them or label the
+current release fully patched. No custom native binary is distributed here.
+
+MuPDF is an implementation choice, not a requirement of Crown-plan review.
+Switching to PDFium is possible but is a separate migration: current code uses
+rotated-text geometry, vector paths, table detection, popup annotations,
+Unicode review-note layout and internal links. Text-only extraction libraries
+cannot replace that complete contract. A replacement must pass synthetic
+conformance cases and the existing review suite before it becomes the default.
+
+The latest reviewed [pypdfium2 release metadata](https://pypi.org/pypi/pypdfium2/json)
+was 5.15.2, uploaded November 9, with PDFium build 8138 in its
+[release record](https://github.com/pypdfium2-team/pypdfium2/blob/main/autorelease/record.json).
+The separate [PDFium binary distributor](https://github.com/bblanchon/pdfium-binaries/releases)
+already listed build 8165 on November 16. Thus a current Python wrapper can
+still bundle an older native library; changing engines is not automatic
+security clearance.
+
+[Debian sid](https://security-tracker.debian.org/tracker/CVE-2026-112036) and
+[openSUSE Tumbleweed](https://www.suse.com/security/cve/CVE-2026-112036.html)
+document fixed native MuPDF packages. They are unstable/rolling channels, and a
+compatible patched Python/native stack for this deployment was not verified.
+Installing system MuPDF does not patch Lite's bundled library. Do not mix
+unverified native and Python packages or lower the runtime gate to force them
+to work.
+
+For the current preview, retain the existing reader and use the normal
+reviewed-release update path. No reader migration, custom native build or
+native-advisory clearance is implied by this documentation follow-up.
 
 ## Ongoing maintenance and audit boundary
 
