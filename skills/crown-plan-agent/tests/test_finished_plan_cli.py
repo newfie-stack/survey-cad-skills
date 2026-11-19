@@ -45,6 +45,88 @@ class FinishedPlanCLITests(unittest.TestCase):
         self.assertIn("REVIEW_REQUIRED", text)
         self.assertIn(self.spec["source_sha256"], text)
 
+    def test_opening_summary_reports_qc_when_crown_context_is_missing_or_unsupported(self):
+        scenarios = [{}, {**self.scenario, "stage": "invented_tender"}]
+        for index, scenario in enumerate(scenarios):
+            with self.subTest(scenario=scenario):
+                output = self.root / f"context-{index}.md"
+                run_review(self.pdf, output, scenario, self.catalogue,
+                           finished_plan_spec=self.spec)
+                text = output.read_text(encoding="utf-8")
+                summary = text.split("## Detailed evidence", 1)[0]
+                checked = summary.split("### What was checked", 1)[1].split("###", 1)[0]
+                attention = summary.split("### What needs attention", 1)[1].split("###", 1)[0]
+                actions = summary.split("### Next steps", 1)[1]
+                self.assertIn("5 selected", checked)
+                for count in ("PASS=2", "FAIL=2", "REVIEW_REQUIRED=1"):
+                    self.assertIn(count, checked)
+                self.assertIn("drawing", checked.lower())
+                self.assertIn("2 failed", attention)
+                self.assertIn("1 unresolved", attention)
+                self.assertIn("QC", actions)
+                self.assertNotIn("No automated drawing checks", summary)
+                self.assertIn("Information needed:", summary)
+                self.assertIn("Status: REVIEW_REQUIRED", summary)
+                self.assertIn("Regulatory compliance: NOT_ASSESSED", text)
+                evidence = text.split("## Detailed evidence", 1)[1].split("## Plan type review", 1)[0]
+                self.assertNotIn("| CANDIDATE-", evidence)
+
+    def test_opening_summary_reports_generic_qc_without_selecting_out_of_scope_crown_checks(self):
+        run_review(self.pdf, self.output, {"land_class": "federal"}, self.catalogue,
+                   finished_plan_spec=self.spec)
+        text = self.output.read_text(encoding="utf-8")
+        summary = text.split("## Detailed evidence", 1)[0]
+        checked = summary.split("### What was checked", 1)[1].split("###", 1)[0]
+        self.assertIn("5 selected", checked)
+        self.assertIn("FAIL=2", checked)
+        self.assertIn("2 failed", summary)
+        self.assertIn("1 unresolved", summary)
+        self.assertIn("Crown requirements were not selected", summary)
+        self.assertNotIn("Information needed:", summary)
+        evidence = text.split("## Detailed evidence", 1)[1].split("## Plan type review", 1)[0]
+        self.assertNotIn("| CANDIDATE-", evidence)
+        self.assertIn("OUT_OF_SCOPE", text)
+        self.assertIn("Status: REVIEW_REQUIRED", summary)
+
+    def test_all_unresolved_qc_is_reported_as_execution_with_manual_followup(self):
+        raster_pdf = self.root / "invented-raster.pdf"
+        raster_spec = make_plan(raster_pdf, raster=True)
+        run_review(raster_pdf, self.output, {}, self.catalogue,
+                   finished_plan_spec=raster_spec)
+        summary = self.output.read_text(encoding="utf-8").split("## Detailed evidence", 1)[0]
+        checked = summary.split("### What was checked", 1)[1].split("###", 1)[0]
+        attention = summary.split("### What needs attention", 1)[1].split("###", 1)[0]
+        self.assertIn("5 selected", checked)
+        for count in ("PASS=0", "FAIL=0", "REVIEW_REQUIRED=5"):
+            self.assertIn(count, checked)
+        self.assertIn("5 unresolved", attention)
+        self.assertIn("QC", summary.split("### Next steps", 1)[1])
+        self.assertNotIn("No automated drawing checks", summary)
+        self.assertIn("Status: REVIEW_REQUIRED", summary)
+
+    def test_passing_selected_qc_does_not_clear_authority_or_broader_drawing_review(self):
+        spec = {**self.spec, "checks": [self.spec["checks"][2]]}
+        run_review(self.pdf, self.output, self.scenario, self.catalogue,
+                   finished_plan_spec=spec)
+        summary = self.output.read_text(encoding="utf-8").split("## Detailed evidence", 1)[0]
+        checked = summary.split("### What was checked", 1)[1].split("###", 1)[0]
+        self.assertIn("1 selected", checked)
+        for count in ("PASS=1", "FAIL=0", "REVIEW_REQUIRED=0"):
+            self.assertIn(count, checked)
+        self.assertIn("only", checked)
+        self.assertIn("governing requirements have not been verified as current", summary)
+        self.assertIn("beyond the selected", summary)
+        self.assertIn("Regulatory compliance and professional acceptance have not been established", summary)
+        self.assertIn("Status: REVIEW_REQUIRED", summary)
+
+    def test_missing_context_without_opt_in_still_records_no_automated_drawing_checks(self):
+        run_review(self.pdf, self.output, {}, self.catalogue)
+        summary = self.output.read_text(encoding="utf-8").split("## Detailed evidence", 1)[0]
+        checked = summary.split("### What was checked", 1)[1].split("###", 1)[0]
+        self.assertIn("None recorded.", checked)
+        self.assertIn("No automated drawing checks are recorded", summary)
+        self.assertNotIn("drawing-QC", summary)
+
     def test_qc_and_standard_pdf_markup_publish_together(self):
         annotated = self.root / "marked.pdf"
         run_review(self.pdf, self.output, self.scenario, self.catalogue,

@@ -172,6 +172,12 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                               survey_geometry=survey_geometry, table_a2_rows=rows,
                               clause_catalogue=clause_catalogue, clause_facts=clause_facts,
                               clause_inventory=clause_inventory)
+    if finished_review is not None:
+        from report_markdown import render_review_markdown
+        from review_summary import build_review_summary
+        report["finished_plan_review"] = finished_review
+        report["review_summary"] = build_review_summary(report)
+        report["report_markdown"] = render_review_markdown(report)
     report["report_markdown"] += drawing_disposition_report(inventory, code, drawing_text)
     if not in_scope:
         source_status = "OUT_OF_SCOPE" if context["scope_status"] == "OUT_OF_SCOPE" else "REVIEW_REQUIRED"

@@ -51,7 +51,7 @@ python engine/review_cli.py /private/job/proposed-plan.pdf \
   --output /private/job/new-review.md
 ```
 
-The existing report is preserved and a **Finished-plan drawing QC** section is appended. It includes hashes, actual extracted values, exact page/region locations, supplied coverage declarations, comparison results and correction guidance. Output uses exclusive creation. With `--annotated-pdf`, the standard PDF markup and its notes index cover the existing evidence review. The finished-plan findings appear in the Markdown report.
+The opening summary records the selected drawing-QC checks that actually ran, separately from Crown requirement selection. Checks left unresolved still count as executed attempts and need manual follow-up. The report keeps its **Finished-plan drawing QC** detail section. It includes hashes, actual extracted values, exact page/region locations, supplied coverage declarations, comparison results and correction guidance. Output uses exclusive creation. With `--annotated-pdf`, the standard PDF markup and its notes index cover the existing evidence review. The finished-plan findings appear in the Markdown report.
 
 For a structured ledger, call `finished_plan_review.review_finished_plan(pdf_path, specification)` and retain its returned object privately. `overall_status` remains REVIEW_REQUIRED; `regulatory_status` remains NOT_ASSESSED. No overall green certificate is emitted, even when all selected text comparisons pass.
 

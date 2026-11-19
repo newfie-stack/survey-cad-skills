@@ -67,6 +67,28 @@ def build_review_summary(report: dict) -> dict:
         if not any(item["field"] == field for item in summary["input_requests"]):
             summary["input_requests"].append({"field": field, "question": _QUESTIONS[field]})
 
+    finished = report.get("finished_plan_review")
+    if finished is not None:
+        if (not isinstance(finished, dict)
+                or finished.get("assessment_scope") != "DRAWING_QC_ONLY"
+                or finished.get("overall_status") != "REVIEW_REQUIRED"
+                or finished.get("regulatory_status") != "NOT_ASSESSED"):
+            raise ValueError("Only review-only drawing QC can be summarized")
+        findings = finished.get("findings")
+        statuses = ("PASS", "FAIL", "REVIEW_REQUIRED")
+        if (not isinstance(findings, list) or not findings
+                or any(not isinstance(item, dict) or item.get("status") not in statuses
+                       for item in findings)):
+            raise ValueError("Drawing QC requires recorded findings with supported statuses")
+        counts = {status: sum(item["status"] == status for item in findings) for status in statuses}
+        totals = "; ".join(f"{status}={counts[status]}" for status in statuses)
+        add("checked", f"Executed {len(findings)} selected finished-plan drawing-QC checks ({totals}); results describe only the selected drawing comparisons.")
+        if counts["FAIL"] or counts["REVIEW_REQUIRED"]:
+            add("needs_attention", f"Selected drawing QC has {counts['FAIL']} failed and {counts['REVIEW_REQUIRED']} unresolved checks that need independent review.")
+            add("next_steps", "Review the selected drawing-QC findings and resolve failed or unresolved checks in the Finished-plan drawing QC section.")
+        add("not_checked", "Drawing coverage beyond the selected QC regions, graphical interpretation and field verification remain unchecked.")
+        add("not_checked", "Regulatory compliance and professional acceptance have not been established.")
+
     if context["scope_status"] == "OUT_OF_SCOPE":
         summary["headline"] = "The declared land is outside this Alberta Crown review scope."
         add("not_checked", "Crown requirements were not selected for the declared land scope.")
@@ -198,7 +220,7 @@ def build_review_summary(report: dict) -> dict:
     elif area_computed and area.get("comparison") == "WITHIN_SUPPLIED_TOLERANCE":
         add("checked", "Compared the selected area label with the supplied-coordinate area within your tolerance.")
 
-    if not entries and not geometry and workbook is None:
+    if not entries and not geometry and workbook is None and finished is None:
         add("not_checked", "No automated drawing checks are recorded.")
     add("not_checked", "No Octopus reconstruction execution is recorded in this review.")
     add("not_checked", "Regulatory compliance and professional acceptance have not been established.")
