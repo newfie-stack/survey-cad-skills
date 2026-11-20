@@ -50,6 +50,7 @@ def _region_view(region: dict, spans: list[dict], images: list) -> dict:
     blockers.extend(orientation_blockers)
     values = []
     matched_lines = []
+    has_empty_label_value = False
     for line in lines:
         text = _normal(line["text"])
         if "label" in region:
@@ -59,10 +60,13 @@ def _region_view(region: dict, spans: list[dict], images: list) -> dict:
             if prefix[-1].isalnum() and len(text) > len(prefix) and text[len(prefix)].isalnum():
                 continue
             text = text[len(prefix):].strip()
+            if not text:
+                has_empty_label_value = True
         if text:
             values.append(text)
             matched_lines.append({**line, "text": text})
     return {"region": region, "lines": matched_lines, "values": values, "blockers": blockers,
+            "has_empty_label_value": has_empty_label_value,
             "evidence": {"page": region["page"], "bbox_points": list(box), "role": region["role"],
                          "text": "\n".join(line["text"] for line in lines),
                          "spans": [{key: s[key] for key in (
@@ -156,20 +160,40 @@ def _evaluate(check: dict, views: list[dict]) -> dict:
             result["reason"] = "Scale ratio compared with the declared expectation; plotted scale is not measured."
         result["correction"] = "Verify the main-plan scale and its label separately from inset/detail scales."
     elif kind == "decimal_sum":
-        numbers = []
-        pattern = re.compile(r"((?:0|[1-9][0-9]{0,17})(?:\.[0-9]{1,12})?)\s*" + re.escape(check["unit"]), re.IGNORECASE)
-        for view in views:
-            match = pattern.fullmatch(view["values"][0]) if len(view["values"]) == 1 else None
-            if match is None:
-                result["reason"] = "Each selected amount must contain one plain decimal value with the declared unit; missing, competing or differently formatted cells remain unresolved."
+        if any(view["has_empty_label_value"] for view in views):
+            result["reason"] = "A selected amount label has no decimal value."
+            return result
+        part_values = [view["values"] for view in views[:-1]]
+        total_view = views[-1]
+        total_values = total_view["values"]
+        result["reason"] = "Each selected amount must contain one plain decimal value with the declared unit; missing, competing or differently formatted cells remain unresolved."
+        if not total_values or any(len(values) != 1 for values in part_values):
+            return result
+        if len(total_values) > 1:
+            region = total_view["region"]
+            if "label" not in region or region.get("coverage_review", {}).get("status") != "TEXT_COMPLETE":
+                result["reason"] = "Multiple total candidates require a labelled field with declared complete text coverage."
                 return result
-            numbers.append(decimal_value(match[1]))
+        pattern = re.compile(r"((?:0|[1-9][0-9]{0,17})(?:\.[0-9]{1,12})?)\s*" + re.escape(check["unit"]), re.IGNORECASE)
+        amounts = [values[0] for values in part_values] + total_values
+        matches = [pattern.fullmatch(amount) for amount in amounts]
+        if any(match is None for match in matches):
+            return result
+        numbers = [decimal_value(match[1]) for match in matches]
+        parts = numbers[:len(part_values)]
+        totals = numbers[len(part_values):]
+        if len(set(totals)) > 1:
+            result.update(status="FAIL", unit=check["unit"],
+                          reason="Conflicting text in the selected total field shows multiple numerical totals.",
+                          correction="Verify the intended total against the selected part rows and reconcile the displayed totals.")
+            return result
+        total = totals[0]
         with localcontext() as context:
             context.prec = 60
-            expected = sum(numbers[:-1], Decimal(0))
-            difference = abs(expected - numbers[-1])
+            expected = sum(parts, Decimal(0))
+            difference = abs(expected - total)
             status = "PASS" if difference <= decimal_value(check["tolerance"]) else "FAIL"
-        result.update(status=status, observed=[str(v) for v in numbers], expected=str(expected),
+        result.update(status=status, observed=[str(v) for v in (*parts, total)], expected=str(expected),
                       difference=str(difference), tolerance=check["tolerance"], unit=check["unit"],
                       reason="Sum of selected parts compared with selected total; not a legal boundary area calculation.",
                       correction="Check the selected rows and correct the displayed total or erroneous part; do not alter survey geometry to force agreement.")

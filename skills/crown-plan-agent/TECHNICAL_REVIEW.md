@@ -517,3 +517,55 @@ operation was identified; exhaustive native-callgraph safety was not proved.
 See the dated [dependency policy](references/dependency-security.md) for primary
 sources, actual boundaries and host-maintenance obligations. No private plan
 was used and no parser binary is distributed in the skill/plugin archive.
+
+## Version 0.7.8 — ordinary drafting regressions
+
+The November 20, 2026 follow-up adds seven wholly invented two-sheet LOC/MSL
+drawings with separate frozen truth and direct PDF-content checks. Landscape,
+portrait and native rotated text exercise title, identifier, current revision,
+scale, area and note comparisons. Rounding, repeated equivalent totals and
+raster text supply controls. All source plans and briefs are invented; generated
+PDFs, renders and detailed review outputs remain outside this publication.
+
+The coordinating agent ran **724 Crown tests: 722 passed, two optional local-
+source tests skipped, zero failures/errors**. Twelve separate audit-wrapper
+tests, synthetic smoke, compilation and the complete 30-package metadata audit
+passed. No dependency pin or native-library advisory disposition changed.
+
+The expanded benchmark has **23 PDFs and 145 selected checks: 18 of 21 planted
+defects detected, three missed, zero false alarms and zero false clearances**
+within that set. The original cohort remains separate: 12 of 14 detected,
+compared with 11 previously. The seven new cases detect six of seven. The three
+remaining misses are two graphical north-arrow omissions and an absent note
+whose text completeness is unknown. Correct abstention on incomplete evidence
+does not earn detection credit. Overall drawing status remains REVIEW_REQUIRED,
+and regulatory compliance remains NOT_ASSESSED.
+
+The benchmark gates individual supported detections, clean controls and required
+abstentions. Explicit capability gaps can improve without rewriting the frozen
+baseline status. Category/cohort tables show unresolved counts, and a lost
+required detection cannot be hidden by gains elsewhere. A passed gate is not
+full defect detection or autonomous whole-sheet review.
+
+Independent AI code review found an empty repeated amount label could be dropped
+before evaluating the total. Three real-PDF regressions reproduced the problem;
+all 42 focused tests passed after the fix. Matched empty labels now keep decimal
+arithmetic unresolved and preserve the source evidence. The review also required
+explicit grouped unresolved counts; focused red/green scoring and rendered-report
+tests verify that correction. Scoped review accepted both fixes.
+
+Three separate blind assisted model reviews received only invented PDFs and job
+briefs, without region selectors or answer keys. One located all four planted
+title, identifier, scale and revision discrepancies with sheet references and
+corrections. A clean control produced no discrepancies. The third identified
+the omitted north arrow visually and correctly read the raster units note.
+The coordinating agent graded saved findings against the frozen developer-
+authored truth: five matching corrections and no false alarms across those
+three exercises. These model exercises are separate from deterministic recall
+and are not independent professional or unseen-real-plan acceptance.
+
+The runtime/test fingerprint, using the benchmark's engine/test Python and JSON
+scheme, is `9310d75bd5f21ae3d41c77c00dfc9d50220cf259f4c471aad5ac7ef22f1df1a3`.
+Git and package manifests additionally bind the documentation, skill instructions
+and build metadata. Current-source verification, private-plan validation,
+geometric reconstruction and production acceptance remain open.

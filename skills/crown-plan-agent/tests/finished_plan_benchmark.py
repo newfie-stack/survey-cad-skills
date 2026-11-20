@@ -20,8 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "engine"))
 from finished_plan_fixture import make_plan
 from finished_plan_review import review_finished_plan
 from review_cli import main as review_main
+from benchmark_scoring import DEFAULT_POLICY, score_case, summarize_cases
 
-STATUSES = {"PASS", "FAIL", "REVIEW_REQUIRED"}
 CASE_MUTATIONS = {
     "clean": {},
     "subject_conflict": {"subject": "LOT 8"},
@@ -42,36 +42,6 @@ CASE_MUTATIONS = {
 }
 
 
-def score_case(expected: dict[str, str], known_defects: list[str], findings: list[dict]) -> dict:
-    if not isinstance(expected, dict) or not expected or any(not isinstance(k, str) or v not in STATUSES for k, v in expected.items()):
-        raise ValueError("Expected results must map check IDs to supported statuses")
-    if not isinstance(known_defects, list) or any(not isinstance(k, str) for k in known_defects):
-        raise ValueError("Known defects must be a list of check IDs")
-    if len(set(known_defects)) != len(known_defects) or set(known_defects) - expected.keys():
-        raise ValueError("Known defects must be distinct expected checks")
-    if not isinstance(findings, list):
-        raise ValueError("Findings must be a list")
-    actual = {}
-    for finding in findings:
-        if not isinstance(finding, dict):
-            raise ValueError("Each finding must be an object")
-        key, status = finding.get("check_id"), finding.get("status")
-        if not isinstance(key, str) or not isinstance(status, str) or status not in STATUSES or key in actual:
-            raise ValueError("Duplicate or invalid actual check result")
-        actual[key] = status
-    detected = sum(actual.get(key) == "FAIL" for key in known_defects)
-    false_alarms = sum(status == "FAIL" and key not in known_defects for key, status in actual.items())
-    missing = sorted(expected.keys() - actual.keys())
-    return {"known_defects": len(known_defects), "detected_defects": detected,
-            "missed_defects": len(known_defects) - detected, "false_alarms": false_alarms,
-            "correct_abstentions": sum(status == "REVIEW_REQUIRED" and actual.get(key) == status for key, status in expected.items()),
-            "unexpected_abstentions": sum(status != "REVIEW_REQUIRED" and actual.get(key) == "REVIEW_REQUIRED" for key, status in expected.items()),
-            "missing_checks": missing, "unexpected_checks": sorted(actual.keys() - expected.keys()),
-            "expected_behavior_matched": actual == expected,
-            "missed_defect_ids": [key for key in known_defects if actual.get(key) != "FAIL"],
-            "expected": expected, "actual": actual}
-
-
 def code_fingerprint(root: Path) -> str:
     digest = hashlib.sha256()
     paths = sorted(path for folder in ("engine", "tests") for path in (root / folder).rglob("*")
@@ -87,24 +57,31 @@ def run_benchmark(output: Path) -> dict:
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     skill = Path(__file__).resolve().parents[1]
-    scenario = {"land_class": "alberta_crown", "regulator": "AER", "stage": "initial",
-                "disposition": "LOC", "plan_type": "sketch"}
+    from drafting_plan_fixture import CASE_IDS, make_drafting_plan, scenario as drafting_scenario
+    legacy_scenario = {"land_class": "alberta_crown", "regulator": "AER", "stage": "initial",
+                       "disposition": "LOC", "plan_type": "sketch"}
     actual_cases = {}
-    for name, mutations in CASE_MUTATIONS.items():
+    for name in (*CASE_MUTATIONS, *CASE_IDS):
         folder = output / name
         folder.mkdir()
         pdf = folder / "invented-plan.pdf"
-        spec = make_plan(pdf, **mutations)
-        presence_region = copy.deepcopy(spec["checks"][0]["regions"][1])
-        presence_region.pop("label", None)
-        spec["checks"].append({"id": "subject_presence", "kind": "required_text",
-                               "description": "Expected repeated subject field is present",
-                               "basis": "Invented job instruction: include a subject reference in this mapped region",
-                               "regions": [presence_region], "expected": "SUBJECT:"})
-        if name == "tolerance_boundary":
-            spec["checks"][3]["tolerance"] = "0.001"
-        if name == "unverified_note_omission":
-            spec["checks"][2]["regions"][0].pop("coverage_review")
+        if name in CASE_MUTATIONS:
+            spec = make_plan(pdf, **CASE_MUTATIONS[name])
+            scenario, cohort = legacy_scenario, "legacy"
+            checks = {check["id"]: check for check in spec["checks"]}
+            presence_region = copy.deepcopy(checks["subject"]["regions"][1])
+            presence_region.pop("label", None)
+            spec["checks"].append({"id": "subject_presence", "kind": "required_text",
+                                   "description": "Expected repeated subject field is present",
+                                   "basis": "Invented job instruction: include a subject reference in this mapped region",
+                                   "regions": [presence_region], "expected": "SUBJECT:"})
+            if name == "tolerance_boundary":
+                checks["area_sum"]["tolerance"] = "0.001"
+            if name == "unverified_note_omission":
+                checks["units_note"]["regions"][0].pop("coverage_review")
+        else:
+            spec = make_drafting_plan(pdf, name)
+            scenario, cohort = drafting_scenario(name), "drafting"
         spec_path, scenario_path = folder / "checks.json", folder / "scenario.json"
         spec_path.write_text(json.dumps(spec, indent=2) + "\n", encoding="utf-8")
         scenario_path.write_text(json.dumps(scenario, indent=2) + "\n", encoding="utf-8")
@@ -116,34 +93,57 @@ def run_benchmark(output: Path) -> dict:
                                      "--reference-cache", str(folder / "empty-cache"),
                                      "--finished-plan-spec", str(spec_path), "--output", str(folder / "review.md")])
         text = (folder / "review.md").read_text(encoding="utf-8")
-        actual_cases[name] = {"ledger": ledger, "cli_exit_code": exit_code,
+        opening = text.split("## Finished-plan drawing QC", 1)[0]
+        counts = {status: sum(item["status"] == status for item in ledger["findings"])
+                  for status in ("PASS", "FAIL", "REVIEW_REQUIRED")}
+        summary_line = (f"Executed {len(ledger['findings'])} selected finished-plan drawing-QC checks "
+                        f"(PASS={counts['PASS']}; FAIL={counts['FAIL']}; REVIEW_REQUIRED={counts['REVIEW_REQUIRED']})")
+        attention = f"Selected drawing QC has {counts['FAIL']} failed and {counts['REVIEW_REQUIRED']} unresolved checks"
+        summary_matches = (summary_line in opening
+                           and (not (counts["FAIL"] or counts["REVIEW_REQUIRED"]) or attention in opening)
+                           and ledger["overall_status"] == "REVIEW_REQUIRED"
+                           and ledger["regulatory_status"] == "NOT_ASSESSED")
+        actual_cases[name] = {"ledger": ledger, "cohort": cohort, "cli_exit_code": exit_code,
+                              "cli_summary_matches": summary_matches,
                               "cli_qc_section_matches": text.endswith(ledger["report_markdown"])}
     # Truth is used only after every production review has finished.
-    truth_path = skill / "tests" / "fixtures" / "finished_plan_truth.json"
-    truth_bytes = truth_path.read_bytes()
-    truth = json.loads(truth_bytes)
-    if set(truth["cases"]) != set(actual_cases):
+    truth_paths = {"legacy": skill / "tests/fixtures/finished_plan_truth.json",
+                   "drafting": skill / "tests/fixtures/drafting_plan_truth.json"}
+    truth_bytes = {cohort: path.read_bytes() for cohort, path in truth_paths.items()}
+    truths = {cohort: json.loads(raw) for cohort, raw in truth_bytes.items()}
+    all_truth_names = [name for truth in truths.values() for name in truth["cases"]]
+    if len(set(all_truth_names)) != len(all_truth_names) or set(all_truth_names) != set(actual_cases):
         raise ValueError("Benchmark cases and frozen answer key differ")
     case_results = []
     for name, actual in actual_cases.items():
+        truth = truths[actual["cohort"]]
         answer = truth["cases"][name]
-        expected = {**truth["default_expected"], **answer["overrides"]}
-        score = score_case(expected, answer["known_defects"], actual["ledger"]["findings"])
-        case_results.append({"case_id": name, **score,
+        expected = answer.get("expected", {**truth.get("default_expected", {}), **answer.get("overrides", {})})
+        policies = {key: DEFAULT_POLICY[status] for key, status in expected.items()}
+        policies.update(answer.get("policy_overrides", {}))
+        score = score_case(expected, answer["known_defects"], actual["ledger"]["findings"], policies=policies)
+        case_results.append({"case_id": name, "cohort": actual["cohort"],
+                             "categories": truth["categories"], **score,
                              "source_sha256": actual["ledger"]["source_sha256"],
                              "spec_sha256": actual["ledger"]["spec_sha256"],
                              "cli_exit_code": actual["cli_exit_code"],
+                             "cli_summary_matches": actual["cli_summary_matches"],
                              "cli_qc_section_matches": actual["cli_qc_section_matches"]})
-    totals = {key: sum(row[key] for row in case_results) for key in
-              ("known_defects", "detected_defects", "missed_defects", "false_alarms", "correct_abstentions", "unexpected_abstentions")}
-    import fitz
-    report = {"schema_version": 1, "evidence_class": "WHOLLY_INVENTED_SYNTHETIC",
+    totals = summarize_cases(case_results)
+    import pymupdf
+    truth_hashes = {cohort: hashlib.sha256(raw).hexdigest() for cohort, raw in truth_bytes.items()}
+    report = {"schema_version": 2, "evidence_class": "WHOLLY_INVENTED_SYNTHETIC",
+              "benchmark_scope": "DETERMINISTIC_SELECTED_REGIONS", "assisted_agent_review_evaluated": False,
               "independent_reviewer_acceptance": "NOT_PERFORMED", "production_acceptance": "NOT_ESTABLISHED",
               "case_count": len(case_results), "check_count": sum(len(r["expected"]) for r in case_results),
               "code_test_fingerprint": code_fingerprint(skill),
-              "truth_sha256": hashlib.sha256(truth_bytes).hexdigest(),
-              "python_version": platform.python_version(), "pymupdf_version": fitz.VersionBind,
+              "truth_sha256": hashlib.sha256(json.dumps(truth_hashes, sort_keys=True).encode()).hexdigest(),
+              "truth_files": truth_hashes,
+              "python_version": platform.python_version(), "pymupdf_version": pymupdf.VersionBind,
               **totals, "defect_recall": totals["detected_defects"] / totals["known_defects"] if totals["known_defects"] else None,
+              "all_defects_detected": totals["missed_defects"] == 0,
+              "regression_gate_passed": all(r["regression_gate_passed"] and r["cli_exit_code"] == 0
+                                            and r["cli_summary_matches"] and r["cli_qc_section_matches"] for r in case_results),
               "all_expected_behaviors_matched": all(r["expected_behavior_matched"] and r["cli_exit_code"] == 0 and r["cli_qc_section_matches"] for r in case_results),
               "case_results": case_results,
               "limitations": ["Developer-authored fixtures, review specifications and answer key; not independent acceptance",
@@ -154,13 +154,23 @@ def run_benchmark(output: Path) -> dict:
     lines = ["# Finished-plan QC: synthetic error-detection benchmark", "",
              "**Not a production acceptance or regulatory-compliance result.**", "",
              f"Cases: {report['case_count']}; check outcomes: {report['check_count']}.",
-             f"Known planted defects: {totals['known_defects']}; detected: {totals['detected_defects']}; missed: {totals['missed_defects']}; false alarms: {totals['false_alarms']}.",
-             f"Expected bounded behavior matched: {report['all_expected_behaviors_matched']}. This does not mean all defects were detected.",
+             f"Known planted defects: {totals['known_defects']}; detected: {totals['detected_defects']}; missed: {totals['missed_defects']}; false alarms: {totals['false_alarms']}; false clearances: {totals['false_clearances']}.",
+             f"Regression gate passed: {report['regression_gate_passed']}; all defects detected: {report['all_defects_detected']}.",
+             "Regression success preserves the required checks and evidence limits; it does not mean all defects were detected.",
              f"Python {report['python_version']}; PyMuPDF {report['pymupdf_version']}.",
              f"Code/test fingerprint: `{report['code_test_fingerprint']}`", f"Answer-key SHA-256: `{report['truth_sha256']}`", "",
-             "| Case | Detected | Missed | False alarms | Expected behavior |", "|---|---:|---:|---:|---|"]
+             "| Case | Cohort | Detected | Missed | False alarms | False clearances | Gate |", "|---|---|---:|---:|---:|---:|---|"]
     for row in case_results:
-        lines.append(f"| {row['case_id']} | {row['detected_defects']} | {row['missed_defects']} | {row['false_alarms']} | {row['expected_behavior_matched']} |")
+        lines.append(f"| {row['case_id']} | {row['cohort']} | {row['detected_defects']} | {row['missed_defects']} | {row['false_alarms']} | {row['false_clearances']} | {row['regression_gate_passed']} |")
+    for title, buckets in (("Cohorts", report["by_cohort"]), ("Check categories", report["by_category"])):
+        lines.extend(["", f"## {title}", "", "| Group | Known | Detected | Missed | False alarms | False clearances | Unresolved |",
+                      "|---|---:|---:|---:|---:|---:|---:|"])
+        for name, row in buckets.items():
+            lines.append(f"| {name} | {row['known_defects']} | {row['detected_defects']} | {row['missed_defects']} | {row['false_alarms']} | {row['false_clearances']} | {row['unresolved']} |")
+    lines.extend(["", "## Follow-up", ""])
+    for row in case_results:
+        if row["missed_defect_ids"] or row["regression_failure_ids"]:
+            lines.append(f"- {row['case_id']}: missed defects={row['missed_defect_ids']}; regression failures={row['regression_failure_ids']}.")
     lines.extend(["", "## Limits", "", *["- " + note for note in report["limitations"]], ""])
     (output / "benchmark.md").write_text("\n".join(lines), encoding="utf-8")
     return report
@@ -171,9 +181,9 @@ def main(argv=None) -> int:
     parser.add_argument("--output", required=True, type=Path, help="New directory; never overwritten")
     args = parser.parse_args(argv)
     report = run_benchmark(args.output)
-    print(json.dumps({k: report[k] for k in ("case_count", "known_defects", "detected_defects", "missed_defects", "false_alarms", "all_expected_behaviors_matched")}, indent=2))
+    print(json.dumps({k: report[k] for k in ("case_count", "known_defects", "detected_defects", "missed_defects", "false_alarms", "false_clearances", "regression_gate_passed", "all_defects_detected")}, indent=2))
     print("Synthetic benchmark only; known unresolved defects are counted as misses.")
-    return 0 if report["all_expected_behaviors_matched"] else 1
+    return 0 if report["regression_gate_passed"] else 1
 
 
 if __name__ == "__main__":

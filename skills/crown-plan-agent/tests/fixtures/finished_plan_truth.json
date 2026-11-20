@@ -2,6 +2,7 @@
   "schema_version": 1,
   "evidence_class": "WHOLLY_INVENTED_SYNTHETIC",
   "independent_reviewer_acceptance": "NOT_PERFORMED",
+  "categories": {"subject": "identity", "main_scale": "scale", "units_note": "notes", "area_sum": "area", "north_arrow": "visual", "subject_presence": "identity"},
   "default_expected": {
     "subject": "PASS",
     "main_scale": "PASS",
@@ -81,7 +82,7 @@
     },
     "competing_totals": {
       "overrides": {
-        "area_sum": "REVIEW_REQUIRED"
+        "area_sum": "FAIL"
       },
       "known_defects": [
         "area_sum"
@@ -126,6 +127,7 @@
     },
     "north_arrow_omission": {
       "overrides": {},
+      "policy_overrides": {"north_arrow": "capability_gap"},
       "known_defects": [
         "north_arrow"
       ]

@@ -1,10 +1,21 @@
 # Crown Plan Agent master acceptance checklist
 
-Status recorded: November 18, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
+Status recorded: November 20, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
 
 The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `newfie-stack/survey-cad-skills` repository at the owner's request. Software checks use invented fixtures; a separately authorized private stage has also exercised one user-designated real plan and two public drawing examples. Their original inputs, extracted inventories, full reports and selected pages remain outside this repository and the package; only authorized anonymized summaries are included. This publication authorization does not authorize submission, publication of project files or release of the private Octopus implementation. An unchecked item is unfinished or lacks acceptance evidence. Completing this checklist document does not complete the milestones it records. See the [publication scope](PUBLICATION_REVIEW.md).
 
 ## Evidence baseline
+
+Version 0.7.8 adds ordinary drafting regressions and seven invented two-sheet
+LOC/MSL cases. In the original cohort it detects 12 of 14 planted defects,
+compared with 11 previously. The expanded 23-case benchmark detects 18 of 21,
+with three misses, zero false alarms and zero false clearances in that set.
+Per-check regression gates and unresolved counts stay separate from full
+detection. A separate assisted exercise supplies no region selections or answer
+key to the reviewer. All new plans are invented; no work documents were used.
+The [test guide](references/finished-plan-qc.md) and latest
+[technical review](TECHNICAL_REVIEW.md) describe the evidence and its limits.
+No production, current-authority or professional-acceptance milestone is closed.
 
 Version 0.6.1 refreshes bounded publisher-record verification for 22 sources.
 Routes, listing dates, supplied editions and unresolved legal applicability stay
