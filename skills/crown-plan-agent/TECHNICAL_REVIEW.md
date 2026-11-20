@@ -569,3 +569,61 @@ scheme, is `9310d75bd5f21ae3d41c77c00dfc9d50220cf259f4c471aad5ac7ef22f1df1a3`.
 Git and package manifests additionally bind the documentation, skill instructions
 and build metadata. Current-source verification, private-plan validation,
 geometric reconstruction and production acceptance remain open.
+
+## Version 0.7.8 — unfamiliar-layout testing follow-up
+
+The November 20 follow-up used a separately authored, frozen set of eight
+invented PDFs in four paired layout families. Six initial reviews were saved
+and hashed before their key was opened. Two reserved packets remained unseen
+until the initial grades and the decision to retain the existing review
+instructions were frozen. The reserved reviews were then saved before opening
+their separate key. Blinding was procedural within a shared filesystem.
+
+The initial phase found all six planted issues in six plans; the reserved phase
+found both planted issues in two plans. Four clean controls produced no false
+alarms. An independent model adjudicator checked actual PDF text/images, briefs,
+raw reviews and frozen truth. Every one of the 159 original claims survived
+normalization into 166 atomic units. Eight findings matched the frozen issues;
+108 clearances were supported, 12 claims remained unresolved and 38 described
+manual scope limits. No false-clearance claim, duplicate, unsupported finding or
+outside-key discovery was recorded. The coordinating scorer independently
+validated source/claim coverage and reproduced the grading totals. No review
+engine or instruction correction was justified by these particular inputs.
+
+The publication adds only synthetic fixture source, frozen truth, a result
+summary, a portable review protocol, scoring/accounting helpers and tests. Once
+published, the former holdouts are regression cases. The review engine, main
+skill instructions, dependency locks and installed ChatGPT version remain
+unchanged at 0.7.8. No model was trained and no execution server was installed.
+
+The coordinating agent ran **747 Crown tests: 745 passed, two optional source-
+PDF tests skipped**. All 12 audit-wrapper tests passed; smoke and compilation
+succeeded. The existing deterministic benchmark remains 18 of 21 planted
+defects detected across 23 PDFs, with three misses and zero false alarms or
+false clearances in that set. It is not combined with the assisted-model trial.
+The fixture tests directly inspect printed identifiers, revisions, arithmetic
+values and detail labels; a temporary invented-label mutation demonstrated a
+failing test before restoring the generator and passing all eight fixture tests.
+
+Independent source review also showed two freshly generated copies could drift
+together if the clean-control arrow was accidentally removed. A further test
+binds all 24 input-file hashes to the frozen study artifacts on the recorded
+Linux x86_64 / Python 3.12 / PyMuPDF 2.1 / MuPDF 1.28.6 stack. A private
+arrow-removal mutation failed that test; the unchanged public generator passed
+all nine fixture tests. Other native platforms skip this byte-identity check
+and retain the ordinary direct-content and rendering tests.
+
+The original frozen truth SHA-256 is
+`9a0182bd97e694ec114ec5dc65bb2e86bd11ce086813eaffecfb94849f3a4b3e`.
+The portable public generator is
+`4490f0d855fbb1e1d010e50cfa7541f3a6bc2ba12a7d7b45ded09c8507abb4aa`;
+all 24 regenerated reviewer-input files matched the study bytes in the recorded
+runtime. See the [trial guide](references/unfamiliar-layout-trial.md) and its
+machine-readable result summary for separate phase metrics and scope.
+
+This is a small developer/model evaluation on explicit invented job briefs,
+not an accuracy estimate for unseen real plans. Whole-sheet autonomous review,
+current authority, real control/geometry, professional and production acceptance
+remain unestablished. Generated PDFs, renders and raw trial records stay outside
+the public repository and package. No work document or native binary is added;
+the open native-library advisory record is unchanged.
