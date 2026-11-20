@@ -6,6 +6,14 @@ The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `new
 
 ## Evidence baseline
 
+The November 20 unfamiliar-layout follow-up exercised eight further invented
+plans in four paired layout families. Six initial reviews found six planted
+issues; two reserved reviews found two. The four clean controls had no false
+alarms, and no contradicted clearance was recorded. These assisted model trials
+remain separate from the deterministic benchmark and professional acceptance.
+They justified no change to the 0.7.8 review instructions or engine. See the
+[trial protocol and result record](references/unfamiliar-layout-trial.md).
+
 Version 0.7.8 adds ordinary drafting regressions and seven invented two-sheet
 LOC/MSL cases. In the original cohort it detects 12 of 14 planted defects,
 compared with 11 previously. The expanded 23-case benchmark detects 18 of 21,

@@ -62,6 +62,11 @@ The example prints a report for an invented plan. It uses neither a network conn
 
 The [master checklist](../MASTER_CHECKLIST.md) records what is implemented, the evidence available, and the open acceptance criteria. A successful smoke run verifies the offline example, not all ten project milestones.
 
+For fresh-layout testing and the separate assisted model-review procedure, see
+the [unfamiliar-layout trial](../references/unfamiliar-layout-trial.md). Its former
+holdout drawings are now reproducible regression fixtures. Passing the ordinary
+tests does not run a new model evaluation or train the agent.
+
 For maintainers, the
 [ChatGPT packaging source](https://github.com/newfie-stack/survey-cad-skills/tree/main/skills/crown-plan-agent/packaging/chatgpt)
 and
