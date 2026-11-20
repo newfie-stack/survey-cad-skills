@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.7.7
+version: 0.7.8
 ---
 # Crown Plan Agent
 
@@ -46,6 +46,11 @@ job expectations, context identities or visual completeness declarations.
 The selected-text pass reads supported rotated native text in its own direction,
 retaining original page locations and source identity. Outlined lettering,
 scans and unsupported text geometry still require visual review.
+
+For a clearly identified, text-complete total field, flag conflicting stated
+amounts without choosing an authoritative total. Numerically equivalent repeated
+totals may agree; independent part rows must each remain in the sum. Preserve
+the source locations and keep ambiguous, clipped or raster evidence unresolved.
 
 This is bounded drawing QA, not a new jurisdictional compliance route. Its
 PASS/FAIL results never promote the Crown ledger or establish current authority.

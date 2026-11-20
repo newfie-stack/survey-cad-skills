@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.7 — development preview
+# Crown Plan Agent 0.7.8 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,22 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Flag conflicting amounts in an explicitly labelled, text-complete total field
+  without selecting one as authoritative. Accept numerically equivalent repeats
+  while retaining every independent part row in the arithmetic.
+- Expand the synthetic drawing benchmark with landscape LOC and portrait MSL
+  layouts, native rotated identifiers, current-versus-historical revisions,
+  title/identifier/scale errors, arithmetic errors, rounding controls and mixed
+  raster/native text. Keep the original cohort visible separately.
+- Gate individual supported detections and clean controls, record false
+  clearances, and separate regression success from detecting every planted
+  defect. Unknown text completeness and graphical omissions retain their limits.
+- Add a synthetic assisted-review exercise exporter. Reviewer inputs contain
+  only an invented PDF and job instructions, without preselected check regions
+  or an answer key. An assisted trial is separate from the deterministic score.
+
+Version 0.7.7 changes retained:
 
 - Replace the broad PDF dependency range with the official minimal
   `pymupdf-lite==2.1` runtime, pinned to reviewed wheel hashes. Use a fresh

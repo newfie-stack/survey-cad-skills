@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "evidence_class": "WHOLLY_INVENTED_SYNTHETIC",
+  "independent_reviewer_acceptance": "NOT_PERFORMED",
+  "categories": {
+    "plan_title": "title",
+    "disposition": "identity",
+    "revision": "revision",
+    "main_scale": "scale",
+    "units_note": "notes",
+    "area_sum": "area",
+    "north_arrow": "visual"
+  },
+  "cases": {
+    "loc_clean": {
+      "expected": {
+        "plan_title": "PASS",
+        "disposition": "PASS",
+        "revision": "PASS",
+        "main_scale": "PASS",
+        "units_note": "PASS",
+        "area_sum": "PASS",
+        "north_arrow": "REVIEW_REQUIRED"
+      },
+      "known_defects": []
+    },
+    "msl_rotated_clean": {
+      "expected": {
+        "plan_title": "PASS",
+        "disposition": "PASS",
+        "revision": "PASS",
+        "main_scale": "PASS",
+        "units_note": "PASS",
+        "area_sum": "PASS",
+        "north_arrow": "REVIEW_REQUIRED"
+      },
+      "known_defects": []
+    },
+    "loc_area_error": {
+      "expected": {
+        "plan_title": "PASS",
+        "disposition": "PASS",
+        "revision": "PASS",
+        "main_scale": "PASS",
+        "units_note": "PASS",
+        "area_sum": "FAIL",
+        "north_arrow": "REVIEW_REQUIRED"
+      },
+      "known_defects": ["area_sum"]
+    },
+    "loc_total_conflict": {
+      "expected": {
+        "plan_title": "PASS",
+        "disposition": "PASS",
+        "revision": "PASS",
+        "main_scale": "PASS",
+        "units_note": "PASS",
+        "area_sum": "FAIL",
+        "north_arrow": "REVIEW_REQUIRED"
+      },
+      "known_defects": ["area_sum"]
+    },
+    "msl_multiple_errors": {
+      "expected": {
+        "plan_title": "FAIL",
+        "disposition": "FAIL",
+        "revision": "FAIL",
+        "main_scale": "FAIL",
+        "units_note": "PASS",
+        "area_sum": "PASS",
+        "north_arrow": "REVIEW_REQUIRED"
+      },
+      "known_defects": ["plan_title", "disposition", "revision", "main_scale"]
+    },
+    "loc_rounded_total_control": {
+      "expected": {
+        "plan_title": "PASS",
+        "disposition": "PASS",
+        "revision": "PASS",
+        "main_scale": "PASS",
+        "units_note": "PASS",
+        "area_sum": "PASS",
+        "north_arrow": "REVIEW_REQUIRED"
+      },
+      "known_defects": []
+    },
+    "loc_raster_note_and_missing_arrow": {
+      "expected": {
+        "plan_title": "PASS",
+        "disposition": "PASS",
+        "revision": "PASS",
+        "main_scale": "PASS",
+        "units_note": "REVIEW_REQUIRED",
+        "area_sum": "PASS",
+        "north_arrow": "REVIEW_REQUIRED"
+      },
+      "known_defects": ["north_arrow"],
+      "policy_overrides": {"north_arrow": "capability_gap"}
+    }
+  }
+}

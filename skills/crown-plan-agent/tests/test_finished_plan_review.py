@@ -6,11 +6,12 @@ import json
 import sys
 import tempfile
 import unittest
+from decimal import Decimal
 from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "engine"))
-from finished_plan_fixture import make_plan
+from finished_plan_fixture import make_plan, region
 from pdf_inspector import extract_pdf
 
 
@@ -28,6 +29,30 @@ class FinishedPlanReviewTests(unittest.TestCase):
         spec = make_plan(self.pdf, **kwargs)
         report = self.review(self.pdf, spec)
         return {item["check_id"]: item for item in report["findings"]}, report, spec
+
+    def make_area_sheet(self, totals, *, part_a_rows=("PART A: 0.100 ha",), part_b="PART B: 0.200 ha",
+                        total_label="TOTAL:", tolerance="0.000", raster_overlap=False):
+        import fitz
+        with fitz.open() as document:
+            page = document.new_page(width=300, height=300)
+            for i, text in enumerate(part_a_rows):
+                page.insert_text((40, 40 + 20 * i), text)
+            page.insert_text((40, 100), part_b)
+            for i, text in enumerate(totals):
+                page.insert_text((40, 140 + 20 * i), text)
+            if raster_overlap:
+                blank_tile = page.get_pixmap(clip=fitz.Rect(200, 200, 220, 220))
+                page.insert_image(fitz.Rect(150, 130, 170, 150), pixmap=blank_tile)
+            document.save(self.pdf)
+        return {"schema_version": 1, "source_sha256": hashlib.sha256(self.pdf.read_bytes()).hexdigest(),
+                "prepared_by": "Invented area schedule regression", "checks": [{
+                    "id": "area_sum", "kind": "decimal_sum",
+                    "description": "Sum of area schedule rows",
+                    "basis": "The invented job requires one stated total for the selected part rows.",
+                    "regions": [region(1, [30, 20, 270, 70], "PART A:"),
+                                region(1, [30, 80, 270, 110], "PART B:"),
+                                region(1, [30, 120, 270, 200], total_label)],
+                    "unit": "ha", "tolerance": tolerance}]}
 
     def test_clean_plan_has_no_confirmed_errors_and_visual_abstains(self):
         rows, report, _ = self.results()
@@ -71,9 +96,123 @@ class FinishedPlanReviewTests(unittest.TestCase):
         report = self.review(self.pdf, spec)
         self.assertEqual(report["findings"][3]["status"], "PASS")
 
-    def test_duplicate_total_remains_ambiguous(self):
-        rows, _, _ = self.results(duplicate_total=True)
-        self.assertEqual(rows["area_sum"]["status"], "REVIEW_REQUIRED")
+    def test_conflicting_totals_cite_both_values_without_selecting_one(self):
+        spec = make_plan(self.pdf, duplicate_total=True)
+        spec["checks"][3]["basis"] = "The invented job requires one stated total for the selected part rows."
+        original = self.pdf.read_bytes()
+        report = self.review(self.pdf, spec)
+        total = report["findings"][3]
+        self.assertEqual(total["status"], "FAIL")
+        self.assertEqual(total["observed"][-1], ["0.300 HA", "0.400 HA"])
+        evidence = total["evidence"][-1]
+        self.assertEqual(evidence["page"], 1)
+        self.assertEqual(evidence["bbox_points"], [30, 320, 300, 365])
+        self.assertEqual({s["text"] for s in evidence["spans"]}, {"TOTAL: 0.300 ha", "TOTAL: 0.400 ha"})
+        self.assertIn("conflict", total["reason"].lower())
+        self.assertNotIn("expected", total)
+        self.assertNotIn("difference", total)
+        self.assertEqual(total["assessment_scope"], "DRAWING_QC_ONLY")
+        self.assertEqual(report["overall_status"], "REVIEW_REQUIRED")
+        self.assertEqual(report["regulatory_status"], "NOT_ASSESSED")
+        self.assertEqual(self.pdf.read_bytes(), original)
+
+    def test_conflicting_totals_fail_even_within_sum_tolerance(self):
+        for second in ("0.3005", "0.301"):
+            with self.subTest(second=second):
+                spec = self.make_area_sheet(("TOTAL: 0.300 ha", f"TOTAL: {second} ha"), tolerance="0.001")
+                total = self.review(self.pdf, spec)["findings"][0]
+                self.assertEqual(total["status"], "FAIL")
+                self.assertNotIn("difference", total)
+
+    def test_equivalent_totals_use_arithmetic_and_retain_both_native_values(self):
+        spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.3000 ha"))
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "PASS")
+        self.assertEqual(total["expected"], "0.300")
+        self.assertEqual({s["text"] for s in total["evidence"][-1]["spans"]},
+                         {"TOTAL: 0.300 ha", "TOTAL: 0.3000 ha"})
+
+    def test_equivalent_totals_that_disagree_with_parts_fail_arithmetic(self):
+        spec = self.make_area_sheet(("TOTAL: 0.301 ha", "TOTAL: 0.3010 ha"))
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "FAIL")
+        self.assertEqual(total["expected"], "0.300")
+        self.assertEqual(Decimal(total["difference"]), Decimal("0.001"))
+
+    def test_equal_parts_remain_independent_contributions(self):
+        spec = self.make_area_sheet(("TOTAL: 0.200 ha", "TOTAL: 0.2000 ha"), part_b="PART B: 0.100 ha")
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "PASS")
+        self.assertEqual(total["observed"][:2], ["0.100", "0.100"])
+        self.assertEqual(total["expected"], "0.200")
+
+    def test_multiple_totals_require_explicit_text_coverage(self):
+        spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.400 ha"))
+        del spec["checks"][0]["regions"][-1]["coverage_review"]
+        self.assertEqual(self.review(self.pdf, spec)["findings"][0]["status"], "REVIEW_REQUIRED")
+
+    def test_multiple_totals_require_an_explicit_label(self):
+        spec = self.make_area_sheet(("0.300 ha", "0.400 ha"), total_label=None)
+        self.assertEqual(self.review(self.pdf, spec)["findings"][0]["status"], "REVIEW_REQUIRED")
+
+    def test_malformed_candidates_leave_multiple_totals_unresolved(self):
+        for malformed in ("TOTAL: 0.500 m2", "TOTAL: 5e-1 ha"):
+            with self.subTest(malformed=malformed):
+                spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.400 ha", malformed))
+                self.assertEqual(self.review(self.pdf, spec)["findings"][0]["status"], "REVIEW_REQUIRED")
+
+    def test_equivalent_totals_with_a_blank_total_remain_unresolved(self):
+        totals = ("TOTAL: 0.300 ha", "TOTAL: 0.3000 ha", "TOTAL:")
+        spec = self.make_area_sheet(totals)
+        original = self.pdf.read_bytes()
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "REVIEW_REQUIRED")
+        self.assertEqual({s["text"] for s in total["evidence"][-1]["spans"]}, set(totals))
+        self.assertEqual(self.pdf.read_bytes(), original)
+
+    def test_conflicting_totals_with_a_blank_total_remain_unresolved(self):
+        totals = ("TOTAL: 0.300 ha", "TOTAL: 0.400 ha", "TOTAL:")
+        spec = self.make_area_sheet(totals)
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "REVIEW_REQUIRED")
+        self.assertEqual({s["text"] for s in total["evidence"][-1]["spans"]}, set(totals))
+
+    def test_conflicting_totals_with_a_blank_part_candidate_remain_unresolved(self):
+        spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.400 ha"),
+                                    part_a_rows=("PART A: 0.100 ha", "PART A:"))
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "REVIEW_REQUIRED")
+        self.assertEqual({s["text"] for s in total["evidence"][0]["spans"]}, {"PART A: 0.100 ha", "PART A:"})
+
+    def test_conflicting_totals_with_ambiguous_parts_remain_unresolved(self):
+        spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.400 ha"),
+                                    part_a_rows=("PART A: 0.100 ha", "PART A: 0.101 ha"))
+        self.assertEqual(self.review(self.pdf, spec)["findings"][0]["status"], "REVIEW_REQUIRED")
+
+    def test_conflicting_totals_with_clipped_text_remain_unresolved(self):
+        spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.400 ha", "TOTAL: 0.500 ha"))
+        spec["checks"][0]["regions"][-1]["bbox_points"][3] = 178
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "REVIEW_REQUIRED")
+        self.assertIn("Clipped", total["reason"])
+
+    def test_conflicting_totals_with_raster_overlap_remain_unresolved(self):
+        spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.400 ha"), raster_overlap=True)
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "REVIEW_REQUIRED")
+        self.assertIn("Raster image overlaps", total["reason"])
+
+    def test_conflicting_totals_with_reused_observations_remain_unresolved(self):
+        spec = self.make_area_sheet(("TOTAL: 0.300 ha", "TOTAL: 0.400 ha"))
+        spec["checks"][0]["regions"][-1]["bbox_points"][1] = 80
+        total = self.review(self.pdf, spec)["findings"][0]
+        self.assertEqual(total["status"], "REVIEW_REQUIRED")
+        self.assertIn("reuse the same underlying observation", total["reason"])
+
+    def test_single_total_can_still_be_compared_without_label_or_coverage(self):
+        spec = self.make_area_sheet(("0.300 ha",), total_label=None)
+        del spec["checks"][0]["regions"][-1]["coverage_review"]
+        self.assertEqual(self.review(self.pdf, spec)["findings"][0]["status"], "PASS")
 
     def test_raster_sheet_does_not_produce_omission_failures(self):
         rows, report, _ = self.results(raster=True)

@@ -52,7 +52,7 @@ Additional check fields:
 - `required_text`: nonempty `expected` phrase; one region.
 - `same_text`: two to twenty regions, each with one unambiguous selected value.
 - `scale`: one region; optional positive integer `expected_denominator`.
-- `decimal_sum`: three to twenty regions; `unit` (`ha`, `m2` or `m`) and a nonnegative plain-decimal **string** `tolerance`. At least two part regions precede the total. Plain decimal values and units are required; unsupported formats remain unresolved.
+- `decimal_sum`: three to twenty regions; `unit` (`ha`, `m2` or `m`) and a nonnegative plain-decimal **string** `tolerance`. At least two part regions precede the total. Plain decimal values and units are required; unsupported formats remain unresolved. If an explicitly labelled final total field has declared complete text coverage, distinct stated amounts are a textual conflict even when arithmetic tolerance would admit both. Equivalent repeated amounts can agree; no independent part row is removed from the sum. Without the label/completeness evidence, multiple candidates remain unresolved.
 - `visual`: one to twenty source regions; always REVIEW_REQUIRED in this pass.
 
 A region can carry `coverage_review` with `status: "TEXT_COMPLETE"`, `method: "VISUAL_TO_TEXT_COMPARISON"`, a nonempty `reviewer`, and a nonempty `statement` documenting what was compared. This is a supplied declaration bound to the PDF hash, not independent verification performed by the engine. Never manufacture it to obtain a FAIL. Without it, a phrase or scale not found remains REVIEW_REQUIRED. Intersecting raster content overrides this declaration and remains unresolved.
@@ -88,7 +88,49 @@ python -m unittest discover -s tests -p 'test_*.py' -v
 
 Use a new output directory. The benchmark takes no real-plan input. It creates invented PDFs, specifications, per-case reports, a JSON scorecard and a Markdown summary. It executes the actual PDF reader and existing review command. The separate frozen answer key is read only after every production review has finished. Test-only mutation names and expected verdicts never enter the production checker.
 
-The score counts detected known defects, missed defects, false alarms, missing/unexpected results and correct abstentions. **A known defect with REVIEW_REQUIRED is a missed detection**, even when that conservative behavior is expected. Exit zero means the documented bounded behavior matched, not that every error was caught. Fixtures, specifications and expected answers are developer-authored, not independently accepted survey evidence.
+The score counts detected known defects, missed defects, false alarms, false
+clearances, missing/unexpected results and abstentions. **A known defect with
+REVIEW_REQUIRED is a missed detection**, even when that conservative behavior is
+required by incomplete evidence. A `PASS` on a known defect is a false clearance.
+
+The version-2 scorecard separates `regression_gate_passed` from
+`all_defects_detected`. Each check has a frozen regression policy: preserve a
+supported detection (`must_detect`), preserve a clean pass (`must_pass`), retain
+an evidence-bound abstention (`must_abstain`), or track a planted defect in an
+explicit capability gap (`capability_gap`). A gap may remain unresolved or gain
+a detection; it must never become a false clearance. A new detection cannot
+offset a lost required detection elsewhere. The CLI exits successfully only
+when these gates and its report-summary checks pass; full detection is reported
+separately.
+
+The scorecard reports the original 16-case cohort separately from the new
+seven-case LOC/MSL cohort, with category totals and outstanding missed-defect
+IDs. The new drawings include clean controls, rotated identifiers, stale sheet
+revisions, mismatched titles/labels/scales, arithmetic errors, equivalent rounded
+totals and a raster note. The tests also check the CLI's opening summary.
+Fixtures, specifications and answers remain developer-authored, not independently
+accepted survey evidence. The deterministic benchmark uses selected regions; it
+does not measure the agent selecting those regions or interpreting whole sheets.
+
+## Exercise a review without preselected regions
+
+From the skill folder, export an invented review package to a new directory:
+
+```bash
+python tests/export_drafting_exercise.py --case msl_multiple_errors --output /tmp/crown-exercise-01
+```
+
+Give a reviewer only `/tmp/crown-exercise-01/review_inputs/`. It contains the
+invented plan, job brief and review instructions. The generated check
+specification and frozen answers are not included. Keep the root manifest,
+fixture source and answer key out of that review until the findings are saved.
+Use the same procedure with a clean case such as `loc_clean` to check false
+alarms. Afterwards compare the cited findings and unresolved items with the
+frozen truth. Record the host, model, exact source hashes and tool execution.
+This is a separate assisted exercise, not part of the deterministic recall or
+independent professional acceptance. Generated files remain outside the source
+repository; the installed package contains source generators and invented truth,
+not work documents or plan PDFs.
 
 ## Unfinished acceptance
 
