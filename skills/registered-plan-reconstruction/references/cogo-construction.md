@@ -6,6 +6,6 @@ For segment A→B, unit tangent t=(dx/L,dy/L). Left normal n=(-dy/L,dx/L), right
 ## Road limits and terminals
 Retain the full controlling survey course. Solve each R/W side against its independently established terminal line. Do not use a tie line as a terminal. Check road allowance width from applicable survey evidence; nominal 20.12 m is not universal.
 ## Grid/ground
-Record the plan's bearing basis, units, coordinate reference system and any stated combined factor. Use printed plan distances as recorded unless a distinct documented coordinate transformation requires scaling.
+Record the plan's bearing basis, units, coordinate reference system and any stated combined factor. For ordinary local reconstruction, use printed bearings, distances and widths as recorded; keep a combined factor as metadata. If a separate, explicitly requested and justified transformation uses a factor, record its direction, applicability and checked residuals, and never change the stored printed observations or the accepted local reconstruction. Raster axes are for interpretation only; normalize the image's downward Y axis for comparison and verify orientation independently. This is not a scale or reflection of the legal geometry.
 ## Validation
 Recompute printed distances/bearings from coordinates, polygon closure vector and linear misclosure, area by shoelace, perpendicular widths, terminal intersections and independent control residuals. Never adjust observations solely to match an expected area.

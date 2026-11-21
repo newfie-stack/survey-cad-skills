@@ -20,3 +20,9 @@ PASS requires all applicable mandatory checks; a visual match alone never qualif
 - [ ] Full review preview shows evidence network; boundary-only export labeled derivative
 - [ ] Source-course completeness counts reported; no omitted course for PASS
 See [dimensioned evidence completeness](dimensioned-evidence-completeness.md).
+
+## Conditional gates
+- [ ] Multi-section: every required cut is evidence-linked; each printed parcel/quarter area checked in its own scope; no gaps, overlaps or hidden road area.
+- [ ] Multiple plans/alignment: accepted local solution retained; fit and independent check anchors distinguished; absolute placement status separate.
+- [ ] Posted terminal or reference setback: exact accepted pin or source-proven ordered derivation; no snapping of conflicting evidence.
+- [ ] CAD freshness: reopened file and report bound to current source, reviewed decisions and generation; failed or stale candidate cannot replace accepted output.

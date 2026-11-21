@@ -12,3 +12,12 @@ All cases use fictional points, invented bearings and synthetic coordinates. The
 9. **Area mismatch:** corridor geometry checks, area differs. Expected: REVIEW_REQUIRED without changing source observations.
 10. **Disconnected road components:** no independent control for second component. Expected: REVIEW_REQUIRED, not placement by road-width projection.
 These cases are test specifications until exercised by an executable deterministic reconstruction engine.
+
+## Consolidated multi-section and output cases
+11. **Verified versus contextual section cut:** A fictional 15 m corridor occupies x=0–80 and x=100–180, with the road excluded and each piece tied independently. The evidenced quarter division at x=130 yields areas 1,650 and 750 m² (net 2,400); the context-only line x=150 creates no cut. Expect separately recorded areas and no road geometry in the acquisition layer.
+12. **Compensating area error:** Use the same geometry but printed quarter areas 1,600 and 800 m². The total still agrees; with a fixture tolerance of 1 m², both quarter checks require review. If the legal cut is unknown, report the affected checks NOT_EVALUATED, not PASS.
+13. **Local distance and failed placement:** A 100 m printed course with an unrequested .9998 combined factor remains 100 m locally. A failed independent third-point placement check cannot alter that local result or qualify the transformed output as accepted control.
+14. **Source freshness:** An older accepted export exists; a changed source revision produces an unresolved endpoint. The current export is REVIEW_REQUIRED and may not replace the historical accepted file; reopening the old valid DXF cannot prove the new result.
+15. **15 m deflection:** An eastbound course from (0,0) to (100,0) turns north to (100,60). Left-hand offset lines intersect at (85,15); perpendicular width is 15 m on both legs. Preserve the primary course and verify the miter, not a guessed split or averaged width.
+16. **Reference setback:** A–R is 80 m and T–R is 15 m. Derive A–T = 65 m only with verified order A → T → R and an identified shared R. Drawing a pin at T or accepting the same subtraction with reversed order fails.
+17. **ATS-only display:** With a supported local solution but no evidenced link to section control or other accepted absolute control, retain the local solution. An ATS-only display is a placement proposal, not a production-coordinate release; return ALIGNMENT_REVIEW_REQUIRED for placement.

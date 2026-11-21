@@ -13,3 +13,6 @@ Verify source-course completeness, bearings/distances, direction, CRS/ground-gri
 - FAIL: unsupported boundary, omitted required dimensioned course, fabricated control or false acceptance.
 - BLOCKED_MISSING_TOOL: deterministic construction/readback unavailable.
 A valid DXF file is not proof of a valid reconstruction.
+
+## Multi-section partition
+Use the [multi-section workflow](multi-section-reconstruction.md) when legal areas are reported by parcel, section or quarter. Do not invent a cut from a context-only section stroke or hide compensating per-quarter residuals in a matching total. If a required partition is not proven, record the specific area check as NOT_EVALUATED and the applicable reconstruction/verification as REVIEW_REQUIRED, even if a local corridor can still be reviewed.
