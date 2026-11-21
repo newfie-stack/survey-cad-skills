@@ -4,12 +4,16 @@ This opt-in addition checks selected regions of a potentially finished **native-
 
 ## What executes
 
+The [source-bound intake workflow](plan-intake.md) can prepare safe native-text
+regions from reviewed contexts before these comparisons execute. It retains
+unresolved selections and visual tasks separately from the ready subset.
+
 | Kind | Mechanical comparison | Important limit |
 |---|---|---|
 | `required_text` | Locate an expected phrase inside its selected context | A textual match is not semantic or regulatory compliance. An absence becomes FAIL only with source-bound, explicit visual-to-text completeness evidence. |
 | `same_text` | Compare two or more selected subject fields | Different neighbouring parcels must not be selected as the same subject. Missing/multiple values remain unresolved; use a separate presence check where presence is required. |
 | `scale` | Read one numeric ratio in the selected main-plan context and optionally compare its denominator | An inset is not a substitute. This does not measure whether the plotted drawing is actually to scale. |
-| `decimal_sum` | Compare selected part values with the selected total, using decimal arithmetic and an explicit tolerance | Last region is the total. Units must match. This is table arithmetic, not a survey-boundary area calculation. |
+| `decimal_sum` | Compare selected part values with the selected total, using decimal arithmetic and an explicit tolerance | Last region is the total. Units must match. Supported grouping and terminal punctuation are validated before normalization. This is table arithmetic, not a survey-boundary area calculation. |
 | `visual` | Preserve a source-located review request | The offline checker leaves symbol interpretation open. When the host can see rendered pages, the agent follows the [visual review procedure](chatgpt-review.md#visually-check-the-north-arrow-and-scale-bar) and reports observations alongside the CLI results. |
 
 Selections use one-based pages and **unrotated, crop-relative PDF points**, the same space as the existing PDF inventory. Text crossing a selected region, clipped text, unsupported text geometry and intersecting raster images stay unresolved. Partially overlapping selections cannot reuse the same observation as independent fields. Multiple competing numeric candidates are not silently resolved.
@@ -52,7 +56,7 @@ Additional check fields:
 - `required_text`: nonempty `expected` phrase; one region.
 - `same_text`: two to twenty regions, each with one unambiguous selected value.
 - `scale`: one region; optional positive integer `expected_denominator`.
-- `decimal_sum`: three to twenty regions; `unit` (`ha`, `m2` or `m`) and a nonnegative plain-decimal **string** `tolerance`. At least two part regions precede the total. Plain decimal values and units are required; unsupported formats remain unresolved. If an explicitly labelled final total field has declared complete text coverage, distinct stated amounts are a textual conflict even when arithmetic tolerance would admit both. Equivalent repeated amounts can agree; no independent part row is removed from the sum. Without the label/completeness evidence, multiple candidates remain unresolved.
+- `decimal_sum`: three to twenty regions; `unit` (`ha`, `m2` or `m`) and a nonnegative plain-decimal **string** `tolerance`. At least two part regions precede the total. Supported printed decimal values and matching units are required; validated uniform thousands grouping and one terminal unit period are described in [printed number formats](plan-intake.md#printed-number-formats). Unsupported or ambiguous formats remain unresolved. If an explicitly labelled final total field has declared complete text coverage, distinct stated amounts are a textual conflict even when arithmetic tolerance would admit both. Equivalent repeated amounts can agree; no independent part row is removed from the sum. Without the label/completeness evidence, multiple candidates remain unresolved.
 - `visual`: one to twenty source regions; always REVIEW_REQUIRED in this pass.
 
 A region can carry `coverage_review` with `status: "TEXT_COMPLETE"`, `method: "VISUAL_TO_TEXT_COMPARISON"`, a nonempty `reviewer`, and a nonempty `statement` documenting what was compared. This is a supplied declaration bound to the PDF hash, not independent verification performed by the engine. Never manufacture it to obtain a FAIL. Without it, a phrase or scale not found remains REVIEW_REQUIRED. Intersecting raster content overrides this declaration and remains unresolved.

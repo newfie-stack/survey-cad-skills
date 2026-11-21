@@ -1,5 +1,40 @@
 # Crown Plan Agent independent technical review
 
+## Version 0.8.0 intake follow-up — November 21, 2026
+
+Independent review examined the source-bound intake, bounded region preparation,
+numeric-format parsing, CLI integration and reports at frozen candidate
+`3a3e5697ccf4e48f75032054131131ed3a7f3ea9`. It reproduced two misleading
+clearances with actual invented PDFs: a spaced numeric continuation after a
+scale denominator, and differently indented continuations after identical
+labelled prefixes. Both received failing regression tests and corrections.
+The final reviewer rechecked the exact reproductions and clean controls and
+reported no remaining blocking findings.
+
+The frozen source suite ran 862 tests with two optional skips and no failures;
+synthetic smoke passed. The unpacked candidate ran 840 tests with two optional
+skips and no failures (repository-only packaging tests are excluded). An
+independent initial archive audit reproduced its bytes, verified every payload
+hash, and confirmed preserved presentation/prompts/dependencies. Final
+publication/package evidence also includes the later regression-record files
+and is identified separately by its exact commit and archive hash.
+After retaining the new regression/evidence files, the complete repository suite
+ran **882 tests: 880 passed, two optional source-PDF tests skipped**. The final
+code/test fingerprint is `e92468ee4f3e084490034b0fd2be4d4447edd471cfec07426c56656bf127b5b4` (168 files): all Python/JSON
+files recursively under `engine` and `tests`, plus `requirements.txt`, with the
+path-tab-content-hash manifest recipe described below. No source/regulatory PDF
+was used for this run.
+
+The [four-case forward trial](references/intake-forward-trial-2026-11-21.md)
+used frozen code/instructions and fresh reviewer contexts. Separate graders
+confirmed four assisted manual findings, no false alarms, 56 prepared/executed
+requests, 37 preparation followups and two unresolved executed comparisons, with
+no context retries. All source/input/review hashes and claim mappings were
+checked before formal aggregate scoring. The trial does not establish complete
+unattended intake, model training, current-law or professional acceptance.
+Full original artifacts and the frozen source snapshot are retained outside the
+repository; only synthetic generators and portable evidence are published.
+
 Original review date: November 14, 2026; dated-clause follow-up: November 15, 2026. Reviewer: an independent Codex AI review agent, with separate AI geometry and CLI follow-up reviewers. These reviewers inspected the implementation separately from the agents making corrections and did not edit engine code or tests. This is an AI technical code review, not external professional sign-off, survey certification, legal advice or regulatory approval.
 
 ## Scope and snapshot

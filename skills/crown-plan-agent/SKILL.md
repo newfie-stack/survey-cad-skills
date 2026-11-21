@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.7.9
+version: 0.8.0
 ---
 # Crown Plan Agent
 
@@ -35,17 +35,34 @@ accept survey control or establish a quarter corner.
 ## Finished-plan quality control
 
 The primary goal is pre-submission checking of potentially finished plans for
-omissions and mistakes, not redrafting or mandatory reconstruction. For selected
-text, identity, scale and arithmetic comparisons, use the existing review CLI's
-`--finished-plan-spec` pass described in [finished-plan QC](references/finished-plan-qc.md).
+omissions and mistakes, not redrafting or mandatory reconstruction. When the
+reviewed Python runtime is available, use the [source-bound plan intake](references/plan-intake.md)
+to map native text, directions and image regions, then use the review CLI's
+`--finished-plan-contexts` option to prepare supported text, identity, scale and
+arithmetic checks inside reviewed contexts. The existing `--finished-plan-spec`
+pass remains available for directly prepared regions, as described in
+[finished-plan QC](references/finished-plan-qc.md).
 Read the actual authorized plan and its relevant page images before preparing
-source-bound region selections. The agent prepares this private specification;
+source-bound context selections. The agent prepares this private specification;
 do not shift routine extraction/mapping work onto the draftsman. Do not invent
 job expectations, context identities or visual completeness declarations.
+
+Use observed literal labels to locate fields inside their own reviewed panel or
+view; never locate a field by searching for the expected job value. Preserve
+competing, blank or wrapped fields as unresolved source evidence. Preparation
+expands native-text support only within the supplied context and never creates
+or transfers a completeness declaration to a derived region. Report every
+unresolved preparation request alongside the checks that actually executed.
+Keep scanned, outlined, clipped and unsupported evidence on the visual-review
+path, including when other parts of the same sheet have native text.
 
 The selected-text pass reads supported rotated native text in its own direction,
 retaining original page locations and source identity. Outlined lettering,
 scans and unsupported text geometry still require visual review.
+Nearby labels can face opposite directions, including readability flips near
+north. Read each native baseline separately. PDF text direction, survey azimuth
+and an office's text-facing convention are distinct; no unconfirmed angular
+cutoff may be used to flag a drafting violation.
 
 For a clearly identified, text-complete total field, flag conflicting stated
 amounts without choosing an authoritative total. Numerically equivalent repeated
