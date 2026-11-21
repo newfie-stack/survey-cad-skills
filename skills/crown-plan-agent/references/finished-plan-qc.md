@@ -114,6 +114,12 @@ does not measure the agent selecting those regions or interpreting whole sheets.
 
 ## Exercise a review without preselected regions
 
+The [November 21 whole-plan trial](whole-plan-trial-2026-11-21.md) preserves twelve
+additional invented cases, source-bound answers and complete claim-level grading
+records. Its fixtures can be regenerated and its saved accounting replayed in
+CI. Reusing these published cases is a regression exercise; a fresh blind trial
+requires new inputs and separately frozen findings and adjudication.
+
 For a correct grand total concealing a shifted new/existing area split, use the
 [invented area-category regression pair](area-classification-regression.md).
 It includes a clean control, selected category comparisons and answer-free

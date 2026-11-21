@@ -1,0 +1,1282 @@
+{
+  "schema": "crown-plan-agent-whole-plan-trial-truth-export-v1",
+  "export_policy": {
+    "synthetic_only": true,
+    "scope": "FROZEN_ASSISTED_DEVELOPER_MODEL_SYNTHETIC_TRIAL; KNOWN_ACCOUNTING_REGRESSION_ONLY",
+    "review_execution_repeated_by_replay": false,
+    "privacy_scope": "Allowlisted synthetic study text and hash manifests only; excludes plan PDFs, images, native-text inventories, binaries, private work content and credentials.",
+    "path_redactions": [
+      {
+        "original_path_role": "Absolute root of the original whole-plan-trial-20261121 experiment",
+        "placeholder": "${TRIAL_ROOT}",
+        "replacement_scope": "Only this host-local absolute path prefix; descendant suffixes remain unchanged."
+      },
+      {
+        "original_path_role": "Absolute root of the canonical skills/crown-plan-agent source used during review",
+        "placeholder": "${SKILL_ROOT}",
+        "replacement_scope": "Only this host-local absolute path prefix; descendant suffixes remain unchanged."
+      },
+      {
+        "original_path_role": "Absolute maintained secure-runtime Python executable used during review",
+        "placeholder": "${SECURE_PYTHON}",
+        "replacement_scope": "Only this host-local absolute executable path."
+      }
+    ],
+    "preservation_rule": "Only the three declared host-local absolute paths are replaced in exported strings. Names, values, claim kinds, rationales and truth issue identifiers retain their original content. JSON whitespace/key order is reserialized; text retains literal UTF-8 content except declared path replacement.",
+    "portable_json_hash_encoding": "UTF-8 of json.dumps(content, ensure_ascii=False, sort_keys=True, separators=(\",\", \":\")), with no trailing newline. This hashes each embedded content object, not its containing fixture file.",
+    "portable_text_hash_encoding": "UTF-8 bytes of the embedded content string, including its original newline characters after declared path replacement.",
+    "hash_interpretation": "original_sha256 identifies the literal archived artifact. portable_content_sha256 identifies the exported content under the stated encoding. Neither denotes a newly repeated assisted review. The containing fixture file has a separate external byte hash.",
+    "archive_receipt": {
+      "basename": "crown-plan-agent-whole-plan-trial-2026-11-21.zip",
+      "sha256": "b5ffa8d3008ab5a3e779341ba40b21691278a5a36f5538fb9cd5d48f7cacd782",
+      "bytes": 14381189,
+      "original_members": 435,
+      "additional_member": "ARCHIVE_MANIFEST.json",
+      "scope": "Complete unmodified original synthetic experiment evidence, with member hashes; two later generated __pycache__ files excluded."
+    }
+  },
+  "source_commit": "ea800aedfcf2d922f13a997776f7ee9366252fe1",
+  "oracles": [
+    {
+      "author": "author-a",
+      "artifact": {
+        "path": "author-a/oracle.json",
+        "format": "json",
+        "original_sha256": "d5845ccbabc09d713fabdda7d28a9027eaf19c93352e056c84ba3bbf2f54a070",
+        "original_bytes": 14244,
+        "original_hash_scope": "LITERAL_ORIGINAL_ARTIFACT_BYTES_IN_EXTERNAL_ARCHIVE",
+        "portable_content_sha256": "db96d2ecbf0d9098ecd1642617a6269d5cbb832d95692188bfa64acd2438aa45",
+        "portable_content_bytes": 10465,
+        "portable_hash_scope": "CANONICAL_JSON_CONTENT_UTF8",
+        "export_classification": "JSON_RESERIALIZATION",
+        "path_redactions_applied": false,
+        "content": {
+          "schema": "private-whole-plan-author-truth-v1",
+          "synthetic_review_only": true,
+          "runtime_gate": {
+            "minimum_runtime_policy": "SATISFIED",
+            "policy_checked_on": "2026-11-19",
+            "python": "3.12.16",
+            "provider": "pymupdf-lite",
+            "provider_version": "2.1",
+            "pymupdf_version": "2.1",
+            "mupdf_version": "1.28.6",
+            "assessment_scope": "MINIMUM_RUNTIME_VERSIONS_ONLY",
+            "advisory_review_required": true
+          },
+          "counts": {
+            "cases": 6,
+            "clean": 3,
+            "defective": 3,
+            "pages": 8,
+            "planted_defects": 6
+          },
+          "cases": [
+            {
+              "case_id": "K27",
+              "review_inputs": "cases/K27/review_inputs",
+              "source_sha256": "5e188db555c8b61d805cbf9bf8f929512f2b462e21ad4439e8d45a1090d60e89",
+              "brief_sha256": "7a20adddfe93e6fbd7da98f348a1e334ec95ffd9e0c9f9d10c365c8c563dd3c5",
+              "is_clean": true,
+              "layout_family": "portrait-cabin-with-raster-notes",
+              "defects": [],
+              "clean_controls": [
+                "The locator inset retains its own north arrow and 1:8000 bar; main-view scale is independently 1:2000.",
+                "Adjoining NE 14-62-11 W5M is a neighbor, not the subject SE 23-62-11 W5M.",
+                "Revision 1 / 2026-09-24 is explicitly preliminary history, while current issue is Revision 2 / 2026-11-16.",
+                "The entire Notes panel is rasterized identically in both pair members; absence from native text extraction is not absence from the plan."
+              ],
+              "intended_scope": "Read the whole portrait sheet including its raster Notes panel; assess each explicitly labeled main and locator view separately for its own orientation.",
+              "pages": [
+                {
+                  "page": 1,
+                  "size_points": [
+                    842.0,
+                    1190.0
+                  ],
+                  "whole_render": "cases/K27/review_inputs/renders/page-01-whole.png",
+                  "native_text_characters": 1012
+                }
+              ]
+            },
+            {
+              "case_id": "M84",
+              "review_inputs": "cases/M84/review_inputs",
+              "source_sha256": "01f066aa72ee3e1adb85dea630e6966d90689bb943fe9de5bdaf9764b1502761",
+              "brief_sha256": "4df09cb6c57b44507278022ad1ef21266cfebe4d8c46f1e886566fba4d69ff6b",
+              "is_clean": false,
+              "layout_family": "two-sheet-access-package",
+              "defects": [
+                {
+                  "id": "A-ID",
+                  "claim": "Sheet 2 carries the archived drawing number as its current drawing identity.",
+                  "locations": [
+                    {
+                      "page": 2,
+                      "box_points": [
+                        755,
+                        650,
+                        970,
+                        815
+                      ],
+                      "description": "bottom current-issue titleblock"
+                    }
+                  ],
+                  "expected": "Current Drawing HV-6027 on both sheets.",
+                  "observed": "Sheet 2 current titleblock says Drawing HV-5882.",
+                  "evidence": [
+                    "Job brief current package HV-6027.",
+                    "Sheet 1 current titleblock and Note 1 say HV-6027.",
+                    "Sheet 1 archived history identifies HV-5882 as old drawing."
+                  ]
+                },
+                {
+                  "id": "A-LOC",
+                  "claim": "Sheet 2 current location states Township 58 instead of Township 56.",
+                  "locations": [
+                    {
+                      "page": 2,
+                      "box_points": [
+                        445,
+                        650,
+                        755,
+                        815
+                      ],
+                      "description": "bottom LOCATION titleblock"
+                    }
+                  ],
+                  "expected": "NE 14-56-8 W5M.",
+                  "observed": "NE 14-58-8 W5M.",
+                  "evidence": [
+                    "Job brief location NE 14-56-8 W5M.",
+                    "Sheet 1 location titleblock, main view and Note 3 agree on Township 56."
+                  ]
+                }
+              ],
+              "clean_controls": [
+                "Sheet 1 history retains archived Drawing HV-5882 and two earlier revision dates; they are historical, not current sheet identity.",
+                "NW 14-56-8 W5M and adjoining SE 15-56-8 W5M labels are intentional neighboring parcels.",
+                "Main 1:2500, location inset 1:10000, C-1 detail 1:500 and S-1 detail 1:1000 have separate physical scale bars and north arrows."
+              ],
+              "intended_scope": "Read both sheets as the current issued package; compare current sheet identities to the supplied job facts while retaining historical entries and adjoining-parcel identities in their roles.",
+              "pages": [
+                {
+                  "page": 1,
+                  "size_points": [
+                    1190.0,
+                    842.0
+                  ],
+                  "whole_render": "cases/M84/review_inputs/renders/page-01-whole.png",
+                  "native_text_characters": 1418
+                },
+                {
+                  "page": 2,
+                  "size_points": [
+                    1190.0,
+                    842.0
+                  ],
+                  "whole_render": "cases/M84/review_inputs/renders/page-02-whole.png",
+                  "native_text_characters": 1532
+                }
+              ]
+            },
+            {
+              "case_id": "Q19",
+              "review_inputs": "cases/Q19/review_inputs",
+              "source_sha256": "b409e8b316d7ae7c6918b508bd1f95c23030500de0b8d9414c5b13648645e63c",
+              "brief_sha256": "d4b08c635e5f5761c702b9dc996acdf4095d1b2534b82597fc00b0d176928a35",
+              "is_clean": true,
+              "layout_family": "two-sheet-access-package",
+              "defects": [],
+              "clean_controls": [
+                "Sheet 1 history retains archived Drawing HV-5882 and two earlier revision dates; they are historical, not current sheet identity.",
+                "NW 14-56-8 W5M and adjoining SE 15-56-8 W5M labels are intentional neighboring parcels.",
+                "Main 1:2500, location inset 1:10000, C-1 detail 1:500 and S-1 detail 1:1000 have separate physical scale bars and north arrows."
+              ],
+              "intended_scope": "Read both sheets as the current issued package; compare current sheet identities to the supplied job facts while retaining historical entries and adjoining-parcel identities in their roles.",
+              "pages": [
+                {
+                  "page": 1,
+                  "size_points": [
+                    1190.0,
+                    842.0
+                  ],
+                  "whole_render": "cases/Q19/review_inputs/renders/page-01-whole.png",
+                  "native_text_characters": 1418
+                },
+                {
+                  "page": 2,
+                  "size_points": [
+                    1190.0,
+                    842.0
+                  ],
+                  "whole_render": "cases/Q19/review_inputs/renders/page-02-whole.png",
+                  "native_text_characters": 1532
+                }
+              ]
+            },
+            {
+              "case_id": "S63",
+              "review_inputs": "cases/S63/review_inputs",
+              "source_sha256": "9aac4c37ab909410d374fa1ecd9d709d95dcd64b6668e1de276fb7ecc862bbfc",
+              "brief_sha256": "360d70a62fc859796e8286347f2b9bedbfd2970f10b650b014b41f6b0cb8999e",
+              "is_clean": false,
+              "layout_family": "area-schedule-with-scope-ledger",
+              "defects": [
+                {
+                  "id": "C-CATEGORIES",
+                  "claim": "Schedule redistributes area between new access and borrow, contradicting the main labels even though subtotal remains correct.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "box_points": [
+                        773,
+                        118,
+                        1160,
+                        289
+                      ],
+                      "description": "area schedule New access and Borrow rows"
+                    },
+                    {
+                      "page": 1,
+                      "box_points": [
+                        180,
+                        300,
+                        535,
+                        420
+                      ],
+                      "description": "main-view access and borrow area labels"
+                    }
+                  ],
+                  "expected": "New access 0.420 ha and borrow 0.220 ha.",
+                  "observed": "Schedule says 0.480 ha and 0.160 ha respectively; main labels remain 0.420 ha and 0.220 ha. Both category pairs sum to 0.640 ha.",
+                  "evidence": [
+                    "Main-view named activity labels.",
+                    "Area schedule named rows.",
+                    "Overall 1.260 ha total still agrees and does not resolve the category conflict."
+                  ]
+                },
+                {
+                  "id": "C-EXCLUSION",
+                  "claim": "Area-scope Note 2 overstates the excluded road allowance overlap.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "box_points": [
+                        773,
+                        475,
+                        1160,
+                        635
+                      ],
+                      "description": "right Notes / area scope, Note 2"
+                    }
+                  ],
+                  "expected": "Road allowance overlap 0.080 ha, consistent with Detail RA-1 and schedule.",
+                  "observed": "Note 2 states 0.100 ha. Detail RA-1 and schedule remain 0.080 ha, and gross envelope remains 1.480 ha.",
+                  "evidence": [
+                    "Detail RA-1 shows 0.080 ha excluded.",
+                    "Schedule road allowance row shows 0.080 ha.",
+                    "0.140 + 0.100 + 1.260 = 1.500, inconsistent with printed gross 1.480."
+                  ]
+                }
+              ],
+              "clean_controls": [
+                "Activity subtotal and net Crown request are both intentionally 1.260 ha.",
+                "Gross envelope is intentionally 1.480 ha because it also includes 0.140 ha shared track and 0.080 ha road overlap.",
+                "Existing shared track and road overlap are separately shown exclusions, not missing activity categories.",
+                "Main and RA-1 detail scales differ legitimately at 1:1500 and 1:750, each with its own bar and north arrow.",
+                "SE 36-49-18 W5M is explicitly a neighboring parcel; Revision A is explicitly historical."
+              ],
+              "intended_scope": "Read all category labels, the schedule, the separate overlap detail and Notes; compare both category amounts and stated exclusion scopes, independently of aggregate equality.",
+              "pages": [
+                {
+                  "page": 1,
+                  "size_points": [
+                    1190.0,
+                    842.0
+                  ],
+                  "whole_render": "cases/S63/review_inputs/renders/page-01-whole.png",
+                  "native_text_characters": 1692
+                }
+              ]
+            },
+            {
+              "case_id": "V42",
+              "review_inputs": "cases/V42/review_inputs",
+              "source_sha256": "57a120fc32f7b32862d3034b6100ad7c34bd2c79c7858a7141bc3eca35e7575c",
+              "brief_sha256": "ac3cdbcf7c13f0be6971f2589a9125afa4796d0f6265a524c57bd4183c8a8d24",
+              "is_clean": true,
+              "layout_family": "area-schedule-with-scope-ledger",
+              "defects": [],
+              "clean_controls": [
+                "Activity subtotal and net Crown request are both intentionally 1.260 ha.",
+                "Gross envelope is intentionally 1.480 ha because it also includes 0.140 ha shared track and 0.080 ha road overlap.",
+                "Existing shared track and road overlap are separately shown exclusions, not missing activity categories.",
+                "Main and RA-1 detail scales differ legitimately at 1:1500 and 1:750, each with its own bar and north arrow.",
+                "SE 36-49-18 W5M is explicitly a neighboring parcel; Revision A is explicitly historical."
+              ],
+              "intended_scope": "Read all category labels, the schedule, the separate overlap detail and Notes; compare both category amounts and stated exclusion scopes, independently of aggregate equality.",
+              "pages": [
+                {
+                  "page": 1,
+                  "size_points": [
+                    1190.0,
+                    842.0
+                  ],
+                  "whole_render": "cases/V42/review_inputs/renders/page-01-whole.png",
+                  "native_text_characters": 1692
+                }
+              ]
+            },
+            {
+              "case_id": "X95",
+              "review_inputs": "cases/X95/review_inputs",
+              "source_sha256": "3c66ccd302cf5053d838be05e52010aeacd50bf55bfc2c426e3051352fa68d7c",
+              "brief_sha256": "666db60ec54eff815e56d4c480572064affd2c090e388eb86a088c9434d186b8",
+              "is_clean": false,
+              "layout_family": "portrait-cabin-with-raster-notes",
+              "defects": [
+                {
+                  "id": "B-CRS",
+                  "claim": "Raster Note 1 states the wrong UTM zone for the job.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "box_points": [
+                        30,
+                        684,
+                        812,
+                        874
+                      ],
+                      "description": "bottom Notes raster panel, Note 1"
+                    }
+                  ],
+                  "expected": "NAD83(CSRS), UTM Zone 11.",
+                  "observed": "NAD83(CSRS), UTM Zone 12.",
+                  "evidence": [
+                    "Job brief coordinate reference specifies Zone 11.",
+                    "Visual raster Note 1 shows Zone 12; native extraction will not recover it."
+                  ]
+                },
+                {
+                  "id": "B-NORTH",
+                  "claim": "The labeled main cabin/access view has no north arrow of its own.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "box_points": [
+                        30,
+                        89,
+                        550,
+                        660
+                      ],
+                      "description": "entire MAIN VIEW cabin/access frame"
+                    }
+                  ],
+                  "expected": "Independent main-view orientation graphic, per the common job-brief presentation expectation and Note 3.",
+                  "observed": "No north graphic or north label in the main view; the locator inset at upper right still has its own GRID N arrow.",
+                  "evidence": [
+                    "Whole-main-view visual review establishes absence.",
+                    "Note 3 says each view is independently oriented.",
+                    "Common job brief expects each main/detail/locator view to provide its own north orientation."
+                  ]
+                }
+              ],
+              "clean_controls": [
+                "The locator inset retains its own north arrow and 1:8000 bar; main-view scale is independently 1:2000.",
+                "Adjoining NE 14-62-11 W5M is a neighbor, not the subject SE 23-62-11 W5M.",
+                "Revision 1 / 2026-09-24 is explicitly preliminary history, while current issue is Revision 2 / 2026-11-16.",
+                "The entire Notes panel is rasterized identically in both pair members; absence from native text extraction is not absence from the plan."
+              ],
+              "intended_scope": "Read the whole portrait sheet including its raster Notes panel; assess each explicitly labeled main and locator view separately for its own orientation.",
+              "pages": [
+                {
+                  "page": 1,
+                  "size_points": [
+                    842.0,
+                    1190.0
+                  ],
+                  "whole_render": "cases/X95/review_inputs/renders/page-01-whole.png",
+                  "native_text_characters": 1005
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "author": "author-b",
+      "artifact": {
+        "path": "author-b/oracle.json",
+        "format": "json",
+        "original_sha256": "8210e5de4c5cec2156c192fe836f1e1f42e0d75160b8444249be49f45cb57bfb",
+        "original_bytes": 10241,
+        "original_hash_scope": "LITERAL_ORIGINAL_ARTIFACT_BYTES_IN_EXTERNAL_ARCHIVE",
+        "portable_content_sha256": "cb9b68664532c0ade22121d6932cf8874d3d67ffab331cf4c6f8a7c79a44db50",
+        "portable_content_bytes": 7339,
+        "portable_hash_scope": "CANONICAL_JSON_CONTENT_UTF8",
+        "export_classification": "JSON_RESERIALIZATION",
+        "path_redactions_applied": false,
+        "content": {
+          "trial": "fresh whole-plan review author B",
+          "synthetic_only": true,
+          "assignment_method": "Stable pseudorandom shuffle seed 261121447 of supplied neutral case identifiers before authoring; IDs do not encode status.",
+          "cases": [
+            {
+              "case_id": "N24",
+              "source_sha256": "c05daefa0e48ae05cedb8e6e4853f47738efb226a515a39acc406cab6b836ef0",
+              "brief_sha256": "c1edacd0f5227bd247169bd8ee5634297a955df1cf9c9f6d75c8bc205ece1890",
+              "is_clean": true,
+              "layout_family": "portrait_pla",
+              "defects": [],
+              "clean_controls": [
+                "Extraction block Q-2 and stockpile S-1 are distinct, correctly labelled blocks.",
+                "Detail A is explicitly schematic and enlarged.",
+                "WI-281 appears only in a labelled historical archive entry; it is not the current operating note."
+              ],
+              "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+            },
+            {
+              "case_id": "T67",
+              "source_sha256": "d740f2556f00aaf7b5dbafe30502dfed9ddfaacf900067e07b8f3ccb256e2ee2",
+              "brief_sha256": "c1edacd0f5227bd247169bd8ee5634297a955df1cf9c9f6d75c8bc205ece1890",
+              "is_clean": false,
+              "layout_family": "portrait_pla",
+              "defects": [
+                {
+                  "id": "access_sum",
+                  "claim": "The explicit access-length total is 1.00 m too large.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "area": "access length calculation, lower centre",
+                      "rect": [
+                        230,
+                        548,
+                        550,
+                        629
+                      ]
+                    }
+                  ],
+                  "expected": "124.50 m + 86.25 m = 210.75 m",
+                  "observed": "TOTAL ACCESS LENGTH = 211.75 m",
+                  "evidence": "Both printed segment amounts remain 124.50 m and 86.25 m; only their explicit total is wrong."
+                },
+                {
+                  "id": "operating_reference",
+                  "claim": "The current operating-note work-instruction identifier disagrees with the authorized brief.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "area": "Drawing Notes, note 3",
+                      "rect": [
+                        40,
+                        158,
+                        554,
+                        175
+                      ]
+                    }
+                  ],
+                  "expected": "WI-326",
+                  "observed": "WI-263",
+                  "evidence": "The common job brief authorizes WI-326; the current plan note prints WI-263. Historical WI-281 is explicitly archived and is not a defect."
+                }
+              ],
+              "clean_controls": [
+                "Extraction block Q-2 and stockpile S-1 are distinct, correctly labelled blocks.",
+                "Detail A is explicitly schematic and enlarged.",
+                "WI-281 appears only in a labelled historical archive entry; it is not the current operating note."
+              ],
+              "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+            },
+            {
+              "case_id": "F58",
+              "source_sha256": "97cbfcae4376cb9976f1836dd0c1e50b0b2e5b0889439a8543339fefb376f113",
+              "brief_sha256": "6b196851ec5dd78374d2fad802b8ac84a63a8222fd3dad859ac73882c620544a",
+              "is_clean": true,
+              "layout_family": "route_rtf",
+              "defects": [],
+              "clean_controls": [
+                "The west and east sheets intentionally use SE and NE quarters of the same section.",
+                "Crossings C-04 and C-05 refer to different crossings.",
+                "Historical alignment CF-A is explicitly superseded; CF-B is the current alignment.",
+                "Two 75.00 m intervals total 150.00 m per sheet; the route total is 300.00 m."
+              ],
+              "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+            },
+            {
+              "case_id": "D31",
+              "source_sha256": "eaaa7dcea44c50f28dd1531edf8318f5261a2c734f401b42a80a3190b1dd761f",
+              "brief_sha256": "6b196851ec5dd78374d2fad802b8ac84a63a8222fd3dad859ac73882c620544a",
+              "is_clean": false,
+              "layout_family": "route_rtf",
+              "defects": [
+                {
+                  "id": "sheet_job_identity",
+                  "claim": "The east sheet carries the wrong job number.",
+                  "locations": [
+                    {
+                      "page": 2,
+                      "area": "top-right job panel",
+                      "rect": [
+                        660,
+                        39,
+                        803,
+                        104
+                      ]
+                    },
+                    {
+                      "page": 1,
+                      "area": "top-right job panel",
+                      "rect": [
+                        660,
+                        39,
+                        803,
+                        104
+                      ]
+                    }
+                  ],
+                  "expected": "BTP-26-579",
+                  "observed": "BTP-26-597 on Sheet 2",
+                  "evidence": "The brief and west sheet identify BTP-26-579; the east-sheet job field transposes the last two digits."
+                },
+                {
+                  "id": "current_sheet_number",
+                  "claim": "The east sheet repeats the first sheet number.",
+                  "locations": [
+                    {
+                      "page": 2,
+                      "area": "bottom-right current sheet field",
+                      "rect": [
+                        568,
+                        523,
+                        799,
+                        555
+                      ]
+                    },
+                    {
+                      "page": 1,
+                      "area": "bottom-right current sheet field",
+                      "rect": [
+                        568,
+                        523,
+                        799,
+                        555
+                      ]
+                    }
+                  ],
+                  "expected": "Sheet 2 of 2",
+                  "observed": "Sheet 1 of 2 on east sheet",
+                  "evidence": "The two-page document and west/east match-line captions establish two different current sheets; the east sheet repeats 1 of 2."
+                }
+              ],
+              "clean_controls": [
+                "The west and east sheets intentionally use SE and NE quarters of the same section.",
+                "Crossings C-04 and C-05 refer to different crossings.",
+                "Historical alignment CF-A is explicitly superseded; CF-B is the current alignment.",
+                "Two 75.00 m intervals total 150.00 m per sheet; the route total is 300.00 m."
+              ],
+              "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+            },
+            {
+              "case_id": "B76",
+              "source_sha256": "d060bec75a9c2567672b4ac15321eb87b6d26bb465a953767cccc398242c7d67",
+              "brief_sha256": "0834ee7016bdf9d9b1fb97595efb17049b9d55623fce3f5026aeadec708106f0",
+              "is_clean": true,
+              "layout_family": "wide_loc",
+              "defects": [],
+              "clean_controls": [
+                "Parcels P-6 and P-7 are distinct adjoining parcels, not an identity mismatch.",
+                "Detail B has its own enlarged 1:300 nominal scale; main view is 1:1500.",
+                "T-14 is expressly tie-only and is not presented as accepted survey control.",
+                "Rev 2 is retained as a historical entry and Rev 3 is the current issue."
+              ],
+              "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+            },
+            {
+              "case_id": "H90",
+              "source_sha256": "84ad402792b9c43ae8c3b64ac422346f6c3ea66671f41e324a3b52322fd34c0b",
+              "brief_sha256": "0834ee7016bdf9d9b1fb97595efb17049b9d55623fce3f5026aeadec708106f0",
+              "is_clean": false,
+              "layout_family": "wide_loc",
+              "defects": [
+                {
+                  "id": "basis_zone_conflict",
+                  "claim": "The bottom bearing-basis note states a conflicting UTM zone.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "area": "bottom-left Plan Notes, note 1",
+                      "rect": [
+                        42,
+                        403,
+                        391,
+                        477
+                      ]
+                    },
+                    {
+                      "page": 1,
+                      "area": "top-middle spatial basis panel",
+                      "rect": [
+                        354,
+                        38,
+                        740,
+                        114
+                      ]
+                    }
+                  ],
+                  "expected": "NAD83(CSRS), UTM Zone 12N",
+                  "observed": "Bottom note 1 says UTM Zone 11N",
+                  "evidence": "The top panel and common brief both state Zone 12N; only the bottom note changes it to 11N."
+                },
+                {
+                  "id": "corridor_decimal",
+                  "claim": "The oblique width dimension disagrees with the 18.00 m standard corridor.",
+                  "locations": [
+                    {
+                      "page": 1,
+                      "area": "oblique main view, transverse corridor dimension",
+                      "rect": [
+                        648,
+                        198,
+                        729,
+                        240
+                      ]
+                    },
+                    {
+                      "page": 1,
+                      "area": "top-middle corridor panel",
+                      "rect": [
+                        354,
+                        38,
+                        740,
+                        114
+                      ]
+                    }
+                  ],
+                  "expected": "18.00 m",
+                  "observed": "1.80 m",
+                  "evidence": "The normal brief and top corridor panel specify 18.00 m; the rotated width label shifts its decimal to 1.80 m."
+                }
+              ],
+              "clean_controls": [
+                "Parcels P-6 and P-7 are distinct adjoining parcels, not an identity mismatch.",
+                "Detail B has its own enlarged 1:300 nominal scale; main view is 1:1500.",
+                "T-14 is expressly tie-only and is not presented as accepted survey control.",
+                "Rev 2 is retained as a historical entry and Rev 3 is the current issue."
+              ],
+              "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "cases": [
+    {
+      "author": "author-b",
+      "original_truth_artifact": "author-b/oracle.json",
+      "case_id": "B76",
+      "source_sha256": "d060bec75a9c2567672b4ac15321eb87b6d26bb465a953767cccc398242c7d67",
+      "brief_sha256": "0834ee7016bdf9d9b1fb97595efb17049b9d55623fce3f5026aeadec708106f0",
+      "is_clean": true,
+      "layout_family": "wide_loc",
+      "defects": [],
+      "clean_controls": [
+        "Parcels P-6 and P-7 are distinct adjoining parcels, not an identity mismatch.",
+        "Detail B has its own enlarged 1:300 nominal scale; main view is 1:1500.",
+        "T-14 is expressly tie-only and is not presented as accepted survey control.",
+        "Rev 2 is retained as a historical entry and Rev 3 is the current issue."
+      ],
+      "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+    },
+    {
+      "author": "author-b",
+      "original_truth_artifact": "author-b/oracle.json",
+      "case_id": "D31",
+      "source_sha256": "eaaa7dcea44c50f28dd1531edf8318f5261a2c734f401b42a80a3190b1dd761f",
+      "brief_sha256": "6b196851ec5dd78374d2fad802b8ac84a63a8222fd3dad859ac73882c620544a",
+      "is_clean": false,
+      "layout_family": "route_rtf",
+      "defects": [
+        {
+          "id": "sheet_job_identity",
+          "claim": "The east sheet carries the wrong job number.",
+          "locations": [
+            {
+              "page": 2,
+              "area": "top-right job panel",
+              "rect": [
+                660,
+                39,
+                803,
+                104
+              ]
+            },
+            {
+              "page": 1,
+              "area": "top-right job panel",
+              "rect": [
+                660,
+                39,
+                803,
+                104
+              ]
+            }
+          ],
+          "expected": "BTP-26-579",
+          "observed": "BTP-26-597 on Sheet 2",
+          "evidence": "The brief and west sheet identify BTP-26-579; the east-sheet job field transposes the last two digits."
+        },
+        {
+          "id": "current_sheet_number",
+          "claim": "The east sheet repeats the first sheet number.",
+          "locations": [
+            {
+              "page": 2,
+              "area": "bottom-right current sheet field",
+              "rect": [
+                568,
+                523,
+                799,
+                555
+              ]
+            },
+            {
+              "page": 1,
+              "area": "bottom-right current sheet field",
+              "rect": [
+                568,
+                523,
+                799,
+                555
+              ]
+            }
+          ],
+          "expected": "Sheet 2 of 2",
+          "observed": "Sheet 1 of 2 on east sheet",
+          "evidence": "The two-page document and west/east match-line captions establish two different current sheets; the east sheet repeats 1 of 2."
+        }
+      ],
+      "clean_controls": [
+        "The west and east sheets intentionally use SE and NE quarters of the same section.",
+        "Crossings C-04 and C-05 refer to different crossings.",
+        "Historical alignment CF-A is explicitly superseded; CF-B is the current alignment.",
+        "Two 75.00 m intervals total 150.00 m per sheet; the route total is 300.00 m."
+      ],
+      "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+    },
+    {
+      "author": "author-b",
+      "original_truth_artifact": "author-b/oracle.json",
+      "case_id": "F58",
+      "source_sha256": "97cbfcae4376cb9976f1836dd0c1e50b0b2e5b0889439a8543339fefb376f113",
+      "brief_sha256": "6b196851ec5dd78374d2fad802b8ac84a63a8222fd3dad859ac73882c620544a",
+      "is_clean": true,
+      "layout_family": "route_rtf",
+      "defects": [],
+      "clean_controls": [
+        "The west and east sheets intentionally use SE and NE quarters of the same section.",
+        "Crossings C-04 and C-05 refer to different crossings.",
+        "Historical alignment CF-A is explicitly superseded; CF-B is the current alignment.",
+        "Two 75.00 m intervals total 150.00 m per sheet; the route total is 300.00 m."
+      ],
+      "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+    },
+    {
+      "author": "author-b",
+      "original_truth_artifact": "author-b/oracle.json",
+      "case_id": "H90",
+      "source_sha256": "84ad402792b9c43ae8c3b64ac422346f6c3ea66671f41e324a3b52322fd34c0b",
+      "brief_sha256": "0834ee7016bdf9d9b1fb97595efb17049b9d55623fce3f5026aeadec708106f0",
+      "is_clean": false,
+      "layout_family": "wide_loc",
+      "defects": [
+        {
+          "id": "basis_zone_conflict",
+          "claim": "The bottom bearing-basis note states a conflicting UTM zone.",
+          "locations": [
+            {
+              "page": 1,
+              "area": "bottom-left Plan Notes, note 1",
+              "rect": [
+                42,
+                403,
+                391,
+                477
+              ]
+            },
+            {
+              "page": 1,
+              "area": "top-middle spatial basis panel",
+              "rect": [
+                354,
+                38,
+                740,
+                114
+              ]
+            }
+          ],
+          "expected": "NAD83(CSRS), UTM Zone 12N",
+          "observed": "Bottom note 1 says UTM Zone 11N",
+          "evidence": "The top panel and common brief both state Zone 12N; only the bottom note changes it to 11N."
+        },
+        {
+          "id": "corridor_decimal",
+          "claim": "The oblique width dimension disagrees with the 18.00 m standard corridor.",
+          "locations": [
+            {
+              "page": 1,
+              "area": "oblique main view, transverse corridor dimension",
+              "rect": [
+                648,
+                198,
+                729,
+                240
+              ]
+            },
+            {
+              "page": 1,
+              "area": "top-middle corridor panel",
+              "rect": [
+                354,
+                38,
+                740,
+                114
+              ]
+            }
+          ],
+          "expected": "18.00 m",
+          "observed": "1.80 m",
+          "evidence": "The normal brief and top corridor panel specify 18.00 m; the rotated width label shifts its decimal to 1.80 m."
+        }
+      ],
+      "clean_controls": [
+        "Parcels P-6 and P-7 are distinct adjoining parcels, not an identity mismatch.",
+        "Detail B has its own enlarged 1:300 nominal scale; main view is 1:1500.",
+        "T-14 is expressly tie-only and is not presented as accepted survey control.",
+        "Rev 2 is retained as a historical entry and Rev 3 is the current issue."
+      ],
+      "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+    },
+    {
+      "author": "author-a",
+      "original_truth_artifact": "author-a/oracle.json",
+      "case_id": "K27",
+      "review_inputs": "cases/K27/review_inputs",
+      "source_sha256": "5e188db555c8b61d805cbf9bf8f929512f2b462e21ad4439e8d45a1090d60e89",
+      "brief_sha256": "7a20adddfe93e6fbd7da98f348a1e334ec95ffd9e0c9f9d10c365c8c563dd3c5",
+      "is_clean": true,
+      "layout_family": "portrait-cabin-with-raster-notes",
+      "defects": [],
+      "clean_controls": [
+        "The locator inset retains its own north arrow and 1:8000 bar; main-view scale is independently 1:2000.",
+        "Adjoining NE 14-62-11 W5M is a neighbor, not the subject SE 23-62-11 W5M.",
+        "Revision 1 / 2026-09-24 is explicitly preliminary history, while current issue is Revision 2 / 2026-11-16.",
+        "The entire Notes panel is rasterized identically in both pair members; absence from native text extraction is not absence from the plan."
+      ],
+      "intended_scope": "Read the whole portrait sheet including its raster Notes panel; assess each explicitly labeled main and locator view separately for its own orientation.",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            842.0,
+            1190.0
+          ],
+          "whole_render": "cases/K27/review_inputs/renders/page-01-whole.png",
+          "native_text_characters": 1012
+        }
+      ]
+    },
+    {
+      "author": "author-a",
+      "original_truth_artifact": "author-a/oracle.json",
+      "case_id": "M84",
+      "review_inputs": "cases/M84/review_inputs",
+      "source_sha256": "01f066aa72ee3e1adb85dea630e6966d90689bb943fe9de5bdaf9764b1502761",
+      "brief_sha256": "4df09cb6c57b44507278022ad1ef21266cfebe4d8c46f1e886566fba4d69ff6b",
+      "is_clean": false,
+      "layout_family": "two-sheet-access-package",
+      "defects": [
+        {
+          "id": "A-ID",
+          "claim": "Sheet 2 carries the archived drawing number as its current drawing identity.",
+          "locations": [
+            {
+              "page": 2,
+              "box_points": [
+                755,
+                650,
+                970,
+                815
+              ],
+              "description": "bottom current-issue titleblock"
+            }
+          ],
+          "expected": "Current Drawing HV-6027 on both sheets.",
+          "observed": "Sheet 2 current titleblock says Drawing HV-5882.",
+          "evidence": [
+            "Job brief current package HV-6027.",
+            "Sheet 1 current titleblock and Note 1 say HV-6027.",
+            "Sheet 1 archived history identifies HV-5882 as old drawing."
+          ]
+        },
+        {
+          "id": "A-LOC",
+          "claim": "Sheet 2 current location states Township 58 instead of Township 56.",
+          "locations": [
+            {
+              "page": 2,
+              "box_points": [
+                445,
+                650,
+                755,
+                815
+              ],
+              "description": "bottom LOCATION titleblock"
+            }
+          ],
+          "expected": "NE 14-56-8 W5M.",
+          "observed": "NE 14-58-8 W5M.",
+          "evidence": [
+            "Job brief location NE 14-56-8 W5M.",
+            "Sheet 1 location titleblock, main view and Note 3 agree on Township 56."
+          ]
+        }
+      ],
+      "clean_controls": [
+        "Sheet 1 history retains archived Drawing HV-5882 and two earlier revision dates; they are historical, not current sheet identity.",
+        "NW 14-56-8 W5M and adjoining SE 15-56-8 W5M labels are intentional neighboring parcels.",
+        "Main 1:2500, location inset 1:10000, C-1 detail 1:500 and S-1 detail 1:1000 have separate physical scale bars and north arrows."
+      ],
+      "intended_scope": "Read both sheets as the current issued package; compare current sheet identities to the supplied job facts while retaining historical entries and adjoining-parcel identities in their roles.",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            1190.0,
+            842.0
+          ],
+          "whole_render": "cases/M84/review_inputs/renders/page-01-whole.png",
+          "native_text_characters": 1418
+        },
+        {
+          "page": 2,
+          "size_points": [
+            1190.0,
+            842.0
+          ],
+          "whole_render": "cases/M84/review_inputs/renders/page-02-whole.png",
+          "native_text_characters": 1532
+        }
+      ]
+    },
+    {
+      "author": "author-b",
+      "original_truth_artifact": "author-b/oracle.json",
+      "case_id": "N24",
+      "source_sha256": "c05daefa0e48ae05cedb8e6e4853f47738efb226a515a39acc406cab6b836ef0",
+      "brief_sha256": "c1edacd0f5227bd247169bd8ee5634297a955df1cf9c9f6d75c8bc205ece1890",
+      "is_clean": true,
+      "layout_family": "portrait_pla",
+      "defects": [],
+      "clean_controls": [
+        "Extraction block Q-2 and stockpile S-1 are distinct, correctly labelled blocks.",
+        "Detail A is explicitly schematic and enlarged.",
+        "WI-281 appears only in a labelled historical archive entry; it is not the current operating note."
+      ],
+      "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+    },
+    {
+      "author": "author-a",
+      "original_truth_artifact": "author-a/oracle.json",
+      "case_id": "Q19",
+      "review_inputs": "cases/Q19/review_inputs",
+      "source_sha256": "b409e8b316d7ae7c6918b508bd1f95c23030500de0b8d9414c5b13648645e63c",
+      "brief_sha256": "d4b08c635e5f5761c702b9dc996acdf4095d1b2534b82597fc00b0d176928a35",
+      "is_clean": true,
+      "layout_family": "two-sheet-access-package",
+      "defects": [],
+      "clean_controls": [
+        "Sheet 1 history retains archived Drawing HV-5882 and two earlier revision dates; they are historical, not current sheet identity.",
+        "NW 14-56-8 W5M and adjoining SE 15-56-8 W5M labels are intentional neighboring parcels.",
+        "Main 1:2500, location inset 1:10000, C-1 detail 1:500 and S-1 detail 1:1000 have separate physical scale bars and north arrows."
+      ],
+      "intended_scope": "Read both sheets as the current issued package; compare current sheet identities to the supplied job facts while retaining historical entries and adjoining-parcel identities in their roles.",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            1190.0,
+            842.0
+          ],
+          "whole_render": "cases/Q19/review_inputs/renders/page-01-whole.png",
+          "native_text_characters": 1418
+        },
+        {
+          "page": 2,
+          "size_points": [
+            1190.0,
+            842.0
+          ],
+          "whole_render": "cases/Q19/review_inputs/renders/page-02-whole.png",
+          "native_text_characters": 1532
+        }
+      ]
+    },
+    {
+      "author": "author-a",
+      "original_truth_artifact": "author-a/oracle.json",
+      "case_id": "S63",
+      "review_inputs": "cases/S63/review_inputs",
+      "source_sha256": "9aac4c37ab909410d374fa1ecd9d709d95dcd64b6668e1de276fb7ecc862bbfc",
+      "brief_sha256": "360d70a62fc859796e8286347f2b9bedbfd2970f10b650b014b41f6b0cb8999e",
+      "is_clean": false,
+      "layout_family": "area-schedule-with-scope-ledger",
+      "defects": [
+        {
+          "id": "C-CATEGORIES",
+          "claim": "Schedule redistributes area between new access and borrow, contradicting the main labels even though subtotal remains correct.",
+          "locations": [
+            {
+              "page": 1,
+              "box_points": [
+                773,
+                118,
+                1160,
+                289
+              ],
+              "description": "area schedule New access and Borrow rows"
+            },
+            {
+              "page": 1,
+              "box_points": [
+                180,
+                300,
+                535,
+                420
+              ],
+              "description": "main-view access and borrow area labels"
+            }
+          ],
+          "expected": "New access 0.420 ha and borrow 0.220 ha.",
+          "observed": "Schedule says 0.480 ha and 0.160 ha respectively; main labels remain 0.420 ha and 0.220 ha. Both category pairs sum to 0.640 ha.",
+          "evidence": [
+            "Main-view named activity labels.",
+            "Area schedule named rows.",
+            "Overall 1.260 ha total still agrees and does not resolve the category conflict."
+          ]
+        },
+        {
+          "id": "C-EXCLUSION",
+          "claim": "Area-scope Note 2 overstates the excluded road allowance overlap.",
+          "locations": [
+            {
+              "page": 1,
+              "box_points": [
+                773,
+                475,
+                1160,
+                635
+              ],
+              "description": "right Notes / area scope, Note 2"
+            }
+          ],
+          "expected": "Road allowance overlap 0.080 ha, consistent with Detail RA-1 and schedule.",
+          "observed": "Note 2 states 0.100 ha. Detail RA-1 and schedule remain 0.080 ha, and gross envelope remains 1.480 ha.",
+          "evidence": [
+            "Detail RA-1 shows 0.080 ha excluded.",
+            "Schedule road allowance row shows 0.080 ha.",
+            "0.140 + 0.100 + 1.260 = 1.500, inconsistent with printed gross 1.480."
+          ]
+        }
+      ],
+      "clean_controls": [
+        "Activity subtotal and net Crown request are both intentionally 1.260 ha.",
+        "Gross envelope is intentionally 1.480 ha because it also includes 0.140 ha shared track and 0.080 ha road overlap.",
+        "Existing shared track and road overlap are separately shown exclusions, not missing activity categories.",
+        "Main and RA-1 detail scales differ legitimately at 1:1500 and 1:750, each with its own bar and north arrow.",
+        "SE 36-49-18 W5M is explicitly a neighboring parcel; Revision A is explicitly historical."
+      ],
+      "intended_scope": "Read all category labels, the schedule, the separate overlap detail and Notes; compare both category amounts and stated exclusion scopes, independently of aggregate equality.",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            1190.0,
+            842.0
+          ],
+          "whole_render": "cases/S63/review_inputs/renders/page-01-whole.png",
+          "native_text_characters": 1692
+        }
+      ]
+    },
+    {
+      "author": "author-b",
+      "original_truth_artifact": "author-b/oracle.json",
+      "case_id": "T67",
+      "source_sha256": "d740f2556f00aaf7b5dbafe30502dfed9ddfaacf900067e07b8f3ccb256e2ee2",
+      "brief_sha256": "c1edacd0f5227bd247169bd8ee5634297a955df1cf9c9f6d75c8bc205ece1890",
+      "is_clean": false,
+      "layout_family": "portrait_pla",
+      "defects": [
+        {
+          "id": "access_sum",
+          "claim": "The explicit access-length total is 1.00 m too large.",
+          "locations": [
+            {
+              "page": 1,
+              "area": "access length calculation, lower centre",
+              "rect": [
+                230,
+                548,
+                550,
+                629
+              ]
+            }
+          ],
+          "expected": "124.50 m + 86.25 m = 210.75 m",
+          "observed": "TOTAL ACCESS LENGTH = 211.75 m",
+          "evidence": "Both printed segment amounts remain 124.50 m and 86.25 m; only their explicit total is wrong."
+        },
+        {
+          "id": "operating_reference",
+          "claim": "The current operating-note work-instruction identifier disagrees with the authorized brief.",
+          "locations": [
+            {
+              "page": 1,
+              "area": "Drawing Notes, note 3",
+              "rect": [
+                40,
+                158,
+                554,
+                175
+              ]
+            }
+          ],
+          "expected": "WI-326",
+          "observed": "WI-263",
+          "evidence": "The common job brief authorizes WI-326; the current plan note prints WI-263. Historical WI-281 is explicitly archived and is not a defect."
+        }
+      ],
+      "clean_controls": [
+        "Extraction block Q-2 and stockpile S-1 are distinct, correctly labelled blocks.",
+        "Detail A is explicitly schematic and enlarged.",
+        "WI-281 appears only in a labelled historical archive entry; it is not the current operating note."
+      ],
+      "intended_scope": "Ordinary drafting QA on complete synthetic drawing and normal supplied job facts. No live regulatory compliance, accepted control, legal geometry, boundary reconstruction or inferred geometric closure."
+    },
+    {
+      "author": "author-a",
+      "original_truth_artifact": "author-a/oracle.json",
+      "case_id": "V42",
+      "review_inputs": "cases/V42/review_inputs",
+      "source_sha256": "57a120fc32f7b32862d3034b6100ad7c34bd2c79c7858a7141bc3eca35e7575c",
+      "brief_sha256": "ac3cdbcf7c13f0be6971f2589a9125afa4796d0f6265a524c57bd4183c8a8d24",
+      "is_clean": true,
+      "layout_family": "area-schedule-with-scope-ledger",
+      "defects": [],
+      "clean_controls": [
+        "Activity subtotal and net Crown request are both intentionally 1.260 ha.",
+        "Gross envelope is intentionally 1.480 ha because it also includes 0.140 ha shared track and 0.080 ha road overlap.",
+        "Existing shared track and road overlap are separately shown exclusions, not missing activity categories.",
+        "Main and RA-1 detail scales differ legitimately at 1:1500 and 1:750, each with its own bar and north arrow.",
+        "SE 36-49-18 W5M is explicitly a neighboring parcel; Revision A is explicitly historical."
+      ],
+      "intended_scope": "Read all category labels, the schedule, the separate overlap detail and Notes; compare both category amounts and stated exclusion scopes, independently of aggregate equality.",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            1190.0,
+            842.0
+          ],
+          "whole_render": "cases/V42/review_inputs/renders/page-01-whole.png",
+          "native_text_characters": 1692
+        }
+      ]
+    },
+    {
+      "author": "author-a",
+      "original_truth_artifact": "author-a/oracle.json",
+      "case_id": "X95",
+      "review_inputs": "cases/X95/review_inputs",
+      "source_sha256": "3c66ccd302cf5053d838be05e52010aeacd50bf55bfc2c426e3051352fa68d7c",
+      "brief_sha256": "666db60ec54eff815e56d4c480572064affd2c090e388eb86a088c9434d186b8",
+      "is_clean": false,
+      "layout_family": "portrait-cabin-with-raster-notes",
+      "defects": [
+        {
+          "id": "B-CRS",
+          "claim": "Raster Note 1 states the wrong UTM zone for the job.",
+          "locations": [
+            {
+              "page": 1,
+              "box_points": [
+                30,
+                684,
+                812,
+                874
+              ],
+              "description": "bottom Notes raster panel, Note 1"
+            }
+          ],
+          "expected": "NAD83(CSRS), UTM Zone 11.",
+          "observed": "NAD83(CSRS), UTM Zone 12.",
+          "evidence": [
+            "Job brief coordinate reference specifies Zone 11.",
+            "Visual raster Note 1 shows Zone 12; native extraction will not recover it."
+          ]
+        },
+        {
+          "id": "B-NORTH",
+          "claim": "The labeled main cabin/access view has no north arrow of its own.",
+          "locations": [
+            {
+              "page": 1,
+              "box_points": [
+                30,
+                89,
+                550,
+                660
+              ],
+              "description": "entire MAIN VIEW cabin/access frame"
+            }
+          ],
+          "expected": "Independent main-view orientation graphic, per the common job-brief presentation expectation and Note 3.",
+          "observed": "No north graphic or north label in the main view; the locator inset at upper right still has its own GRID N arrow.",
+          "evidence": [
+            "Whole-main-view visual review establishes absence.",
+            "Note 3 says each view is independently oriented.",
+            "Common job brief expects each main/detail/locator view to provide its own north orientation."
+          ]
+        }
+      ],
+      "clean_controls": [
+        "The locator inset retains its own north arrow and 1:8000 bar; main-view scale is independently 1:2000.",
+        "Adjoining NE 14-62-11 W5M is a neighbor, not the subject SE 23-62-11 W5M.",
+        "Revision 1 / 2026-09-24 is explicitly preliminary history, while current issue is Revision 2 / 2026-11-16.",
+        "The entire Notes panel is rasterized identically in both pair members; absence from native text extraction is not absence from the plan."
+      ],
+      "intended_scope": "Read the whole portrait sheet including its raster Notes panel; assess each explicitly labeled main and locator view separately for its own orientation.",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            842.0,
+            1190.0
+          ],
+          "whole_render": "cases/X95/review_inputs/renders/page-01-whole.png",
+          "native_text_characters": 1005
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "plans": 12,
+    "clean_controls": 6,
+    "planted_issues": 12,
+    "sheets": 16
+  }
+}
