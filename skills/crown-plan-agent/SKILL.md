@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.7.8
+version: 0.7.9
 ---
 # Crown Plan Agent
 
