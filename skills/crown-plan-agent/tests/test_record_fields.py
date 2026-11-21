@@ -374,5 +374,265 @@ class RecordFieldTests(unittest.TestCase):
         self.assertIn('not been selected', field['reason'])
         self.assertEqual(result['fields']['job_applicant']['status'], 'READY')
 
+    def dense_source(self, rows):
+        """Author a separate invented source; selections use fixed printed rows."""
+        target = self.root / 'dense-source.pdf'
+        with pymupdf.open() as document:
+            page = document.new_page(width=600, height=700)
+            for index, (text, role, label) in enumerate(rows):
+                page.insert_text((40, 60 + index * 18), text, fontsize=11)
+            document.save(target)
+        spec = deepcopy(self.spec)
+        spec['sources']['plan']['source_sha256'] = sha256(target.read_bytes()).hexdigest()
+        spec['fields'] = {}
+        for index, (text, role, label) in enumerate(rows):
+            y = 60 + index * 18
+            region = {'page': 1, 'bbox_points': [30, y-13, 550, y+3.5], 'role': 'Reviewed invented field'}
+            if label is not None:
+                region['label'] = label
+            field = self.field('plan', {'region': region}, role=role)
+            if role in ('area', 'length'):
+                field['measurement_scope'] = 'invented_reviewed_activity'
+            spec['fields']['row_'+str(index)] = field
+        return target, spec
+
+    def test_dense_distinct_actual_labels_are_readable_without_auxiliary_selectors(self):
+        target, spec = self.dense_source([
+            ('Applicant: Riverbend Gas Ltd.', 'applicant', 'Applicant:'),
+            ('Operator: Cloudstep Resources Ltd.', 'operator', 'Operator:'),
+            ('Disposition: LOC001234', 'disposition_id', 'Disposition:'),
+            ('Legal Description: NE 1/4 Sec12 T45 R6 W5M', 'legal_description', 'Legal Description:')])
+        only_applicant = deepcopy(spec)
+        only_applicant['fields'] = {'applicant': spec['fields']['row_0']}
+        one = read_record_fields(target, only_applicant, self.paths)['fields']['applicant']
+        self.assertEqual(one['status'], 'READY')
+        self.assertEqual(one['raw_value'], 'Riverbend Gas Ltd.')
+        all_fields = read_record_fields(target, spec, self.paths)['fields']
+        self.assertTrue(all(field['status'] == 'READY' for field in all_fields.values()))
+        self.assertEqual(all_fields['row_0']['raw_value'], one['raw_value'])
+
+    def test_dense_repeated_and_alias_identity_labels_remain_unresolved_above_or_below(self):
+        for other_label in ('Applicant:', 'Applicant Name:', 'Legal Name:'):
+            target, spec = self.dense_source([
+                (other_label+' Other Energy Ltd.', 'applicant', other_label),
+                ('Applicant: Riverbend Gas Ltd.', 'applicant', 'Applicant:')])
+            for index in (0, 1):
+                selected = deepcopy(spec)
+                selected['fields'] = {'chosen': spec['fields']['row_'+str(index)]}
+                with self.subTest(label=other_label, selected=index):
+                    self.assertEqual(read_record_fields(target, selected, self.paths)['fields']['chosen']['status'], 'REVIEW_REQUIRED')
+            target.unlink()
+
+    def test_unknown_or_blank_colon_lines_cannot_hide_a_wrapped_identity(self):
+        for suffix in ('Boreal: Partners Ltd.', 'Operator:', 'North Division Ltd.'):
+            target, spec = self.dense_source([
+                ('Applicant: Riverbend Gas', 'applicant', 'Applicant:'),
+                (suffix, 'operator', None)])
+            spec['fields'] = {'applicant': spec['fields']['row_0']}
+            with self.subTest(suffix=suffix):
+                self.assertEqual(read_record_fields(target, spec, self.paths)['fields']['applicant']['status'], 'REVIEW_REQUIRED')
+            target.unlink()
+
+    def test_dense_complete_printed_quantities_have_independent_row_boundaries(self):
+        target, spec = self.dense_source([
+            ('1.250 ha', 'area', None), ('0.250 ha', 'area', None), ('1.000 ha', 'area', None),
+            ('250.00 m', 'length', None), ('25.00 m', 'length', None)])
+        result = read_record_fields(target, spec, self.paths)['fields']
+        self.assertTrue(all(field['status'] == 'READY' for field in result.values()))
+        self.assertEqual([result['row_'+str(i)]['raw_value'] for i in range(5)],
+                         ['1.250 ha', '0.250 ha', '1.000 ha', '250.00 m', '25.00 m'])
+
+    def test_dense_distinct_numeric_labels_are_independent_but_total_aliases_compete(self):
+        target, spec = self.dense_source([
+            ('Added Area: 0.500 ha', 'area', 'Added Area:'),
+            ('Retained Area: 0.750 ha', 'area', 'Retained Area:'),
+            ('Total Area: 1.250 ha', 'area', 'Total Area:')])
+        self.assertTrue(all(field['status'] == 'READY' for field in read_record_fields(target, spec, self.paths)['fields'].values()))
+        target.unlink()
+        target, spec = self.dense_source([
+            ('Area Required: 2.000 ha', 'area', 'Area Required:'),
+            ('Total Area: 1.250 ha', 'area', 'Total Area:')])
+        for index in (0, 1):
+            selected = deepcopy(spec)
+            selected['fields'] = {'chosen': spec['fields']['row_'+str(index)]}
+            self.assertEqual(read_record_fields(target, selected, self.paths)['fields']['chosen']['status'], 'REVIEW_REQUIRED')
+
+    def test_unscoped_bare_cells_and_incomplete_quantities_still_require_review(self):
+        for first, second in [('1.250', 'ha'), ('1.250 ha', '500'), ('1.2,50 ha', '0.250 ha'),
+                              ('1.250 ha', '0.250 ha')]:
+            target, spec = self.dense_source([(first, 'area', None), (second, 'area', None)])
+            spec['fields'] = {'chosen': spec['fields']['row_0']}
+            if first == '1.250 ha' and second == '0.250 ha':
+                spec['fields']['chosen']['measurement_scope'] = None
+            with self.subTest(first=first, second=second):
+                self.assertEqual(read_record_fields(target, spec, self.paths)['fields']['chosen']['status'], 'REVIEW_REQUIRED')
+            target.unlink()
+
+    def test_same_line_complete_numeric_tail_is_not_a_separate_row(self):
+        target = self.root / 'same-line-amounts.pdf'
+        with pymupdf.open() as document:
+            page = document.new_page()
+            page.insert_text((40, 60), '1.250 ha', fontsize=11)
+            page.insert_text((90, 60), '0.250 ha', fontsize=12)
+            document.save(target)
+        spec = deepcopy(self.spec)
+        spec['sources']['plan']['source_sha256'] = sha256(target.read_bytes()).hexdigest()
+        spec['fields'] = {'amount': self.field('plan', {'region': {
+            'page': 1, 'bbox_points': [30, 45, 85, 64], 'role': 'One printed amount'}}, role='area')}
+        spec['fields']['amount']['measurement_scope'] = 'invented_reviewed_activity'
+        self.assertEqual(read_record_fields(target, spec, self.paths)['fields']['amount']['status'], 'REVIEW_REQUIRED')
+
+    def test_known_printed_label_cannot_be_relabelled_as_another_role(self):
+        target, spec = self.dense_source([
+            ('Operator: Cloudstep Resources Ltd.', 'applicant', 'Operator:')])
+        spec['fields'] = {'applicant': spec['fields']['row_0']}
+        self.assertEqual(read_record_fields(target, spec, self.paths)['fields']['applicant']['status'], 'REVIEW_REQUIRED')
+
+    def test_dense_distinct_labels_follow_cardinal_native_directions(self):
+        for angle, start, following in ((90, (300, 500), (318, 500)),
+                                        (180, (600, 300), (600, 282)),
+                                        (270, (300, 50), (282, 50))):
+            target = self.root / ('dense-native-'+str(angle)+'.pdf')
+            with pymupdf.open() as document:
+                page = document.new_page(width=700, height=700)
+                page.insert_text(start, 'Applicant: Riverbend Gas Ltd.', fontsize=11, rotate=angle)
+                page.insert_text(following, 'Operator: Cloudstep Resources Ltd.', fontsize=11, rotate=angle)
+                actual = next(span for block in page.get_text('dict')['blocks'] if block['type'] == 0
+                              for line in block['lines'] for span in line['spans']
+                              if span['text'].startswith('Applicant:'))
+                box = list(actual['bbox'])
+                document.save(target)
+            spec = deepcopy(self.spec)
+            spec['sources']['plan']['source_sha256'] = sha256(target.read_bytes()).hexdigest()
+            spec['fields'] = {'applicant': self.field('plan', {'region': {
+                'page': 1, 'bbox_points': [box[0]-.2, box[1]-.2, box[2]+.2, box[3]+.2],
+                'role': 'Reviewed actual native applicant line', 'label': 'Applicant:'}})}
+            with self.subTest(angle=angle):
+                field = read_record_fields(target, spec, self.paths)['fields']['applicant']
+                self.assertEqual(field['status'], 'READY')
+                self.assertEqual(field['raw_value'], 'Riverbend Gas Ltd.')
+
+    def test_label_cannot_consume_different_company_values_to_manufacture_agreement(self):
+        from job_record_checks import review_job_comparisons
+        paths = {}
+        for source, variant in [('plan', 'Alpha'), ('form', 'Beta')]:
+            target = self.root / ('prefix-'+source+'.pdf')
+            with pymupdf.open() as document:
+                page = document.new_page()
+                page.insert_text((40, 60), 'Applicant: Prairie '+variant+' Ltd.', fontsize=11)
+                page.insert_text((40, 78), 'Operator: Independent Operator Ltd.', fontsize=11)
+                document.save(target)
+            paths[source] = target
+        spec = deepcopy(self.spec)
+        spec['sources']['plan']['source_sha256'] = sha256(paths['plan'].read_bytes()).hexdigest()
+        spec['sources']['form']['source_sha256'] = sha256(paths['form'].read_bytes()).hexdigest()
+        spec['fields'] = {}
+        for source, variant in [('plan', 'Alpha'), ('form', 'Beta')]:
+            spec['fields'][source+'_applicant'] = self.field(source, {'region': {
+                'page': 1, 'bbox_points': [30, 45, 500, 64], 'role': 'Applicant field',
+                'label': 'Applicant: Prairie '+variant}})
+        result = read_record_fields(paths['plan'], spec, {'form': paths['form'], 'job': self.note})
+        comparison = review_job_comparisons(result, [{'id': 'company', 'kind': 'applicant_name',
+            'plan_field_id': 'plan_applicant', 'reference_field_id': 'form_applicant',
+            'workbook_check_id': 'C_1_2_2_1_02'}])[0]
+        self.assertEqual(comparison['mechanical_status'], 'REVIEW_REQUIRED')
+        self.assertTrue(all(field['raw_value'] is None for field in result['fields'].values()))
+
+    def test_label_cannot_strip_the_leading_digits_of_a_printed_quantity(self):
+        target, spec = self.dense_source([
+            ('Area: 12.500 ha', 'area', 'Area: 12.'),
+            ('Length: 1.00 m', 'length', 'Length:')])
+        spec['fields'] = {'quantity': spec['fields']['row_0']}
+        field = read_record_fields(target, spec, self.paths)['fields']['quantity']
+        self.assertEqual(field['status'], 'REVIEW_REQUIRED')
+        self.assertIsNone(field['raw_value'])
+
+    def test_no_supplied_label_preserves_the_complete_original_span(self):
+        target, spec = self.dense_source([
+            ('Applicant: Riverbend Gas Ltd.', 'applicant', None),
+            ('Operator: Cloudstep Resources Ltd.', 'operator', None)])
+        spec['fields'] = {'applicant': spec['fields']['row_0']}
+        field = read_record_fields(target, spec, self.paths)['fields']['applicant']
+        self.assertEqual(field['status'], 'READY')
+        self.assertEqual(field['raw_value'], 'Applicant: Riverbend Gas Ltd.')
+
+    def test_unknown_company_colons_cannot_be_used_as_name_stripping_labels(self):
+        from job_record_checks import review_job_comparisons
+        paths = {}
+        for source, name in [('plan', 'Prairie'), ('form', 'Meadow')]:
+            target = self.root / ('unknown-prefix-'+source+'.pdf')
+            with pymupdf.open() as document:
+                page = document.new_page()
+                page.insert_text((40, 60), name+': Energy Ltd.', fontsize=11)
+                document.save(target)
+            paths[source] = target
+        for strip in (True, False):
+            spec = deepcopy(self.spec)
+            spec['sources']['plan']['source_sha256'] = sha256(paths['plan'].read_bytes()).hexdigest()
+            spec['sources']['form']['source_sha256'] = sha256(paths['form'].read_bytes()).hexdigest()
+            spec['fields'] = {}
+            for source, name in [('plan', 'Prairie'), ('form', 'Meadow')]:
+                region = {'page': 1, 'bbox_points': [30, 45, 500, 64], 'role': 'Reviewed literal company name'}
+                if strip:
+                    region['label'] = name+':'
+                spec['fields'][source+'_applicant'] = self.field(source, {'region': region})
+            records = read_record_fields(paths['plan'], spec, {'form': paths['form'], 'job': self.note})
+            result = review_job_comparisons(records, [{'id': 'literal_company', 'kind': 'applicant_name',
+                'plan_field_id': 'plan_applicant', 'reference_field_id': 'form_applicant',
+                'workbook_check_id': 'C_1_2_2_1_02'}])[0]
+            with self.subTest(strip=strip):
+                self.assertEqual(result['mechanical_status'], 'REVIEW_REQUIRED' if strip else 'FAIL')
+                if not strip:
+                    self.assertEqual(records['fields']['plan_applicant']['raw_value'], 'Prairie: Energy Ltd.')
+                    self.assertEqual(records['fields']['form_applicant']['raw_value'], 'Meadow: Energy Ltd.')
+
+    def test_explicit_accounting_area_labels_support_independent_dense_rows(self):
+        target, spec = self.dense_source([
+            ('Crown Area: 1.000 ha', 'area', 'Crown Area:'),
+            ('Private Area: 0.250 ha', 'area', 'Private Area:'),
+            ('Gross Area: 1.250 ha', 'area', 'Gross Area:'),
+            ('Approved Area: 1.250 ha', 'area', 'Approved Area:')])
+        result = read_record_fields(target, spec, self.paths)['fields']
+        self.assertTrue(all(field['status'] == 'READY' for field in result.values()))
+
+    def test_supported_original_accounting_scalar_prefixes_remain_readable(self):
+        target, spec = self.dense_source([
+            ('Approved: 3.000 ha', 'area', 'Approved:'),
+            ('Added: 0.200 ha', 'area', 'Added:'),
+            ('Deleted: 0.100 ha', 'area', 'Deleted:'),
+            ('Amended: 3.100 ha', 'area', 'Amended:'),
+            ('Activity total: 3.100 ha', 'area', 'Activity total:'),
+            ('Net area: 2.900 ha', 'area', 'Net area:'),
+            ('Excluded: 0.200 ha', 'area', 'Excluded:')])
+        result = read_record_fields(target, spec, self.paths)['fields']
+        self.assertTrue(all(field['status'] == 'READY' for field in result.values()))
+
+    def test_unit_prefix_cannot_erase_a_competing_quantity(self):
+        for line, label, wanted in [('2.000: ha', '2.000:', 'REVIEW_REQUIRED'),
+                                    ('Prairie: ha', 'Prairie:', 'REVIEW_REQUIRED'),
+                                    ('ha', None, 'READY'), ('Units: ha', 'Units:', 'READY'),
+                                    ('Area: ha', 'Area:', 'READY')]:
+            target, spec = self.dense_source([('Area: 1.000', 'area', 'Area:'), (line, 'area', label)])
+            unit_selector = spec['fields']['row_1']['selector']
+            field = spec['fields']['row_0']
+            field['unit_selector'] = unit_selector
+            spec['fields'] = {'amount': field}
+            with self.subTest(line=line):
+                result = read_record_fields(target, spec, self.paths)['fields']['amount']
+                self.assertEqual(result['status'], wanted)
+                if wanted == 'READY':
+                    self.assertEqual((result['raw_value'], result['unit_raw_value']), ('1.000', 'ha'))
+            target.unlink()
+
+    def test_unit_headers_require_the_numeric_field_role(self):
+        for line, label in [('Applicant: ha', 'Applicant:'), ('Length: ha', 'Length:'), ('Length: m', 'Length:')]:
+            target, spec = self.dense_source([('Area: 1.000', 'area', 'Area:'), (line, 'area', label)])
+            field = spec['fields']['row_0']
+            field['unit_selector'] = spec['fields']['row_1']['selector']
+            spec['fields'] = {'amount': field}
+            with self.subTest(line=line):
+                self.assertEqual(read_record_fields(target, spec, self.paths)['fields']['amount']['status'], 'REVIEW_REQUIRED')
+            target.unlink()
+
 
 if __name__=='__main__':unittest.main()

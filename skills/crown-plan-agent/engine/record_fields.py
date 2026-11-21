@@ -34,6 +34,44 @@ ROLES = frozenset({'applicant', 'operator', 'landowner', 'surveyor',
                    'disposition_id', 'legal_description', 'area', 'length'})
 REVIEW_STATUSES = frozenset({'CURRENT_FOR_REVIEW', 'HISTORICAL_BASIS', 'UNCONFIRMED'})
 _ASCII_LOWER = str.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')
+_SOURCE_LABELS = {
+    alias: (identity, role)
+    for identity, role, aliases in (
+        ('applicant', 'applicant', ('applicant', 'applicant name', 'applicant legal name',
+                                    'legal name', 'registered legal name')),
+        ('operator', 'operator', ('operator', 'operator name')),
+        ('landowner', 'landowner', ('landowner', 'landowner name')),
+        ('surveyor', 'surveyor', ('surveyor', 'surveyor name', 'survey firm')),
+        ('disposition', 'disposition_id', ('disposition', 'disposition id', 'disposition number',
+                                          'disposition no', 'disposition no.')),
+        ('legal_description', 'legal_description', ('legal description', 'land description', 'legal')),
+        ('area_total', 'area', ('area', 'total area', 'area required', 'activity area', 'activity total', 'entire activity area')),
+        ('area_added', 'area', ('added area', 'area added', 'addition area', 'additional area', 'added')),
+        ('area_deleted', 'area', ('deleted area', 'area deleted', 'deleted')),
+        ('area_amended', 'area', ('amended area', 'area amended', 'amended')),
+        ('area_excluded', 'area', ('excluded area', 'area excluded', 'exclusion area', 'excluded')),
+        ('area_retained', 'area', ('retained area', 'area retained')),
+        ('area_existing', 'area', ('existing area', 'area existing')),
+        ('area_crown', 'area', ('crown area', 'crown land area')),
+        ('area_private', 'area', ('private area', 'private land area')),
+        ('area_gross', 'area', ('gross area', 'gross activity area')),
+        ('area_approved', 'area', ('approved area', 'approved activity area', 'approved')),
+        ('area_net', 'area', ('net area', 'net activity area')),
+        ('length_total', 'length', ('length', 'total length', 'length required', 'activity length')),
+        ('length_added', 'length', ('added length', 'length added', 'additional length')),
+        ('length_excluded', 'length', ('excluded length', 'length excluded')),
+        ('length_retained', 'length', ('retained length', 'length retained')),
+        ('length_existing', 'length', ('existing length', 'length existing')),
+    ) for alias in aliases
+}
+_SOURCE_LABEL = re.compile(r'([A-Za-z][A-Za-z .-]{0,63})\s*:\s*([^\r\n]+)\Z')
+_QUANTITY = re.compile(
+    r'(0|[1-9][0-9]*|[1-9][0-9]{0,2}(?:,[0-9]{3})+|'
+    r'[1-9][0-9]{0,2}(?: [0-9]{3})+)(\.[0-9]{1,12})? *'
+    r'(ha|m2|m²|m\^2|m)\.?\Z', re.IGNORECASE | re.ASCII)
+_UNIT_ROLES = {'ha': 'area', 'hectare': 'area', 'hectares': 'area', 'm2': 'area',
+               'm²': 'area', 'm^2': 'area', 'square metres': 'area', 'square meters': 'area',
+               'm': 'length', 'metre': 'length', 'metres': 'length', 'meter': 'length', 'meters': 'length'}
 
 
 def _identifier(value, name):
@@ -301,17 +339,89 @@ def _own_unit(candidate, unit_region):
     if (unit_region is None or unit_region['page'] != candidate['page']
             or not _contains(unit_region['bbox_points'], candidate['bbox_points'])):
         return False
-    value = _raw_label(candidate['text'], unit_region.get('label'))
-    return value is not None and value.translate(_ASCII_LOWER) in ('ha', 'm', 'm2', 'm²', 'm^2')
+    if 'label' in unit_region:
+        prefix, delimiter, payload = candidate['text'].partition(':')
+        if (not delimiter or unit_region['label'].strip().translate(_ASCII_LOWER)
+                != (prefix+':').translate(_ASCII_LOWER)):
+            return False
+        return _source_unit_role(candidate['text']) is not None
+    return _plain_unit_role(candidate['text']) is not None or _source_unit_role(candidate['text']) is not None
 
 
-def _possible_continuation(selected, spans, unit_region):
+def _plain_unit_role(text):
+    token = text.strip().translate(_ASCII_LOWER)
+    if token.endswith('.'):
+        token = token[:-1]
+    return _UNIT_ROLES.get(token)
+
+
+def _source_unit_role(text):
+    """Recognize an actual typed unit header without discarding numeric data."""
+    match = _SOURCE_LABEL.fullmatch(text.strip())
+    if match is None:
+        return None
+    label = ' '.join(match[1].translate(_ASCII_LOWER).split())
+    role = _plain_unit_role(match[2])
+    if role is None:
+        return None
+    known = _SOURCE_LABELS.get(label)
+    if known is not None:
+        return role if known[1] in ('area', 'length') and known[1] == role else None
+    captions = {'unit': None, 'units': None, 'area units': 'area',
+                'length units': 'length', 'distance units': 'length'}
+    if label not in captions or (captions[label] is not None and captions[label] != role):
+        return None
+    return role
+
+
+def _source_field(text):
+    """Recognize only complete, explicit field labels printed in this source.
+
+    This finite vocabulary is a reading boundary, not an acceptance of legal
+    identity or field meaning. Caller-selected labels/values are not consulted.
+    Aliases share an identity so repeated applicant names or totals compete.
+    """
+    match = _SOURCE_LABEL.fullmatch(text.strip())
+    if match is None:
+        return None
+    label = ' '.join(match[1].translate(_ASCII_LOWER).split())
+    payload = match[2].strip()
+    if label not in _SOURCE_LABELS or not payload or payload.startswith(':'):
+        return None
+    identity, role = _SOURCE_LABELS[label]
+    return identity, role, payload
+
+
+def _whole_quantity(text):
+    """Identify one original complete quantity token; never join source spans."""
+    labelled = _source_field(text)
+    value = labelled[2] if labelled is not None else text.strip()
+    # NBSP is a supported printed grouping separator; other compatibility
+    # numerals are not converted into ASCII by this reading-boundary grammar.
+    match = _QUANTITY.fullmatch(value.replace('\u00a0', ' '))
+    if match is None or len(match[1].replace(',', '').replace(' ', '')) > 18:
+        return None
+    unit = match[3].translate(_ASCII_LOWER)
+    role = 'length' if unit == 'm' else 'area'
+    if labelled is not None and labelled[1] != role:
+        return None
+    return role
+
+
+def _possible_continuation(selected, spans, unit_region, semantic_role=None, measurement_scope=None):
     lines, issues = reading_lines([selected])
     if issues or len(lines) != 1:
         return True
     a = lines[0]['reading_box']
     direction = selected['text_direction']
     height = a[3] - a[1]
+    selected_label = _source_field(selected['text'])
+    if semantic_role is None and _source_unit_role(selected['text']) is not None:
+        # The unit selector names a complete header, not a second amount with
+        # the same caption as the nearby value that it qualifies.
+        selected_label = None
+    scoped_quantity = (semantic_role in ('area', 'length') and bool(measurement_scope)
+                       and _whole_quantity(selected['text']) == semantic_role)
     original = selected['bbox_points']
     nearby = [original[0]-height*3, original[1]-height*3,
               original[2]+height*3, original[3]+height*3]
@@ -323,18 +433,35 @@ def _possible_continuation(selected, spans, unit_region):
             continue
         other, problems = reading_lines([candidate])
         if problems or len(other) != 1:
-            continue
+            return True
         b = other[0]['reading_box']
         h = max(height, b[3]-b[1])
         same_line_tail = abs((a[1]+a[3]-b[1]-b[3])/2) <= h*0.3 and -0.5 <= b[0]-a[2] <= h*2.5
         next_line = (-h*0.3 <= b[1]-a[3] <= h*0.7 and b[1] > a[1]+h*0.3
                      and a[0]-h <= b[0] <= a[2]+h)
+        previous_line = (-h*0.3 <= a[1]-b[3] <= h*0.7 and a[1] > b[1]+h*0.3
+                         and b[0]-h <= a[0] <= b[2]+h)
+        candidate_label = _source_field(candidate['text'])
+        if (previous_line and selected_label is not None and candidate_label is not None
+                and selected_label[0] == candidate_label[0]):
+            return True
         if same_line_tail or next_line:
+            if selected_label is not None and candidate_label is not None:
+                if selected_label[0] == candidate_label[0]:
+                    return True
+                # Different actual labelled fields, with native geometry, have
+                # their own reading boundaries regardless of other selectors.
+                continue
+            if (next_line and scoped_quantity and selected_label is None
+                    and candidate_label is None and _whole_quantity(candidate['text']) is not None):
+                # A complete numeral+unit on a separate row is not a numeric
+                # continuation. Same-line tails remain competing evidence.
+                continue
             return True
     return False
 
 
-def _pdf_field(source, context, selector, unit_region=None):
+def _pdf_field(source, context, selector, unit_region=None, semantic_role=None, measurement_scope=None, unit_role=None):
     region = selector['region']
     by_page, page_info = context
     evidence = _evidence(source, page=region['page'], bbox_points=deepcopy(region['bbox_points']),
@@ -366,7 +493,23 @@ def _pdf_field(source, context, selector, unit_region=None):
     span = selected[0]
     # Keep original extracted text rather than normalized _region_view values.
     evidence['text'] = span['text'][:MAX_VALUE_CHARS]
-    if _possible_continuation(span, spans, unit_region):
+    labelled = _source_field(span['text'])
+    if semantic_role is not None and labelled is not None and labelled[1] != semantic_role:
+        return None, evidence, 'The actual printed field label identifies a different semantic role.'
+    if unit_role is not None:
+        actual_unit_role = _plain_unit_role(span['text']) or _source_unit_role(span['text'])
+        if actual_unit_role is not None and actual_unit_role != unit_role:
+            return None, evidence, 'The actual printed unit/header contradicts the numeric field role.'
+    if 'label' in region:
+        printed_label, delimiter, payload = span['text'].partition(':')
+        if (not delimiter or not payload.strip()
+                or region['label'].strip().translate(_ASCII_LOWER) != (printed_label + ':').translate(_ASCII_LOWER)):
+            return None, evidence, 'The supplied label must end at the actual printed colon boundary without consuming any field value.'
+        if semantic_role is not None and (labelled is None or labelled[1] != semantic_role):
+            return None, evidence, 'Unknown printed prefixes cannot be used to strip a reviewed identity or quantity value.'
+        if semantic_role is None and _source_unit_role(span['text']) is None:
+            return None, evidence, 'A unit prefix must identify an actual recognized unit header, without erasing another quantity or field.'
+    if _possible_continuation(span, spans, unit_region, semantic_role, measurement_scope):
         return None, evidence, 'A possible native field continuation requires separate visual association.'
     value = _raw_label(span['text'], region.get('label'))
     if value is None or not value.strip() or len(value) > MAX_VALUE_CHARS:
@@ -438,7 +581,10 @@ def read_record_fields(plan_pdf, spec: dict, record_paths: dict[str, Path]) -> d
                 own_unit = (definition['unit_selector']['region'] if not is_unit
                             and definition['semantic_role'] in ('area', 'length')
                             and definition['unit_selector'] is not None else None)
-                return _pdf_field(source, context, selector, own_unit)
+                return _pdf_field(source, context, selector, own_unit,
+                                  definition['semantic_role'] if not is_unit else None,
+                                  definition['measurement_scope'] if not is_unit else None,
+                                  definition['semantic_role'] if is_unit else None)
             value, evidence, reason = reader(definition['selector'])
             field.update(raw_value=value, evidence=evidence, reason=reason)
             if definition['unit_selector'] is not None:
