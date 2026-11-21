@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.9 — development preview
+# Crown Plan Agent 0.8.0 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,27 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Add a source-bound whole-sheet intake map with page geometry, native line
+  directions/locators, candidate labels, image regions and visual followups.
+- Prepare supported mechanical checks inside explicitly reviewed contexts using
+  literal observed labels and bounded native-text overlap closure. Keep every
+  ambiguous, wrapped, clipped or unsupported request visible; derived rectangles
+  never inherit a completeness declaration.
+- Add `--finished-plan-contexts` to the existing review command, with preparation
+  counts and followups alongside the checks that actually execute. Direct
+  `--finished-plan-spec` reviews retain their supported workflow.
+- Read properly grouped printed amounts and one terminal unit period with exact
+  decimal arithmetic. Keep malformed grouping, wrong units and competing values
+  unresolved. Support explicit `m^2` alongside `m2`/`m²`.
+- Validate complete scale-denominator candidates so malformed numeric suffixes
+  cannot be accepted as shorter ratios. Preserve independent/opposed native
+  directions without imposing an unconfirmed text-facing cutoff near north.
+- Reuse the reviewed runtime and dependency locks. No OCR, automatic semantic
+  role acceptance, current-authority clearance or professional acceptance is
+  added by intake or these printed-format changes.
+
+Version 0.7.9 changes retained:
 
 - Preserve a conflicted disposition alias as unresolved in the dated workbook
   so report generation can retain the invalid-context gate without crashing.

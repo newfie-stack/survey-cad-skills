@@ -67,6 +67,18 @@ def build_review_summary(report: dict) -> dict:
         if not any(item["field"] == field for item in summary["input_requests"]):
             summary["input_requests"].append({"field": field, "question": _QUESTIONS[field]})
 
+    preparation = report.get("plan_intake_preparation")
+    if preparation is not None:
+        from intake_reporting import preparation_counts
+        counts = preparation_counts(preparation)
+        add("checked", f"Prepared {counts['ready']} of {counts['requested']} requested drawing-QC checks from reviewed source contexts; {counts['unresolved']} unresolved preparation requests remain separate from executed comparisons.")
+        if counts["unresolved"]:
+            add("needs_attention", f"Source selection left {counts['unresolved']} unresolved preparation requests; inspect their contexts and competing or unreadable evidence.")
+            add("next_steps", "Resolve the source-selection followups in Plan intake and check preparation; do not treat omitted checks as passed.")
+        if counts["visual_tasks"]:
+            add("not_checked", f"Intake identified {counts['visual_tasks']} visual followups; native-text discovery does not verify graphical content or extraction completeness.")
+            add("next_steps", "Read the actual page images for the intake visual followups and record observations separately.")
+
     finished = report.get("finished_plan_review")
     if finished is not None:
         if (not isinstance(finished, dict)

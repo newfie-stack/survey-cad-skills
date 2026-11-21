@@ -139,8 +139,17 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                clause_facts: dict | None = None,
                clause_inventory: dict | None = None,
                annotated_pdf: Path | None = None,
-               finished_plan_spec: dict | None = None) -> Path:
+               finished_plan_spec: dict | None = None,
+               finished_plan_contexts: dict | None = None) -> Path:
     preflight_review_paths(pdf, output, annotated_pdf)
+    if finished_plan_spec is not None and finished_plan_contexts is not None:
+        raise ValueError("Finished-plan spec and contexts are mutually exclusive; do not supply both")
+    if finished_plan_contexts is not None:
+        from finished_plan_spec import validate_spec
+        from pdf_source import read_pdf_snapshot
+        validate_spec(finished_plan_contexts)
+        if read_pdf_snapshot(pdf)[1] != finished_plan_contexts["source_sha256"]:
+            raise ValueError("Source SHA-256 digest does not match the finished-plan contexts")
     if not isinstance(scenario, dict):
         raise TypeError("Scenario must be a JSON object")
     preflight_clause_inputs(scenario, clause_catalogue, clause_facts, clause_inventory)
@@ -160,6 +169,13 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
         scenario = {**scenario, "activity": code}
     catalogue = load_candidate_catalog(catalogue_path)
     inventory = extract_pdf(pdf, include_vectors=False)
+    preparation = None
+    if finished_plan_contexts is not None:
+        from plan_intake import prepare_finished_plan
+        preparation = prepare_finished_plan(pdf, finished_plan_contexts)
+        if inventory["source_sha256"] != preparation["source_sha256"]:
+            raise ValueError("Source PDF changed during plan intake")
+        finished_plan_spec = preparation["spec"]
     finished_review = None
     if finished_plan_spec is not None:
         from finished_plan_review import review_finished_plan
@@ -172,10 +188,13 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                               survey_geometry=survey_geometry, table_a2_rows=rows,
                               clause_catalogue=clause_catalogue, clause_facts=clause_facts,
                               clause_inventory=clause_inventory)
-    if finished_review is not None:
+    if preparation is not None:
+        report["plan_intake_preparation"] = preparation
+    if finished_review is not None or preparation is not None:
         from report_markdown import render_review_markdown
         from review_summary import build_review_summary
-        report["finished_plan_review"] = finished_review
+        if finished_review is not None:
+            report["finished_plan_review"] = finished_review
         report["review_summary"] = build_review_summary(report)
         report["report_markdown"] = render_review_markdown(report)
     report["report_markdown"] += drawing_disposition_report(inventory, code, drawing_text)
@@ -212,6 +231,11 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
         if read_pdf_snapshot(pdf)[1] != finished_review["source_sha256"]:
             raise ValueError("Source PDF changed during the combined review")
         report["report_markdown"] += finished_review["report_markdown"]
+    if preparation is not None:
+        from intake_reporting import render_intake_preparation
+        if read_pdf_snapshot(pdf)[1] != preparation["source_sha256"]:
+            raise ValueError("Source PDF changed during the prepared review")
+        report["report_markdown"] += render_intake_preparation(preparation)
     if annotated_pdf is None:
         # Preserve the existing single-report workflow.
         with output.open("x", encoding="utf-8") as handle:
@@ -242,8 +266,11 @@ def main(argv: list[str] | None = None) -> int:
                         help="Typed fact/provenance JSON for the selected clause catalogue")
     parser.add_argument("--clause-inventory", type=Path,
                         help="Explicit matching inventory to assess dated clause-path coverage")
-    parser.add_argument("--finished-plan-spec", type=Path,
+    finished = parser.add_mutually_exclusive_group()
+    finished.add_argument("--finished-plan-spec", type=Path,
                         help="Opt-in source-bound drawing-QC checks in the Markdown report")
+    finished.add_argument("--finished-plan-contexts", type=Path,
+                        help="Prepare drawing-QC regions from source-bound reviewed contexts and literal labels")
     parser.add_argument("--survey-geometry", type=Path, help="Optional local JSON with explicitly sourced projected survey coordinates")
     parser.add_argument("--drawing-text", type=Path, help="Local UTF-8 DWG text export for the disposition check")
     source = parser.add_mutually_exclusive_group()
@@ -284,13 +311,19 @@ def main(argv: list[str] | None = None) -> int:
         except (OSError, TypeError, ValueError) as exc:
             parser.error("Invalid clause workbook inputs: " + str(exc))
     finished_plan_spec = None
-    if args.finished_plan_spec is not None:
+    finished_plan_contexts = None
+    finished_path = args.finished_plan_spec or args.finished_plan_contexts
+    if finished_path is not None:
         from finished_plan_spec import load_spec
         from pdf_source import read_pdf_snapshot
         try:
-            finished_plan_spec = load_spec(args.finished_plan_spec)
-            if read_pdf_snapshot(args.pdf)[1] != finished_plan_spec["source_sha256"]:
+            selected_spec = load_spec(finished_path)
+            if read_pdf_snapshot(args.pdf)[1] != selected_spec["source_sha256"]:
                 raise ValueError("Source SHA-256 digest does not match the specification")
+            if args.finished_plan_contexts is not None:
+                finished_plan_contexts = selected_spec
+            else:
+                finished_plan_spec = selected_spec
         except (OSError, TypeError, ValueError) as exc:
             parser.error("Invalid finished-plan inputs: " + str(exc))
     regulator = context["regulator"]
@@ -323,7 +356,8 @@ def main(argv: list[str] | None = None) -> int:
                    drawing_text=args.drawing_text, a2_source_checked=refresh_requested,
                    clause_catalogue=clause_catalogue, clause_facts=clause_facts,
                    clause_inventory=clause_inventory, annotated_pdf=args.annotated_pdf,
-                   finished_plan_spec=finished_plan_spec)
+                   finished_plan_spec=finished_plan_spec,
+                   finished_plan_contexts=finished_plan_contexts)
     except (OSError, RuntimeError, ValueError) as exc:
         if args.annotated_pdf is None:
             raise

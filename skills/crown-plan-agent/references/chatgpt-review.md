@@ -57,6 +57,15 @@ This intake also applies to finished-plan QC without reconstruction. Read the
 whole frame before narrowing the check regions, and report which parts were
 actually read. Keep selected mechanical checks and visual observations explicit.
 
+When the reviewed runtime is available, use [source-bound plan intake](plan-intake.md)
+to map actual native lines and image regions, then prepare checks with the
+existing review command's `--finished-plan-contexts` option. The agent supplies
+reviewed context bounds and observed literal labels, keeping each subject/view
+separate. Preserve every unresolved preparation request beside executed results.
+Do not choose a field by its expected value or transfer a completeness statement
+to a derived rectangle. With text/image access alone, retain the assisted visual
+workflow and state that intake/preparation and the offline checks did not run.
+
 ## Orient the main plan and locate reference points
 
 After reading the full titleblock and Notes frame, inspect the main plan view,

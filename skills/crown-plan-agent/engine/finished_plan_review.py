@@ -18,11 +18,9 @@ from finished_plan_spec import decimal_value, validate_spec
 from pdf_inspector import extract_pdf
 from pdf_source import read_pdf_snapshot
 from native_text_reading import reading_lines
+from printed_numbers import parse_printed_amount, parse_scale_ratios
 from revision_markdown import _literal
 from runtime_security import load_pdf_runtime
-
-SCALE = re.compile(r"(?<![\w:])1\s*:\s*((?:[0-9]{1,3}(?:[ ,][0-9]{3})+)|[0-9]+)(?![\w.])")
-
 
 def _normal(text: str) -> str:
     return " ".join(unicodedata.normalize("NFKC", text).split()).upper()
@@ -71,7 +69,7 @@ def _region_view(region: dict, spans: list[dict], images: list) -> dict:
                          "text": "\n".join(line["text"] for line in lines),
                          "spans": [{key: s[key] for key in (
                              "text", "bbox_points", "text_angle_degrees", "text_direction",
-                             "quad_points", "text_origin_points", "font_ascender", "font_descender",
+                             "original_bbox_points", "quad_points", "text_origin_points", "font_ascender", "font_descender",
                              "page_rotation_degrees", "display_angle_degrees")
                                     if key in s} for s in selected],
                          "coverage_review": region.get("coverage_review"),
@@ -145,12 +143,17 @@ def _evaluate(check: dict, views: list[dict]) -> dict:
                             "Expected text not observed" + (" in a reviewer-declared complete region." if complete else "; extraction completeness is unverified."))
         result["correction"] = "Verify the stated basis, then restore or correct the expected text in its intended context."
     elif kind == "scale":
-        denominators = [match[1].replace(" ", "").replace(",", "")
-                        for value in views[0]["values"] for match in SCALE.finditer(value)]
-        values = [int(value) if len(value) <= 10 else value for value in denominators]
+        values = []
+        unsupported = False
+        for value in views[0]["values"]:
+            parsed, invalid = parse_scale_ratios(value)
+            values.extend(parsed)
+            unsupported = unsupported or invalid
         result["observed"] = values
         result["expected"] = check.get("expected_denominator", "One numeric scale ratio in the selected main-plan region")
-        if not values:
+        if unsupported:
+            result["reason"] = "A numerical scale candidate has unsupported or malformed formatting; no numeric prefix is accepted."
+        elif not values:
             result["status"] = "FAIL" if "coverage_review" in views[0]["region"] else "REVIEW_REQUIRED"
             result["reason"] = "No numerical scale found in the selected main-plan region; inset scales are not substituted."
         elif len(values) != 1 or not isinstance(values[0], int) or not 1 <= values[0] <= 1_000_000_000:
@@ -166,7 +169,7 @@ def _evaluate(check: dict, views: list[dict]) -> dict:
         part_values = [view["values"] for view in views[:-1]]
         total_view = views[-1]
         total_values = total_view["values"]
-        result["reason"] = "Each selected amount must contain one plain decimal value with the declared unit; missing, competing or differently formatted cells remain unresolved."
+        result["reason"] = "Each selected amount must contain one supported decimal value with the declared unit; missing, competing or ambiguous formats remain unresolved."
         if not total_values or any(len(values) != 1 for values in part_values):
             return result
         if len(total_values) > 1:
@@ -174,12 +177,10 @@ def _evaluate(check: dict, views: list[dict]) -> dict:
             if "label" not in region or region.get("coverage_review", {}).get("status") != "TEXT_COMPLETE":
                 result["reason"] = "Multiple total candidates require a labelled field with declared complete text coverage."
                 return result
-        pattern = re.compile(r"((?:0|[1-9][0-9]{0,17})(?:\.[0-9]{1,12})?)\s*" + re.escape(check["unit"]), re.IGNORECASE)
         amounts = [values[0] for values in part_values] + total_values
-        matches = [pattern.fullmatch(amount) for amount in amounts]
-        if any(match is None for match in matches):
+        numbers = [parse_printed_amount(amount, check["unit"]) for amount in amounts]
+        if any(number is None for number in numbers):
             return result
-        numbers = [decimal_value(match[1]) for match in matches]
         parts = numbers[:len(part_values)]
         totals = numbers[len(part_values):]
         if len(set(totals)) > 1:
