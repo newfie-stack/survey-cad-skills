@@ -70,6 +70,10 @@ def triage(case: dict[str, Any]) -> dict[str, Any]:
     iogc = case.get("iogc_confirmed")
     purpose = case.get("purpose", "unknown")
     document = case.get("document_type", "unknown")
+    if any(not isinstance(item, str) for item in (land_class, purpose, document)):
+        raise ValueError("land_class, purpose and document_type must be strings.")
+    if iogc is not None and not isinstance(iogc, bool):
+        raise ValueError("iogc_confirmed must be true, false or null.")
 
     if land_class == "provincial_crown":
         candidate, why = (
@@ -120,22 +124,23 @@ def triage(case: dict[str, Any]) -> dict[str, Any]:
         )
         status = "REVIEW_REQUIRED"
 
-    ia_applicability = "REVIEW_REQUIRED"
-    if status == "NOT_APPLICABLE":
-        ia_applicability = "NOT_APPLICABLE"
-    elif land_class == "first_nation_reserve" and iogc is True:
-        # The actual formal-plan checklist may require an IA table; a Surface
-        # Permit sketch should not inherit that requirement automatically.
+    ia_applicability = "NOT_APPLICABLE" if status == "NOT_APPLICABLE" else "REVIEW_REQUIRED"
+    if land_class == "first_nation_reserve" and iogc is True:
         if document in {"surface_permit_sketch", "asbuilt_exhibit"}:
-            ia_applicability = "REVIEW_REQUIRED"
+            ia_note = "Do not automatically apply the formal survey-plan IA table rule to a sketch or exhibit."
         elif document in {"application_survey_plan", "clsr_survey_plan"}:
-            ia_applicability = "REVIEW_REQUIRED"
+            ia_note = "Check the applicable IOGC Surface Lease/ROW IA table criteria against the current instructions."
+        else:
+            ia_note = "Identify the document type before deciding whether an IA table is required."
+    else:
+        ia_note = "IOGC plan-specific IA requirements have not been established."
 
     return {
         "candidate_route": candidate,
         "route_status": status,
         "route_reason": why,
         "iogc_incidental_activities_table_applicability": ia_applicability,
+        "ia_basis_note": ia_note,
         "area_arithmetic": check_workspace_areas(case.get("workspace_area")),
         "regulatory_acceptance": "NOT_ASSESSED",
         "plan_visual_review": "NOT_EXECUTED",
