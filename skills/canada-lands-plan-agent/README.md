@@ -1,6 +1,8 @@
-# Canada Lands Plan Agent — development preview
+# Canada Lands Plan Agent — pre-checking reviewer (development preview)
 
-Independent Canada Lands survey/land-interest plan-review skill focused first on **First Nation reserve oil-and-gas drawings administered by IOGC**. It complements Alberta's Crown Plan Agent; it does not use PLAR Table A2 as a default rule source.
+Read-only preliminary reviewer of completed or near-completed Canada Lands survey/land-interest plans focused first on **First Nation reserve oil-and-gas drawings administered by IOGC**. It complements Alberta's Crown Plan Agent; it does not use PLAR Table A2 as a default rule source.
+
+This agent is **not a drafting agent**. It reviews a proposed plan before the organization's formal surveyor/drafting check, provides an evidence-based list of corrections, and never changes the submitted original or declares regulatory acceptance. Default outputs are a Pre-Checking Review Report with coverage, severity-ranked findings, and readiness for formal checking (not approval).
 
 ## Typical tasks
 - Explain which CLSR and LTO numbers refer to which survey documents and flag unresolved agreement status.
