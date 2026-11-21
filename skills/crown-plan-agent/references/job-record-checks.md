@@ -136,6 +136,15 @@ wrapped/split/scanned/outlined/clipped fields remain open. Adding unrelated fiel
 or auxiliary unit selectors cannot hide a possible name continuation. The numeric
 reader may separate only its own actual recognized unit token.
 
+Supported dense rows use the source's actual finite typed field labels, including
+their colon, or a complete printed quantity/unit token in a reviewed measurement
+scope. Independently different known labels can separate fields; repeated/alias
+labels still compete, including immediately above the selected field. A caller's
+prefix cannot consume any payload after the actual header. Unknown prefixes and
+unknown/wrong-role unit captions stay unresolved. With no prefix, the original
+whole span is preserved. Same-line competing quantities, unknown continuations
+and incomplete/split numbers stay open; bare ambiguous table cells are not inferred.
+
 Comparison objects have `id`, `kind`, `plan_field_id`, `reference_field_id`,
 `workbook_check_id` (supported ID or null). Kinds are `applicant_name`,
 `legal_description`, `disposition_id`. Narrow NFC/ASCII-case/whitespace treatment

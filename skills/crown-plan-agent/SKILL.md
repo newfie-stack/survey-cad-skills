@@ -163,6 +163,11 @@ wrapped, split or ambiguous native fields remain unresolved. Preserve original
 strings; no abbreviation, punctuation, suffix, compatibility-character or leading-
 zero ID equivalence is inferred. Unconfirmed Unicode case equivalence stays open.
 Never let unrelated field/unit selections hide a possible continuation of a name.
+Distinct source-known typed labels and complete printed quantity/unit tokens can
+separate supported dense rows. A supplied prefix must stop at its actual known
+header's colon; it cannot consume a name or number. Unknown prefixes, repeated
+or alias labels, same-line competing values and incomplete quantities stay open.
+Typed unit headers must identify units, without erasing another field's data.
 
 For a requested PDF review copy, include actionable finished-plan, dated-clause,
 job-record and point-export findings in its complete index. Keep PASS results in
