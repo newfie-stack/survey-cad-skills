@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "evidence_class": "WHOLLY_INVENTED_SYNTHETIC",
+  "scope": "SELECTED_REGION_REGRESSION_AND_EXPORTABLE_ASSISTED_EXERCISE",
+  "assisted_review_evaluated": false,
+  "independent_reviewer_acceptance": "NOT_PERFORMED",
+  "cases": {
+    "area_split_clean": {
+      "expected_checks": {
+        "grand_total": "PASS",
+        "parcel_total": "PASS",
+        "new_cut_sum": "PASS",
+        "existing_clearing_sum": "PASS"
+      },
+      "known_issues": []
+    },
+    "area_split_shift": {
+      "expected_checks": {
+        "grand_total": "PASS",
+        "parcel_total": "PASS",
+        "new_cut_sum": "FAIL",
+        "existing_clearing_sum": "FAIL"
+      },
+      "known_issues": [
+        {
+          "id": "category_reallocation",
+          "category": "area_classification",
+          "location": "Area summary versus the three parcel schedule rows",
+          "expected": "New cut 0.700 ha and existing clearing 0.450 ha",
+          "observed": "New cut 0.820 ha and existing clearing 0.330 ha",
+          "affected_checks": ["new_cut_sum", "existing_clearing_sum"],
+          "control_checks": ["grand_total", "parcel_total"],
+          "counting_rule": "One planted reallocation issue changes two summary fields; two failed comparisons are not two independent issues."
+        }
+      ]
+    }
+  }
+}

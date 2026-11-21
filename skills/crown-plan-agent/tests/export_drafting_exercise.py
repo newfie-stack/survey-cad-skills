@@ -6,7 +6,13 @@ import hashlib
 import json
 from pathlib import Path
 
-from drafting_plan_fixture import CASE_IDS, job_brief, make_drafting_plan
+from area_classification_fixture import (
+    CASE_IDS as AREA_CASE_IDS, job_brief as area_job_brief, make_plan as make_area_plan,
+)
+from drafting_plan_fixture import CASE_IDS as DRAFTING_CASE_IDS, job_brief, make_drafting_plan
+
+
+CASE_IDS = DRAFTING_CASE_IDS + AREA_CASE_IDS
 
 
 REVIEW_INSTRUCTIONS = """# Drafting exercise
@@ -36,8 +42,10 @@ def export_exercise(output: Path, case_id: str) -> dict:
     pdf = review_inputs / "plan.pdf"
     brief = review_inputs / "job-brief.md"
     instructions = review_inputs / "REVIEW.md"
-    make_drafting_plan(pdf, case_id)
-    brief.write_text(job_brief(case_id), encoding="utf-8")
+    make_plan, make_brief = ((make_area_plan, area_job_brief) if case_id in AREA_CASE_IDS
+                             else (make_drafting_plan, job_brief))
+    make_plan(pdf, case_id)
+    brief.write_text(make_brief(case_id), encoding="utf-8")
     instructions.write_text(REVIEW_INSTRUCTIONS, encoding="utf-8")
 
     manifest = {
