@@ -1,10 +1,20 @@
 # Crown Plan Agent master acceptance checklist
 
-Status recorded: November 20, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
+Status recorded: November 21, 2026. This document records implementation and acceptance evidence; it does not add skill instructions or change the project scope.
 
 The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `newfie-stack/survey-cad-skills` repository at the owner's request. Software checks use invented fixtures; a separately authorized private stage has also exercised one user-designated real plan and two public drawing examples. Their original inputs, extracted inventories, full reports and selected pages remain outside this repository and the package; only authorized anonymized summaries are included. This publication authorization does not authorize submission, publication of project files or release of the private Octopus implementation. An unchecked item is unfinished or lacks acceptance evidence. Completing this checklist document does not complete the milestones it records. See the [publication scope](PUBLICATION_REVIEW.md).
 
 ## Evidence baseline
+
+The November 21 whole-plan assisted trial reviewed twelve further invented plans
+without supplied regions or answers: twelve planted issues found, no misses,
+no false alarms across six clean controls, and no false-clearance claims in that
+set. One duplicate category finding earns no additional detection credit.
+Portable fixtures, frozen truth and claim-level grading records are preserved
+for reuse; these published cases are now regressions, not fresh blind inputs.
+See the [dated trial record](references/whole-plan-trial-2026-11-21.md).
+This evidence does not change the deterministic benchmark or close regulatory,
+real-plan or production acceptance gates.
 
 The November 20 unfamiliar-layout follow-up exercised eight further invented
 plans in four paired layout families. Six initial reviews found six planted
