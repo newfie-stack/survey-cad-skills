@@ -1,7 +1,7 @@
 ---
 name: canada-lands-plan-agent
 description: Review Canada Lands plans, especially First Nation reserve oil-and-gas plans involving CLSR, IOGC, access, rights-of-way, temporary workspace, remediation, and reclamation. Evidence-based pre-submission QC, not legal certification.
-version: 0.1.0
+version: 0.1.1
 ---
 
 # Canada Lands Plan Agent
