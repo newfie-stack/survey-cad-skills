@@ -1,7 +1,7 @@
 ---
 name: registered-plan-reconstruction
 description: Reconstruct registered survey-plan geometry from printed observations and verified control using deterministic COGO.
-version: 1.0.0
+version: 1.1.0
 ---
 # Registered Plan Reconstruction
 ## Workflow
@@ -18,12 +18,15 @@ version: 1.0.0
 - Do not chain opposite sides of a right-of-way or treat a tie as a subject boundary.
 - A calculated or non-monumented endpoint may still be a valid terminal.
 - Keep full controlling survey courses separate from clipped acquisition limits.
-- Do not apply ground/grid scale adjustments without a documented, applicable transformation.
+- Use printed bearings, distances and widths unchanged for ordinary local reconstruction. Treat a recorded combined factor as metadata; apply it only in a separate, documented transformation when required.
 - Do not invent bridging geometry to force closure or an expected area.
 - Flag unresolved geometry as REVIEW_REQUIRED with supporting evidence and alternatives.
 
+## Multi-section reconstruction
+For a plan spanning sections or quarters, follow [multi-section reconstruction](references/multi-section-reconstruction.md). Build the source-supported footprint once in its local survey frame; verify each supported parcel partition and printed area independently. Context-only cadastral strokes do not provide split or alignment authority.
+
 ## Output
-An observation register, provenance-linked derived geometry, residual/closure/area checks, and review status.
+An observation register, provenance-linked derived geometry, residual/closure/area checks, and separate local geometry, placement, and artifact statuses. Do not reuse an old DXF as evidence for a new run.
 
 ## Supporting references
 - [observation register md](references/observation-register.md)
@@ -44,7 +47,7 @@ A full review reconstruction must inventory every source course with an explicit
 Read [dimensioned evidence completeness](references/dimensioned-evidence-completeness.md) before full reconstruction. Match every dimensioned source observation to a ledger entry and a correctly classified output entity or explicit unresolved exception. Do not report PASS with omitted dimensioned courses.
 
 ## Existing-corridor versus subject-corridor classification gate
-Before joining any printed courses, identify the plan's **newly surveyed subject** using the title, bold represented limits, area labels, source plan references and enlarged details. Explicitly classify every other nearby corridor as EXISTING_REGISTERED_RW, ROAD, TIE_CONTROL or CONTEXT. A width label on an existing registered plan does not make that corridor the new subject. Require a feature-identity ledger mapping each candidate line to its plan number and role; never join courses merely because their endpoints look close or their bearings can form a traverse. Compare the proposed subject's footprint to the source image and both stated quarter-section areas before exporting. If feature identity remains unresolved, return REVIEW_REQUIRED rather than creating a zigzag. Raster digitization may be used as a clearly labeled visual topology check, never as authoritative COGO geometry.
+Before joining any printed courses, identify the plan's **newly surveyed subject** using the title, bold represented limits, area labels, source plan references and enlarged details. Explicitly classify every other nearby corridor as EXISTING_REGISTERED_RW, ROAD, TIE_CONTROL or CONTEXT. A width label on an existing registered plan does not make that corridor the new subject. Require a feature-identity ledger mapping each candidate line to its plan number and role; never join courses merely because their endpoints look close or their bearings can form a traverse. Compare the proposed subject's footprint to the source image and each applicable printed section/quarter area before exporting. If feature identity remains unresolved, return REVIEW_REQUIRED rather than creating a zigzag. Raster digitization may be used as a clearly labeled visual topology check, never as authoritative COGO geometry.
 
 ## Consolidated specialist references
 Read these before constructing a full plan:
