@@ -140,7 +140,9 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                clause_inventory: dict | None = None,
                annotated_pdf: Path | None = None,
                finished_plan_spec: dict | None = None,
-               finished_plan_contexts: dict | None = None) -> Path:
+               finished_plan_contexts: dict | None = None,
+               regulatory_evidence_spec: dict | None = None,
+               point_export: Path | None = None) -> Path:
     preflight_review_paths(pdf, output, annotated_pdf)
     if finished_plan_spec is not None and finished_plan_contexts is not None:
         raise ValueError("Finished-plan spec and contexts are mutually exclusive; do not supply both")
@@ -153,6 +155,19 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
     if not isinstance(scenario, dict):
         raise TypeError("Scenario must be a JSON object")
     preflight_clause_inputs(scenario, clause_catalogue, clause_facts, clause_inventory)
+    if regulatory_evidence_spec is None:
+        if point_export is not None:
+            raise ValueError('Point export requires a regulatory evidence specification')
+    else:
+        if clause_catalogue is None:
+            raise ValueError('Regulatory evidence requires an explicit dated clause catalogue')
+        from regulatory_evidence import validate_execution_inputs
+        validate_execution_inputs(scenario, clause_catalogue, clause_facts or {}, regulatory_evidence_spec)
+        from pdf_source import read_pdf_snapshot
+        if read_pdf_snapshot(pdf)[1] != regulatory_evidence_spec['source_sha256']:
+            raise ValueError('Source SHA-256 does not match regulatory evidence specification')
+        if (point_export is not None) != (regulatory_evidence_spec['point_export'] is not None):
+            raise ValueError('Point-export file and specification must be supplied together')
     context = application_context(scenario)
     regulator = context["regulator"]
     in_scope = context["scope_status"] == "IN_SCOPE"
@@ -188,9 +203,16 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                               survey_geometry=survey_geometry, table_a2_rows=rows,
                               clause_catalogue=clause_catalogue, clause_facts=clause_facts,
                               clause_inventory=clause_inventory)
+    if regulatory_evidence_spec is not None:
+        from regulatory_evidence import review_regulatory_evidence
+        report['regulatory_evidence_review'] = review_regulatory_evidence(
+            pdf, scenario, clause_catalogue, clause_facts or {}, regulatory_evidence_spec,
+            point_export=point_export)
+        if inventory['source_sha256'] != report['regulatory_evidence_review']['source_sha256']:
+            raise ValueError('Source PDF changed during clause evidence review')
     if preparation is not None:
         report["plan_intake_preparation"] = preparation
-    if finished_review is not None or preparation is not None:
+    if finished_review is not None or preparation is not None or regulatory_evidence_spec is not None:
         from report_markdown import render_review_markdown
         from review_summary import build_review_summary
         if finished_review is not None:
@@ -236,6 +258,10 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
         if read_pdf_snapshot(pdf)[1] != preparation["source_sha256"]:
             raise ValueError("Source PDF changed during the prepared review")
         report["report_markdown"] += render_intake_preparation(preparation)
+    if regulatory_evidence_spec is not None:
+        from pdf_source import read_pdf_snapshot
+        if read_pdf_snapshot(pdf)[1] != report['regulatory_evidence_review']['source_sha256']:
+            raise ValueError('Source PDF changed before clause evidence publication')
     if annotated_pdf is None:
         # Preserve the existing single-report workflow.
         with output.open("x", encoding="utf-8") as handle:
@@ -266,6 +292,10 @@ def main(argv: list[str] | None = None) -> int:
                         help="Typed fact/provenance JSON for the selected clause catalogue")
     parser.add_argument("--clause-inventory", type=Path,
                         help="Explicit matching inventory to assess dated clause-path coverage")
+    parser.add_argument('--regulatory-evidence-spec', type=Path,
+                        help='Execute supported source-bound observations for selected dated workbook questions')
+    parser.add_argument('--point-export', type=Path,
+                        help='Actual private CAD/GIS CSV point export bound by the evidence specification')
     finished = parser.add_mutually_exclusive_group()
     finished.add_argument("--finished-plan-spec", type=Path,
                         help="Opt-in source-bound drawing-QC checks in the Markdown report")
@@ -282,6 +312,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.clause_catalogue is None and (args.clause_facts is not None or args.clause_inventory is not None):
         parser.error("--clause-facts/--clause-inventory requires --clause-catalogue")
+    if args.regulatory_evidence_spec is not None and args.clause_catalogue is None:
+        parser.error('--regulatory-evidence-spec requires --clause-catalogue')
+    if args.point_export is not None and args.regulatory_evidence_spec is None:
+        parser.error('--point-export requires --regulatory-evidence-spec')
     refresh_requested = args.refresh_table_a2 or args.table_a2_url is not None
     if args.offline and refresh_requested:
         parser.error("--offline cannot be combined with an official refresh")
@@ -310,6 +344,19 @@ def main(argv: list[str] | None = None) -> int:
             preflight_clause_inputs(scenario, clause_catalogue, clause_facts, clause_inventory)
         except (OSError, TypeError, ValueError) as exc:
             parser.error("Invalid clause workbook inputs: " + str(exc))
+    regulatory_evidence_spec = None
+    if args.regulatory_evidence_spec is not None:
+        from regulatory_evidence import validate_execution_inputs
+        try:
+            regulatory_evidence_spec = load_bounded_json(args.regulatory_evidence_spec)
+            validate_execution_inputs(scenario, clause_catalogue, clause_facts, regulatory_evidence_spec)
+            from pdf_source import read_pdf_snapshot
+            if read_pdf_snapshot(args.pdf)[1] != regulatory_evidence_spec['source_sha256']:
+                raise ValueError('Source SHA-256 does not match regulatory evidence specification')
+            if (args.point_export is not None) != (regulatory_evidence_spec['point_export'] is not None):
+                raise ValueError('Point-export file and specification must be supplied together')
+        except (OSError, TypeError, ValueError) as exc:
+            parser.error('Invalid regulatory evidence inputs: ' + str(exc))
     finished_plan_spec = None
     finished_plan_contexts = None
     finished_path = args.finished_plan_spec or args.finished_plan_contexts
@@ -357,7 +404,9 @@ def main(argv: list[str] | None = None) -> int:
                    clause_catalogue=clause_catalogue, clause_facts=clause_facts,
                    clause_inventory=clause_inventory, annotated_pdf=args.annotated_pdf,
                    finished_plan_spec=finished_plan_spec,
-                   finished_plan_contexts=finished_plan_contexts)
+                   finished_plan_contexts=finished_plan_contexts,
+                   regulatory_evidence_spec=regulatory_evidence_spec,
+                   point_export=args.point_export)
     except (OSError, RuntimeError, ValueError) as exc:
         if args.annotated_pdf is None:
             raise

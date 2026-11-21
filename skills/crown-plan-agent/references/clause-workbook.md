@@ -1,5 +1,11 @@
 # Dated-source clause workbook
 
+The workbook remains a manual selection contract. To execute supported bounded
+observations against an actual PDF and optional CAD/GIS point export, use the
+separate [clause evidence pass](clause-execution.md). It preserves this workbook's
+selection/override decisions and regulatory statuses; declared observation links
+in this workbook still do not run adapters by themselves.
+
 Use the workbook to organize manual review against one explicitly selected
 publication and edition. It keeps applicability questions, source citations,
 exemptions and replacement requirements visible beside the existing PDF evidence

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "HISTORICAL_INVENTORY_NOT_CURRENT_VERIFICATION",
+  "status": "PUBLISHER_EDITION_OBSERVATIONS_NOT_NORMATIVE_CURRENT_VERIFICATION",
   "sources": [
     {
       "id": "GOA-CROWN-CONTENT-2024",
@@ -13,22 +13,72 @@
         "Part 3",
         "Part 4"
       ],
-      "current_status": "UNVERIFIED",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "official_discovery": "https://open.alberta.ca/",
       "licence": "Open Government Licence – Alberta (per document)",
       "official_url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_ROUTE_AND_SUPPLIED_DATED_COPY",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.alberta.ca/survey-sketch-plans",
           "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches"
         ],
-        "observed_fact": "Official survey page continues to link the content publication; the supplied May 30, 2024 edition supports the dated workbook.",
+        "observed_fact": "Official record has one active linked resource and no replacement entry. Updated/Date Modified May 30, 2024; Date Issued October 31, 2025 is a distinct metadata field. Retrieved PDF imprint remains May 30, 2024; selected general and hybrid clauses were reinspected.",
+        "selected_inspected_locators": [
+          "PDF p2 imprint",
+          "PDF p6 clauses 1.1.1-1.1.9, 1.2.1.1-1.2.1.2",
+          "PDF p7 clauses 1.2.1.3-1.2.3.3",
+          "PDF p7 clause 1.3.3.5 unsurveyed-territory indication",
+          "PDF p8 clauses 1.3.6.1-1.3.6.6",
+          "PDF p9 clauses 1.3.7.1 and 1.3.7.3 detail/main-body consistency",
+          "PDF p13 clauses 3.5.2.1-3.5.2.5",
+          "PDF p14 clauses 3.5.6.1-3.5.6.3"
+        ],
         "not_verified": [
-          "Publication record returned 403; latest resource/edition and supersession not established.",
-          "Current exact clauses and application-specific authority remain unverified."
-        ]
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "Related Version 4 is a separate historical publication; metadata Date Issued is not a newly inspected clause edition."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_ROUTE_AND_SUPPLIED_DATED_COPY",
+          "official_records": [
+            "https://www.alberta.ca/survey-sketch-plans",
+            "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches"
+          ],
+          "observed_fact": "Official survey page continues to link the content publication; the supplied May 30, 2024 edition supports the dated workbook.",
+          "not_verified": [
+            "Publication record returned 403; latest resource/edition and supersession not established.",
+            "Current exact clauses and application-specific authority remain unverified."
+          ]
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://open.alberta.ca/dataset/14a9d785-76ac-4918-8963-32576b1c6ebf/resource/97e04de3-0efa-4b32-be10-f602df58a0d8/download/fp-content-requirements-for-survey-plans-and-sketches.pdf",
+        "final_url": "https://open.alberta.ca/dataset/14a9d785-76ac-4918-8963-32576b1c6ebf/resource/97e04de3-0efa-4b32-be10-f602df58a0d8/download/fp-content-requirements-for-survey-plans-and-sketches.pdf",
+        "sha256": "f416645af0988739015d7411089387a5153e84861f44cf6560916d17d78ae21d",
+        "bytes": 215042,
+        "last_modified": "Fri, 31 May 2024 14:34:09 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF p2 imprint",
+        "PDF p6 clauses 1.1.1-1.1.9, 1.2.1.1-1.2.1.2",
+        "PDF p7 clauses 1.2.1.3-1.2.3.3",
+        "PDF p7 clause 1.3.3.5 unsurveyed-territory indication",
+        "PDF p8 clauses 1.3.6.1-1.3.6.6",
+        "PDF p9 clauses 1.3.7.1 and 1.3.7.3 detail/main-body consistency",
+        "PDF p13 clauses 3.5.2.1-3.5.2.5",
+        "PDF p14 clauses 3.5.6.1-3.5.6.3"
+      ],
+      "record_metadata_dates": {
+        "updated": "2024-05-30",
+        "date_modified": "2024-05-30",
+        "date_issued": "2025-10-31",
+        "pdf_imprint": "2024-05-30"
       }
     },
     {
@@ -37,30 +87,88 @@
       "issuer": "Government of Alberta, Environment and Parks",
       "version": "2.2",
       "published": "2022-10-20",
-      "current_status": "DATED_EDITION_CURRENCY_UNVERIFIED",
+      "current_status": "SUPERSEDED_BY_OFFICIAL_VERSION_2_3",
       "official_discovery": "https://open.alberta.ca/",
       "official_url": "https://open.alberta.ca/publications/public-lands-survey-manual-version-2",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_ROUTE_OBSERVED_RECORD_BLOCKED",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_RECORD_AND_REPLACEMENT_PDF_EXPLICIT_SUPERSESSION",
         "official_records": [
-          "https://www.alberta.ca/survey-sketch-plans",
           "https://open.alberta.ca/publications/public-lands-survey-manual-version-2"
         ],
-        "observed_fact": "The official survey page links the version-2 publication record; correct the older unversioned catalogue route.",
+        "observed_fact": "Publisher labels version 2.2 OUT-OF-DATE; current-linked v2.3 revision history PDF p5 explicitly supersedes v2.2 dated October 20, 2022 in entirety.",
+        "replacement_sha256": "d7e9538d25ee50a93100beffa7dce506324c94d7c68582d3aa54d13e69edb113",
         "not_verified": [
-          "Record returned 403; minor version, current resource, supersession and exact clauses not established."
+          "Historical v2.2 is not a current survey requirement source. Application-specific authority still requires independent review."
         ]
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_ROUTE_OBSERVED_RECORD_BLOCKED",
+          "official_records": [
+            "https://www.alberta.ca/survey-sketch-plans",
+            "https://open.alberta.ca/publications/public-lands-survey-manual-version-2"
+          ],
+          "observed_fact": "The official survey page links the version-2 publication record; correct the older unversioned catalogue route.",
+          "not_verified": [
+            "Record returned 403; minor version, current resource, supersession and exact clauses not established."
+          ]
+        }
+      ],
+      "superseded_by": "GOA-PUBLIC-LANDS-MANUAL-2024"
+    },
+    {
+      "id": "GOA-PUBLIC-LANDS-MANUAL-2024",
+      "title": "Public Lands Survey Manual",
+      "issuer": "Government of Alberta, Forestry and Parks",
+      "version": "2.3",
+      "published": "2024-05-31",
+      "official_discovery": "https://www.alberta.ca/survey-sketch-plans",
+      "official_url": "https://open.alberta.ca/publications/public-lands-survey-manual-version-2",
+      "supersedes": "GOA-PUBLIC-LANDS-MANUAL-2022",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
+      "linked_resource": {
+        "requested_url": "https://open.alberta.ca/dataset/112afb11-c320-45af-b644-6d71a82b77a8/resource/217285cb-9855-4776-8f01-6bb50c96d317/download/fp-public-lands-survey-manual-version-2-3.pdf",
+        "final_url": "https://open.alberta.ca/dataset/112afb11-c320-45af-b644-6d71a82b77a8/resource/217285cb-9855-4776-8f01-6bb50c96d317/download/fp-public-lands-survey-manual-version-2-3.pdf",
+        "sha256": "d7e9538d25ee50a93100beffa7dce506324c94d7c68582d3aa54d13e69edb113",
+        "bytes": 258013,
+        "last_modified": "Tue, 04 Jun 2024 20:36:04 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF pp2,5-7 edition, supersession, scope and plan types",
+        "PDF pp10-11 section 4.3 hybrid cadastre and reference system",
+        "PDF pp12-13 sections 5.1-5.6 amendment/renewal dependencies"
+      ],
+      "record_check": {
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
+        "official_records": [
+          "https://open.alberta.ca/publications/public-lands-survey-manual-version-2"
+        ],
+        "observed_fact": "Publisher lists v2.3 as the current unmarked resource and labels v2.2 OUT-OF-DATE. PDF p2 imprint is May 31, 2024; p5 explicitly supersedes v2.2 in entirety. Selected scope, plan-type, hybrid reference-system and renewal/amendment dependencies were inspected.",
+        "selected_inspected_locators": [
+          "PDF pp2,5-7 edition, supersession, scope and plan types",
+          "PDF pp10-11 section 4.3 hybrid cadastre and reference system",
+          "PDF pp12-13 sections 5.1-5.6 amendment/renewal dependencies"
+        ],
+        "not_verified": [
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "This manual states it does not supersede primary regulator documents or professional practice obligations; current tables and current ALSA standards retain separate gates."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
       }
     },
     {
       "id": "GOA-PLAR-TABLE-A2",
       "title": "Public Lands Administration Regulation Table A2",
       "issuer": "Government of Alberta",
-      "current_status": "SUPPLIED_PDF_ROWS_VERIFIED_CURRENCY_UNVERIFIED",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "official_discovery": "https://www.alberta.ca/public-lands-administration-regulation",
       "latest_catalogue_update_observed": "2026-10-28",
-      "latest_catalogue_update_evidence": "Official indexed collection metadata observed 2026-11-18 reports Updated October 28, 2026; detailed record returned 403. This is not an effective date or latest-resource byte verification.",
+      "latest_catalogue_update_evidence": "Exact official publication record and current linked resource observed November 21, 2026; publication date is not an independently established effective date.",
       "verification_priority": "HIGH",
       "official_url": "https://open.alberta.ca/dataset/6f05d13d-78da-49a9-8224-562d31ddcecb/resource/a075e667-28ba-4487-b4da-e30da5158fec/download/fp-plar-table-a2-final-2026-10-28.pdf",
       "publication_date": "2026-10-28",
@@ -73,21 +181,57 @@
         "effective_date_verified": false
       },
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_ROUTE_INDEXED_METADATA_AND_SELECTED_SUPPLIED_CONTENT",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.alberta.ca/public-lands-administration-regulation",
-          "https://open.alberta.ca/publications/public-lands-administration-regulation-plar-table-a2-alberta-energy-regulator-aer"
+          "https://open.alberta.ca/dataset/6f05d13d-78da-49a9-8224-562d31ddcecb/resource/a075e667-28ba-4487-b4da-e30da5158fec/download/fp-plar-table-a2-final-2026-10-28.pdf"
         ],
-        "observed_fact": "Official route identifies AER administration. Supplied row 51 at PDF page 8 reads LOC / Pipeline / Fresh Water / Sketch; its revision note uses DLO.",
+        "observed_fact": "Official record Updated October 28, 2026 lists October 2026 as current unmarked resource; September 2025 is SUPERSEDED. Retrieved cover/copyright October 28, 2026 and table footers October 27, 2026 remain distinct. Row 51 retains LOC/Pipeline/Fresh Water/Sketch; revision note uses DLO.",
+        "selected_inspected_locators": [
+          "PDF pp1-3 cover, imprint and revisions",
+          "PDF p4 selected access rows",
+          "PDF p8 row 51",
+          "PDF pp17-18 column definitions and footer"
+        ],
         "not_verified": [
-          "Detailed record/current resource equivalence and effective date unresolved.",
-          "DLO/LOC wording difference and exact activity, stage, exceptions and regulator direction need review."
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "DLO/LOC revision-note wording differs; no universal LOC plan rule or effective date is inferred."
         ],
-        "selected_supplied_locators": [
-          "PDF p1 cover; p2 copyright; p3 revision notes; p8 row51; p18 table footer"
-        ]
-      }
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_ROUTE_INDEXED_METADATA_AND_SELECTED_SUPPLIED_CONTENT",
+          "official_records": [
+            "https://www.alberta.ca/public-lands-administration-regulation",
+            "https://open.alberta.ca/publications/public-lands-administration-regulation-plar-table-a2-alberta-energy-regulator-aer"
+          ],
+          "observed_fact": "Official route identifies AER administration. Supplied row 51 at PDF page 8 reads LOC / Pipeline / Fresh Water / Sketch; its revision note uses DLO.",
+          "not_verified": [
+            "Detailed record/current resource equivalence and effective date unresolved.",
+            "DLO/LOC wording difference and exact activity, stage, exceptions and regulator direction need review."
+          ],
+          "selected_supplied_locators": [
+            "PDF p1 cover; p2 copyright; p3 revision notes; p8 row51; p18 table footer"
+          ]
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://open.alberta.ca/dataset/6f05d13d-78da-49a9-8224-562d31ddcecb/resource/a075e667-28ba-4487-b4da-e30da5158fec/download/fp-plar-table-a2-final-2026-10-28.pdf",
+        "final_url": "https://open.alberta.ca/dataset/6f05d13d-78da-49a9-8224-562d31ddcecb/resource/a075e667-28ba-4487-b4da-e30da5158fec/download/fp-plar-table-a2-final-2026-10-28.pdf",
+        "sha256": "6446dd722b2f8b6cfc9f6914b546b346d56527770814a7c2fb2a9bcdd05f8f8d",
+        "bytes": 379349,
+        "last_modified": "Wed, 28 Oct 2026 15:08:50 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF pp1-3 cover, imprint and revisions",
+        "PDF p4 selected access rows",
+        "PDF p8 row 51",
+        "PDF pp17-18 column definitions and footer"
+      ]
     },
     {
       "id": "AER-ONESTOP",
@@ -198,27 +342,62 @@
       "listing_release_date": "2025-05-09",
       "official_url": "https://www.aer.ca/documents/manuals/Manual018.pdf",
       "official_discovery": "https://www.aer.ca/regulations-and-compliance-enforcement/rules-and-regulations/manuals?page=1",
-      "current_status": "OFFICIAL_EDITION_AND_SELECTED_CLAUSES_OBSERVED_AUTHORITY_UNVERIFIED",
-      "observed_on": "2026-11-14",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
+      "observed_on": "2026-11-21",
       "selected_locators": [
-        "section 3.1, PDF pages 9-10 / printed pages 3-4",
-        "section 6.6, PDF page 44 / printed page 38",
-        "section 7.5, PDF pages 47-49 / printed pages 41-43"
+        "PDF p1 cover",
+        "PDF pp8-10 section 3.1 Application Overview",
+        "PDF p44 section 6.6 amendments",
+        "PDF pp47-49 section 7.5 renewals"
       ],
       "relevance": "Selected sources support plan/CAD dependencies, amendment and renewal citations; exact applicability, exceptions and exhaustive supersession remain unverified. Supplied April 2023 manual is an older edition.",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "EXACT_OFFICIAL_LISTING_ROW_OBSERVED",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.aer.ca/regulations-and-compliance-enforcement/rules-and-regulations/manuals?page=1"
+          "https://www.aer.ca/regulations-and-compliance-enforcement/rules-and-regulations/manuals?page=1",
+          "https://www.aer.ca/applications-and-notices/onestop/onestop-help",
+          "https://www.aer.ca/documents/manuals/Manual018.pdf"
         ],
-        "observed_fact": "Exact Manual 018 listing row remains May 9, 2025; dates on other manual rows are not its release date.",
+        "observed_fact": "Exact official manuals listing row remains May 9, 2025; current canonical linked PDF redirects to AER static host and cover remains May 2025. Application Overview plan/CAD dependencies were reinspected, including RTF CAD exception.",
+        "selected_inspected_locators": [
+          "PDF p1 cover",
+          "PDF pp8-10 section 3.1 Application Overview",
+          "PDF p44 section 6.6 amendments",
+          "PDF pp47-49 section 7.5 renewals"
+        ],
         "not_verified": [
-          "Current PDF contents not reinspected; previously selected May 2025 locators retain their earlier inspection date.",
-          "No exhaustive supersession or application-specific clause verification."
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "AER describes manuals as instructive, not independent sources of regulatory requirements. Their cited legislation/rules/directives retain their own authority gates."
         ],
+        "normative_authority_status": "UNVERIFIED_CURRENT",
         "listing_release_date_observed": "2025-05-09",
-        "pdf_content_reinspected": false
+        "pdf_content_reinspected": true
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "EXACT_OFFICIAL_LISTING_ROW_OBSERVED",
+          "official_records": [
+            "https://www.aer.ca/regulations-and-compliance-enforcement/rules-and-regulations/manuals?page=1"
+          ],
+          "observed_fact": "Exact Manual 018 listing row remains May 9, 2025; dates on other manual rows are not its release date.",
+          "not_verified": [
+            "Current PDF contents not reinspected; previously selected May 2025 locators retain their earlier inspection date.",
+            "No exhaustive supersession or application-specific clause verification."
+          ],
+          "listing_release_date_observed": "2025-05-09",
+          "pdf_content_reinspected": false
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://www.aer.ca/documents/manuals/Manual018.pdf",
+        "final_url": "https://static.aer.ca/prd/documents/manuals/Manual018.pdf",
+        "sha256": "f842c3c67b001bc0600496bef8f2686109a723aecdb3b2208024409738420620",
+        "bytes": 1087338,
+        "last_modified": "Mon, 12 May 2025 16:28:42 GMT",
+        "retrieved_on": "2026-11-21"
       }
     },
     {
@@ -250,20 +429,54 @@
       "version": "4.0",
       "publication_month": "2020-05",
       "official_url": "https://open.alberta.ca/publications/geo-referencing-guide",
-      "current_status": "SUPPLIED_DATED_COPY_CURRENCY_UNVERIFIED",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "relevance": "Plan geo-reference and mapping-point guidance; do not silently apply the plan rules to every AER shapefile.",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_ROUTE_AND_SUPPLIED_DATED_COPY",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.alberta.ca/survey-sketch-plans",
           "https://open.alberta.ca/publications/geo-referencing-guide"
         ],
-        "observed_fact": "The official survey page links geo-referencing guidance; supplied v4.0 May 2020 copy remains dated evidence.",
+        "observed_fact": "Official publication record and survey page link v4.0 May 2020. Retrieved PDF p2 expressly supersedes earlier Geo-Referencing Digital Plan Submissions. Selected plan/CAD requirements and separate shapefile wording inspected.",
+        "selected_inspected_locators": [
+          "PDF p2 edition and predecessor replacement",
+          "PDF pp4-5 sections 1-3 plan scope and RP requirements",
+          "PDF p6 sections 4.1 CAD and 4.2 shapefiles"
+        ],
         "not_verified": [
-          "Detailed publication record returned 403; current edition, exceptions and artifact-specific clauses unresolved."
-        ]
-      }
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "Section 4.2 general shapefile wording must be reconciled with the current AER-specific OneStop FAQ/QRG; no universal OneStop ATS-alignment mandate is inferred."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_ROUTE_AND_SUPPLIED_DATED_COPY",
+          "official_records": [
+            "https://www.alberta.ca/survey-sketch-plans",
+            "https://open.alberta.ca/publications/geo-referencing-guide"
+          ],
+          "observed_fact": "The official survey page links geo-referencing guidance; supplied v4.0 May 2020 copy remains dated evidence.",
+          "not_verified": [
+            "Detailed publication record returned 403; current edition, exceptions and artifact-specific clauses unresolved."
+          ]
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://open.alberta.ca/dataset/0aa078b0-dd6c-4944-9b0e-2613fd1238a2/resource/f76aa111-af02-4cbf-9d6b-ab16921178de/download/aep-geo-referencing-guide-version-4-2020.pdf",
+        "final_url": "https://open.alberta.ca/dataset/0aa078b0-dd6c-4944-9b0e-2613fd1238a2/resource/f76aa111-af02-4cbf-9d6b-ab16921178de/download/aep-geo-referencing-guide-version-4-2020.pdf",
+        "sha256": "e36cef4ff4dc960ac4238214af1ee53ecfc7a61e7a48ca4165f308162910c2f0",
+        "bytes": 117575,
+        "last_modified": "Thu, 21 May 2020 20:12:59 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF p2 edition and predecessor replacement",
+        "PDF pp4-5 sections 1-3 plan scope and RP requirements",
+        "PDF p6 sections 4.1 CAD and 4.2 shapefiles"
+      ]
     },
     {
       "id": "GOA-PCS-SUBMISSION-2021",
@@ -271,23 +484,59 @@
       "issuer": "Government of Alberta, Environment and Parks",
       "published": "2021-11-23",
       "official_url": "https://open.alberta.ca/publications/plan-confirmation-service-plan-submission-user-guide",
-      "current_status": "SUPPLIED_DATED_COPY_CURRENCY_UNVERIFIED",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "relevance": "PDF page 4 replaces the earlier Digital Plan Submission Standards and Procedures; pages 4-7 contain digital standards. The guide describes AEP systems; AER Manual 018 section 3.1 also references it for plan/CAD source dependencies. Exact artifact, regulator, exception and current edition must be resolved.",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_ACCESS_CHANGE_AND_SUPPLIED_DATED_COPY",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
           "https://www.alberta.ca/plan-confirmation-service",
           "https://open.alberta.ca/publications/plan-confirmation-service-plan-submission-user-guide"
         ],
-        "observed_fact": "Official PCS HTML requires Alberta.ca Account access from December 5, 2025; supplied 2021 guide page 8 has older login instructions.",
-        "not_verified": [
-          "Publication record returned 403; new guide edition/digital-standard supersession not proved.",
-          "The access change does not by itself replace package/layer/schema requirements."
+        "observed_fact": "Official record and PCS page continue to link November 2021 guide; PDF imprint November 23, 2021. Page 4 replaces Digital Plan Submission Standards and Procedures and explicitly limits package procedures to AEP systems. Pages 5-7 separate CAD layer/package and shapefile standards. Current PCS HTML requires Alberta.ca Account from December 5, 2025; old login steps are historical.",
+        "selected_inspected_locators": [
+          "PDF pp2,4 edition, predecessor replacement and AEP-system scope",
+          "PDF pp5-7 CAD layers, packages and shapefiles",
+          "PDF p8 superseded account-access instructions"
         ],
-        "access_requirement_effective_date": "2025-12-05",
-        "affected_supplied_locator": "PDF page 8; guide predecessor replacement on page 4 remains AEP-scoped"
-      }
+        "not_verified": [
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "AER Manual 018 references the guide but retains its own application and RTF exceptions. Do not require PCS/EDS or all PCS layers for every AER/OneStop artifact.",
+          "Account-access change does not establish replacement of digital layer or package standards."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_ACCESS_CHANGE_AND_SUPPLIED_DATED_COPY",
+          "official_records": [
+            "https://www.alberta.ca/plan-confirmation-service",
+            "https://open.alberta.ca/publications/plan-confirmation-service-plan-submission-user-guide"
+          ],
+          "observed_fact": "Official PCS HTML requires Alberta.ca Account access from December 5, 2025; supplied 2021 guide page 8 has older login instructions.",
+          "not_verified": [
+            "Publication record returned 403; new guide edition/digital-standard supersession not proved.",
+            "The access change does not by itself replace package/layer/schema requirements."
+          ],
+          "access_requirement_effective_date": "2025-12-05",
+          "affected_supplied_locator": "PDF page 8; guide predecessor replacement on page 4 remains AEP-scoped"
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://open.alberta.ca/dataset/95090a94-b948-4add-82bb-9fd54a96a715/resource/5b0cdb01-baf7-45bb-b69d-957c87fe6dbb/download/aep-pcs-plan-submission-user-guide-2021-11.pdf",
+        "final_url": "https://open.alberta.ca/dataset/95090a94-b948-4add-82bb-9fd54a96a715/resource/5b0cdb01-baf7-45bb-b69d-957c87fe6dbb/download/aep-pcs-plan-submission-user-guide-2021-11.pdf",
+        "sha256": "5fb47fc1866894f7ef727f5f8e83314fb5659f079d463727a174acc366d6e4f6",
+        "bytes": 207789,
+        "last_modified": "Tue, 23 Nov 2021 16:58:54 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF pp2,4 edition, predecessor replacement and AEP-system scope",
+        "PDF pp5-7 CAD layers, packages and shapefiles",
+        "PDF p8 superseded account-access instructions"
+      ]
     },
     {
       "id": "AER-ONESTOP-SHAPEFILE-FAQ-2025",
@@ -295,20 +544,58 @@
       "issuer": "Alberta Energy Regulator",
       "publication_month": "2025-08",
       "official_url": "https://www.aer.ca/documents/onestop/FAQ_OneStop-PLA-Shapefile.pdf",
-      "current_status": "SUPPLIED_COPY_AND_OFFICIAL_EDITION_OBSERVED_APPLICABILITY_UNVERIFIED",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "relevance": "Artifact-specific plan/shapefile/CAD guidance. Compare the georeferencing/alignment wording with the June 2020 QRG before adding a mandatory rule; source scope and version interpretation remain unresolved.",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_HELP_LINK_AND_SUPPLIED_EDITION_OBSERVED",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.aer.ca/applications-and-notices/onestop/onestop-help"
+          "https://www.aer.ca/applications-and-notices/onestop/onestop-help",
+          "https://www.aer.ca/documents/onestop/FAQ_OneStop-PLA-Shapefile.pdf"
         ],
-        "observed_fact": "Current help lists the resource; the supplied August 2025 copy was reinspected.",
+        "observed_fact": "Current OneStop Help canonical link redirects to AER static PDF, Updated August 2025. Q2 states OneStop shapefiles have no georeferencing requirement and recommends DIDs/Base Features alignment for optimal results; Q15 says PDF plan requirements remain unchanged. Q8 projection support and Q21 RTF CAD exceptions remain artifact-specific.",
+        "selected_inspected_locators": [
+          "PDF p1 Q2 OneStop alignment versus requirements",
+          "PDF p3 Q8 projection guidance",
+          "PDF p4 Q13-Q15 plan attachments, content sources and georeference",
+          "PDF p5 Q19-Q21 metadata and RTF CAD scope"
+        ],
         "not_verified": [
-          "FAQ/QRG alignment wording needs artifact/scope/version interpretation.",
-          "Current linked PDF equivalence and supersession not established; no universal CRS/alignment rule inferred."
-        ]
-      }
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "Q8 repeats the same projection name twice in the source. Do not invent a second projection or silently correct the source; compare current published templates and application validation.",
+          "This FAQ does not waive plan/CAD geo-reference requirements or professional survey reference-system/control requirements."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_HELP_LINK_AND_SUPPLIED_EDITION_OBSERVED",
+          "official_records": [
+            "https://www.aer.ca/applications-and-notices/onestop/onestop-help"
+          ],
+          "observed_fact": "Current help lists the resource; the supplied August 2025 copy was reinspected.",
+          "not_verified": [
+            "FAQ/QRG alignment wording needs artifact/scope/version interpretation.",
+            "Current linked PDF equivalence and supersession not established; no universal CRS/alignment rule inferred."
+          ]
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://www.aer.ca/documents/onestop/FAQ_OneStop-PLA-Shapefile.pdf",
+        "final_url": "https://static.aer.ca/prd/documents/onestop/FAQ_OneStop-PLA-Shapefile.pdf",
+        "sha256": "001217cea1eb5e95420856287a400fae74fb981b39b75092ab30bcf05a0ee784",
+        "bytes": 296310,
+        "last_modified": "Fri, 08 Aug 2025 14:08:15 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF p1 Q2 OneStop alignment versus requirements",
+        "PDF p3 Q8 projection guidance",
+        "PDF p4 Q13-Q15 plan attachments, content sources and georeference",
+        "PDF p5 Q19-Q21 metadata and RTF CAD scope"
+      ]
     },
     {
       "id": "AER-ONESTOP-SPATIAL-QRG-2020",
@@ -316,20 +603,57 @@
       "issuer": "Alberta Energy Regulator",
       "publication_month": "2020-06",
       "official_url": "https://www.aer.ca/documents/onestop/QRG_ImportSpatialDataPLA.pdf",
-      "current_status": "SUPPLIED_DATED_COPY_AND_OFFICIAL_LINK_OBSERVED_CURRENCY_UNVERIFIED",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "relevance": "Shapefile/components/import guidance. Preserve distinctions among plan geo-referencing, coordinate CRS and ATS alignment; compare later FAQ and current application instructions.",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_HELP_LINK_AND_SUPPLIED_EDITION_OBSERVED",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.aer.ca/applications-and-notices/onestop/onestop-help"
+          "https://www.aer.ca/applications-and-notices/onestop/onestop-help",
+          "https://www.aer.ca/documents/onestop/QRG_ImportSpatialDataPLA.pdf"
         ],
-        "observed_fact": "Current help lists the resource; the supplied June 2020 copy was reinspected.",
+        "observed_fact": "Current OneStop Help links the canonical QRG; retrieved edition footer remains June 2020. Geometry/component/schema and alignment/projection sections inspected. Last-Modified November 30, 2024 is a transport date, not the printed edition.",
+        "selected_inspected_locators": [
+          "PDF p1 import context and CAD separation",
+          "PDF p4 spatial validation and coordinate/projection parameters",
+          "PDF pp5-6 attributes and business rules",
+          "PDF p7 CAD upload and replacement-plan requirements"
+        ],
         "not_verified": [
-          "FAQ/QRG alignment wording needs artifact/scope/version interpretation.",
-          "Current linked PDF equivalence and supersession not established; no universal CRS/alignment rule inferred."
-        ]
-      }
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "Later August 2025 FAQ must be read alongside this QRG for artifact-specific georeferencing and RTF exceptions; no universal alignment, CAD or projection conclusion is inferred."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_HELP_LINK_AND_SUPPLIED_EDITION_OBSERVED",
+          "official_records": [
+            "https://www.aer.ca/applications-and-notices/onestop/onestop-help"
+          ],
+          "observed_fact": "Current help lists the resource; the supplied June 2020 copy was reinspected.",
+          "not_verified": [
+            "FAQ/QRG alignment wording needs artifact/scope/version interpretation.",
+            "Current linked PDF equivalence and supersession not established; no universal CRS/alignment rule inferred."
+          ]
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://www.aer.ca/documents/onestop/QRG_ImportSpatialDataPLA.pdf",
+        "final_url": "https://static.aer.ca/prd/documents/onestop/QRG_ImportSpatialDataPLA.pdf",
+        "sha256": "4489c7651b6e052e1a091364ba4f8a482afd31bca7325cae363af888b90a9c3f",
+        "bytes": 252665,
+        "last_modified": "Sat, 30 Nov 2024 21:46:07 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF p1 import context and CAD separation",
+        "PDF p4 spatial validation and coordinate/projection parameters",
+        "PDF pp5-6 attributes and business rules",
+        "PDF p7 CAD upload and replacement-plan requirements"
+      ]
     },
     {
       "id": "GOA-PUBLIC-LANDS-ACT-SUPPLIED",
@@ -468,26 +792,63 @@
     },
     {
       "id": "GOA-PLAR-TABLE-A1",
-      "title": "Public Lands Administration Regulation (PLAR) Table A1: AEP PLAR Dispositions",
-      "issuer": "Government of Alberta",
+      "title": "Public Lands Administration Regulation Table A1: Application Requirements for Dispositions and Authorizations Under the Public Lands Act",
+      "issuer": "Government of Alberta, Forestry and Parks",
       "supplied_document_date": "2023-12-12",
-      "current_status": "PRIOR_SUPPLIED_EDITION_CURRENCY_UNVERIFIED",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "official_url": "https://open.alberta.ca/publications/public-lands-administration-regulation-plar-table-a1-aep-plar-dispositions",
       "official_discovery": "https://www.alberta.ca/public-lands-administration-regulation",
       "verification_priority": "HIGH",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_ROUTE_OBSERVED_RECORD_BLOCKED",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.alberta.ca/public-lands-administration-regulation",
           "https://open.alberta.ca/publications/public-lands-administration-regulation-plar-table-a1-aep-plar-dispositions"
         ],
-        "observed_fact": "Official overview assigns Government-administered activities to A1. Prior supplied December 12, 2023 edition remains historical evidence, not current online confirmation.",
+        "observed_fact": "Official record Updated June 26, 2026 lists June 2026 as current unmarked resource and December 2023 as SUPERSEDED. Retrieved PDF cover and footer date June 26, 2026. Revisions include data-centre and overlapping cryptocurrency activity entries and updated footnotes.",
+        "selected_inspected_locators": [
+          "PDF pp1-3 cover, imprint, revision notes",
+          "PDF p4 selected access rows and column headings",
+          "PDF pp34-37 endnotes, column definitions and tracking references"
+        ],
         "not_verified": [
-          "Publication record returned 403; current resource, rows and effective dates unresolved.",
-          "Prior final-plan/new-application wording still needs stage-specific reconciliation."
-        ]
-      }
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "No effective-date or exact case-row attestation inferred from publication date; endnotes, purpose/activity and transaction stage must be examined."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_ROUTE_OBSERVED_RECORD_BLOCKED",
+          "official_records": [
+            "https://www.alberta.ca/public-lands-administration-regulation",
+            "https://open.alberta.ca/publications/public-lands-administration-regulation-plar-table-a1-aep-plar-dispositions"
+          ],
+          "observed_fact": "Official overview assigns Government-administered activities to A1. Prior supplied December 12, 2023 edition remains historical evidence, not current online confirmation.",
+          "not_verified": [
+            "Publication record returned 403; current resource, rows and effective dates unresolved.",
+            "Prior final-plan/new-application wording still needs stage-specific reconciliation."
+          ]
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://open.alberta.ca/dataset/076d7248-c154-4460-8942-f665f9086f9d/resource/7320b569-a5f2-46e9-82ef-d40d0b36b7e9/download/fp-plar-table-a1-final-2026-06-26.pdf",
+        "final_url": "https://open.alberta.ca/dataset/076d7248-c154-4460-8942-f665f9086f9d/resource/7320b569-a5f2-46e9-82ef-d40d0b36b7e9/download/fp-plar-table-a1-final-2026-06-26.pdf",
+        "sha256": "13911ac523a224ff65d52931786a361ef60ca3983a4674f9684ba4a0302ea6df",
+        "bytes": 844050,
+        "last_modified": "Fri, 26 Jun 2026 20:05:30 GMT",
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF pp1-3 cover, imprint, revision notes",
+        "PDF p4 selected access rows and column headings",
+        "PDF pp34-37 endnotes, column definitions and tracking references"
+      ],
+      "publication_date": "2026-06-26",
+      "source_document_pages": 37,
+      "prior_supplied_edition_status": "2023-12-12 copy is explicitly superseded in current official record"
     },
     {
       "id": "GOA-KP-LAWS-CATALOGUE",
@@ -510,27 +871,67 @@
     },
     {
       "id": "ALSA-MSP-CURRENT-REQUIRED",
-      "title": "Manual of Standard Practice — current edition required",
+      "title": "Manual of Standard Practice — April 17, 2026 edition observed",
       "issuer": "Alberta Land Surveyors’ Association",
-      "official_discovery": "https://www.alsa.ab.ca/",
-      "current_status": "CURRENT_EDITION_AND_CLAUSES_UNVERIFIED",
+      "official_discovery": "https://www.alsa.ab.ca/documents-files",
+      "current_status": "OFFICIAL_LINKED_EDITION_AND_SELECTED_CONTENT_OBSERVED_APPLICABILITY_UNVERIFIED",
       "verification_priority": "HIGH",
       "record_check": {
-        "checked_on": "2026-11-18",
-        "evidence_level": "OFFICIAL_PROFESSIONAL_NOTICE_OBSERVED_EDITION_UNRESOLVED",
+        "checked_on": "2026-11-21",
+        "evidence_level": "OFFICIAL_PUBLICATION_RECORD_LINKED_BYTES_AND_SELECTED_CONTENT",
         "official_records": [
-          "https://www.alsa.ab.ca/weekly-news/post/volunteers-needed-for-hybrid-cadastre-and-surveyor-sketch-task-force",
-          "https://www.alberta.ca/survey-sketch-plans"
+          "https://www.alsa.ab.ca/documents-files",
+          "https://www.alsa.ab.ca/public/download/files/350717",
+          "https://www.alsa.ab.ca/weekly-news/post/volunteers-needed-for-hybrid-cadastre-and-surveyor-sketch-task-force"
         ],
-        "observed_fact": "October 16, 2026 ALSA notice requests review of surveyor-sketch dimension derivation and hybrid-point portrayal; official provincial survey page references professional standards.",
+        "observed_fact": "Current ALSA Documents and Files page features the Manual of Standard Practice at public download 350717. Retrieved cover April 17, 2026; revision preface states 2026 AGM changes came into effect April 17, 2026 and no changes occurred in 2025. Selected surveyor-sketch and hybrid clauses inspected. October 16, 2026 task-force request is not an adopted replacement rule.",
+        "selected_inspected_locators": [
+          "PDF pp1-3 edition and revisions",
+          "PDF p39 / printed p33 Part C section 4.8 Surveyor Sketch",
+          "PDF pp48-49 / printed pp42-43 Part C section 7 Hybrid Cadastre Plans"
+        ],
         "not_verified": [
-          "Current MSP edition and Part C 4.8.3 text not established.",
-          "Task-force work is not an adopted replacement rule; older indexed manuals are not assumed current."
-        ]
-      }
+          "Exact application jurisdiction, activity, stage, plan type, exceptions and independent normative applicability remain to be resolved.",
+          "A retrieved publisher-linked edition is not evidence that a particular submitted plan complies; no automatic source-status attestation is added.",
+          "Task-force notice references Part C 4.8.3; featured current PDF presents section 4.8 with numbered derivation methods, including method 3. Do not invent a separate adopted clause revision from that notice.",
+          "Accuracy thresholds require survey observations/uncertainty and professional assessment; coordinate formatting or distance diagnostics do not demonstrate survey accuracy."
+        ],
+        "normative_authority_status": "UNVERIFIED_CURRENT"
+      },
+      "record_check_history": [
+        {
+          "checked_on": "2026-11-18",
+          "evidence_level": "OFFICIAL_PROFESSIONAL_NOTICE_OBSERVED_EDITION_UNRESOLVED",
+          "official_records": [
+            "https://www.alsa.ab.ca/weekly-news/post/volunteers-needed-for-hybrid-cadastre-and-surveyor-sketch-task-force",
+            "https://www.alberta.ca/survey-sketch-plans"
+          ],
+          "observed_fact": "October 16, 2026 ALSA notice requests review of surveyor-sketch dimension derivation and hybrid-point portrayal; official provincial survey page references professional standards.",
+          "not_verified": [
+            "Current MSP edition and Part C 4.8.3 text not established.",
+            "Task-force work is not an adopted replacement rule; older indexed manuals are not assumed current."
+          ]
+        }
+      ],
+      "linked_resource": {
+        "requested_url": "https://www.alsa.ab.ca/public/download/files/350717",
+        "final_url": "https://www.alsa.ab.ca/public/download/files/350717",
+        "sha256": "d2a67c3944838224bc38b40b21752d2f2dac7b1a808ef17ceaea6710e140a90d",
+        "bytes": 552584,
+        "last_modified": null,
+        "retrieved_on": "2026-11-21"
+      },
+      "selected_locators": [
+        "PDF pp1-3 edition and revisions",
+        "PDF p39 / printed p33 Part C section 4.8 Surveyor Sketch",
+        "PDF pp48-49 / printed pp42-43 Part C section 7 Hybrid Cadastre Plans"
+      ],
+      "published": "2026-04-17",
+      "observed_effective_date": "2026-04-17",
+      "official_url": "https://www.alsa.ab.ca/public/download/files/350717"
     }
   ],
-  "last_record_audit": "2026-11-18",
-  "record_audit_scope": "BOUNDED_PUBLISHER_RECORD_CHECKS_NOT_NORMATIVE_CURRENT_VERIFICATION",
-  "record_audit_reference": "references/regulatory-source-audit-2026-11-18.md"
+  "last_record_audit": "2026-11-21",
+  "record_audit_scope": "BOUNDED_OFFICIAL_RECORD_LINKED_RESOURCE_AND_SELECTED_CLAUSE_CHECKS_NOT_APPLICATION_AUTHORITY_ATTESTATION",
+  "record_audit_reference": "references/regulatory-source-audit-2026-11-21.md"
 }

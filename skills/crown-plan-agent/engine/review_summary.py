@@ -101,6 +101,36 @@ def build_review_summary(report: dict) -> dict:
         add("not_checked", "Drawing coverage beyond the selected QC regions, graphical interpretation and field verification remain unchecked.")
         add("not_checked", "Regulatory compliance and professional acceptance have not been established.")
 
+    clause_evidence = report.get('regulatory_evidence_review')
+    if clause_evidence is not None:
+        from regulatory_evidence import ASSESSMENT_SCOPE
+        if (not isinstance(clause_evidence, dict) or clause_evidence.get('assessment_scope') != ASSESSMENT_SCOPE
+                or clause_evidence.get('overall_status') != 'REVIEW_REQUIRED'
+                or clause_evidence.get('source_status') != 'UNVERIFIED_CURRENT'):
+            raise ValueError('Only review-only clause evidence can be summarized')
+        observations = clause_evidence['observations']
+        if any(o.get('status') != 'REVIEW_REQUIRED' for o in observations):
+            raise ValueError('Mechanical observations cannot promote clause compliance')
+        executed = [o for o in observations if o['execution_status'] == 'EXECUTED']
+        statuses = ('PASS', 'FAIL', 'REVIEW_REQUIRED')
+        if any(o['mechanical_status'] not in statuses for o in observations):
+            raise ValueError('Unsupported clause evidence status')
+        counts = {status: sum(o['mechanical_status'] == status for o in executed) for status in statuses}
+        add('checked', f"Executed {len(executed)} clause-linked mechanical observation(s) (PASS={counts['PASS']}; FAIL={counts['FAIL']}; REVIEW_REQUIRED={counts['REVIEW_REQUIRED']}); these do not close regulatory questions.")
+        if counts['FAIL'] or counts['REVIEW_REQUIRED'] or len(executed) != len(observations):
+            add('needs_attention', f"Clause evidence has {counts['FAIL']} failed comparisons, {counts['REVIEW_REQUIRED']} unresolved executed observations and {len(observations)-len(executed)} blocked requests.")
+        export = clause_evidence.get('point_export_comparison')
+        if export is not None:
+            state = export.get('mechanical_status', 'REVIEW_REQUIRED')
+            if export.get('comparison_execution_status') == 'EXECUTED':
+                add('checked', 'Compared the actual supplied CAD/GIS point export with the reviewed PDF coordinate table: ' + state + '.')
+            else:
+                add('not_checked', 'CAD/GIS point comparison was blocked by incomplete evidence or applicability; inspect the recorded reasons.')
+            if state != 'PASS':
+                add('needs_attention', 'The CAD/GIS point-export comparison needs review.')
+        add('not_checked', 'Unrequested clause questions, remaining semantic/visual obligations, field truth and native DWG/SHP inspection remain open.')
+        add('next_steps', 'Resolve the failures, blockers and residual review in Executed dated-clause evidence before treating any clause as satisfied.')
+
     if context["scope_status"] == "OUT_OF_SCOPE":
         summary["headline"] = "The declared land is outside this Alberta Crown review scope."
         add("not_checked", "Crown requirements were not selected for the declared land scope.")

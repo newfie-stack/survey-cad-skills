@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.8.0
+version: 0.9.0
 ---
 # Crown Plan Agent
 
@@ -84,6 +84,44 @@ open. Obtain a readable page image or keep the visual result unresolved.
 
 ## First run and input contract
 Use the established task and supplied authorized inputs. For an offline first run, execute `python tests/smoke_review.py` from the complete skill folder (or the repository-root path in the engine README). The invented example needs no regulator PDF; its missing-source notice is expected and is not a request to obtain a document for the example.
+
+## Execute supported clause observations
+
+Use the [clause evidence pass](references/clause-execution.md) when the reviewed
+plan and applicable question support it. The agent prepares private source-bound
+selectors from the actual PDF, then runs `--regulatory-evidence-spec` with the
+explicit dated workbook and provenance-backed applicability facts. Do not ask the
+draftsman to write selectors or supply a claimed result. This pass supports eleven
+bounded question paths across nine numbered clauses; it does not complete those
+clauses or the 144-clause review.
+
+For hybrid plans, read the coordinate table's actual native fields and check its
+numbering, two-decimal formatting, grouping and EC/XC/RC/OC tokens. Complete,
+source-located table review is required. Two distinct OC records and inclusive
+10 km proximity checks additionally require reviewed roles/provenance and a
+verified common metric frame, including datum/epoch/axes/grid-ground basis.
+Missing evidence, raster fields, ambiguous or inconsistent physical rows remain
+unresolved. Never repair printed numbering by rearranging selected rows or pair
+coordinates with another row's point ID. This is a diagnostic, not reconstruction.
+
+When an authorized CAD/GIS point-export CSV is available, supply `--point-export`
+and its source-hashed specification to compare the actual file with that table.
+Preserve missing/extra/duplicate points, category/coordinate differences and
+frame blockers. This export comparison does not inspect native DWG/SHP, verify
+control, transform coordinates, or replace the Octopus workflow.
+
+General clause observations cover numerical main-plan scale, the applicable
+unsurveyed-territory note, and selected detail/reference or existing-plan-label
+text comparisons. Execute only selected questions after workbook applicability
+and override gates; retain every residual semantic, visual and record check.
+Report executed, blocked and unrequested work separately. New detailed findings
+are in Markdown; do not claim each has been placed on an annotated PDF.
+
+Consult the [November 21 source verification](references/regulatory-source-audit-2026-11-21.md):
+the published Survey Manual v2.3 supersedes v2.2, Table A1 is June 2026,
+Table A2 is October 2026, and the published MSP revisions took effect April 17,
+2026. Edition verification does not establish application-specific authority.
+Keep mechanical results separate from the unresolved regulatory verdict.
 
 Before engine PDF operations, follow the dated [dependency and runtime policy](references/dependency-security.md), including its unresolved native-advisory record. Use a fresh environment with the hash-locked requirements and run `python engine/runtime_security.py` from the skill folder. This checks minimum runtime versions and provider identity before native PDF opening; it is not security clearance. If the check fails or the required runtime cannot be established, keep the engine unexecuted and use the evidence-limited assisted review available in the host. Do not bypass the runtime gate.
 
