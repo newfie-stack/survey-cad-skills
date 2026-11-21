@@ -18,6 +18,10 @@ All workbook results remain `REVIEW_REQUIRED`, with source status
 `UNVERIFIED_CURRENT`. Even a fully populated fact file or a matching inventory
 cannot promote the workbook to `PASS`, `FAIL` or verified current authority.
 
+The [applicability regression matrix](regulatory-applicability-tests.md) exercises
+literal conditional expectations and their integration with the full report.
+Its targeted cases remain distinct from complete clause or compliance coverage.
+
 ## Run the optional workbook
 
 Run from the complete `crown-plan-agent` folder, with its Python dependencies

@@ -1,0 +1,724 @@
+{
+  "schema_version": 1,
+  "evidence_class": "WHOLLY_INVENTED_SYNTHETIC",
+  "source_basis": {
+    "title": "Content Requirements for Survey Plans and Sketches for Dispositions on Crown Lands",
+    "version_date": "2024-05-30",
+    "url": "https://open.alberta.ca/publications/content-requirements-for-survey-plans-and-sketches"
+  },
+  "base_scenario": {
+    "land_class": "alberta_crown",
+    "regulator": "AER",
+    "disposition": "LOC",
+    "stage": "initial",
+    "plan_type": "sketch",
+    "purpose": "Invented review purpose",
+    "subactivity": "Invented review activity"
+  },
+  "cases": [
+    {
+      "id": "pla_lengths_without_road_fact",
+      "family": "pla_length",
+      "variant": "literal_pla_selects_without_access_road_fact",
+      "scenario_changes": {"disposition": "PLA"},
+      "facts": {},
+      "expected_clauses": [{"id": "1.3.6.6", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "1.3.6.6", "id": "C_1_3_6_6_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.3.6.6", "id": "C_1_3_6_6_02", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["1.3.6.6"]
+    },
+    {
+      "id": "dpl_does_not_inherit_pla_lengths",
+      "family": "pla_length",
+      "variant": "related_code_does_not_widen_literal_pla_route",
+      "scenario_changes": {"disposition": "DPL"},
+      "facts": {"is_access_road": true},
+      "expected_clauses": [{"id": "1.3.6.6", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "1.3.6.6", "id": "C_1_3_6_6_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "1.3.6.6", "id": "C_1_3_6_6_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["1.3.6.6"]
+    },
+    {
+      "id": "msl_sheet_permission_remains_manual",
+      "family": "multipage_manual_question",
+      "variant": "permitted_disposition_keeps_sheet_questions_selected",
+      "scenario_changes": {"disposition": "MSL"},
+      "facts": {},
+      "expected_clauses": [
+        {"id": "1.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.1.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "1.1.3", "id": "C_1_1_3_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.1.3", "id": "C_1_1_3_02", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.1.3", "id": "C_1_1_3_03", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.1.5", "id": "C_1_1_5_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["1.1.3", "1.1.5"]
+    },
+    {
+      "id": "loc_sheet_exception_not_assumed",
+      "family": "multipage_manual_question",
+      "variant": "other_disposition_keeps_sheet_questions_selected",
+      "scenario_changes": {},
+      "facts": {},
+      "expected_clauses": [
+        {"id": "1.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.1.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "1.1.3", "id": "C_1_1_3_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.1.3", "id": "C_1_1_3_02", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.1.3", "id": "C_1_1_3_03", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.1.5", "id": "C_1_1_5_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["1.1.3", "1.1.5"]
+    },
+    {
+      "id": "mixed_loc_public_segments",
+      "family": "mixed_land",
+      "variant": "public_segments_select_their_sheet_and_township_questions",
+      "scenario_changes": {"land_class": "mixed", "review_scope": "alberta_crown_component"},
+      "facts": {"manual_linear_disposition_family_applies": true, "activity_spans_public_and_non_public": true, "mixed_land_presentation": "public_segments", "is_linear": true, "has_multiple_non_contiguous_activities": true},
+      "expected_clauses": [
+        {"id": "1.1.6", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.4", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.5", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_01", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_02", "selection_status": "CANDIDATE_REVIEW", "kind": "permission"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_03", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_04", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_05", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_06", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["1.1.6", "4.1.1.3", "4.1.1.4", "4.1.1.5"]
+    },
+    {
+      "id": "mixed_loc_presentation_missing",
+      "family": "mixed_land",
+      "variant": "missing_presentation_keeps_alternative_questions_pending",
+      "scenario_changes": {"land_class": "mixed", "review_scope": "alberta_crown_component"},
+      "facts": {"manual_linear_disposition_family_applies": true, "activity_spans_public_and_non_public": true, "is_linear": true, "has_multiple_non_contiguous_activities": true},
+      "expected_clauses": [
+        {"id": "1.1.6", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.3", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]},
+        {"id": "4.1.1.4", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]},
+        {"id": "4.1.1.5", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]}
+      ],
+      "expected_checks": [
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_01", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_03", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_04", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_05", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_06", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["mixed_land_presentation"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "4.1.1.3", "fact_id": "mixed_land_presentation", "code": "MISSING_FACT"}],
+      "source_sections": ["1.1.6", "4.1.1.3", "4.1.1.4", "4.1.1.5"]
+    },
+    {
+      "id": "mixed_pla_dashed_private",
+      "family": "mixed_continuous_presentations",
+      "variant": "dashed_private_selects_public_only_heading",
+      "scenario_changes": {"land_class": "mixed", "review_scope": "alberta_crown_component", "disposition": "PLA", "stage": "amendment", "plan_type": "hybrid_plan"},
+      "facts": {"manual_linear_disposition_family_applies": true, "activity_spans_public_and_non_public": true, "mixed_land_presentation": "continuous_dashed_private"},
+      "expected_clauses": [
+        {"id": "4.1.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.4", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.5", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_01", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_03", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_04", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_05", "selection_status": "CANDIDATE_REVIEW", "kind": "permission"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_06", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.4", "id": "C_4_1_1_4_01", "selection_status": "CANDIDATE_REVIEW"}
+      ],
+      "source_sections": ["4.1.1.3", "4.1.1.4", "4.1.1.5"]
+    },
+    {
+      "id": "mixed_pla_bold_all",
+      "family": "mixed_continuous_presentations",
+      "variant": "bold_all_selects_all_parcels_and_land_labels",
+      "scenario_changes": {"land_class": "mixed", "review_scope": "alberta_crown_component", "disposition": "PLA", "stage": "amendment", "plan_type": "hybrid_plan"},
+      "facts": {"manual_linear_disposition_family_applies": true, "activity_spans_public_and_non_public": true, "mixed_land_presentation": "continuous_bold_all"},
+      "expected_clauses": [
+        {"id": "4.1.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.4", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_01", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_03", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_04", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_05", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.1.1.3", "id": "C_4_1_1_3_06", "selection_status": "CANDIDATE_REVIEW", "kind": "permission"},
+        {"clause_id": "4.1.1.5", "id": "C_4_1_1_5_01", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "4.1.1.5", "id": "C_4_1_1_5_02", "selection_status": "CANDIDATE_REVIEW"}
+      ],
+      "source_sections": ["4.1.1.3", "4.1.1.4", "4.1.1.5"]
+    },
+    {
+      "id": "continuous_loc_prior_approval_question",
+      "family": "continuous_sheet_approval",
+      "variant": "exceeded_limit_selects_approval_review_without_waiving_general_sheet_rules",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"manual_linear_disposition_family_applies": true, "is_linear": true, "is_continuous_linear_presentation": true, "continuous_linear_sheet_limit_exceeded": true},
+      "expected_clauses": [
+        {"id": "4.1.1.6", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.1.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [{"clause_id": "4.1.1.6", "id": "C_4_1_1_6_01", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"}],
+      "source_sections": ["1.1.3", "1.1.5", "4.1.1.6"]
+    },
+    {
+      "id": "continuous_loc_within_sheet_limit",
+      "family": "continuous_sheet_approval",
+      "variant": "known_unexceeded_limit_does_not_select_special_approval_question",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"manual_linear_disposition_family_applies": true, "is_linear": true, "is_continuous_linear_presentation": true, "continuous_linear_sheet_limit_exceeded": false},
+      "expected_clauses": [{"id": "4.1.1.6", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [{"clause_id": "4.1.1.6", "id": "C_4_1_1_6_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"}],
+      "source_sections": ["4.1.1.6"]
+    },
+    {
+      "id": "continuous_loc_sheet_limit_missing",
+      "family": "continuous_sheet_approval",
+      "variant": "unknown_sheet_limit_does_not_assume_approval_route",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"manual_linear_disposition_family_applies": true, "is_linear": true, "is_continuous_linear_presentation": true},
+      "expected_clauses": [{"id": "4.1.1.6", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["continuous_linear_sheet_limit_exceeded"]}],
+      "expected_checks": [{"clause_id": "4.1.1.6", "id": "C_4_1_1_6_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["continuous_linear_sheet_limit_exceeded"]}],
+      "expected_fact_issues": [{"clause_id": "4.1.1.6", "fact_id": "continuous_linear_sheet_limit_exceeded", "code": "MISSING_FACT"}],
+      "source_sections": ["4.1.1.6"]
+    },
+    {
+      "id": "msl_existing_lease_exactly_ten_hectares",
+      "family": "msl_area",
+      "variant": "inclusive_existing_area_threshold_selects_limited_survey_review",
+      "scenario_changes": {"disposition": "MSL", "stage": "amendment", "plan_type": "survey_plan"},
+      "facts": {"existing_is_surveyed": true, "existing_area_ha": "10"},
+      "expected_clauses": [{"id": "3.3.1.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_01", "selection_status": "CANDIDATE_REVIEW", "kind": "permission"},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_02", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_03", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["3.3.1.1"]
+    },
+    {
+      "id": "msl_existing_lease_below_ten_hectares",
+      "family": "msl_area",
+      "variant": "below_threshold_does_not_select_large_lease_permission",
+      "scenario_changes": {"disposition": "MSL", "stage": "amendment", "plan_type": "hybrid_plan"},
+      "facts": {"existing_is_surveyed": true, "existing_area_ha": "9.999"},
+      "expected_clauses": [{"id": "3.3.1.1", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_03", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["3.3.1.1"]
+    },
+    {
+      "id": "msl_existing_lease_area_missing",
+      "family": "msl_area",
+      "variant": "missing_existing_area_does_not_substitute_changed_area",
+      "scenario_changes": {"disposition": "MSL", "stage": "amendment", "plan_type": "survey_plan"},
+      "facts": {"existing_is_surveyed": true},
+      "expected_clauses": [{"id": "3.3.1.1", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["existing_area_ha"]}],
+      "expected_checks": [
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["existing_area_ha"]},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["existing_area_ha"]},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_03", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["existing_area_ha"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.3.1.1", "fact_id": "existing_area_ha", "code": "MISSING_FACT"}],
+      "source_sections": ["3.3.1.1"]
+    },
+    {
+      "id": "msl_renewal_is_not_amendment",
+      "family": "msl_area",
+      "variant": "renewal_does_not_select_amendment_only_permission",
+      "scenario_changes": {"disposition": "MSL", "stage": "renewal", "plan_type": "survey_plan"},
+      "facts": {"existing_is_surveyed": true, "existing_area_ha": "10"},
+      "expected_clauses": [{"id": "3.3.1.1", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.3.1.1", "id": "C_3_3_1_1_03", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["3.3.1.1"]
+    },
+    {
+      "id": "msl_buried_facilities_only",
+      "family": "lease_boundary_facilities",
+      "variant": "independent_surface_and_buried_facility_checks",
+      "scenario_changes": {"disposition": "MSL", "stage": "amendment", "plan_type": "survey_plan"},
+      "facts": {"existing_is_surveyed": true, "is_lease": true, "has_surface_improvements_affecting_amended_boundary": false, "has_buried_facilities_affecting_amended_boundary": true},
+      "expected_clauses": [{"id": "3.3.1.2", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.3.1.2", "id": "C_3_3_1_2_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.3.1.2", "id": "C_3_3_1_2_02", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"}
+      ],
+      "source_sections": ["3.3.1.2"]
+    },
+    {
+      "id": "msl_buried_facility_fact_missing",
+      "family": "lease_boundary_facilities",
+      "variant": "known_absent_surface_facilities_do_not_resolve_buried_facilities",
+      "scenario_changes": {"disposition": "MSL", "stage": "amendment", "plan_type": "survey_plan"},
+      "facts": {"existing_is_surveyed": true, "is_lease": true, "has_surface_improvements_affecting_amended_boundary": false},
+      "expected_clauses": [{"id": "3.3.1.2", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_buried_facilities_affecting_amended_boundary"]}],
+      "expected_checks": [
+        {"clause_id": "3.3.1.2", "id": "C_3_3_1_2_01", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.3.1.2", "id": "C_3_3_1_2_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_buried_facilities_affecting_amended_boundary"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.3.1.2", "fact_id": "has_buried_facilities_affecting_amended_boundary", "code": "MISSING_FACT"}],
+      "source_sections": ["3.3.1.2"]
+    },
+    {
+      "id": "compiled_msl_facility_exemption",
+      "family": "lease_boundary_facilities",
+      "variant": "compiled_exemption_resolves_target_despite_missing_buried_fact",
+      "scenario_changes": {"disposition": "MSL", "stage": "amendment", "plan_type": "compiled_plan"},
+      "facts": {"existing_is_surveyed": true, "is_lease": true, "has_surface_improvements_affecting_amended_boundary": false},
+      "expected_clauses": [
+        {"id": "3.3.1.2", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.6.1.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "3.3.1.2", "id": "C_3_3_1_2_01", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.3.1.2", "id": "C_3_3_1_2_02", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.6.1.1", "id": "C_3_6_1_1_01", "selection_status": "CANDIDATE_REVIEW", "kind": "exemption"}
+      ],
+      "source_sections": ["3.3.1.2", "3.6.1.1"]
+    },
+    {
+      "id": "rtf_aer_no_inherited_linear_family",
+      "family": "rtf_family",
+      "variant": "aer_context_does_not_expand_literal_code_families",
+      "scenario_changes": {"disposition": "RTF"},
+      "facts": {"is_access_road": true, "manual_linear_disposition_family_applies": true, "manual_wetland_reservoir_scope_applies": true},
+      "expected_clauses": [
+        {"id": "1.3.6.6", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.3", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.5.1.1", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.3.6.2", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.3.6.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "1.3.6.2", "id": "C_1_3_6_2_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.3.6.3", "id": "C_1_3_6_3_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["1.3.6.2", "1.3.6.3", "1.3.6.6", "4.1.1.3", "4.5.1.1"]
+    },
+    {
+      "id": "rtf_provincial_no_inherited_linear_family",
+      "family": "rtf_family",
+      "variant": "provincial_context_does_not_expand_literal_code_families",
+      "scenario_changes": {"regulator": "Alberta", "disposition": "RTF"},
+      "facts": {"is_access_road": true, "manual_linear_disposition_family_applies": true, "manual_wetland_reservoir_scope_applies": true},
+      "expected_clauses": [
+        {"id": "1.3.6.6", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.1.1.3", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "4.5.1.1", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.3.6.2", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "1.3.6.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "1.3.6.2", "id": "C_1_3_6_2_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "1.3.6.3", "id": "C_1_3_6_3_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["1.3.6.2", "1.3.6.3", "1.3.6.6", "4.1.1.3", "4.5.1.1"]
+    },
+    {
+      "id": "rtf_initial_surveyor_sketch_declaration",
+      "family": "surveyor_sketch_certification",
+      "variant": "surveyor_sketch_selects_all_certification_questions",
+      "scenario_changes": {"disposition": "RTF", "plan_type": "surveyor_sketch"},
+      "facts": {},
+      "expected_clauses": [{"id": "2.2.1.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_02", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_03", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_04", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["2.2.1.1"]
+    },
+    {
+      "id": "rtf_renewal_surveyor_sketch_declaration",
+      "family": "surveyor_sketch_certification",
+      "variant": "renewal_keeps_surveyor_sketch_certification_questions",
+      "scenario_changes": {"disposition": "RTF", "stage": "renewal", "plan_type": "surveyor_sketch"},
+      "facts": {},
+      "expected_clauses": [{"id": "2.2.1.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_02", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_03", "selection_status": "CANDIDATE_REVIEW", "kind": "required"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_04", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}
+      ],
+      "source_sections": ["2.2.1.1"]
+    },
+    {
+      "id": "rtf_ordinary_sketch_not_surveyor_sketch",
+      "family": "surveyor_sketch_certification",
+      "variant": "ordinary_sketch_does_not_inherit_surveyor_certification",
+      "scenario_changes": {"disposition": "RTF"},
+      "facts": {},
+      "expected_clauses": [
+        {"id": "2.2.1.1", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "2.1.1.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_03", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "2.2.1.1", "id": "C_2_2_1_1_04", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "2.1.1.1", "id": "C_2_1_1_1_01", "selection_status": "CANDIDATE_REVIEW", "kind": "permission"}
+      ],
+      "source_sections": ["2.1.1.1", "2.2.1.1"]
+    },
+    {
+      "id": "conventional_accepts_xc_not_rc",
+      "family": "accepted_hybrid_points",
+      "variant": "accepted_xc_does_not_automatically_select_rc_questions",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"interacts_with_existing_hybrid": true, "accepts_xcs": true, "accepts_rcs": false},
+      "expected_clauses": [
+        {"id": "3.4.1.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.4.1.2", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.4.1.3", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.4.1.4", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "3.4.1.2", "id": "C_3_4_1_2_01", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "3.4.1.2", "id": "C_3_4_1_2_02", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "3.4.1.2", "id": "C_3_4_1_2_03", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "3.4.1.2", "id": "C_3_4_1_2_04", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "3.4.1.3", "id": "C_3_4_1_3_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["3.4.1.1", "3.4.1.2", "3.4.1.3", "3.4.1.4"]
+    },
+    {
+      "id": "conventional_xc_acceptance_missing",
+      "family": "accepted_hybrid_points",
+      "variant": "known_no_rc_does_not_resolve_missing_xc_acceptance",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"interacts_with_existing_hybrid": true, "accepts_rcs": false},
+      "expected_clauses": [
+        {"id": "3.4.1.1", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["accepts_xcs"]},
+        {"id": "3.4.1.2", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["accepts_xcs"]},
+        {"id": "3.4.1.3", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.4.1.4", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [
+        {"clause_id": "3.4.1.1", "id": "C_3_4_1_1_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["accepts_xcs"]},
+        {"clause_id": "3.4.1.1", "id": "C_3_4_1_1_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["accepts_xcs"]},
+        {"clause_id": "3.4.1.2", "id": "C_3_4_1_2_04", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["accepts_xcs"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.4.1.2", "fact_id": "accepts_xcs", "code": "MISSING_FACT"}],
+      "source_sections": ["3.4.1.1", "3.4.1.2", "3.4.1.3", "3.4.1.4"]
+    },
+    {
+      "id": "hybrid_not_conventional_acceptance_route",
+      "family": "accepted_hybrid_points",
+      "variant": "hybrid_variant_does_not_inherit_conventional_plan_rules",
+      "scenario_changes": {"plan_type": "hybrid_plan"},
+      "facts": {"interacts_with_existing_hybrid": true, "accepts_xcs": true, "accepts_rcs": false},
+      "expected_clauses": [
+        {"id": "3.4.1.1", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.4.1.2", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.4.1.3", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.4.1.4", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"id": "3.5.1.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}
+      ],
+      "expected_checks": [{"clause_id": "3.5.1.1", "id": "C_3_5_1_1_01", "selection_status": "CANDIDATE_REVIEW", "kind": "required"}],
+      "source_sections": ["3.4.1.1", "3.4.1.2", "3.4.1.3", "3.4.1.4", "3.5.1.1"]
+    },
+    {
+      "id": "hybrid_xc_unfiled_source_permission",
+      "family": "hybrid_unfiled_xc",
+      "variant": "unfiled_identifier_permission_preserves_required_source_checks",
+      "scenario_changes": {"disposition": "MSL", "plan_type": "hybrid_plan"},
+      "facts": {"has_xcs": true, "has_unfiled_xc_source_plan": true},
+      "expected_clauses": [{"id": "3.5.2.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_01", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_02", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_03", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_04", "selection_status": "CANDIDATE_REVIEW", "kind": "permission"}
+      ],
+      "source_sections": ["3.5.2.5"]
+    },
+    {
+      "id": "hybrid_xc_filed_source",
+      "family": "hybrid_unfiled_xc",
+      "variant": "filed_source_does_not_select_unfiled_identifier_alternative",
+      "scenario_changes": {"disposition": "MSL", "plan_type": "hybrid_plan"},
+      "facts": {"has_xcs": true, "has_unfiled_xc_source_plan": false},
+      "expected_clauses": [{"id": "3.5.2.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_01", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_02", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_03", "selection_status": "CANDIDATE_REVIEW"},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_04", "selection_status": "NOT_SELECTED_FOR_REVIEW", "kind": "permission"}
+      ],
+      "source_sections": ["3.5.2.5"]
+    },
+    {
+      "id": "hybrid_xc_filing_status_missing",
+      "family": "hybrid_unfiled_xc",
+      "variant": "unknown_source_filing_status_leaves_only_permission_pending",
+      "scenario_changes": {"disposition": "MSL", "plan_type": "hybrid_plan"},
+      "facts": {"has_xcs": true},
+      "expected_clauses": [{"id": "3.5.2.5", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_unfiled_xc_source_plan"]}],
+      "expected_checks": [
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_01", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_02", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_03", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.5.2.5", "id": "C_3_5_2_5_04", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_unfiled_xc_source_plan"], "kind": "permission"}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.5.2.5", "fact_id": "has_unfiled_xc_source_plan", "code": "MISSING_FACT"}],
+      "source_sections": ["3.5.2.5"]
+    },
+    {
+      "id": "compiled_astronomic_bearings",
+      "family": "compiled_bearing",
+      "variant": "astronomic_branch_resolves_without_grid_rotation_fact",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"compiled_bearing_basis": "astronomic"},
+      "expected_clauses": [{"id": "3.6.1.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_01", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_02", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_03", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}
+      ],
+      "source_sections": ["3.6.1.5"]
+    },
+    {
+      "id": "compiled_grid_with_rotated_sources",
+      "family": "compiled_bearing",
+      "variant": "grid_rotation_selects_each_source_rotation_review",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"compiled_bearing_basis": "grid", "has_source_plans_rotated_to_grid": true},
+      "expected_clauses": [{"id": "3.6.1.5", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_03", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"}
+      ],
+      "source_sections": ["3.6.1.5"]
+    },
+    {
+      "id": "compiled_grid_without_rotated_sources",
+      "family": "compiled_bearing",
+      "variant": "known_no_rotation_does_not_select_astronomic_or_rotation_questions",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"compiled_bearing_basis": "grid", "has_source_plans_rotated_to_grid": false},
+      "expected_clauses": [{"id": "3.6.1.5", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_03", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["3.6.1.5"]
+    },
+    {
+      "id": "compiled_grid_rotation_status_missing",
+      "family": "compiled_bearing",
+      "variant": "missing_rotation_status_does_not_default_to_no_rotation",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"compiled_bearing_basis": "grid"},
+      "expected_clauses": [{"id": "3.6.1.5", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_source_plans_rotated_to_grid"]}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_01", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_02", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []},
+        {"clause_id": "3.6.1.5", "id": "C_3_6_1_5_03", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_source_plans_rotated_to_grid"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.6.1.5", "fact_id": "has_source_plans_rotated_to_grid", "code": "MISSING_FACT"}],
+      "source_sections": ["3.6.1.5"]
+    },
+    {
+      "id": "compiled_existing_monuments_present",
+      "family": "compiled_existing_monuments",
+      "variant": "known_present_selects_symbol_and_existing_evidence_legend_reviews",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"shows_existing_monuments": true},
+      "expected_clauses": [{"id": "3.6.1.8", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_01", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_02", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"}
+      ],
+      "source_sections": ["3.6.1.8"]
+    },
+    {
+      "id": "compiled_existing_monuments_absent",
+      "family": "compiled_existing_monuments",
+      "variant": "known_false_does_not_select_existing_monument_questions",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"shows_existing_monuments": false},
+      "expected_clauses": [{"id": "3.6.1.8", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["3.6.1.8"]
+    },
+    {
+      "id": "compiled_existing_monuments_missing_fact",
+      "family": "compiled_existing_monuments",
+      "variant": "omitted_fact_has_missing_fact_gate",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {},
+      "expected_clauses": [{"id": "3.6.1.8", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]},
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.6.1.8", "fact_id": "shows_existing_monuments", "code": "MISSING_FACT"}],
+      "source_sections": ["3.6.1.8"]
+    },
+    {
+      "id": "compiled_existing_monuments_null_fact",
+      "family": "compiled_existing_monuments",
+      "variant": "explicit_null_has_unknown_fact_gate",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"shows_existing_monuments": null},
+      "expected_clauses": [{"id": "3.6.1.8", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]},
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.6.1.8", "fact_id": "shows_existing_monuments", "code": "UNKNOWN_FACT"}],
+      "source_sections": ["3.6.1.8"]
+    },
+    {
+      "id": "compiled_existing_monuments_invalid_scalar",
+      "family": "compiled_existing_monuments",
+      "variant": "string_true_has_invalid_fact_value_gate",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"shows_existing_monuments": "true"},
+      "expected_clauses": [{"id": "3.6.1.8", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]},
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.6.1.8", "fact_id": "shows_existing_monuments", "code": "INVALID_FACT_VALUE"}],
+      "source_sections": ["3.6.1.8"]
+    },
+    {
+      "id": "compiled_existing_monuments_without_provenance",
+      "family": "compiled_existing_monuments",
+      "variant": "valid_true_without_provenance_has_missing_provenance_gate",
+      "scenario_changes": {"plan_type": "compiled_plan"},
+      "facts": {"shows_existing_monuments": true},
+      "without_provenance": ["shows_existing_monuments"],
+      "expected_clauses": [{"id": "3.6.1.8", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}],
+      "expected_checks": [
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]},
+        {"clause_id": "3.6.1.8", "id": "C_3_6_1_8_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["shows_existing_monuments"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.6.1.8", "fact_id": "shows_existing_monuments", "code": "MISSING_PROVENANCE"}],
+      "source_sections": ["3.6.1.8"]
+    },
+    {
+      "id": "provincial_pla_natural_boundary",
+      "family": "natural_boundary_dependencies",
+      "variant": "natural_boundary_selects_external_source_and_coordinate_reviews",
+      "scenario_changes": {"regulator": "Alberta", "disposition": "PLA", "plan_type": "survey_plan"},
+      "facts": {"has_natural_boundary": true},
+      "expected_clauses": [{"id": "3.2.4.1", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_01", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_02", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_03", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_04", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"}
+      ],
+      "source_sections": ["3.2.4.1"]
+    },
+    {
+      "id": "provincial_pla_no_natural_boundary",
+      "family": "natural_boundary_dependencies",
+      "variant": "known_absent_boundary_does_not_select_natural_boundary_questions",
+      "scenario_changes": {"regulator": "Alberta", "disposition": "PLA", "plan_type": "survey_plan"},
+      "facts": {"has_natural_boundary": false},
+      "expected_clauses": [{"id": "3.2.4.1", "selection_status": "NOT_SELECTED_FOR_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_03", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_04", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["3.2.4.1"]
+    },
+    {
+      "id": "provincial_pla_natural_boundary_unknown",
+      "family": "natural_boundary_dependencies",
+      "variant": "missing_boundary_role_keeps_natural_boundary_questions_pending",
+      "scenario_changes": {"regulator": "Alberta", "disposition": "PLA", "plan_type": "survey_plan"},
+      "facts": {},
+      "expected_clauses": [{"id": "3.2.4.1", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_natural_boundary"]}],
+      "expected_checks": [
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_natural_boundary"]},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_natural_boundary"]},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_03", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_natural_boundary"]},
+        {"clause_id": "3.2.4.1", "id": "C_3_2_4_1_04", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["has_natural_boundary"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "3.2.4.1", "fact_id": "has_natural_boundary", "code": "MISSING_FACT"}],
+      "source_sections": ["3.2.4.1"]
+    },
+    {
+      "id": "loc_public_wetland_fsl_default",
+      "family": "wetland_fsl_exception",
+      "variant": "default_fsl_rule_selects_default_extent_review",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"manual_wetland_reservoir_scope_applies": true, "has_public_activity_component": true, "manual_fsl_default_rule_applies": true},
+      "expected_clauses": [{"id": "4.5.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "4.5.1.3", "id": "C_4_5_1_3_01", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"},
+        {"clause_id": "4.5.1.3", "id": "C_4_5_1_3_02", "selection_status": "NOT_SELECTED_FOR_REVIEW"}
+      ],
+      "source_sections": ["4.5.1.3"]
+    },
+    {
+      "id": "loc_public_wetland_fsl_exception",
+      "family": "wetland_fsl_exception",
+      "variant": "claimed_exception_selects_exception_basis_review_instead_of_blanket_waiver",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"manual_wetland_reservoir_scope_applies": true, "has_public_activity_component": true, "manual_fsl_default_rule_applies": false},
+      "expected_clauses": [{"id": "4.5.1.3", "selection_status": "CANDIDATE_REVIEW", "blocking_fact_ids": []}],
+      "expected_checks": [
+        {"clause_id": "4.5.1.3", "id": "C_4_5_1_3_01", "selection_status": "NOT_SELECTED_FOR_REVIEW"},
+        {"clause_id": "4.5.1.3", "id": "C_4_5_1_3_02", "selection_status": "CANDIDATE_REVIEW", "kind": "conditional_required"}
+      ],
+      "source_sections": ["4.5.1.3"]
+    },
+    {
+      "id": "loc_public_wetland_fsl_route_missing",
+      "family": "wetland_fsl_exception",
+      "variant": "missing_interpretation_does_not_choose_default_or_exception",
+      "scenario_changes": {"plan_type": "survey_plan"},
+      "facts": {"manual_wetland_reservoir_scope_applies": true, "has_public_activity_component": true},
+      "expected_clauses": [{"id": "4.5.1.3", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["manual_fsl_default_rule_applies"]}],
+      "expected_checks": [
+        {"clause_id": "4.5.1.3", "id": "C_4_5_1_3_01", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["manual_fsl_default_rule_applies"]},
+        {"clause_id": "4.5.1.3", "id": "C_4_5_1_3_02", "selection_status": "UNRESOLVED_APPLICABILITY", "blocking_fact_ids": ["manual_fsl_default_rule_applies"]}
+      ],
+      "expected_fact_issues": [{"clause_id": "4.5.1.3", "fact_id": "manual_fsl_default_rule_applies", "code": "MISSING_FACT"}],
+      "source_sections": ["4.5.1.3"]
+    }
+  ]
+}
