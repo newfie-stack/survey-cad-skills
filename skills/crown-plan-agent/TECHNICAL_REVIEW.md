@@ -20,7 +20,7 @@ publication/package evidence also includes the later regression-record files
 and is identified separately by its exact commit and archive hash.
 After retaining the new regression/evidence files, the complete repository suite
 ran **882 tests: 880 passed, two optional source-PDF tests skipped**. The final
-code/test fingerprint is `2c31cda49c1d7b9360f6e66d290281a1e867acee6dd2b604cf52e24804b6cae6` (168 files): all Python/JSON
+code/test fingerprint is `e92468ee4f3e084490034b0fd2be4d4447edd471cfec07426c56656bf127b5b4` (168 files): all Python/JSON
 files recursively under `engine` and `tests`, plus `requirements.txt`, with the
 path-tab-content-hash manifest recipe described below. No source/regulatory PDF
 was used for this run.
