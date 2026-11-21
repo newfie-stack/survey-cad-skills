@@ -114,6 +114,12 @@ does not measure the agent selecting those regions or interpreting whole sheets.
 
 ## Exercise a review without preselected regions
 
+For a correct grand total concealing a shifted new/existing area split, use the
+[invented area-category regression pair](area-classification-regression.md).
+It includes a clean control, selected category comparisons and answer-free
+reviewer exports, with one planted issue counted separately from its two
+affected comparisons.
+
 From the skill folder, export an invented review package to a new directory:
 
 ```bash
