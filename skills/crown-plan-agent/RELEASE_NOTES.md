@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.7.8 — development preview
+# Crown Plan Agent 0.7.9 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -7,15 +7,24 @@ completion of the master checklist are separate unfinished work.
 
 ## Changes
 
-Unreleased applicability-test follow-up:
-
-- Add 45 invented applicability scenarios plus cross-layer review regressions
-  for selective exceptions, application facts and source/evidence separation.
 - Preserve a conflicted disposition alias as unresolved in the dated workbook
   so report generation can retain the invalid-context gate without crashing.
   Renderer validation and current-authority safeguards remain unchanged.
+- Add a wholly invented area-category regression and clean control. The shifted
+  example retains a correct grand total while its new/existing breakdown fails
+  the selected comparisons. One planted issue remains separate from two failed
+  comparisons; automatic category discovery is not added.
+- Add 45 invented applicability scenarios across 15 families, targeting 26 dated
+  clauses and 52 named manual checks, plus cross-layer review regressions for
+  selective exceptions, application facts and source/evidence separation.
+- Include the reproducible unfamiliar-layout fixtures from the previously
+  documented assisted trial. No new model training or assisted accuracy claim
+  follows from packaging those source generators.
 - Reuse existing public inputs separately as unknown-context controls; no real
-  plan content is included in fixtures or a new installed release.
+  plan content is included in fixtures or the installed package. Source and
+  ChatGPT releases retain the same prompts, presentation and evidence gates.
+
+Version 0.7.8 changes retained:
 
 - Flag conflicting amounts in an explicitly labelled, text-complete total field
   without selecting one as authoritative. Accept numerically equivalent repeats
