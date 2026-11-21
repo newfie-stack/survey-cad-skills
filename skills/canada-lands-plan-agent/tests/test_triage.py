@@ -83,8 +83,10 @@ class TriageTests(unittest.TestCase):
                 self.assertEqual(module.check_workspace_areas(area)["status"], "REVIEW_REQUIRED")
 
     def test_malformed_input_rejected(self):
-        with self.assertRaises(ValueError):
-            module.triage([])
+        for case in ([], {"purpose": []}, {"land_class": {}}, {"iogc_confirmed": "yes"}):
+            with self.subTest(case=case):
+                with self.assertRaises(ValueError):
+                    module.triage(case)
         self.assertEqual(module.triage({})["candidate_route"], "verify_land_class")
 
 
