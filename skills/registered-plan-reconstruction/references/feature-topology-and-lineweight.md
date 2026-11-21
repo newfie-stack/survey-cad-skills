@@ -14,3 +14,6 @@ A supported non-monumented or calculated endpoint can be a legitimate terminal. 
 
 ## Source details
 An enlarged detail may control which line, monument, or crossing a printed observation belongs to. Preserve a reference from each interpreted course to its original sheet and detail. Ambiguous line association is REVIEW_REQUIRED.
+
+## Posted points and reference setbacks
+A boundary terminal identified as a planted or found pin must use that exact accepted point. If the computed location conflicts, retain and report the residual; do not move the pin or silently snap away the discrepancy. Keep two separately posted points distinct even when their symbols touch. A reference iron/post and a non-posted terminal are different points: if full course A–R and printed remainder T–R are on the same verified line, establish the directed order A → T → R and shared reference identity before deriving A–T. Retain the full printed course and remainder as independent ledger entries. An explicitly attributed square-cap assumption may support review geometry, but not source-supported PASS; an evidenced legal limit controls its actual intersections.
