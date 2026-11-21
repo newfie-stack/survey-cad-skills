@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.8.0 — development preview
+# Crown Plan Agent 0.9.0 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,28 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Execute eleven bounded workbook observations across nine numbered clauses,
+  preserving every applicability/override blocker and residual manual obligation.
+- Read actual source-hashed PDF coordinate-table fields for hybrid point
+  numbering, printed precision/grouping, categories, two distinct OCs and inclusive
+  10 km proximity. Derive physical row order and reject cross-row field mixing.
+- Compare actual supplied CAD/GIS CSV point exports with the PDF table, retaining
+  missing/extra/duplicate points, category/coordinate differences and frame blockers.
+  No reconstruction, coordinate transformation or native DWG/SHP parser is added.
+- Connect selected numerical-scale, territory-note and detail-label comparisons
+  to their dated workbook questions. Keep mechanical results separate from the
+  unresolved regulatory verdict, and show executed/blocked/unrequested work.
+- Verify official linked editions and supersession: Survey Manual v2.3,
+  June 2026 Table A1, October 2026 Table A2 and effective April 2026 MSP. Reinspect
+  selected May2024 content clauses and preserve format-specific digital scopes.
+- Add actual-PDF/CSV regressions and reproducible invented combined cases.
+  No work documents, source PDFs, new dependencies or runtime downloads are added.
+
+See the [clause evidence guide](references/clause-execution.md) and
+[source audit](references/regulatory-source-audit-2026-11-21.md).
+
+## Version 0.8.0 changes retained
 
 - Add a source-bound whole-sheet intake map with page geometry, native line
   directions/locators, candidate labels, image regions and visual followups.

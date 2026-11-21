@@ -1,5 +1,58 @@
 # Crown Plan Agent independent technical review
 
+## Version 0.9.0 clause evidence — November 21, 2026
+
+The new pass executes eleven bounded question paths across nine dated clauses
+after the existing workbook's context, typed-fact and override gates. Hybrid
+table fields come from actual PDF snapshots; the optional CAD/GIS comparison
+reads actual source-hashed CSV bytes in a declared common metric frame. Mechanical
+results never promote regulatory verdicts. Existing workbook/candidate behavior
+remains separate, and new detail findings are Markdown-only.
+
+Independent adversarial review reproduced two unsafe passes: selector ordering
+could hide bad printed numbering, and cross-row coordinate selection could
+fabricate acceptable OC distances. Actual-PDF regressions were red before fixes.
+The reader now derives physical row order and verifies native row/column
+coherence; both reproductions and rotated clean controls passed rechecks.
+A stale evidence hash now stops processing before native extraction or an opted-in
+refresh. Source review also established that 1.3.3.5 prescribes no exact wording;
+missing/alternative territory phrasing stays unresolved even after complete text
+review. Its prior phrase interpretation and final corrected run are retained
+separately rather than rewriting the original execution record.
+
+The full suite ran **945 tests: 943 passed, two optional official-source tests
+skipped**, with zero failures. Both skipped tests subsequently passed against
+the newly retrieved publisher-linked October 2026 A2 PDF (three tests in that
+file passed). The 12 audit-wrapper tests, compilation, runtime policy check and
+synthetic smoke also passed. Runtime/dependency locks are unchanged; minimum
+version satisfaction is not native-advisory clearance.
+
+The 18-case invented integration matrix has 17 valid cases plus one missing-file
+rejection. All 187 requested question observations matched the independently
+specified oracle: 178 predicates executed (167 PASS, 7 FAIL, 4 unresolved), while
+nine were blocked. Sixteen actual CSV reads produced 12 PASS, 1 FAIL and 3 unresolved
+comparisons; another valid case intentionally had no export. All 18 full offline
+CLI outcomes matched expectations. These known regression cases, with explicit
+author-supplied roles/completeness, are not blind validation or a real-plan
+accuracy estimate. No false-alarm-rate or full-clause-completeness claim follows.
+
+Public generators, static expected results and replay tests are retained under
+`tests/clause_evidence_examples.py`, `tests/fixtures/clause_evidence_truth.json`
+and `tests/test_clause_evidence_examples.py`. The final private run preserves 177
+artifact hashes and raw inputs/reports/CLI outputs. Its summary SHA-256 is
+`f8d7fcc110608ebc672dfe2039980a903df9826fda01bd113e58c0cf25c117bd`.
+The 178-file Python/JSON/requirements fingerprint is
+`09115fb9e481ecae8766a85132c976472712afea2330a4677083f001836d7a87`:
+sort engine/tests `.py`/`.json` plus `requirements.txt` by skill-relative path,
+then hash UTF-8 `path<TAB>file_sha256<LF>` records.
+
+The [source audit](references/regulatory-source-audit-2026-11-21.md) records live
+publisher resources, explicit supersession, effective dates and exact inspected
+locators. It corrects Survey Manual v2.2 to v2.3, old A1 to June 2026 and records
+the effective April 2026 MSP. It does not establish the complete applicable law
+or professional acceptance. All 144 clause paths and residual manual obligations
+remain available; no work document or source PDF is packaged.
+
 ## Version 0.8.0 intake follow-up — November 21, 2026
 
 Independent review examined the source-bound intake, bounded region preparation,

@@ -1,9 +1,23 @@
 # Official-source verification record
 
-Latest bounded check: **November 18, 2026**. See the
+Latest bounded check: **November 21, 2026**. See the
+[linked-resource and selected-clause audit](references/regulatory-source-audit-2026-11-21.md)
+and [23-source inventory](engine/source_catalog.json). Official records formerly
+blocked returned accessible content in this check. Canonical linked PDF bytes
+confirm the May 2024 content edition, Public Lands Survey Manual **v2.3**
+(superseding v2.2), Table A1 **June 2026** (superseding December 2023), Table A2
+**October 2026**, and the featured ALSA MSP effective **April 17, 2026**.
+Selected general/hybrid clauses and artifact-specific CAD/GIS dependencies were
+inspected. Publisher-linked edition verification remains separate from the
+authority and applicability of each requirement; no source is automatically
+promoted to `VERIFIED_CURRENT`.
+
+## Historical audit — November 18, 2026
+
+See the
 [detailed dated audit](references/regulatory-source-audit-2026-11-18.md) and
-[22-source inventory](engine/source_catalog.json) for the current observation
-record. Publisher routes, listing dates, supplied-document content and legal
+[source inventory](engine/source_catalog.json) for the earlier observation
+record and its preserved record-check history. Publisher routes, listing dates, supplied-document content and legal
 applicability are recorded separately. No normative source is promoted to
 `VERIFIED_CURRENT` by this maintenance update.
 

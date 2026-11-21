@@ -310,3 +310,18 @@ review logic or add automatic current-authority verification. The revision
 comparison implementation/schema version remains `0.6.0`; the loaded
 Python/JSON fingerprint records the exact source snapshot, including inventory
 updates. Package/skill version `0.6.1` identifies this maintenance release.
+
+## Execute dated clause observations (0.9.0)
+
+Use `--regulatory-evidence-spec /private/evidence-spec.json` with the explicit
+dated `--clause-catalogue` and applicable `--clause-facts`. This executes supported
+PDF observations only after workbook selection/override gates. Add
+`--point-export /private/points.csv` when its actual source-hashed CAD/GIS export
+contract is in the evidence specification. No file is downloaded automatically.
+
+The [clause execution guide](../references/clause-execution.md) documents all
+eleven bounded question paths across nine clauses, the strict selectors/export
+contracts, frame and completeness gates, source-located Markdown results and
+remaining manual obligations. The [November 21 source audit](../references/regulatory-source-audit-2026-11-21.md)
+records inspected current publisher resources and explicit supersession. These
+edition checks and mechanical observations do not certify a plan's compliance.

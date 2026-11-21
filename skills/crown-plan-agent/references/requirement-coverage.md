@@ -6,6 +6,19 @@ The export contains short original summaries, PDF page references, requirement c
 
 All scope and exception text is **manual review guidance**. The inventory does not select rules, change activity/stage eligibility, expand the candidate catalogue, or determine plan compliance. A citation link does not establish that every subcondition has been implemented or evidenced.
 
+Version 0.9.0 adds a separate [executed evidence pass](clause-execution.md) for
+eleven bounded question paths across nine clauses. Seven hybrid-table predicates
+read actual PDF fields; four general observations reuse supported finished-plan
+comparisons. An optional actual CAD/GIS point-export comparison adds artifact
+consistency evidence. Only explicitly selected questions run, with complete-table,
+native-reading, role and metric-frame gates where needed. This does not change
+the legacy citation-link counts, the 144 manual paths, atomic completeness or
+any regulatory verdict. Even the nine supported clauses retain manual obligations.
+
+The [November 21 source audit](regulatory-source-audit-2026-11-21.md) verifies the
+linked May2024 content edition and selected clauses; the inventory's fixed
+`UNVERIFIED_CURRENT` status still does not attest case-specific authority.
+
 ## Legacy observation links
 
 The existing 17 candidates cite 29 distinct clauses directly. **115 clauses lack a direct candidate mapping.** Two of those are mentioned only in review instructions; those mentions do not close the gaps.

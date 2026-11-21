@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "trial_scope": "Invented combined PDF/CSV integration regressions; no real-plan or current-authority acceptance",
+  "default_observation_status": "PASS",
+  "question_ids": [
+    "C_3_5_2_1_01", "C_3_5_2_1_02", "C_3_5_2_2_01", "C_3_5_2_2_02",
+    "C_3_5_2_3_01", "C_3_5_6_2_01", "C_3_5_6_3_01", "C_1_2_2_3_01",
+    "C_1_3_3_5_01", "C_1_3_7_1_02", "C_1_3_7_3_02"
+  ],
+  "cases": {
+    "clean_exact_10km": {"overrides": {}, "export_status": "PASS"},
+    "point_number_gap": {"overrides": {"C_3_5_2_1_02": "FAIL"}, "export_status": "PASS"},
+    "coordinate_precision": {"overrides": {"C_3_5_2_2_01": "FAIL"}, "export_status": "PASS"},
+    "category_unknown": {"overrides": {"C_3_5_2_3_01": "FAIL", "C_3_5_6_2_01": "REVIEW_REQUIRED", "C_3_5_6_3_01": "REVIEW_REQUIRED"}, "export_status": "REVIEW_REQUIRED"},
+    "insufficient_observed": {"overrides": {"C_3_5_6_2_01": "FAIL"}, "export_status": "PASS"},
+    "one_cm_outside": {"overrides": {"C_3_5_6_3_01": "FAIL"}, "export_status": "PASS"},
+    "csv_coordinates_differ": {"overrides": {}, "export_status": "FAIL", "export_reason": "COORDINATES_DIFFER"},
+    "csv_frame_unresolved": {"overrides": {}, "export_status": "REVIEW_REQUIRED", "export_reason": "COORDINATE_FRAME_UNRESOLVED"},
+    "incomplete_table": {"overrides": {
+      "C_3_5_2_1_01": "REVIEW_REQUIRED", "C_3_5_2_1_02": "REVIEW_REQUIRED",
+      "C_3_5_2_2_01": "REVIEW_REQUIRED", "C_3_5_2_2_02": "REVIEW_REQUIRED",
+      "C_3_5_2_3_01": "REVIEW_REQUIRED", "C_3_5_6_2_01": "REVIEW_REQUIRED",
+      "C_3_5_6_3_01": "REVIEW_REQUIRED"
+    }, "export_status": "REVIEW_REQUIRED"},
+    "no_export": {"overrides": {}, "export_status": null},
+    "detail_identity_mismatch": {"overrides": {"C_1_3_7_1_02": "FAIL"}, "export_status": "PASS"},
+    "existing_plan_label_mismatch": {"overrides": {"C_1_3_7_3_02": "FAIL"}, "export_status": "PASS"},
+    "missing_territory_complete": {"overrides": {"C_1_3_3_5_01": "REVIEW_REQUIRED"}, "export_status": "PASS", "interpretation_reason": "The source requires identifying unsurveyed territory but does not mandate this exact phrase; its absence cannot establish a clause defect, even with complete text."},
+    "missing_territory_unknown": {"overrides": {"C_1_3_3_5_01": "REVIEW_REQUIRED"}, "export_status": "PASS"},
+    "alternate_territory_wording": {"overrides": {"C_1_3_3_5_01": "REVIEW_REQUIRED"}, "export_status": "PASS", "interpretation_reason": "UNSURVEYED LANDS is a deliberate alternative meaning-bearing annotation; fixed-phrase comparison cannot decide its semantic sufficiency."},
+    "malformed_scale": {"overrides": {"C_1_2_2_3_01": "REVIEW_REQUIRED"}, "export_status": "PASS"},
+    "rotated_sheet": {"overrides": {}, "export_status": "PASS"},
+    "export_declared_but_not_supplied": {"expected_error": "Point-export file and specification must be supplied together"}
+  }
+}

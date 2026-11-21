@@ -6,6 +6,23 @@ The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `new
 
 ## Evidence baseline
 
+Version 0.9.0 adds [executed clause evidence](references/clause-execution.md):
+eleven bounded question paths across nine clauses, actual PDF coordinate-table
+reading, a CAD/GIS point-export comparison and applicability-gated general text
+comparisons. This does not close any complete clause or regulatory milestone.
+The [November 21 source audit](references/regulatory-source-audit-2026-11-21.md)
+verifies linked editions and explicit supersession for several sources, including
+Survey Manual v2.3 and June 2026 A1. Application-specific authority, referenced
+dependencies, field evidence and qualified acceptance remain open. Historical
+test/trial counts below retain their original scope and version.
+
+The 0.9.0 suite ran 945 tests (943 passed, two optional skips); the two optional
+checks then passed separately against the current publisher-linked A2 PDF.
+The 18 invented combined cases matched their static oracle through both API and
+offline CLI, including 187 requests:178 executed and 9 blocked. These are known
+regressions, not unattended whole-plan acceptance. Details and source fingerprint
+are in the latest [technical review](TECHNICAL_REVIEW.md).
+
 The 0.8.0 intake forward trial froze code/instructions before four fresh invented
 reviews. All four planted issues were found through assisted visual/manual
 review, with no false alarms in two clean controls. Of 93 requested comparisons,
@@ -74,7 +91,7 @@ section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
 - Version 0.6 verification recorded **615 tests: 613 passed, two optional source-PDF tests skipped**, plus compilation and synthetic smoke. Its 116-file engine/test fingerprint is `ae405003b15a2da0828d8560f188a2ee4dfb478c488160e0abc16587fb850172`. All 113 revision tests passed on both tested PyMuPDF versions, 1.26.6 and 1.28.2. Synthetic regressions include shared-input snapshot binding, actual page frames, table-value reassignment and retained review actions. No private plan or regulator PDF was used. Exact installed-package, publication/CI and ChatGPT-release receipts remain separate.
 - Version 0.6.1 maintenance verification recorded **615 tests: 613 passed, two optional source-PDF tests skipped**, compilation and synthetic smoke. Its 116-file fingerprint is `dc87fd87b22392350c16b60daaf19823df02e904d058773d74be48525c2fe9a2`; the runtime change is source-inventory JSON only, with no Python/test logic change. Source research separately inspected already supplied references; those files and all project inputs remain private.
 - Evidence links below identify implemented code and tests, not new execution claims. [The historical Test 2 report](tests/TEST2_REPORT.md) has a narrower structured-fixture result and must not be read as real-plan validation.
-- Current regulatory authority, supersession and clause applicability have not been independently verified. A private real-plan case matched a separately prepared baseline for the implemented observations; broader benchmark acceptance remains open. The independent AI code-review record is in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md); it does not provide professional survey/regulatory acceptance.
+- Current application-specific authority and complete clause applicability remain unresolved. The November 21 source audit independently verifies selected linked editions and explicit supersession; it does not close those application gates. A private real-plan case matched a separately prepared baseline for implemented observations; broader benchmark acceptance remains open. The independent AI code-review record is in [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md); it does not provide professional survey/regulatory acceptance.
 
 ## Milestone summary
 
@@ -82,8 +99,8 @@ section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
 |---|---|---|
 | 1 | Foundation and GitHub integration | Public preview integrated; exact-version verification recorded separately |
 | 2 | PDF text/vector extraction | Implemented inventory contract documented and tested; semantic limits explicit |
-| 3 | Survey geometry | Existing reconstruction/CAD workflow handoff implemented; accepted geometry remains evidence-dependent |
-| 4 | Regulatory catalogue | All 144 dated clause paths implemented; 29 legacy observation links; current authority unverified |
+| 3 | Survey geometry | Existing reconstruction/CAD handoff plus actual point-export consistency checks; accepted geometry remains evidence-dependent |
+| 4 | Regulatory catalogue | 144 manual clause paths; 11 bounded observations across 9 clauses; selected editions verified, case-specific authority unresolved |
 | 5 | Plan-type determination | Scope exclusions and branch inventory implemented; complete regulatory determination unfinished |
 | 6 | Evidence and deficiency reporting | Summary-first evidence/actions, source-bound PDF notes and revision comparisons implemented; normative assessment remains gated |
 | 7 | PDF-to-report workflow | Exact code snapshot passed clean-copy offline acceptance; native discovery remains separate |
