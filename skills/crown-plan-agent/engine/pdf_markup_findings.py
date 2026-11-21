@@ -120,7 +120,9 @@ def _plan_candidates(evidence: list, mode: str, digest: str,
             # PDFs can share page numbers and even coincident literal spans.
             if item.get("source_id") != "plan":
                 continue
-            if (item.get("source_sha256") != digest
+            # One matching native span can still be an unreadable field: a
+            # raster overlay or detected continuation is retained as evidence.
+            if (item.get("status") != "READY" or item.get("source_sha256") != digest
                     or not isinstance(inner, dict) or inner.get("source_id") != "plan"
                     or inner.get("source_kind") != "PLAN" or inner.get("source_sha256") != digest):
                 invalid = True

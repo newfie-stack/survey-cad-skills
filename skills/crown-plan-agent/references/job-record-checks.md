@@ -42,7 +42,8 @@ preferred company is chosen automatically. Missing records stay visible.
 | Heading legal description versus accompanying form | `C_1_2_1_4_01` | Literal selected text only; illustrated extents remain a spatial question. |
 | Full disposition ID versus a job record | Job QA | Preserve prefix and all digits, including leading zeros; no missing-number deficiency is invented. |
 | Applicant versus explicitly confirmed job instructions | Job QA | Does not close form/registry questions. |
-| Parts total and amount-record comparison | Partial `C_1_3_6_3_01` or job QA | Does not accept categories, extent or boundaries. |
+| Parts total | Partial `C_1_3_6_3_01` or job QA | Does not accept categories, extent or boundaries. |
+| Plan amount versus an actual record amount | Job QA only | Does not close a dated regulatory question or accept categories, extent or boundaries. |
 | Approved + additions − deletions = amended total | Partial `C_3_3_3_1_05`, when selected | A fixed implementation comparison; underlying records and itemized-survey conditions remain separate. |
 | Width-group lengths total correctly | Partial `C_1_3_6_6_02`, when selected | Does not extend its access-road/literal-PLA branch to all pipelines. |
 | Gross − exclusions = net | Job QA | Does not accept an exclusion, nonoverlap, ownership or hectare-and-acre obligations. |

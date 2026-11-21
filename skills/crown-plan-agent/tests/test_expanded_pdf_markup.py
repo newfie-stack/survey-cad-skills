@@ -62,6 +62,7 @@ class ExpandedPDFMarkupTests(unittest.TestCase):
         evidence.update(source_id=source_id, source_kind=source_kind,
                         source_sha256=digest or self.sha)
         return {"source_id": source_id, "source_sha256": digest or self.sha,
+                "status": "READY",
                 "semantic_role": "applicant", "raw_value": evidence["text"], "evidence": evidence}
 
     def job(self, findings):
@@ -265,6 +266,62 @@ class ExpandedPDFMarkupTests(unittest.TestCase):
         self.assertTrue(all(n["status"] == "REVIEW_REQUIRED" for n in notes))
         export["plan_source_sha256"] = "1" * 64
         with self.assertRaises(ValueError): self.plan()
+
+    def test_unreadable_plan_fields_stay_unlocated_but_valid_currentness_context_remains_located(self):
+        from job_record_examples import make_job_example
+        from job_record_review import review_job_records
+        from record_fields import read_record_fields
+
+        for case in ("raster_overlap", "detected_continuation", "reference_currentness"):
+            with self.subTest(case=case):
+                files = make_job_example(self.root / case)
+                spec = files["spec"]
+                spec["comparisons"] = [next(c for c in spec["comparisons"] if c["id"] == "applicant_confirmed")]
+                spec["balances"] = []
+                region = spec["records"]["fields"]["p_app"]["selector"]["region"]
+                if case == "raster_overlap":
+                    with self.runtime.open(files["pdf"]) as doc:
+                        pixmap = self.runtime.Pixmap(self.runtime.csRGB, self.runtime.IRect(0, 0, 100, 20), False)
+                        pixmap.clear_with(255)
+                        doc[0].insert_image(self.runtime.Rect(region["bbox_points"]), pixmap=pixmap)
+                        changed = doc.tobytes()
+                    files["pdf"].write_bytes(changed)
+                elif case == "detected_continuation":
+                    with self.runtime.open(files["pdf"]) as doc:
+                        doc[0].insert_text((40, 76), "EXTRA CONTINUATION", fontsize=10)
+                        changed = doc.tobytes()
+                    files["pdf"].write_bytes(changed)
+                    # Select the complete first line, leaving the detected next
+                    # line outside this field so only one native span remains.
+                    region["bbox_points"] = [30, 47, 660, 64]
+                else:
+                    spec["records"]["sources"]["instructions"]["review"]["status"] = "UNCONFIRMED"
+                before = files["pdf"].read_bytes()
+                spec["records"]["sources"]["plan"]["source_sha256"] = sha256(before).hexdigest()
+                records = read_record_fields(files["pdf"], spec["records"], files["paths"])
+                field = records["fields"]["p_app"]
+                self.assertEqual(len(field["evidence"]["spans"]), 1)
+                expected_ready = case == "reference_currentness"
+                self.assertEqual(field["status"], "READY" if expected_ready else "REVIEW_REQUIRED")
+                if not expected_ready:
+                    expected_reason = "Raster image overlaps" if case == "raster_overlap" else "possible native field continuation"
+                    self.assertIn(expected_reason, field["reason"])
+                job = review_job_records(files["pdf"], spec, files["paths"])
+                self.assertEqual(job["findings"][0]["mechanical_status"], "REVIEW_REQUIRED")
+                inventory = extract_pdf(files["pdf"], include_vectors=False)
+                report = review_inventory(inventory, files["scenario"], [])
+                report["review_summary"] = {}
+                report["job_record_review"] = job
+                data, manifest = build_annotated_pdf(files["pdf"], report, inventory)
+                self.assertEqual(len(manifest["notes"]), 1)
+                self.assertEqual(manifest["located_count"], int(expected_ready))
+                self.assertEqual(manifest["notes"][0]["anchor"] is not None, expected_ready)
+                with self.runtime.open(stream=data, filetype="pdf") as doc:
+                    page = doc[0]
+                    self.assertEqual(len(list(page.annots())), int(expected_ready))
+                    index = "\n".join(doc[i].get_text() for i in range(1, doc.page_count))
+                    self.assertIn("JOB-applicant_confirmed", index)
+                self.assertEqual(files["pdf"].read_bytes(), before)
 
 
 if __name__ == "__main__":

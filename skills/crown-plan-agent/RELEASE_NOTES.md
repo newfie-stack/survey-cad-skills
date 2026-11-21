@@ -32,6 +32,13 @@ See [job-record checks](references/job-record-checks.md),
 [review-copy exports](references/pdf-markup.md) and
 [review readiness](references/review-readiness.md).
 
+Validation: 1,071 tests ran, with 1,069 passes, two optional skips and no failures.
+The preserved six-job invented trial found four planted issues: one by executed
+comparison and three by assisted reading. Two subsequent holdouts exercised ten
+passing area comparisons but still required assisted identity review. These are
+small synthetic trials, not an estimate of real-plan accuracy; see the
+[frozen results and limitations](references/job-records-forward-trial-2026-11-21.md).
+
 ## Version 0.9.0 changes retained
 
 - Execute eleven bounded workbook observations across nine numbered clauses,
