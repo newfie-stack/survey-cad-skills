@@ -25,6 +25,12 @@ completion of the master checklist are separate unfinished work.
 - Reuse the reviewed runtime and dependency locks. No OCR, automatic semantic
   role acceptance, current-authority clearance or professional acceptance is
   added by intake or these printed-format changes.
+- Preserve a frozen four-plan forward trial and known-case preparation probe.
+  The forward trial found four planted issues through assisted reading, with no
+  false alarms; 56 of 93 requests prepared/executed without context retries,
+  while 37 preparation requests and two executed comparisons remained unresolved.
+  See the [dated results](references/intake-forward-trial-2026-11-21.md); these
+  counts are not an unattended coverage or regulatory-acceptance claim.
 
 Version 0.7.9 changes retained:
 

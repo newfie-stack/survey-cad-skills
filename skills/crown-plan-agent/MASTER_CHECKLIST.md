@@ -6,6 +6,14 @@ The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `new
 
 ## Evidence baseline
 
+The 0.8.0 intake forward trial froze code/instructions before four fresh invented
+reviews. All four planted issues were found through assisted visual/manual
+review, with no false alarms in two clean controls. Of 93 requested comparisons,
+56 were prepared/executed without context retries, 37 remained preparation
+followups, and two executed checks stayed unresolved. These limits remain
+explicit in the [dated intake record](references/intake-forward-trial-2026-11-21.md).
+This adds no claim of complete unattended intake or regulatory/real-plan acceptance.
+
 The November 21 whole-plan assisted trial reviewed twelve further invented plans
 without supplied regions or answers: twelve planted issues found, no misses,
 no false alarms across six clean controls, and no false-clearance claims in that

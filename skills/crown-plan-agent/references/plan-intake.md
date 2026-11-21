@@ -102,3 +102,7 @@ grouping and one terminal period are supported. A malformed scale such as
 `1:2,50` or `1:2,500.0` cannot be accepted as `1:2`; it remains unresolved.
 Multiple ratios, unsupported ratios and missing evidence retain their guards.
 Reading a stated ratio does not measure plotted feature scale.
+
+The [dated forward-trial record](intake-forward-trial-2026-11-21.md) separates
+actual prepared/executed counts, assisted findings and remaining visual work.
+Its published examples are preserved regressions, not new blind inputs.

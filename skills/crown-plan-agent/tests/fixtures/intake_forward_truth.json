@@ -1,0 +1,679 @@
+{
+  "schema": "crown-plan-agent-intake-forward-truth-v1",
+  "publication_scope": "PUBLISHED_KNOWN_SYNTHETIC_REGRESSION_INPUTS; NOT_A_FRESH_BLIND_REVIEW",
+  "source_version": "0.8.0",
+  "source_commit": "3a3e5697ccf4e48f75032054131131ed3a7f3ea9",
+  "preservation_notes": [
+    "All drawing facts, briefs, names and marks are invented; no regulatory, legal or real survey-control claim is represented.",
+    "The original four-case author oracle is embedded unchanged as JSON data. No reviewer output, grading result or new model review is included.",
+    "Publication makes these cases known regressions. Regeneration does not produce fresh blind-review evidence.",
+    "The 345-degree and 355-degree bearings and 285-degree and 95-degree native baselines are constructed test data. An exact 350-degree label-direction threshold is unconfirmed and is not asserted as a drafting rule.",
+    "Original PDFs have no trailer /ID. Their native metadata is preserved; exact PDF and raster bytes are runtime- and font-dependent.",
+    "Only JSON and Python source are published; the original note images are regenerated from synthetic source text."
+  ],
+  "recorded_runtime": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "minimum_runtime_policy": "SATISFIED",
+    "policy_checked_on": "2026-11-19",
+    "python": "3.12.16",
+    "provider": "pymupdf-lite",
+    "provider_version": "2.1",
+    "pymupdf_version": "2.1",
+    "mupdf_version": "1.28.6",
+    "assessment_scope": "MINIMUM_RUNTIME_VERSIONS_ONLY",
+    "advisory_review_required": true,
+    "font_sha256": {
+      "DejaVuSans.ttf": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e",
+      "DejaVuSans-Bold.ttf": "a4c5bc453ca281d90ea079e596da7ae0dfeb5777497c29ec254e76d97ff6f890"
+    }
+  },
+  "original_generator": {
+    "original_bytes": 26519,
+    "original_sha256": "1ccc401c384d197aa0586041a23d25bdc6f13e98e6860fbaed141ca614f34e7e"
+  },
+  "original_oracle": {
+    "original_bytes": 18827,
+    "original_sha256": "2c5b46875f46f484076a06b33c1bbc6d91abf121abc377bddca1b49e3fc1f80c",
+    "canonical_content_sha256": "b6dec8290768a4530f220377d4b47941c4655678ed9788f7ac5523ad766abb4e",
+    "canonical_content_encoding": "UTF-8 json.dumps(content, ensure_ascii=False, sort_keys=True, separators=(\",\", \":\")), no trailing newline",
+    "content": {
+      "schema": "fresh-synthetic-plan-oracle/1",
+      "scope": "Private author truth. Synthetic drafting facts only; no regulatory or legal claims.",
+      "case_id_assignment": "Fixed random shuffle of neutral supplied IDs; names and PDF metadata do not encode status.",
+      "cases": [
+        {
+          "case_id": "R46",
+          "source_sha256": "39a19b5717e1c807f0253919cefdb010698e97c4cadee85cab6975c0272ef2f1",
+          "brief_sha256": "700031d3cf0ae2be103c3c20e5f3f5da5a607885e798e9a6961a5bf2ae4588ac",
+          "is_clean": true,
+          "layout_family": "Mica portrait two-sheet",
+          "defects": [],
+          "clean_controls": [
+            {
+              "claim": "Line bearings and line lengths are preserved in schedule and main view.",
+              "expected": "A–B 345°00′00″ / 1,250.10 m.; B–C 355°00′00″ / 2,000.20 m.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    308,
+                    802,
+                    424
+                  ],
+                  "detail": "native line schedule",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    294,
+                    278,
+                    449,
+                    1009
+                  ],
+                  "detail": "native near-north line labels",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Different reading directions are permitted by the brief, with no angular cutoff supplied.",
+              "expected": {
+                "line_A_B_azimuth_degrees": 345,
+                "line_A_B_baseline_degrees_mathematical": 285,
+                "line_B_C_azimuth_degrees": 355,
+                "line_B_C_baseline_degrees_mathematical": 95
+              },
+              "locations": [
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    366,
+                    741,
+                    414,
+                    876
+                  ],
+                  "detail": "line A–B label",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    310,
+                    561,
+                    336,
+                    699
+                  ],
+                  "detail": "line B–C label",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Dense field groups and normal-leading text are visibly readable.",
+              "expected": "No visible glyph collision or incidental clipping. Font metric boxes may touch at normal line leading.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    124,
+                    802,
+                    259
+                  ],
+                  "detail": "adjacent identity fields",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    901,
+                    802,
+                    946
+                  ],
+                  "detail": "adjacent normal-leading drawing fields",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    600,
+                    802,
+                    850
+                  ],
+                  "detail": "native drafting notes",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Main view and historical information remain distinct.",
+              "expected": "1:12,500 main view; HT-4 dashed context; 30.00 m subject width.",
+              "locations": [
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    40,
+                    95,
+                    802,
+                    1116
+                  ],
+                  "detail": "main view, notes and legend",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "U91",
+          "source_sha256": "916b4f8e849991ec2031d06df76d40970bea538b5374cd8cd83c57007e2d5d36",
+          "brief_sha256": "bf0886a83009bd8a508ac2c67028d59230eab4caac503b6f2567c1e98f8ef2da",
+          "is_clean": false,
+          "layout_family": "Willow Bench wide split-view",
+          "defects": [
+            {
+              "id": "WB-SUBJECT-ZONE",
+              "claim": "Subject spatial-reference note uses the historical zone rather than the brief’s subject zone.",
+              "expected": "Subject: simulated NAD83(CSRS) / UTM Zone 12N. Historical H-17: simulated Zone 11N context only.",
+              "observed": "Subject note states UTM Zone 11N. Historical H-17 remains Zone 11N context only.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    657,
+                    537,
+                    1140,
+                    582
+                  ],
+                  "detail": "first two raster subject-reference lines",
+                  "coordinate_origin": "top-left"
+                }
+              ],
+              "evidence": {
+                "kind": "image_only",
+                "brief_fact": "Use simulated NAD83(CSRS) / UTM Zone 12N for subject coordinates.",
+                "image_text": "1. Subject reference: simulated NAD83(CSRS) / UTM Zone 11N.",
+                "historical_control": "H-17 historical reference remains Zone 11N; context only."
+              }
+            },
+            {
+              "id": "WB-MAIN-SCALE",
+              "claim": "Main-view scale caption is malformed and differs from the brief’s 1:2500.",
+              "expected": "Scale 1:2500",
+              "observed": "Scale 1:2,50",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    127,
+                    270,
+                    163
+                  ],
+                  "detail": "native main-view scale caption",
+                  "coordinate_origin": "top-left"
+                }
+              ],
+              "evidence": {
+                "kind": "native_text",
+                "brief_fact": "Show the main view at 1:2500 and the culvert crossing inset at 1:500.",
+                "plan_text": "Scale 1:2,50",
+                "interpretation": "Malformed token; do not silently truncate or interpret as 1:2."
+              }
+            }
+          ],
+          "clean_controls": [
+            {
+              "claim": "Dense native field notes do not cover the separate image-only note panel.",
+              "expected": "Site reference/general notes are one readable raster image with no native text spans inside its rectangle.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    645,
+                    500,
+                    1151,
+                    735
+                  ],
+                  "detail": "image-only note panel",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    500,
+                    626,
+                    735
+                  ],
+                  "detail": "separate dense native field notes",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Subject and historical spatial references refer to different things.",
+              "expected": "Subject simulated Zone 12N; H-17 historical simulated Zone 11N context only.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    645,
+                    500,
+                    1151,
+                    735
+                  ],
+                  "detail": "raster subject and historical note lines",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    643,
+                    626,
+                    672
+                  ],
+                  "detail": "native historical H-17 row",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Inset has a distinct valid scale and main/inset figures are separately identified.",
+              "expected": "Culvert crossing inset 1:500; C1 station 0+145.00.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    732,
+                    98,
+                    1151,
+                    478
+                  ],
+                  "detail": "inset heading, scale and C1 station",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Current job identity, dimensions and title-block scale description are consistent.",
+              "expected": "SYN-WB-624; 18.00 m; 230.00 m; 0.414 ha; title block AS SHOWN.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    748,
+                    1151,
+                    793
+                  ],
+                  "detail": "title block",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    127,
+                    709,
+                    478
+                  ],
+                  "detail": "main view dimensions",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    645,
+                    500,
+                    1151,
+                    735
+                  ],
+                  "detail": "image-only note dimensions",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "L38",
+          "source_sha256": "b94255072bed5afe46b1e31475eb040e18dfddffcd9554d2393b272ade44b774",
+          "brief_sha256": "700031d3cf0ae2be103c3c20e5f3f5da5a607885e798e9a6961a5bf2ae4588ac",
+          "is_clean": false,
+          "layout_family": "Mica portrait two-sheet",
+          "defects": [
+            {
+              "id": "MR-IDENTITY",
+              "claim": "Current subject-file identity in the title field differs from the job brief.",
+              "expected": "SYN-MR-813",
+              "observed": "SYN-MR-831",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    421,
+                    124,
+                    802,
+                    169
+                  ],
+                  "detail": "Subject file value",
+                  "coordinate_origin": "top-left"
+                }
+              ],
+              "evidence": {
+                "kind": "native_text",
+                "brief_fact": "The subject file is SYN-MR-813.",
+                "plan_text": "SYN-MR-831"
+              }
+            },
+            {
+              "id": "MR-LENGTH-SUM",
+              "claim": "Printed length-summary total is inconsistent with its two printed component lengths and the job total.",
+              "expected": "1,250.10 + 2,000.20 = 3,250.30 m.",
+              "observed": "1,250.10 m. + 2,000.20 m. = 3,150.30 m.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    476,
+                    802,
+                    548
+                  ],
+                  "detail": "length summary total",
+                  "coordinate_origin": "top-left"
+                }
+              ],
+              "evidence": {
+                "kind": "native_text",
+                "components_m": [
+                  1250.1,
+                  2000.2
+                ],
+                "arithmetic_total_m": 3250.3,
+                "printed_total_m": 3150.3,
+                "terminal_punctuation": "m."
+              }
+            }
+          ],
+          "clean_controls": [
+            {
+              "claim": "Line bearings and line lengths are preserved in schedule and main view.",
+              "expected": "A–B 345°00′00″ / 1,250.10 m.; B–C 355°00′00″ / 2,000.20 m.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    308,
+                    802,
+                    424
+                  ],
+                  "detail": "native line schedule",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    294,
+                    278,
+                    449,
+                    1009
+                  ],
+                  "detail": "native near-north line labels",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Different reading directions are permitted by the brief, with no angular cutoff supplied.",
+              "expected": {
+                "line_A_B_azimuth_degrees": 345,
+                "line_A_B_baseline_degrees_mathematical": 285,
+                "line_B_C_azimuth_degrees": 355,
+                "line_B_C_baseline_degrees_mathematical": 95
+              },
+              "locations": [
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    366,
+                    741,
+                    414,
+                    876
+                  ],
+                  "detail": "line A–B label",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    310,
+                    561,
+                    336,
+                    699
+                  ],
+                  "detail": "line B–C label",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Dense field groups and normal-leading text are visibly readable.",
+              "expected": "No visible glyph collision or incidental clipping. Font metric boxes may touch at normal line leading.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    124,
+                    802,
+                    259
+                  ],
+                  "detail": "adjacent identity fields",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    901,
+                    802,
+                    946
+                  ],
+                  "detail": "adjacent normal-leading drawing fields",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    600,
+                    802,
+                    850
+                  ],
+                  "detail": "native drafting notes",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Main view and historical information remain distinct.",
+              "expected": "1:12,500 main view; HT-4 dashed context; 30.00 m subject width.",
+              "locations": [
+                {
+                  "page": 2,
+                  "bbox_pdf_points": [
+                    40,
+                    95,
+                    802,
+                    1116
+                  ],
+                  "detail": "main view, notes and legend",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "P72",
+          "source_sha256": "59e9554a149e4e1850756ced96a98836a77a0e3b0f69371508d72ad32faa02de",
+          "brief_sha256": "bf0886a83009bd8a508ac2c67028d59230eab4caac503b6f2567c1e98f8ef2da",
+          "is_clean": true,
+          "layout_family": "Willow Bench wide split-view",
+          "defects": [],
+          "clean_controls": [
+            {
+              "claim": "Dense native field notes do not cover the separate image-only note panel.",
+              "expected": "Site reference/general notes are one readable raster image with no native text spans inside its rectangle.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    645,
+                    500,
+                    1151,
+                    735
+                  ],
+                  "detail": "image-only note panel",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    500,
+                    626,
+                    735
+                  ],
+                  "detail": "separate dense native field notes",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Subject and historical spatial references refer to different things.",
+              "expected": "Subject simulated Zone 12N; H-17 historical simulated Zone 11N context only.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    645,
+                    500,
+                    1151,
+                    735
+                  ],
+                  "detail": "raster subject and historical note lines",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    643,
+                    626,
+                    672
+                  ],
+                  "detail": "native historical H-17 row",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Inset has a distinct valid scale and main/inset figures are separately identified.",
+              "expected": "Culvert crossing inset 1:500; C1 station 0+145.00.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    732,
+                    98,
+                    1151,
+                    478
+                  ],
+                  "detail": "inset heading, scale and C1 station",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            },
+            {
+              "claim": "Current job identity, dimensions and title-block scale description are consistent.",
+              "expected": "SYN-WB-624; 18.00 m; 230.00 m; 0.414 ha; title block AS SHOWN.",
+              "locations": [
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    748,
+                    1151,
+                    793
+                  ],
+                  "detail": "title block",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    40,
+                    127,
+                    709,
+                    478
+                  ],
+                  "detail": "main view dimensions",
+                  "coordinate_origin": "top-left"
+                },
+                {
+                  "page": 1,
+                  "bbox_pdf_points": [
+                    645,
+                    500,
+                    1151,
+                    735
+                  ],
+                  "detail": "image-only note dimensions",
+                  "coordinate_origin": "top-left"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "original_pdf_metadata": {
+    "title": "Synthetic review plan",
+    "author": "Practice Drafting Studio (fictional)",
+    "subject": "Synthetic drafting review exercise",
+    "keywords": "synthetic; review only",
+    "creator": "Private synthetic plan generator",
+    "producer": "Private synthetic plan generator",
+    "creationDate": "D:20261121090000Z",
+    "modDate": "D:20261121090000Z"
+  },
+  "original_note_assets": {
+    "P72": {
+      "original_basename": "notes-a.png",
+      "original_bytes": 77144,
+      "original_sha256": "fbf7f268780c8732cceedfb2381af6715e0884e1678c7f0e3cce3dd3f7bf75d2",
+      "pixels_sha256": "f63d10526d6703ae330f3aca5f09ae7533cb8e8826553b577020ccc581b78b2f",
+      "width": 1518,
+      "height": 705
+    },
+    "U91": {
+      "original_basename": "notes-b.png",
+      "original_bytes": 76734,
+      "original_sha256": "5e4584aeb8cced6de341be55d34786ef09da2fe390d10c98e4958e5aa752518b",
+      "pixels_sha256": "9b54f903477ed8e1b6b7855bad20dc7eaee2b7fa710ae667d46e66e800e1cc6e",
+      "width": 1518,
+      "height": 705
+    }
+  }
+}
