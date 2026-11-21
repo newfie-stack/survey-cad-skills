@@ -101,6 +101,31 @@ def build_review_summary(report: dict) -> dict:
         add("not_checked", "Drawing coverage beyond the selected QC regions, graphical interpretation and field verification remain unchecked.")
         add("not_checked", "Regulatory compliance and professional acceptance have not been established.")
 
+    job_review = report.get('job_record_review')
+    if job_review is not None:
+        from job_record_review import ASSESSMENT_SCOPE
+        if (not isinstance(job_review, dict) or job_review.get('assessment_scope') != ASSESSMENT_SCOPE
+                or job_review.get('overall_status') != 'REVIEW_REQUIRED'
+                or job_review.get('regulatory_status') != 'NOT_ASSESSED'):
+            raise ValueError('Only review-only job-record results can be summarized')
+        findings = job_review['findings']
+        if any(f.get('status') != 'REVIEW_REQUIRED' for f in findings):
+            raise ValueError('Record comparisons cannot accept regulatory compliance')
+        executed = [f for f in findings if f['execution_status'] == 'EXECUTED']
+        statuses = ('PASS', 'FAIL', 'REVIEW_REQUIRED')
+        if any(f['mechanical_status'] not in statuses for f in findings):
+            raise ValueError('Unsupported job-record comparison result')
+        counts = {state: sum(f['mechanical_status'] == state for f in executed) for state in statuses}
+        blocked = len(findings)-len(executed)
+        add('checked', f"Compared {len(findings)} requested job-record checks: {len(executed)} executed (PASS={counts['PASS']}; FAIL={counts['FAIL']}; REVIEW_REQUIRED={counts['REVIEW_REQUIRED']}), {blocked} blocked or not selected.")
+        for finding in [f for f in findings if f['mechanical_status'] == 'FAIL'][:5]:
+            add('needs_attention', finding['check_id'] + ': ' + finding['reason'])
+        if blocked or counts['REVIEW_REQUIRED']:
+            add('not_checked', 'Some record comparisons remain blocked by missing, unreadable, unconfirmed or inapplicable evidence; see each recorded reason.')
+        if counts['FAIL'] or blocked or counts['REVIEW_REQUIRED']:
+            add('next_steps', 'Confirm the authoritative job records, then resolve discrepancies and blockers in Plan and job-record comparisons.')
+        add('not_checked', 'Record roles/currentness, spatial partitions, accepted survey geometry and regulatory compliance require their separate evidence.')
+
     clause_evidence = report.get('regulatory_evidence_review')
     if clause_evidence is not None:
         from regulatory_evidence import ASSESSMENT_SCOPE

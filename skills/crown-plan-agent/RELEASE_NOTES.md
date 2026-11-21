@@ -1,4 +1,4 @@
-# Crown Plan Agent 0.9.0 — development preview
+# Crown Plan Agent 0.10.0 — development preview
 
 This is a development preview prepared for the public
 [newfie-stack/survey-cad-skills repository](https://github.com/newfie-stack/survey-cad-skills)
@@ -6,6 +6,33 @@ at the owner's request. Production acceptance, regulatory certification and
 completion of the master checklist are separate unfinished work.
 
 ## Changes
+
+- Compare the actual plan applicant and heading legal description with supplied
+  application/registry records; compare disposition IDs and confirmed job
+  instructions separately as job QA. Preserve missing or conflicting references.
+- Read source-hashed original PDF fields and actual JSON job instructions with
+  reviewed subject, semantic role and current/historical basis. No company name
+  is guessed from a logo or treated as its own trusted reference.
+- Execute fixed printed sums, amendment additions/deletions, gross/net exclusions,
+  width-group lengths and plan-versus-record amounts using original unit evidence
+  and exact Decimal tolerances. Compare categories as well as grand totals.
+- Add six bounded dated question paths across five additional clauses. The
+  combined executors support seventeen paths across fourteen partially observed
+  clauses; all 144 manual paths and residual obligations remain available.
+- Include actionable finished-plan, clause, job-record and point-export findings
+  in the PDF review-copy index, with comments only at uniquely verified plan
+  spans. Reference-document coordinates never become guessed plan markers.
+- Recheck reference snapshots after PDF generation before publishing artifacts.
+  Preserve wrapped, raster, clipped, unselected and ambiguous evidence as open.
+- Preserve regression tests for hidden name continuations, wrong record roles/
+  jobs, category reallocations, unchanged totals, repeated evidence, unit/scope
+  conflicts and source changes. Dependencies and plugin presentation are unchanged.
+
+See [job-record checks](references/job-record-checks.md),
+[review-copy exports](references/pdf-markup.md) and
+[review readiness](references/review-readiness.md).
+
+## Version 0.9.0 changes retained
 
 - Execute eleven bounded workbook observations across nine numbered clauses,
   preserving every applicability/override blocker and residual manual obligation.

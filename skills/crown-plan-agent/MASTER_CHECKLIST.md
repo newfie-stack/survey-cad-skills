@@ -6,6 +6,16 @@ The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `new
 
 ## Evidence baseline
 
+Version 0.10.0 adds actual job-record identity comparisons, source-bound printed
+balances and complete actionable finding export to the private review-copy index.
+Application/registry references remain distinct from confirmed job instructions.
+The combined executor mappings cover seventeen bounded paths across fourteen
+partially observed clauses. Read the [job-record guide](references/job-record-checks.md)
+and [readiness boundary](references/review-readiness.md). This completes further
+advertised review-assistance features; it does not close full regulatory, field,
+professional or production acceptance. Version-specific validation is recorded
+in the latest technical review and preserved trial evidence.
+
 Version 0.9.0 adds [executed clause evidence](references/clause-execution.md):
 eleven bounded question paths across nine clauses, actual PDF coordinate-table
 reading, a CAD/GIS point-export comparison and applicability-gated general text
@@ -100,9 +110,9 @@ section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
 | 1 | Foundation and GitHub integration | Public preview integrated; exact-version verification recorded separately |
 | 2 | PDF text/vector extraction | Implemented inventory contract documented and tested; semantic limits explicit |
 | 3 | Survey geometry | Existing reconstruction/CAD handoff plus actual point-export consistency checks; accepted geometry remains evidence-dependent |
-| 4 | Regulatory catalogue | 144 manual clause paths; 11 bounded observations across 9 clauses; selected editions verified, case-specific authority unresolved |
+| 4 | Regulatory catalogue | 144 manual clause paths; 17 bounded observations across 14 clauses; selected editions verified, case-specific authority unresolved |
 | 5 | Plan-type determination | Scope exclusions and branch inventory implemented; complete regulatory determination unfinished |
-| 6 | Evidence and deficiency reporting | Summary-first evidence/actions, source-bound PDF notes and revision comparisons implemented; normative assessment remains gated |
+| 6 | Evidence and deficiency reporting | Job-record comparisons, printed balances, actionable PDF/index export and revision comparisons implemented; normative assessment remains gated |
 | 7 | PDF-to-report workflow | Exact code snapshot passed clean-copy offline acceptance; native discovery remains separate |
 | 8 | Real-world validation | One authorized private case and public extraction examples exercised; broader acceptance open |
 | 9 | Independent technical review | Independent AI code review; qualified survey/regulatory acceptance outstanding |

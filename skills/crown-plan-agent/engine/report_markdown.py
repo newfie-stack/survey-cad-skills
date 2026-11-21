@@ -217,6 +217,9 @@ def render_review_markdown(report: dict) -> str:
                 lines += ["Calculated area (ha): " + _cell(area["calculated_ha"]),
                           "Absolute difference (ha): " + _cell(format(area["difference_ha"], ".12g"))]
             lines.append("Confirm the selected annotation and survey coordinates refer to the same boundary.")
+    if 'job_record_review' in report:
+        from job_record_review import render_job_record_review
+        lines += ['', render_job_record_review(report['job_record_review'])]
     if 'regulatory_evidence_review' in report:
         from regulatory_evidence import render_regulatory_evidence
         lines += ['', render_regulatory_evidence(report['regulatory_evidence_review'])]

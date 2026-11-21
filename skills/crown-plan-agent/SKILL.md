@@ -1,7 +1,7 @@
 ---
 name: crown-plan-agent
 description: Use when reviewing Alberta Crown/public-land survey or sketch plans, comparing original plan PDF revisions, checking disposition plan requirements, or assessing evidence-based CAD/GIS submission readiness.
-version: 0.9.0
+version: 0.10.0
 ---
 # Crown Plan Agent
 
@@ -114,14 +114,61 @@ General clause observations cover numerical main-plan scale, the applicable
 unsurveyed-territory note, and selected detail/reference or existing-plan-label
 text comparisons. Execute only selected questions after workbook applicability
 and override gates; retain every residual semantic, visual and record check.
-Report executed, blocked and unrequested work separately. New detailed findings
-are in Markdown; do not claim each has been placed on an annotated PDF.
+Report executed, blocked and unrequested work separately. Actionable findings
+enter the private PDF review-copy index when requested, with plan-page comments
+only where actual plan evidence has one verified location. Reference-document
+coordinates and ambiguous locations must never become guessed plan markers.
 
 Consult the [November 21 source verification](references/regulatory-source-audit-2026-11-21.md):
 the published Survey Manual v2.3 supersedes v2.2, Table A1 is June 2026,
 Table A2 is October 2026, and the published MSP revisions took effect April 17,
 2026. Edition verification does not establish application-specific authority.
 Keep mechanical results separate from the unresolved regulatory verdict.
+
+## Compare the plan with actual job records
+
+Use the [job-record review](references/job-record-checks.md) to compare the plan
+with authorized application, client-registry, approved-record and confirmed job
+instructions. Read the actual records, identify which job and subject they cover,
+and record their current or historical review basis. The agent prepares private
+selectors and runs `--job-record-spec` with explicit `--job-record-file` inputs;
+never invent an applicant, record version, source location or authority.
+
+A company printed on the plan is an observation, not its own trusted reference.
+Keep applicant, operator, landowner and surveyor roles separate. A name explicitly
+confirmed by the user may be saved literally in private job instructions and used
+for job QA; reuse an existing confirmation rather than asking again. It does not
+replace the application form or client registry for their dated questions. When
+records conflict, show each comparison and resolve the authoritative reference;
+do not choose by familiarity, logo, majority or whichever value makes a pass.
+
+Execute the three supported identity questions for plan-heading legal description
+versus form and applicant versus form/registry only after workbook selection.
+Disposition-number checks and confirmed job expectations remain job QA. Six new
+bounded question paths, including the area/length paths below, bring the combined
+supported dated observations to seventeen across fourteen partially observed
+clauses. All complete clauses retain their residual manual obligations.
+
+Use fixed printed balances for components/total, approved plus added minus deleted,
+gross minus exclusions, width-group length totals, and plan amounts versus actual
+records. Preserve the reviewed component identities, measurement scope, original
+units and explicit tolerance. Compare individual category amounts as well as
+grand totals where the records support it. A correct sum does not establish
+correct categories, spatial nonoverlap, legal exclusions or boundary geometry.
+Do not create an arithmetic expression or change values to force agreement.
+
+Missing records and unselected fields use explicit unresolved entries; use a null
+selector instead of inventing a page or rectangle. Scanned, outlined, clipped,
+wrapped, split or ambiguous native fields remain unresolved. Preserve original
+strings; no abbreviation, punctuation, suffix, compatibility-character or leading-
+zero ID equivalence is inferred. Unconfirmed Unicode case equivalence stays open.
+Never let unrelated field/unit selections hide a possible continuation of a name.
+
+For a requested PDF review copy, include actionable finished-plan, dated-clause,
+job-record and point-export findings in its complete index. Keep PASS results in
+the detailed report, and keep multiple or unsupported locations unlocated in the
+index. Verify every reference snapshot again after PDF generation before publishing
+the private artifacts. Follow the [PDF review-copy guide](references/pdf-markup.md).
 
 Before engine PDF operations, follow the dated [dependency and runtime policy](references/dependency-security.md), including its unresolved native-advisory record. Use a fresh environment with the hash-locked requirements and run `python engine/runtime_security.py` from the skill folder. This checks minimum runtime versions and provider identity before native PDF opening; it is not security clearance. If the check fails or the required runtime cannot be established, keep the engine unexecuted and use the evidence-limited assisted review available in the host. Do not bypass the runtime gate.
 

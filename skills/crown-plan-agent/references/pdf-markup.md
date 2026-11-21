@@ -3,9 +3,10 @@
 The optional export creates a private review copy alongside the normal Markdown
 report. It keeps the original source pages and appends printable review notes.
 It does not change legal geometry, verify source currency or certify compliance.
-Keep the Markdown report with the copy: the PDF covers requirement findings and
-summary review notes; separate CLI appendices, such as detailed Table A2 and
-drawing-disposition checks, remain in Markdown.
+Keep the Markdown report with the copy: the PDF covers requirement findings,
+summary notes and actionable finished-plan, dated-clause, job-record and point-
+export comparisons. PASS comparisons remain in Markdown, as do separate CLI
+appendices such as detailed Table A2 and drawing-disposition checks.
 
 ## Run the export
 
@@ -40,6 +41,13 @@ survey-coordinate files, can be added using the existing CLI options. Without
 - Visual checks, repeated labels, conflicting totals and other findings without
   a reliable location are explicitly unlocated. They stay in the notes index;
   their absence from the plan overlay does not mean they were passed.
+- Cross-document comparisons retain reference source IDs and locations as context.
+  Only independently matched spans from the actual plan can receive a plan marker;
+  an application or registry page number is never reused as a plan-page anchor.
+- Aliased finished-plan/clause observations share one note with their linked
+  finding/question IDs and distinct scoped results. Independent causes remain
+  separate. Multiple valid plan targets remain in the complete index without an
+  arbitrarily chosen location. QA discrepancies retain regulatory REVIEW_REQUIRED.
 - Original page boxes, rotation, text, linework and existing annotations are
   preserved. Comments are overlays in a derived copy. PDF viewers differ in
   popup support; the printable index provides the same notes without popups.
@@ -64,6 +72,8 @@ findings are not silently discarded. Existing outputs, source aliases, symlink
 destinations and markup outputs inside the skill/code repository are rejected.
 Prepared outputs are published without replacement; ordinary publication errors
 remove only artifacts created by that call. This is not a crash-recovery guarantee.
+All supplied job-record hashes are rechecked after building the PDF, immediately
+before publishing the Markdown/PDF pair. Changed references stop both outputs.
 
 The Markdown artifact section records source/output hashes and located/unlocated
 counts. Its detailed finding IDs match the PDF note register. Do not upload

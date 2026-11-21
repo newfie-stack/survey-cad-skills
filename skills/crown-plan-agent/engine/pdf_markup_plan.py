@@ -163,6 +163,14 @@ def build_markup_plan(report: dict, inventory: dict, *, source_sha256: str,
                       "source_status": _text(entry.get("source_status"), "Source status", limit=256,
                                              default="UNVERIFIED_CURRENT"),
                       "anchor": anchor, "evidence_page": page, "location_reason": reason})
+    from pdf_markup_findings import expanded_markup_notes
+    expanded = expanded_markup_notes(report, digest=source_sha256, pages=pages,
+                                     spans=spans, remaining=max_notes-len(notes))
+    for note in expanded:
+        if note["finding_id"] in seen:
+            raise ValueError("Duplicate expanded finding ID")
+        seen.add(note["finding_id"])
+        notes.append(note)
     summary = report.get("review_summary")
     if summary is not None and not isinstance(summary, dict):
         raise ValueError("Review summary must be an object")
