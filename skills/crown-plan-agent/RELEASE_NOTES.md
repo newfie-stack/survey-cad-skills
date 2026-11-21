@@ -7,6 +7,16 @@ completion of the master checklist are separate unfinished work.
 
 ## Changes
 
+Unreleased applicability-test follow-up:
+
+- Add 45 invented applicability scenarios plus cross-layer review regressions
+  for selective exceptions, application facts and source/evidence separation.
+- Preserve a conflicted disposition alias as unresolved in the dated workbook
+  so report generation can retain the invalid-context gate without crashing.
+  Renderer validation and current-authority safeguards remain unchanged.
+- Reuse existing public inputs separately as unknown-context controls; no real
+  plan content is included in fixtures or a new installed release.
+
 - Flag conflicting amounts in an explicitly labelled, text-complete total field
   without selecting one as authoritative. Accept numerically equivalent repeats
   while retaining every independent part row in the arithmetic.

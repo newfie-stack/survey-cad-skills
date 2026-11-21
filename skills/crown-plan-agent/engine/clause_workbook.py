@@ -108,6 +108,11 @@ def prepare_clause_workbook(catalogue: dict, scenario: dict, facts: dict, *,
     context = {}
     for field in sorted(CONTEXT_FIELDS):
         value = normalized[field]
+        # A valid-looking canonical code may still conflict with the legacy
+        # activity alias. The alias is not retained in the workbook's context;
+        # keep that dimension unresolved so validation can reproduce its gate.
+        if field == "disposition" and field in normalized["invalid_dimensions"]:
+            value = None
         if isinstance(value, str):
             if len(value) > 4096:
                 raise ValueError("Context strings exceed the workbook limit")
