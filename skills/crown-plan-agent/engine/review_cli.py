@@ -142,7 +142,9 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                finished_plan_spec: dict | None = None,
                finished_plan_contexts: dict | None = None,
                regulatory_evidence_spec: dict | None = None,
-               point_export: Path | None = None) -> Path:
+               point_export: Path | None = None,
+               job_record_spec: dict | None = None,
+               job_record_files: dict[str, Path] | None = None) -> Path:
     preflight_review_paths(pdf, output, annotated_pdf)
     if finished_plan_spec is not None and finished_plan_contexts is not None:
         raise ValueError("Finished-plan spec and contexts are mutually exclusive; do not supply both")
@@ -155,6 +157,15 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
     if not isinstance(scenario, dict):
         raise TypeError("Scenario must be a JSON object")
     preflight_clause_inputs(scenario, clause_catalogue, clause_facts, clause_inventory)
+    if job_record_spec is None:
+        if job_record_files:
+            raise ValueError('Job record files require a job-record specification')
+    else:
+        from job_record_review import validate_job_inputs
+        from record_fields import preflight_record_sources
+        validate_job_inputs(job_record_spec, scenario=scenario, clause_catalogue=clause_catalogue,
+                            clause_facts=clause_facts)
+        preflight_record_sources(pdf, job_record_spec['records'], job_record_files or {})
     if regulatory_evidence_spec is None:
         if point_export is not None:
             raise ValueError('Point export requires a regulatory evidence specification')
@@ -203,6 +214,13 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
                               survey_geometry=survey_geometry, table_a2_rows=rows,
                               clause_catalogue=clause_catalogue, clause_facts=clause_facts,
                               clause_inventory=clause_inventory)
+    if job_record_spec is not None:
+        from job_record_review import review_job_records
+        report['job_record_review'] = review_job_records(
+            pdf, job_record_spec, job_record_files or {}, scenario=scenario,
+            clause_catalogue=clause_catalogue, clause_facts=clause_facts)
+        if inventory['source_sha256'] != report['job_record_review']['plan_source_sha256']:
+            raise ValueError('Source PDF changed during job-record review')
     if regulatory_evidence_spec is not None:
         from regulatory_evidence import review_regulatory_evidence
         report['regulatory_evidence_review'] = review_regulatory_evidence(
@@ -212,7 +230,8 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
             raise ValueError('Source PDF changed during clause evidence review')
     if preparation is not None:
         report["plan_intake_preparation"] = preparation
-    if finished_review is not None or preparation is not None or regulatory_evidence_spec is not None:
+    if (finished_review is not None or preparation is not None or regulatory_evidence_spec is not None
+            or job_record_spec is not None):
         from report_markdown import render_review_markdown
         from review_summary import build_review_summary
         if finished_review is not None:
@@ -262,6 +281,9 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
         from pdf_source import read_pdf_snapshot
         if read_pdf_snapshot(pdf)[1] != report['regulatory_evidence_review']['source_sha256']:
             raise ValueError('Source PDF changed before clause evidence publication')
+    if job_record_spec is not None:
+        from job_record_review import verify_job_review_sources
+        verify_job_review_sources(pdf, job_record_spec, job_record_files or {}, report['job_record_review'])
     if annotated_pdf is None:
         # Preserve the existing single-report workflow.
         with output.open("x", encoding="utf-8") as handle:
@@ -273,6 +295,8 @@ def run_review(pdf: Path, output: Path, scenario: dict, catalogue_path: Path,
         if read_pdf_snapshot(pdf)[1] != manifest['source_sha256']:
             raise ValueError('Source PDF changed before review publication')
         report['report_markdown'] += markup_artifact_report(annotated_pdf, output, manifest, pdf_bytes)
+        if job_record_spec is not None:
+            verify_job_review_sources(pdf, job_record_spec, job_record_files or {}, report['job_record_review'])
         publish_artifacts({output: report['report_markdown'].encode('utf-8'),
                            annotated_pdf: pdf_bytes})
     return output
@@ -296,6 +320,10 @@ def main(argv: list[str] | None = None) -> int:
                         help='Execute supported source-bound observations for selected dated workbook questions')
     parser.add_argument('--point-export', type=Path,
                         help='Actual private CAD/GIS CSV point export bound by the evidence specification')
+    parser.add_argument('--job-record-spec', type=Path,
+                        help='Source-bound original records, identity comparisons and printed area/length balances')
+    parser.add_argument('--job-record-file', action='append', default=[], metavar='SOURCE_ID=PATH',
+                        help='Explicit local original reference file; repeat for each named source')
     finished = parser.add_mutually_exclusive_group()
     finished.add_argument("--finished-plan-spec", type=Path,
                         help="Opt-in source-bound drawing-QC checks in the Markdown report")
@@ -316,6 +344,15 @@ def main(argv: list[str] | None = None) -> int:
         parser.error('--regulatory-evidence-spec requires --clause-catalogue')
     if args.point_export is not None and args.regulatory_evidence_spec is None:
         parser.error('--point-export requires --regulatory-evidence-spec')
+    if args.job_record_file and args.job_record_spec is None:
+        parser.error('--job-record-file requires --job-record-spec')
+    job_record_files = {}
+    for value in args.job_record_file:
+        source_id, separator, path = value.partition('=')
+        if (not separator or not re.fullmatch(r'[A-Za-z][A-Za-z0-9_.-]{0,63}', source_id)
+                or source_id == 'plan' or not path or source_id in job_record_files):
+            parser.error('--job-record-file requires a unique non-plan SOURCE_ID and local path')
+        job_record_files[source_id] = Path(path)
     refresh_requested = args.refresh_table_a2 or args.table_a2_url is not None
     if args.offline and refresh_requested:
         parser.error("--offline cannot be combined with an official refresh")
@@ -344,6 +381,17 @@ def main(argv: list[str] | None = None) -> int:
             preflight_clause_inputs(scenario, clause_catalogue, clause_facts, clause_inventory)
         except (OSError, TypeError, ValueError) as exc:
             parser.error("Invalid clause workbook inputs: " + str(exc))
+    job_record_spec = None
+    if args.job_record_spec is not None:
+        from job_record_review import validate_job_inputs
+        from record_fields import preflight_record_sources
+        try:
+            job_record_spec = load_bounded_json(args.job_record_spec)
+            validate_job_inputs(job_record_spec, scenario=scenario, clause_catalogue=clause_catalogue,
+                                clause_facts=clause_facts)
+            preflight_record_sources(args.pdf, job_record_spec['records'], job_record_files)
+        except (OSError, TypeError, ValueError) as exc:
+            parser.error('Invalid job-record inputs: ' + str(exc))
     regulatory_evidence_spec = None
     if args.regulatory_evidence_spec is not None:
         from regulatory_evidence import validate_execution_inputs
@@ -406,7 +454,8 @@ def main(argv: list[str] | None = None) -> int:
                    finished_plan_spec=finished_plan_spec,
                    finished_plan_contexts=finished_plan_contexts,
                    regulatory_evidence_spec=regulatory_evidence_spec,
-                   point_export=args.point_export)
+                   point_export=args.point_export,
+                   job_record_spec=job_record_spec, job_record_files=job_record_files)
     except (OSError, RuntimeError, ValueError) as exc:
         if args.annotated_pdf is None:
             raise

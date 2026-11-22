@@ -50,8 +50,11 @@ The structured API is
 in `engine/regulatory_evidence.py`. It returns findings, raw field evidence,
 artifact comparisons, spec/source hashes and separate counts. The CLI includes
 these observations in its opening summary and source-located Markdown detail.
-New detailed findings are Markdown-only; `--annotated-pdf` does not place each
-new observation as a located PDF comment or complete PDF finding index.
+In version 0.10.0, actionable observations also enter the requested annotated
+review-copy index. A uniquely verified plan span receives a comment; multiple,
+unsupported or reference-only locations stay unlocated. PASS results remain in
+Markdown. The [job-record pass](job-record-checks.md) adds six further bounded
+question paths across five additional clauses, without accepting whole clauses.
 
 ## Specification contract
 

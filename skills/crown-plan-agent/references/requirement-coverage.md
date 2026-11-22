@@ -19,6 +19,15 @@ The [November 21 source audit](regulatory-source-audit-2026-11-21.md) verifies t
 linked May2024 content edition and selected clauses; the inventory's fixed
 `UNVERIFIED_CURRENT` status still does not attest case-specific authority.
 
+Version 0.10.0 adds six further bounded paths through the
+[job-record pass](job-record-checks.md): plan/form legal description, applicant
+versus form/registry, activity total arithmetic, conditional itemized-amendment
+arithmetic and conditional width-group length reconciliation. Together the
+executors support seventeen paths across fourteen partially observed clauses.
+Source/role/job/currentness, unit, scope and applicability gates still apply;
+all complete clauses retain their remaining manual questions. Job-only amount,
+disposition and confirmed-instruction comparisons do not add regulatory coverage.
+
 ## Legacy observation links
 
 The existing 17 candidates cite 29 distinct clauses directly. **115 clauses lack a direct candidate mapping.** Two of those are mentioned only in review instructions; those mentions do not close the gaps.

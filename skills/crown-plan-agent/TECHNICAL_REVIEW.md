@@ -1,5 +1,71 @@
 # Crown Plan Agent independent technical review
 
+## Version 0.10.0 job records and corrective exports — November 21, 2026
+
+This pass compares actual source-bound application/registry fields and printed
+area/length equations. Six new dated question paths bring the combined coverage
+to seventeen bounded paths across fourteen partially observed clauses. Actual
+record authority, subject, role, scope and currentness remain explicit review
+inputs. All 144 manual paths and residual obligations remain available; no
+mechanical result establishes regulatory acceptance.
+
+Independent adversarial review reproduced unsafe company-name passes caused by
+hidden continuations and payload-stripping labels, unit captions that could
+erase numeric evidence, misleading source-readiness reporting, and reference
+changes during PDF generation. Actual-PDF regressions now preserve these cases.
+The reader recognizes only finite actual typed headers and complete native
+quantities; ambiguous/wrapped evidence stays unresolved. Reference snapshots are
+checked again after PDF generation before either output is published. Actionable
+finished-plan, clause, job-record and point-export findings enter the complete
+PDF index; only uniquely verified native plan evidence receives a marker.
+Final export-only review also reproduced markers on native first lines whose
+fields were unresolved because of raster overlap or detected continuation.
+Those fields now stay unlocated; the actual-document regression preserves a
+readable-plan/unconfirmed-reference control that remains correctly locatable.
+This correction changes export placement, not the frozen trial comparisons.
+
+The final suite ran **1,071 tests: 1,069 passed, two optional official-source
+tests skipped**, with zero failures. The optional file was separately checked
+against the publisher-linked A2 PDF (three tests passed); twelve audit-wrapper
+tests and synthetic smoke also passed. Runtime/dependency locks are unchanged.
+Minimum-version satisfaction is not native-advisory clearance.
+
+The first frozen six-job forward phase found all four planted drawing issues,
+with no false alarms, false clearances, unsupported findings or duplicate credit
+in that set. Attribution matters: **one was detected by an executed predicate;
+three required assisted reading**. One missing governing-record dependency was
+correctly left open. The final preparations requested 88 comparisons: 21 executed
+(20 PASS, 1 FAIL), while 67 were blocked. A later replay of those same saved
+preparations preserved every result; it supplies no accuracy-improvement claim.
+
+Two new holdouts after the dense-field correction had no planted drawing defects,
+so they supply no recall denominator. Ten area comparisons executed and passed;
+twelve identity requests were blocked. Eleven blocks abstained unnecessarily on
+source-resolvable fields, and one was a genuinely unresolved registry-name
+dependency found through assisted reading. No false alarms or false clearances
+were recorded. These small invented trials are not real-plan accuracy estimates,
+model training or evidence of unattended intake. The full attribution, freezes
+and limitations are in the [dated trial record](references/job-records-forward-trial-2026-11-21.md).
+
+Public generators reproduce all 35 original invented input files byte-for-byte
+under the tested runtime. Twelve preservation tests retain both original trial
+records separately from known replays and verify actual execution and source
+corruption handling. Their files are `tests/job_record_forward_examples.py`,
+`tests/fixtures/job_record_forward_truth.json` and
+`tests/test_job_record_forward_examples.py`.
+
+The 193-file Python/JSON/requirements fingerprint is
+`61d69b6ce949505dd6dffec8324ef6a570f4b1152bb923a7fd95bc75c8e9b993`:
+sort engine/tests `.py`/`.json` plus `requirements.txt` by skill-relative path,
+then hash UTF-8 `path<TAB>file_sha256<LF>` records. Exact package, public CI and
+installed-release receipts identify the later integrated candidate separately.
+
+A separate authorized private replay requested six comparisons; all six remained
+blocked without the matching application, registry and current approved record.
+No private source, identifying mapping or derived fixture is published. This
+does not close real-job validation, accepted geometry, current application-specific
+authority, dependency licensing or qualified professional acceptance.
+
 ## Version 0.9.0 clause evidence — November 21, 2026
 
 The new pass executes eleven bounded question paths across nine dated clauses

@@ -6,6 +6,29 @@ The candidate is a **DEVELOPMENT PREVIEW** prepared for the existing public `new
 
 ## Evidence baseline
 
+Version 0.10.0 adds actual job-record identity comparisons, source-bound printed
+balances and complete actionable finding export to the private review-copy index.
+Application/registry references remain distinct from confirmed job instructions.
+The combined executor mappings cover seventeen bounded paths across fourteen
+partially observed clauses. Read the [job-record guide](references/job-record-checks.md)
+and [readiness boundary](references/review-readiness.md). This completes further
+advertised review-assistance features; it does not close full regulatory, field,
+professional or production acceptance. Version-specific validation is recorded
+in the latest technical review and preserved trial evidence.
+
+The 0.10.0 suite ran 1,071 tests (1,069 passed, two optional skips), with zero
+failures. The six-job invented forward phase found four planted drawing issues:
+one executed detection and three assisted-only detections. Its 88 prepared
+requests produced 21 executed comparisons and 67 blocks. A separate two-job
+phase executed ten area comparisons and blocked twelve identity requests; it
+contained no planted drawing defects and therefore supplies no recall estimate.
+The missing governing registry name was correctly left open through assisted
+reading. Public generators, frozen truth and twelve preservation tests retain
+all eight invented bundles and the original attribution. See the
+[dated job-record trial](references/job-records-forward-trial-2026-11-21.md).
+A private replay left all six requests blocked without the matching job records;
+it is not additional real-plan acceptance.
+
 Version 0.9.0 adds [executed clause evidence](references/clause-execution.md):
 eleven bounded question paths across nine clauses, actual PDF coordinate-table
 reading, a CAD/GIS point-export comparison and applicability-gated general text
@@ -100,9 +123,9 @@ section of [TECHNICAL_REVIEW.md](TECHNICAL_REVIEW.md).
 | 1 | Foundation and GitHub integration | Public preview integrated; exact-version verification recorded separately |
 | 2 | PDF text/vector extraction | Implemented inventory contract documented and tested; semantic limits explicit |
 | 3 | Survey geometry | Existing reconstruction/CAD handoff plus actual point-export consistency checks; accepted geometry remains evidence-dependent |
-| 4 | Regulatory catalogue | 144 manual clause paths; 11 bounded observations across 9 clauses; selected editions verified, case-specific authority unresolved |
+| 4 | Regulatory catalogue | 144 manual clause paths; 17 bounded observations across 14 clauses; selected editions verified, case-specific authority unresolved |
 | 5 | Plan-type determination | Scope exclusions and branch inventory implemented; complete regulatory determination unfinished |
-| 6 | Evidence and deficiency reporting | Summary-first evidence/actions, source-bound PDF notes and revision comparisons implemented; normative assessment remains gated |
+| 6 | Evidence and deficiency reporting | Job-record comparisons, printed balances, actionable PDF/index export and revision comparisons implemented; normative assessment remains gated |
 | 7 | PDF-to-report workflow | Exact code snapshot passed clean-copy offline acceptance; native discovery remains separate |
 | 8 | Real-world validation | One authorized private case and public extraction examples exercised; broader acceptance open |
 | 9 | Independent technical review | Independent AI code review; qualified survey/regulatory acceptance outstanding |
@@ -262,6 +285,7 @@ Remaining acceptance:
 - [x] Prepare [anonymized results](VALIDATION_RESULTS.md) with fictional company names and no source plan, plan images, coordinates, identifiers or private case mapping. The user authorized anonymized development results; this is not permission to publish the original plan.
 - [x] Run the existing specialist evidence/reconstruction intake privately. No independently accepted geometry is available; unresolved source/control/feature identities stay visible rather than becoming invented coordinates.
 - [x] Revalidate version 0.2 after the user explicitly declared Crown scope. All 11 mechanical consistency/handoff checks passed, with the same 14-entry review-only summary. Drawing annotations and user declarations are not independently verified ownership. The plan-of-record and geometry inputs remain unresolved.
+- [x] Exercise the 0.10.0 job-record workflow privately against the authorized drawing. Six requests remained blocked because the application, registry and current approved record were unavailable; no comparison was reported as executed and no private fixture is published.
 - [ ] Obtain the plan on file, authoritative application purpose/activity and independently sourced survey boundary/CRS evidence for the private case. Missing geometry checks were not claimed as executed.
 - [ ] Have a qualified reviewer establish expected findings, applicable current sources, independently checked measurements and difficult/negative cases before comparing engine output.
 - [ ] Record extraction failures, false candidates, missed findings, geometry discrepancies and unresolved professional judgments; agree acceptance thresholds and remediate failures.
