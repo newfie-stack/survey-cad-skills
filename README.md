@@ -16,8 +16,8 @@ Open-source, general-purpose skills for survey evidence interpretation, cadastra
 - [Counsel — General Decision Review](skills/counsel/SKILL.md) (general-purpose AI advisory skill)
 
 - [AER OneStop Guide](skills/aer-onestop-guide/SKILL.md) — public-source regulatory research only
-- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md)
-- [Canada Lands Plan Agent](skills/canada-lands-plan-agent/SKILL.md) — new development-preview agent for CLSR/IOGC, First Nation reserve plan reviews, temporary workspace, access, boundary interests, and remediation/reclamation routes — development preview with original-PDF revision comparisons, summary-first evidence reports, private marked-up PDF copies, targeted intake questions, dated requirement workbooks and an Octopus reconstruction handoff
+- [Crown Plan Agent](skills/crown-plan-agent/SKILL.md) — Alberta Crown pre-submission QC, original-PDF comparisons, marked-up review copies, dated requirement workbooks and Octopus handoffs.
+- [Canada Lands Plan Agent](skills/canada-lands-plan-agent/SKILL.md) — separate Canada Lands and IOGC pre-checking reviewer for CLSR/LTO, existing interests, workspaces, and remediation/reclamation routes.
 - [CAD/GIS Object Inspection](skills/cad-gis-object-inspection/SKILL.md)
 - [Skill Evaluation & Regression Testing](skills/skill-evaluation-regression/SKILL.md)
 - [Interactive Artifact Review](skills/interactive-artifact-review/SKILL.md)

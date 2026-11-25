@@ -1,0 +1,235 @@
+[
+  {
+    "id": "off_lease_remediation_sketch",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "off_lease_remediation",
+      "document_type": "surface_permit_sketch"
+    },
+    "expected_route": "consider_iogc_surface_permit",
+    "expected_status": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "new_permanent_land",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "new_permanent_land",
+      "document_type": "application_survey_plan"
+    },
+    "expected_route": "consider_surface_contract_amendment",
+    "expected_status": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "reclamation_not_necessarily_amendment",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "reclamation",
+      "document_type": "asbuilt_exhibit"
+    },
+    "expected_route": "determine_underlying_transaction",
+    "expected_status": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "reclamation_without_iogc_confirmation",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": false,
+      "purpose": "reclamation",
+      "document_type": "asbuilt_exhibit"
+    },
+    "expected_route": "verify_administrator_and_standards",
+    "expected_status": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "first_nation_land_code_unknown",
+    "input": {
+      "land_class": "other_canada_lands",
+      "iogc_confirmed": true,
+      "purpose": "off_lease_remediation"
+    },
+    "expected_route": "verify_administrator_and_standards",
+    "expected_status": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "provincial_crown_out_of_scope",
+    "input": {
+      "land_class": "provincial_crown",
+      "purpose": "new_permanent_land"
+    },
+    "expected_route": "route_to_provincial_crown_agent",
+    "expected_status": "NOT_APPLICABLE"
+  },
+  {
+    "id": "partial_surrender",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "partial_surrender",
+      "document_type": "clsr_survey_plan"
+    },
+    "expected_route": "consider_partial_surrender_survey",
+    "expected_status": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "unknown_transaction",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "unexpected",
+      "document_type": "application_survey_plan"
+    },
+    "expected_route": "confirm_transaction",
+    "expected_status": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "valid_ia_overlap_arithmetic",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "off_lease_remediation",
+      "document_type": "surface_permit_sketch",
+      "workspace_area": {
+        "total_ha": "0.4800",
+        "within_row_ha": "0.0600",
+        "outside_row_ha": "0.4200"
+      }
+    },
+    "expected_route": "consider_iogc_surface_permit",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_area": "PASS"
+  },
+  {
+    "id": "incorrect_ia_overlap_arithmetic",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "off_lease_remediation",
+      "document_type": "application_survey_plan",
+      "workspace_area": {
+        "total_ha": "0.4800",
+        "within_row_ha": "0.0600",
+        "outside_row_ha": "0.4000"
+      }
+    },
+    "expected_route": "consider_iogc_surface_permit",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_area": "FAIL"
+  },
+  {
+    "id": "missing_ia_total",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "off_lease_remediation",
+      "workspace_area": {
+        "within_row_ha": "0.0600",
+        "outside_row_ha": "0.4200"
+      }
+    },
+    "expected_route": "consider_iogc_surface_permit",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_area": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "invalid_negative_area",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "off_lease_remediation",
+      "workspace_area": {
+        "total_ha": "-0.48",
+        "within_row_ha": "0.06",
+        "outside_row_ha": "0.42"
+      }
+    },
+    "expected_route": "consider_iogc_surface_permit",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_area": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "large_exponent_input",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "off_lease_remediation",
+      "workspace_area": {
+        "total_ha": "1e999999999999",
+        "within_row_ha": "0",
+        "outside_row_ha": "0"
+      }
+    },
+    "expected_route": "consider_iogc_surface_permit",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_area": "REVIEW_REQUIRED"
+  },
+  {
+    "id": "source_plan_conflict_not_mechanically_detectable",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "existing_asbuilt",
+      "document_type": "asbuilt_exhibit",
+      "synthetic_observations": {
+        "clsr_plan_label": "FICTITIOUS-1",
+        "supporting_record_label": "FICTITIOUS-2"
+      }
+    },
+    "expected_route": "determine_underlying_transaction",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_visual": "NOT_EXECUTED",
+    "known_unverified_issue": "plan_reference_disagreement"
+  },
+  {
+    "id": "road_allowance_label_omission_not_mechanically_detectable",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "existing_asbuilt",
+      "document_type": "asbuilt_exhibit",
+      "synthetic_observations": {
+        "road_allowance_exists": true,
+        "road_allowance_label": false
+      }
+    },
+    "expected_route": "determine_underlying_transaction",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_visual": "NOT_EXECUTED",
+    "known_unverified_issue": "missing_road_allowance_label"
+  },
+  {
+    "id": "missing_north_arrow_not_mechanically_detectable",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "existing_asbuilt",
+      "document_type": "clsr_survey_plan",
+      "synthetic_observations": {
+        "north_arrow": false
+      }
+    },
+    "expected_route": "determine_underlying_transaction",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_visual": "NOT_EXECUTED",
+    "known_unverified_issue": "missing_north_arrow"
+  },
+  {
+    "id": "ia_table_omission_not_mechanically_detectable",
+    "input": {
+      "land_class": "first_nation_reserve",
+      "iogc_confirmed": true,
+      "purpose": "new_permanent_land",
+      "document_type": "application_survey_plan",
+      "synthetic_observations": {
+        "source_verification_missing": true,
+        "ia_table_present": false
+      }
+    },
+    "expected_route": "consider_surface_contract_amendment",
+    "expected_status": "REVIEW_REQUIRED",
+    "expected_visual": "NOT_EXECUTED",
+    "known_unverified_issue": "ia_table_absent"
+  }
+]

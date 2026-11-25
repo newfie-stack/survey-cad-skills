@@ -13,6 +13,8 @@ from typing import Any
 
 MAX_INPUT_BYTES = 262_144
 BOOKKEEPING_ROUNDING_HA = Decimal("0.0001")
+# Defensive arithmetic bound, not a land-area regulation or survey tolerance.
+MAX_INPUT_AREA_HA = Decimal("1000000000000")
 
 
 def _area(value: Any) -> Decimal:
@@ -25,6 +27,8 @@ def _area(value: Any) -> Decimal:
         raise ValueError("Area must be a finite nonnegative number in hectares.") from exc
     if not result.is_finite() or result < 0:
         raise ValueError("Area must be a finite nonnegative number in hectares.")
+    if result > MAX_INPUT_AREA_HA:
+        raise ValueError("Area exceeds defensive numeric input bound; verify source units.")
     return result
 
 
