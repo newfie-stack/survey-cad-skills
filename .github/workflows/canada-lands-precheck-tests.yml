@@ -1,0 +1,23 @@
+name: Canada Lands pre-check skill tests
+
+on:
+  pull_request:
+    paths:
+      - "skills/canada-lands-plan-agent/**"
+      - "README.md"
+      - ".github/workflows/canada-lands-precheck-tests.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile isolated triage helper
+        run: python -m compileall -q skills/canada-lands-plan-agent/engine
+      - name: Run synthetic routing and safety contract tests
+        run: python -m unittest discover -s skills/canada-lands-plan-agent/tests -v
