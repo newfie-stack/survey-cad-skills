@@ -4,6 +4,8 @@ Read-only preliminary reviewer of completed or near-completed Canada Lands surve
 
 This agent is **not a drafting agent**. It reviews a proposed plan before the organization's formal surveyor/drafting check, provides an evidence-based list of corrections, and never changes the submitted original or declares regulatory acceptance. Default outputs are a Pre-Checking Review Report with coverage, severity-ranked findings, and readiness for formal checking (not approval).
 
+The official MyCLSS and IOGC plan-check lists are mapped by document type; each mandatory finding requires current source applicability and actual evidence. See the [official checklist coverage](references/official-checklist-coverage.md).
+
 ## Typical tasks
 - Explain which CLSR and LTO numbers refer to which survey documents and flag unresolved agreement status.
 - Review an existing wellsite, pipeline ROW, access road and road allowance without collapsing different rights into one boundary.
@@ -14,7 +16,7 @@ This agent is **not a drafting agent**. It reviews a proposed plan before the or
 - Flag approvals and disturbance/clearing issues for the CLS, First Nation and IOGC to resolve.
 
 ## Use
-Read [SKILL.md](SKILL.md), [sources](references/source-hierarchy.md), [route matrix](references/route-matrix.md) and [review checklist](references/review-checklist.md).
+Read [SKILL.md](SKILL.md), [sources](references/source-hierarchy.md), [route matrix](references/route-matrix.md) and [review checklist](references/review-checklist.md), and [official checklist coverage](references/official-checklist-coverage.md).
 
 For optional **synthetic-only** CLI smoke tests from repository root:
 
